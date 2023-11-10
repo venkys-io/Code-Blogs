@@ -10,7 +10,7 @@ Git setup instructions to make contributions to the repository.
 
 ## Install Git
 
-Download the latest git. 
+Download the latest version of `Git`. 
 
 https://git-scm.com/download
 
@@ -151,3 +151,17 @@ Hit on Compare & Pull request.
 Mention your changes.
 
 Hit on create pull request.
+
+
+
+
+## Suggestions
+
+It is good a have knowledge on Git, GitHub.
+
+Here are few free resources. You can try.
+
+[Youtube1](https://youtu.be/vwj89i2FmG0?si=C79oYDwj2A7Iqhta)<br>
+[Youtube2](https://youtu.be/Ez8F0nW6S-w?si=FH0luDqtp9WiWqgp)<br>
+[Youtube3](https://youtu.be/CvUiKWv2-C0?si=6Nx71vP7WXtAAbqe)<br>
+[GitHub-Resource](https://github.com/firstcontributions/first-contributions)
