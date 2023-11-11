@@ -92,6 +92,3 @@ This function, though seemingly simple, is a powerful tool in the broader landsc
 
 For more engaging programs and coding insights, visit [venkys.io](https://venkys.io). The code provided here is a testament to the depth and versatility of programming challenges, and [venkys.io](https://venkys.io) offers a wealth of resources for those eager to delve deeper into the world of coding.
 
----
-
-Feel free to customize this template further based on your preferences and additional details you'd like to include!
