@@ -20,6 +20,14 @@ An anagram is a word or phrase formed by rearranging the letters of another word
 * Original Letters Only
 * New Meaning or Phrase
 
+**Example:**
+**Original Word:**
+LISTEN
+**Anagram:**
+SILENT
+
+The letters in the word "LISTEN" can be rearranged to form the word "SILENT," making it an anagram. The anagram retains all the original letters of the word but presents them in a different order, resulting in a new word with a different meaning.
+
 For an Anagram Finder, this involves creating a hash function that accurately captures the similarities between words, enabling the grouping of anagrams at the same hash index.
 
 ## overview of Hash Table
