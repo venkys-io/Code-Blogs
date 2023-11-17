@@ -108,7 +108,7 @@ Let us see the step-by-step process of solving the anagram finder using the Hash
    The first step after the creation of the function is to check whether the lengths of the strings are equal or not. If the lengths of the strings are not equal then the strings are not anagram. If the lengths of the strings are equal then create a hash table.
 
 **3. Create, Update Frequencies and Check for anagram:**
-   We will create a hash table to store the frequency of characters. Iterates through each character of strings(s1,s2) simultaneously, updating frequencies in the hashtable. Check if characters in s2 are present in s1. If not, the function returns false (i.e.Strings are not anagram).
+   We will create a hash table to store the frequency of characters. Iterates through each character of string s1, and updates the frequencies in the hashtable. Check if characters in s2 are present in s1. If not, the function returns false (i.e.Strings are not anagram).
 
 **4. Check Final Frequencies:**
    Check if all characters have zero frequency in the hashtable. If any character has a non-zero frequency, then the strings are not Anagram and the function returns False. If all characters have zero frequency, the function returns True, indicating that the strings are anagrams.
@@ -188,6 +188,79 @@ Let us see the step-by-step process of solving the anagram finder using the Hash
 
 **4. Main Method and Example String:**
    Define the main method where the program execution begins, define example strings (s1 and s2), and check if they are anagrams using the isAnagram method. Print the result to the console.
+
+```c++
+// Copyrights to venkys.io
+// For more programs visit venkys.io 
+// CPP program for Anagrams
+
+
+// Time Complexity:
+// space Complexity:
+
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+  // Initialize the first string
+  string s1="hello"; 
+  // Initialize the second string
+  string s2="olleh";
+  
+  // Check if the lengths of both strings are different
+  if(s1.size()!=s2.size()){
+    // If different, print "Not Anagram"
+    cout<<"Not Anagram";
+  }
+  else{
+    // Create a hash map to store the frequency of characters
+    map<char,int> map;
+    // Iterate through the characters of the first string
+    for(int i=0;i<s1.size();i++){
+      //Increment the frequency of each character in the map
+      map[s1[i]]++;
+    }
+    // Iterate through the characters of the second string
+    for(int j=0;j<s2.size();j++){
+      // Check if the character is present in the hash map
+      if(map.find(s2[j])!=map.end()){
+        //If present, decrement the frequency in the map
+        map[s2[j]]--;
+      }
+      else{
+        // If character not found, print "Not Anagrams" and exit
+        cout<<s1<<" and "<<s2<<" are Not Anagrams";
+        return false;
+      }
+    }
+    // Iterate through the map
+    for(auto items:map){
+      // Check if any frequency is not zero
+      if(items.second!=0){
+        // If not zero, print "Not Anagrams" and exit
+         cout<<s1<<" and "<<s2<<" are Not Anagrams";
+      }
+    }
+    // If all characters match, print "Anagrams"
+    cout<<s1<<" and "<<s2<<" are Anagrams";
+    return true;
+  }
+   
+  return 0;
+}
+
+```
+
+## Algorithm
+
+solving anagrams using a hash table or hash map is an efficient approach. An anagram is a word or phrase formed by rearranging the letters of another word or phrase, using all the original letters exactly once. For solving anagrams using a hash table or hash map, it follows these steps:
+
+* Firstly, The program checks for the lengths of strings, if they are unequal, it prints "Not Anagram" and exits.
+* If the lengths are equal, a map is created to store the frequency of characters in the first string. Each character's frequency is incremented as the program iterates through the first string.
+* The program then iterates through the second string and decrements the frequency of each character found in the map. If the characters are not found in the map, the program prints "Not Anagrams" and exits.
+* After decrementing frequencies for both strings, The program checks if any frequencies remain non-zero. If so, it prints "Not Anagrams" and exits.
+* If all characters match, the program prints "Anagrams"
 
 ## Time and Space Complexity Analysis
 
