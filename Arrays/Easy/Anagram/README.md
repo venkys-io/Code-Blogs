@@ -189,6 +189,8 @@ Let us see the step-by-step process of solving the anagram finder using the Hash
 **4. Main Method and Example String:**
    Define the main method where the program execution begins, define example strings (s1 and s2), and check if they are anagrams using the isAnagram method. Print the result to the console.
 
+## C++ Code
+
 ```c++
 // Copyrights to venkys.io
 // For more programs visit venkys.io 
