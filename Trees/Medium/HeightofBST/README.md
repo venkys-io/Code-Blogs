@@ -13,8 +13,8 @@ The height of an empty BST is considered to be -1, while a BST with only one nod
 <h2>CODE</h2>
 
 ```
-/* Copyrights to venkys.io
-For more information, visit https://venkys.io */
+#Copyrights to venkys.io
+#For more information, visit https://venkys.io 
 
 #Space complexity: O(n)
 #Time complexity: O(n)
@@ -54,8 +54,8 @@ if __name__ == "__main__":
 JAVA
 
 ```
-/* Copyrights to venkys.io
-For more information, visit https://venkys.io */
+//Copyrights to venkys.io
+//For more information, visit https://venkys.io 
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -102,8 +102,8 @@ public class Main {
 CPP
 
 ```
-/* Copyrights to venkys.io
-For more information, visit https://venkys.io */
+//Copyrights to venkys.io
+//For more information, visit https://venkys.io 
 
 #include<bits/stdc++.h>
 
