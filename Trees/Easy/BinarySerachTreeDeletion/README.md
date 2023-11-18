@@ -52,16 +52,16 @@ BST deletion is a careful process balancing removal and maintaining order, with 
 
 ## Python Code
 ```python
-'''Copyrights to venkys.io
-For more information, visit https://venkys.io 
+# Copyrights to venkys.io
+# For more information, visit https://venkys.io 
 
-Python Program for Binary Search Tree (BST) Deletion
-Stable: No (Deletion can change the tree structure)
-Inplace: Yes (Deletion is performed within the existing tree structure)
-Adaptive: No (Deletion complexity is not dependent on the input)
+# Python Program for Binary Search Tree (BST) Deletion
+# Stable: No (Deletion can change the tree structure)
+# Inplace: Yes (Deletion is performed within the existing tree structure)
+# Adaptive: No (Deletion complexity is not dependent on the input)
 
-Space complexity: O(n) (where n is the number of nodes in the tree)
-Time complexity: O(n^2) '''
+# Space complexity: O(n) (where n is the number of nodes in the tree)
+# Time complexity: O(n^2)
 
 # Node class
 class Node:
