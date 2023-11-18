@@ -7,7 +7,7 @@ A key component of data structures in computer science are tree algorithms. They
 Each node in a Binary Search Tree (BST) data structure has a maximum of two children: a left child and a right child. The values of nodes in the left subtree are less than the parent node's value, while the values of nodes in the right subtree are greater than the parent node. This is the fundamental characteristic of a BST.
 
 ##  Binary Search Trees (BSTs)
-Binary Search Trees (BSTs) are really useful for quickly finding, adding, and removing items. They're like a special kind of tree where each "branch" has only two "twigs" – one for items smaller than the current one, and one for items larger. This makes searching for stuff super fast.
+Binary Search Trees (BSTs) are really useful for quickly finding, adding, and removing items. They're like a special kind of tree where each "branch" has only two "twigs" – one for items smaller than the currencd Codet one, and one for items larger. This makes searching for stuff super fast.
 
 There are two types of these trees: balanced and unbalanced. Balanced ones stay organized no matter what, making them good for handling lots of items without slowing down. Unbalanced ones can get messy, especially if you add things in a specific order, and they can become slow if you're not careful.
 
@@ -292,7 +292,7 @@ int main() {
     return 0;
 }
 ```
-### Step-by-Step Explanation of C++ Code
+### Step-by-Step Explanation of CPP Code
 
 - **Node Class**
   
@@ -339,3 +339,4 @@ Searching in Binary Search Trees (BSTs) is a fundamental operation with a wide r
 
 ## Conclusion
 Binary search trees are strong data structures with many applications that provide effective search functions. One of the most important computer science skills is knowing how to search in a BST, which may be used to solve a wide range of real-world issues. The concepts of Binary Search Tree Searching are useful tools to have in your toolbox whether you deal with databases, compilers, or any other software system that requires searching.
+
