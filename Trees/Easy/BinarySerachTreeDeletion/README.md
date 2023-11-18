@@ -57,7 +57,7 @@ For more information, visit https://venkys.io
 
 Python Program for Binary Search Tree (BST) Deletion
 Stable: No (Deletion can change the tree structure)
-Inplace: No (Deletion may involve rearranging nodes)
+Inplace: Yes (Deletion is performed within the existing tree structure)
 Adaptive: No (Deletion complexity is not dependent on the input)
 
 Space complexity: O(n) (where n is the number of nodes in the tree)
@@ -183,7 +183,7 @@ For more information, visit https://venkys.io */
 
 // Java Program for Binary Search Tree (BST) Deletion
 // Stable: No (Deletion can change the tree structure)
-// Inplace: No (Deletion may involve rearranging nodes)
+// Inplace: Yes (Deletion is performed within the existing tree structure)
 // Adaptive: No (Deletion complexity is not dependent on the input)
 
 // Space complexity: O(n) (where n is the number of nodes in the tree)
@@ -317,7 +317,7 @@ public class Main {
 
 // CPP Program for Binary Search Tree (BST) Deletion
 // Stable: No (Deletion can change the tree structure)
-// Inplace: No (Deletion may involve rearranging nodes)
+// Inplace: Yes (Deletion is performed within the existing tree structure)
 // Adaptive: No (Deletion complexity is not dependent on the input)
 
 // Space complexity: O(n) (where n is the number of nodes in the tree)
