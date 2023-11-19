@@ -1,167 +1,204 @@
-<!-- # Code-Blogs -->
+LINEAR SEARCH
+
+Linear search is like looking for a specific thing in a room by checking each item, one by one, until you find what you're looking for or realize it's not there.
+
+# Explanation Steps
+
+        (1) Think of a room filled with items (an array with elements).
+        (2) You're given a specific item you want to find in the room (the target element).
+        (3) You start looking from one side of the room (the beginning of the array).
+        (4) You check each item (element) one by one.
+        (5) For each item, you compare it with the one you're looking for.
+        (6) If you find the item you're looking for, you stop searching and say you found it.
+        (7) If you haven't found it, you keep checking the next items.
+        (8) You continue until you've checked every item in the room.
+        (9) If you found your item, you know where it is (the index in the array). If you checked everything and didn't find it, you know it's not there.
+
+# Advantages of linear search
+        - Simplicity
+        - Applicability
+        - Ease of Implementation
+        - Memory Efficiency
+        - Optimal for Small Lists
+
+# Drawbacks of Linear Search:
+        - Linear search has a time complexity of O(N), 
+        - which in turn makes it slow for large datasets.
+        - Not suitable for large arrays.
+
+# use Linear Search :
+        - When we are dealing with a small dataset.
+        - When you are searching for a dataset stored in contiguous memory.
+        - Debugging and Verification
+        - User Interface (UI) Elements
+        - data Valdation
+        - Sequential File Search
+         Online search Engines 
 
 
+# Overview of Linear Search Algorithm
+Linear search is a simple searching algorithm that sequentially checks each element in a list or an 
+array until a match is found or the entire list has been traversed. It's also known as a sequential search.
 
-## Instructions
+# Code for Linear Search in Pyhton, Java and C++
 
-Git setup instructions to make contributions to the repository.
+     python     
 
-
-
-## Install Git
-
-Download the latest version of `Git`. 
-
-https://git-scm.com/download
-
-
-
-## Clone this repository
-
-Create a folder to clone the repository.
-
-Open the terminal and run the following git command:
-```bash
-git clone https://github.com/venkys-io/Code-Blogs.git
+```python
+# Function to search for an element using linear search
+# Takes an array and the element to find as parameters
+def linear_search(array, element):
+    for idx, val in enumerate(array):  # Using enumerate for a more Pythonic way to iterate with index
+        if val == element:  # Print a message indicating the element is found and its index
+            print(f"The element {element} found at index {idx} in the given array")
+            # No need to continue searching if the element is found, so return from the function
+            return
+    else:  # If the loop completes and the element is not found, print a message indicating so
+        print(f"The element {element} not found in the given array")
+# Test drive code
+arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+target = 10
+# Call the linear_search function to search for the target element in the array
+linear_search(arr, target)
 ```
 
+### Output
+![Alt text](../Outputs/LSPY.png)
 
+# Explanation of the Code
+    - Function Definition:
+        The linear_search function takes in two parameters: array (the list to be searched) and element (the value being searched for).
+    - Iterating through the List:
+        It uses a for loop with enumerate to iterate through each element in the list array.
+        enumerate allows simultaneous access to both the index (idx) and the value (val) of each element in the list.
+    - Checking for a Match:
+        Inside the loop, it checks if the current element val matches the element being searched for.
+        If a match is found, it prints a message indicating the element and its index and returns from the function, ending the search.
+    - Completion of Loop:
+        If the loop completes without finding a match (i.e., the return statement is not triggered), it implies that the element is not present in the list.
+        In that case, it prints a message indicating that the element is not found in the given array.
+    - Test Drive Code:
+        The arr variable holds the list [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], and target is set to 10, which is the element being searched for.
+    - Function Call:
+        The linear_search function is called with the array arr and the target target as arguments to search for the element in the list.
 
-If this is the first time using git. A browser tab pops up to login into your GitHub account.
+# Time Complexity and Space Complexity
+    - Time Complexity:
+        In the worst-case scenario, the linear search algorithm has a time complexity of O(n), where n is the number of elements in the list. This is because it might need to traverse the entire list to find the element or determine that it's not present.
+        The average and best-case time complexities are also O(n) since the search might terminate at any position in the list.
+    - Space Complexity:
+        The space complexity of the linear search algorithm is O(1) since it doesn't require any extra space proportional to the input size. It only uses a few variables for iteration and comparison.
+        
+# JAVA CODE 
 
-and set the default config username and email. This is necessary to make any commits on the repository.
+```java
+public class LinearSearch {
 
-```bash
-git config --global user.name "yourUserName"
-git config --global user.email "YourEmailId@gmail.com"
+    // Function to search for an element using linear search
+    // Takes an array and the element to find as parameters
+
+    static void linearSearch(int[] array, int element) {
+        for (int idx = 0; idx < array.length; idx++) {
+            if (array[idx] == element) {
+                System.out.printf("The element %d found at index %d in the given array%n", element, idx);
+                return;  // No need to continue searching if the element is found
+            }
+        }
+        System.out.printf("The element %d not found in the given array%n", element);
+    }
+
+    // Test drive code
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        int target = 10;
+        linearSearch(arr, target);
+    }
+}
 ```
 
-## Create a branch
+### Output
+![Alt text](../Outputs/LSJAVA.png)
 
-Change to the repository directory on your computer (if you are not already there):
+# Explanation of the Code
+    - Function Definition:
+        The linearSearch method is static and void, taking two parameters: array (the array to be searched) and element (the value being searched for).
+    - Iterating through the Array:
+        It uses a for loop to iterate through each element in the array array.
+        The loop runs from index 0 to the length of the array (array.length - 1).
+    - Checking for a Match:
+        Inside the loop, it checks if the current element at index idx matches the element being searched for.
+        If a match is found, it prints a message indicating the element and its index and returns from the method, terminating the search.
+    - Completion of Loop:
+        If the loop completes without finding a match, it implies that the element is not present in the array.
+        In that case, it prints a message indicating that the element is not found in the given array.
+    - Test Drive Code:
+        The main method initializes an array arr with values [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], and target is set to 10, which is the element being searched for.
+    - Function Call:
+        The linearSearch method is called with the array arr and the target target as arguments to search for the element in the array.
 
-```bash
-cd Code-Blogs
+
+# C++ Code
+
+'''
+```c++
+#include<iostream>
+
+// Function to search for an element using linear search
+// Takes an array and the element to find as parameters
+
+void linearSearch(int arr[], int size, int element) {
+    for (int idx = 0; idx < size; idx++) {
+        if (arr[idx] == element) {
+            std::cout << "The element " << element << " found at index " << idx << " in the given array" << std::endl;
+            return;  // No need to continue searching if the element is found
+        }
+    }
+    std::cout << "The element " << element << " not found in the given array" << std::endl;
+}
+
+// Test drive code
+int main() {
+    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int size = sizeof(arr) / sizeof(arr[0]);  // Calculate the size of the array
+    int target = 10;
+    linearSearch(arr, size, target);
+    return 0;
+}
 ```
+''' 
 
-make sure you are in the correct directory.
-```bash
-C:\Users\....\Code-blogs\>
-```
+### Output
+![Alt text](../Outputs/LSC++.png)
 
-Now create a branch using `git checkout` command:
-
-```
-git checkout -b "yourBranchName"
-```
-
-you will be switched to your branch.
-
-## Make changes or Add your files
-
-Now write your blogs.
-
-Open vs-code in the repository.
-
-Shortcut:
-```bash
-  C:\Users\....\Code-blogs\> code .
-```
-
-
-To create a blog for the program `programs-prod/algorithms/Arrays/Easy/Palindrome`
-
-Create a `README.md` file as specified format.
-
-Example:
-
-<pre>
-Code-Blogs
-  └───Arrays
-        ├───Easy
-        │   └───Palindrome
-        |       └───README.md
-        └───Medium
-
-</pre>
+# Explanation of the Code
+    - Function Definition:
+        The linearSearch function takes three parameters: arr (the array to be searched), size (the size of the array), and element (the value being searched for).
+    - Iterating through the Array:
+        It uses a for loop to iterate through each element in the array arr.
+        The loop runs from index 0 to size - 1, where size represents the length of the array.
+    - Checking for a Match:
+        Inside the loop, it checks if the current element at index idx matches the element being searched for.
+        If a match is found, it prints a message indicating the element and its index and returns from the function, terminating the search.
+    - Completion of Loop:
+        If the loop completes without finding a match, it implies that the element is not present in the array.
+        In that case, it prints a message indicating that the element is not found in the given array.
+    - Test Drive Code:
+        The main function initializes an array arr with values [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].
+        The size of the array is calculated using sizeof(arr) / sizeof(arr[0]) to ensure the accurate size is passed to the function.
+        target is set to 10, which is the element being searched for.
+    - Function Call:
+        The linearSearch function is called with the array arr, its size size, and the target target as arguments to search for the element in the array.
 
 
-Now write the blog in `markdown`.
-
-To know more about markdown. visit
-
-[Cheatsheet1](https://www.freecodecamp.org/news/markdown-cheatsheet/)<br>
-[Cheatsheet2](https://www.markdownguide.org/cheat-sheet/)
-
-
-
-
-
-
-
-## Commit those changes.
-
-Even though you have created a file. `Git` actually doesn't track those files.
-
-you can check the status of your branch. using `git status` command.
-
-```bash
-git status
-```
-
-It displays all the changes you made on the branch.
+# Real-world Applications
+    - Database Operations:
+        Linear search can be used in databases for basic search operations on unsorted datasets.
+        Finding Elements in Lists or Arrays:
+        It's applicable in scenarios where finding a specific element in a collection of data is required.
+    - Simple Search Operations:
+        Linear search can be applied in various programming scenarios where a basic search operation is needed and the dataset isn't too large.
+    - Handling Small Lists or Arrays:
+        It's efficient for small lists or arrays where the overhead of implementing complex search algorithms might not be justified.
+        Linear search, although straightforward, serves as a fundamental algorithmic concept and is often used as a starting point for understanding more complex searching algorithms.
 
 
-Add those changes to the branch you just created using the `git add` command:
-
-```bash
-git add .
-```
-
-Now commit those changes using the git commit command:
-
-```bash
-git commit -m "your commit message"
-```
-
-
-## Push changes to GitHub.
-
-push the changes using the command `git push`
-
-```bash
-git push -u origin your-branch-name
-```
-
-replace your-branch-name with the name of the branch you created earlier.
-
-
-- Note: You might get Authentication errors if it was your first time.
-
-
-
-## Raise a Pull Request for review.
-
-Now open GitHub to see those changes.
-
-Now open `pull request` tab on GitHub repository. 
-
-Hit on Compare & Pull request.
-
-Mention your changes.
-
-Hit on create pull request.
-
-
-
-
-## Suggestions
-
-It is good a have knowledge on Git, GitHub.
-
-Here are few free resources. You can try.
-
-[Youtube1](https://youtu.be/vwj89i2FmG0?si=C79oYDwj2A7Iqhta)<br>
-[Youtube2](https://youtu.be/Ez8F0nW6S-w?si=FH0luDqtp9WiWqgp)<br>
-[Youtube3](https://youtu.be/CvUiKWv2-C0?si=6Nx71vP7WXtAAbqe)<br>
-[GitHub-Resource](https://github.com/firstcontributions/first-contributions)
