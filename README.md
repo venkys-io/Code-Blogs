@@ -1,6 +1,7 @@
 LINEAR SEARCH
 
-Linear search is like looking for a specific thing in a room by checking each item, one by one, until you find what you're looking for or realize it's not there.
+Linear search is like looking for a specific thing in a room by checking each item, one by one, until you 
+find what you're looking for or realize it's not there.
 
 # Explanation Steps
 
@@ -15,11 +16,11 @@ Linear search is like looking for a specific thing in a room by checking each it
         (9) If you found your item, you know where it is (the index in the array). If you checked everything and didn't find it, you know it's not there.
 
 # Advantages of linear search
-        - Simplicity
-        - Applicability
-        - Ease of Implementation
-        - Memory Efficiency
-        - Optimal for Small Lists
+- Simplicity
+- Applicability
+- Ease of Implementation
+- Memory Efficiency
+- Optimal for Small Lists
 
 # Drawbacks of Linear Search:
         - Linear search has a time complexity of O(N), 
@@ -27,13 +28,13 @@ Linear search is like looking for a specific thing in a room by checking each it
         - Not suitable for large arrays.
 
 # use Linear Search :
-        - When we are dealing with a small dataset.
-        - When you are searching for a dataset stored in contiguous memory.
-        - Debugging and Verification
-        - User Interface (UI) Elements
-        - data Valdation
-        - Sequential File Search
-         Online search Engines 
+ - When we are dealing with a small dataset.
+ - When you are searching for a dataset stored in contiguous memory.
+ - Debugging and Verification
+ - User Interface (UI) Elements
+ - data Valdation
+ - Sequential File Search
+ - Online search Engines 
 
 
 # Overview of Linear Search Algorithm
@@ -82,11 +83,11 @@ linear_search(arr, target)
         The linear_search function is called with the array arr and the target target as arguments to search for the element in the list.
 
 # Time Complexity and Space Complexity
-    - Time Complexity:
-        In the worst-case scenario, the linear search algorithm has a time complexity of O(n), where n is the number of elements in the list. This is because it might need to traverse the entire list to find the element or determine that it's not present.
-        The average and best-case time complexities are also O(n) since the search might terminate at any position in the list.
-    - Space Complexity:
-        The space complexity of the linear search algorithm is O(1) since it doesn't require any extra space proportional to the input size. It only uses a few variables for iteration and comparison.
+- Time Complexity:
+In the worst-case scenario, the linear search algorithm has a time complexity of O(n), where n is the number of elements in the list. This is because it might need to traverse the entire list to find the element or determine that it's not present.
+The average and best-case time complexities are also O(n) since the search might terminate at any position in the list.
+- Space Complexity:
+The space complexity of the linear search algorithm is O(1) since it doesn't require any extra space proportional to the input size. It only uses a few variables for iteration and comparison.
         
 # JAVA CODE 
 
@@ -186,14 +187,14 @@ int main() {
 
 
 # Real-world Applications
-    - Database Operations:
-        Linear search can be used in databases for basic search operations on unsorted datasets.
-        Finding Elements in Lists or Arrays:
-        It's applicable in scenarios where finding a specific element in a collection of data is required.
-    - Simple Search Operations:
-        Linear search can be applied in various programming scenarios where a basic search operation is needed and the dataset isn't too large.
-    - Handling Small Lists or Arrays:
-        It's efficient for small lists or arrays where the overhead of implementing complex search algorithms might not be justified.
-        Linear search, although straightforward, serves as a fundamental algorithmic concept and is often used as a starting point for understanding more complex searching algorithms.
+- Database Operations:
+  Linear search can be used in databases for basic search operations on unsorted datasets.
+  Finding Elements in Lists or Arrays:
+  It's applicable in scenarios where finding a specific element in a collection of data is required.
+- Simple Search Operations:
+  Linear search can be applied in various programming scenarios where a basic search operation is needed and the dataset isn't too large.
+- Handling Small Lists or Arrays:
+  It's efficient for small lists or arrays where the overhead of implementing complex search algorithms might not be justified.
+  Linear search, although straightforward, serves as a fundamental algorithmic concept and is often used as a starting point for understanding more complex searching algorithms.
 
 
