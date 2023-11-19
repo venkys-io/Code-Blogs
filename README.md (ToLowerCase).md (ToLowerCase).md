@@ -40,8 +40,7 @@ print(toLowerCase(string))
 
 ```
 
-### Output
-![Alt text](../Screenshorts/TLCPY.png)
+
 
 # Explanation:
 
@@ -91,8 +90,7 @@ public class Main {
 }
 ```
 
-### Output
-![Alt text](../Screenshorts/TLCJAVA.png)
+
 
 # Explanation:
 
@@ -147,8 +145,6 @@ int main() {
 }
 ```
 
-### Output
-![Alt text](../Screenshorts/TLCC++.png)
 
 # Explanation:
 
