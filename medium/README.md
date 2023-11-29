@@ -102,8 +102,6 @@ graph.add_edge(1, 3)
 
 print(graph.is_cyclic())  # Check and print whether the graph contains a cycle
 ```
-### Output
-![Alt text](../Outputs/DCGPY.png)
 
 # Clear Explnanation
         - Graph Class
@@ -183,8 +181,6 @@ public class Main {
     }
 }
 ```
-### Output
-![Alt text](../Outputs/DCGJAVA.png)
 
 
 # Java Code Explanation:
@@ -255,8 +251,7 @@ int main() {
     return 0;
 }
 ```
-### Output
-![Alt text](../Outputs/DCGC++.png)
+
 
 # C++ Code Explanation:
         dfs(int node, std::vector<std::vector<int>>& graph, bool visited[], int parent)
