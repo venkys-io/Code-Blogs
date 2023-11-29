@@ -1,4 +1,4 @@
-LINEAR SEARCH
+# LINEAR SEARCH
 
 Linear search is like looking for a specific thing in a room by checking each item, one by one, until you find what you're looking for or realize it's not there.
 
