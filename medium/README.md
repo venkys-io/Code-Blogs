@@ -4,6 +4,13 @@ Decrypting a cycle in a graph involves understanding how to identify and interpr
 Other way of explanation
 The detection of cycles in a graph involves identifying if there's a closed loop (cycle) formed by traversing through the vertices and edges of the graph. Cycles can provide insights into connectivity or dependencies within a graph structure.
 
+# Step-by-step Solution with Real-world Scenario
+Initialize an empty set to store the visited vertices and a stack to store the current path.
+Start at an arbitrary vertex in the graph.
+Mark the current vertex as visited and push it onto the current path stack.
+For each neighboring vertex, if it is not visited, recursively perform DFS. If the neighboring vertex is part of the current path, a cycle is detected.
+Pop the current vertex from the current path stack, as we are backtracking.
+
 # Overview of Detecting Cycles in a Graph:
         - Graph Representation:
                 Graphs consist of vertices (nodes) and edges (connections between nodes).
