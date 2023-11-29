@@ -38,7 +38,7 @@ The detection of cycles in a graph involves identifying if there's a closed loop
                 Facilitates error detection, loop avoidance, and efficient resource allocation.
 
 
-# Step-by-Step Algorithm:
+# Algorithm:
 
         (1) Create data structures to track visited nodes and parent nodes during the traversal. This can be done using arrays, sets, or dictionaries.
         (2) Start a DFS traversal from any unvisited node in the graph.
