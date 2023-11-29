@@ -62,7 +62,8 @@ target = 10
 linear_search(arr, target)
 ```
 
-
+### Output
+![Alt text](../Outputs/LSPY.png)
 
 # Explanation of the Code
     - Function Definition:
@@ -115,6 +116,8 @@ public class LinearSearch {
 }
 ```
 
+### Output
+![Alt text](../Outputs/LSJAVA.png)
 
 # Explanation of the Code
     - Function Definition:
@@ -164,6 +167,8 @@ int main() {
 ```
 ''' 
 
+### Output
+![Alt text](../Outputs/LSC++.png)
 
 # Explanation of the Code
     - Function Definition:
