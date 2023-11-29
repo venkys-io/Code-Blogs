@@ -1,199 +1,297 @@
-LINEAR SEARCH
+# DETECTING CYCLE IN A GRAPH.....
+# Introduction
+Decrypting a cycle in a graph involves understanding how to identify and interpret cycles within the graph structure. A cycle in a graph is a closed path where the start and end vertices are the same, and it passes through distinct vertices without revisiting any vertex (except for the starting and ending vertex).
+Other way of explanation
+The detection of cycles in a graph involves identifying if there's a closed loop (cycle) formed by traversing through the vertices and edges of the graph. Cycles can provide insights into connectivity or dependencies within a graph structure.
 
-Linear search is like looking for a specific thing in a room by checking each item, one by one, until you find what you're looking for or realize it's not there.
-
-# Explanation Steps
-
-        (1) Think of a room filled with items (an array with elements).
-        (2) You're given a specific item you want to find in the room (the target element).
-        (3) You start looking from one side of the room (the beginning of the array).
-        (4) You check each item (element) one by one.
-        (5) For each item, you compare it with the one you're looking for.
-        (6) If you find the item you're looking for, you stop searching and say you found it.
-        (7) If you haven't found it, you keep checking the next items.
-        (8) You continue until you've checked every item in the room.
-        (9) If you found your item, you know where it is (the index in the array). If you checked everything and didn't find it, you know it's not there.
-
-# Advantages of linear search
-        - Simplicity
-        - Applicability
-        - Ease of Implementation
-        - Memory Efficiency
-        - Optimal for Small Lists
-
-# Drawbacks of Linear Search:
-        - Linear search has a time complexity of O(N), 
-        - which in turn makes it slow for large datasets.
-        - Not suitable for large arrays.
-
-# use Linear Search :
-        - When we are dealing with a small dataset.
-        - When you are searching for a dataset stored in contiguous memory.
-        - Debugging and Verification
-        - User Interface (UI) Elements
-        - data Valdation
-        - Sequential File Search
-         Online search Engines 
+# Overview of Detecting Cycles in a Graph:
+        - Graph Representation:
+                Graphs consist of vertices (nodes) and edges (connections between nodes).
+                The detection of cycles typically applies to both directed and undirected graphs.
+        - Objective:
+                The primary goal is to identify whether a graph contains any cycles.
+        - Algorithms:
+                Various algorithms tackle this problem, including Depth-First Search (DFS), Breadth-First Search (BFS), and Union-Find (Disjoint Set).
+                DFS explores the graph depth-wise, marking visited nodes and backtracking when necessary to find cycles.
+                Union-Find maintains sets of connected components and tracks if adding an edge forms a cycle.
+        - Traversing and Marking:
+                During traversal, algorithms mark visited nodes or use data structures to keep track of visited vertices.
+                These methods detect when a vertex is revisited, indicating the existence of a cycle.
+        - Cycle Identification:
+                Detecting a cycle involves recognizing a closed loop, meaning traversal leads back to a previously visited vertex, forming a cycle.
+        - Complexities:
+                The time complexity for cycle detection algorithms varies:
+                DFS and BFS generally have a complexity of O(V + E), where V represents vertices and E represents edges.
+                Union-Find often performs with a similar time complexity.
+        - Applications:
+                Crucial in various domains like network analysis, project scheduling, software engineering, and resource allocation.
+                Helps identify and prevent circular dependencies or loops that might cause issues in systems.
+        - Importance:
+                Plays a critical role in understanding the structure of graphs and preventing unintended or problematic connections.
+                Facilitates error detection, loop avoidance, and efficient resource allocation.
 
 
-# Overview of Linear Search Algorithm
-Linear search is a simple searching algorithm that sequentially checks each element in a list or an 
-array until a match is found or the entire list has been traversed. It's also known as a sequential search.
+# Step-by-Step Algorithm:
 
-# Code for Linear Search in Pyhton, Java and C++
+        (1) Create data structures to track visited nodes and parent nodes during the traversal. This can be done using arrays, sets, or dictionaries.
+        (2) Start a DFS traversal from any unvisited node in the graph.
+            During the traversal, mark each visited node and keep track of the parent node that led to the current node.
+        (3) During the DFS traversal, if you encounter an already visited node that is not the parent of the current node, you have detected a back edge.
+        (4) The presence of a back edge indicates the existence of a cycle in the graph.
+        (5) Once a back edge is detected, backtrack from the current node to the node where the back edge was found.
+            The nodes encountered during the backtracking form the cycle.
+        (6) Extract and store the cycle found during the backtracking process. The cycle is now decrypted from the graph.
+        (7) If there are unvisited nodes in the graph, repeat the DFS traversal starting from an unvisited node to identify and decrypt additional cycles.
 
-     python     
+# Advantages :
+        Simple Implementation
+        Memory Efficiency
+        Flexibility
 
+# Drawbacks : 
+        Limited to Undirected Graphs
+        May Detect One Cycle
+        Performance for Dense Graphs
+
+####   PYTHON Code   ####
 ```python
-# Function to search for an element using linear search
-# Takes an array and the element to find as parameters
-def linear_search(array, element):
-    for idx, val in enumerate(array):  # Using enumerate for a more Pythonic way to iterate with index
-        if val == element:  # Print a message indicating the element is found and its index
-            print(f"The element {element} found at index {idx} in the given array")
-            # No need to continue searching if the element is found, so return from the function
-            return
-    else:  # If the loop completes and the element is not found, print a message indicating so
-        print(f"The element {element} not found in the given array")
-# Test drive code
-arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-target = 10
-# Call the linear_search function to search for the target element in the array
-linear_search(arr, target)
+
+class Graph:
+    def __init__(self, vertices):
+        # Constructor initializes the graph with a given number of vertices
+        self.vertices = vertices
+        # Graph represented as an adjacency list
+        self.graph = {i: [] for i in range(vertices)}
+
+    def add_edge(self, u, v):
+        # Method to add an undirected edge between vertices u and v
+        self.graph[u].append(v)
+        self.graph[v].append(u)
+
+    def is_cyclic_util(self, node, visited, parent):
+        # Utility function to perform DFS and detect cycles starting from a given node
+        visited[node] = True  # Mark the current node as visited
+        for neighbor in self.graph[node]:  # Iterate through neighbors of the current node
+            if not visited[neighbor]:  # If the neighbor is not visited
+                if self.is_cyclic_util(neighbor, visited, node):  # Recursive DFS call
+                    return True  # If a cycle is found in the recursive call, return True
+            elif neighbor != parent:  # If the neighbor is visited and not the parent (back edge)
+                return True  # Cycle is found, return True
+        return False  # No cycle found for the current node
+
+    def is_cyclic(self):
+        # Method to check if the graph contains any cycles
+        visited = [False] * self.vertices  # Initialize visited array for all vertices
+        for node in range(self.vertices):  # Iterate through all nodes in the graph
+            if not visited[node] and self.is_cyclic_util(node, visited, -1):  # If the node is not visited and contains a cycle
+                return True  # Return True indicating the presence of a cycle
+        return False  # No cycle found in the graph
+
+# Example usage:
+graph = Graph(4)  # Create a graph with 4 vertices
+graph.add_edge(0, 1)  # Add edges to the graph
+graph.add_edge(1, 2)
+graph.add_edge(1, 3)
+
+print(graph.is_cyclic())  # Check and print whether the graph contains a cycle
 ```
+### Output
+![Alt text](../Outputs/DCGPY.png)
+
+# Clear Explnanation
+        - Graph Class
+                __init__(self, vertices): Initializes the graph with a given number of vertices.
+                self.vertices: Stores the number of vertices.
+                self.graph: Represents the graph as an adjacency list using a dictionary.
+        - Methods:
+                add_edge(self, u, v):
+                Adds an undirected edge between vertices u and v in the graph.
+        - is_cyclic_util(self, node, visited, parent):
+                Utility function to perform Depth-First Search (DFS) and detect cycles starting from a given node.
+                visited: An array marking nodes as visited or not.
+                parent: Tracks the parent node during traversal to identify back edges (cycles).
+                Uses recursive DFS to traverse the graph.
+        - is_cyclic(self):
+                Checks if the graph contains any cycles.
+                Initializes visited array for all vertices.
+                Iterates through all nodes and calls is_cyclic_util for unvisited nodes.
+                Returns True if any cycle is detected, otherwise False.
+        - Example Usage:
+                Creates a Graph object with 4 vertices.
+                Adds edges between vertices (0-1), (1-2), and (1-3).
+                Checks and prints whether the graph contains a cycle using the is_cyclic() method.
+        - Explanation:
+                The graph is represented using an adjacency list.
+                add_edge() method populates this list by adding edges between vertices.
+                The is_cyclic_util() method utilizes DFS to traverse the graph.
+                It marks nodes as visited, explores neighboring nodes, and identifies cycles by checking for back edges.
+                The is_cyclic() method initiates DFS from unvisited nodes and returns True if any cycle is found, otherwise False.
 
 
-
-# Explanation of the Code
-    - Function Definition:
-        The linear_search function takes in two parameters: array (the list to be searched) and element (the value being searched for).
-    - Iterating through the List:
-        It uses a for loop with enumerate to iterate through each element in the list array.
-        enumerate allows simultaneous access to both the index (idx) and the value (val) of each element in the list.
-    - Checking for a Match:
-        Inside the loop, it checks if the current element val matches the element being searched for.
-        If a match is found, it prints a message indicating the element and its index and returns from the function, ending the search.
-    - Completion of Loop:
-        If the loop completes without finding a match (i.e., the return statement is not triggered), it implies that the element is not present in the list.
-        In that case, it prints a message indicating that the element is not found in the given array.
-    - Test Drive Code:
-        The arr variable holds the list [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], and target is set to 10, which is the element being searched for.
-    - Function Call:
-        The linear_search function is called with the array arr and the target target as arguments to search for the element in the list.
-
-# Time Complexity and Space Complexity
-    - Time Complexity:
-        In the worst-case scenario, the linear search algorithm has a time complexity of O(n), where n is the number of elements in the list. This is because it might need to traverse the entire list to find the element or determine that it's not present.
-        The average and best-case time complexities are also O(n) since the search might terminate at any position in the list.
-    - Space Complexity:
-        The space complexity of the linear search algorithm is O(1) since it doesn't require any extra space proportional to the input size. It only uses a few variables for iteration and comparison.
-        
-# JAVA CODE 
+#    JAVA Code   
 
 ```java
-public class LinearSearch {
+import java.util.ArrayList;
+import java.util.List;
 
-    // Function to search for an element using linear search
-    // Takes an array and the element to find as parameters
+public class Main {
 
-    static void linearSearch(int[] array, int element) {
-        for (int idx = 0; idx < array.length; idx++) {
-            if (array[idx] == element) {
-                System.out.printf("The element %d found at index %d in the given array%n", element, idx);
-                return;  // No need to continue searching if the element is found
+    // Depth-First Search (DFS) function to check for cycles
+
+    static boolean dfs(int node, ArrayList<ArrayList<Integer>> graph, boolean[] visited, int parent) {
+        visited[node] = true;  // Mark the current node as visited
+        for (int neighbour : graph.get(node)) {  // Iterate through neighbors of the current node
+            if (!visited[neighbour]) {  // If the neighbor is not visited
+                if (dfs(neighbour, graph, visited, node))  // Recursive DFS call
+                    return true;  // If a cycle is found in the recursive call, return true
+            } else if (neighbour != parent) {  // If the neighbor is visited and not the parent (back edge)
+                return true;  // Cycle is found, return true
             }
         }
-        System.out.printf("The element %d not found in the given array%n", element);
+        return false;  // No cycle found for the current node
     }
 
-    // Test drive code
+    // Function to check if there is any cycle in the graph
+
+    static boolean isCycle(ArrayList<ArrayList<Integer>> graph) {
+        int v = graph.size();  // Number of vertices in the graph
+        boolean[] visited = new boolean[v];  // Initialize visited array for all vertices
+        for (int node = 0; node < v; node++) {  // Iterate through all nodes in the graph
+            if (!visited[node] && dfs(node, graph, visited, -1))  // If the node is not visited and contains a cycle
+                return true;  // Return true indicating the presence of a cycle
+        }
+        return false;  // No cycle found in the graph
+    }
+
     public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        int target = 10;
-        linearSearch(arr, target);
+        // Create an adjacency list to represent the graph
+        ArrayList<ArrayList<Integer>> graph = new ArrayList<>() {{
+            add(new ArrayList<>(List.of(1, 3)));  // Neighbors of node 0
+            add(new ArrayList<>(List.of(0, 3)));  // Neighbors of node 1
+            add(new ArrayList<>(List.of(0)));     // Neighbors of node 2
+            add(new ArrayList<>(List.of(1)));     // Neighbors of node 3
+        }};
+
+        System.out.println(isCycle(graph));  // Check and print whether the graph contains a cycle
     }
 }
 ```
+### Output
+![Alt text](../Outputs/DCGJAVA.png)
 
 
-# Explanation of the Code
-    - Function Definition:
-        The linearSearch method is static and void, taking two parameters: array (the array to be searched) and element (the value being searched for).
-    - Iterating through the Array:
-        It uses a for loop to iterate through each element in the array array.
-        The loop runs from index 0 to the length of the array (array.length - 1).
-    - Checking for a Match:
-        Inside the loop, it checks if the current element at index idx matches the element being searched for.
-        If a match is found, it prints a message indicating the element and its index and returns from the method, terminating the search.
-    - Completion of Loop:
-        If the loop completes without finding a match, it implies that the element is not present in the array.
-        In that case, it prints a message indicating that the element is not found in the given array.
-    - Test Drive Code:
-        The main method initializes an array arr with values [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], and target is set to 10, which is the element being searched for.
-    - Function Call:
-        The linearSearch method is called with the array arr and the target target as arguments to search for the element in the array.
+# Java Code Explanation:
+        dfs(int node, ArrayList<ArrayList<Integer>> graph, boolean[] visited, int parent)
+        - This method performs a Depth-First Search (DFS) starting from a given node in the graph.
+        - visited array is used to keep track of visited nodes.
+        - The method iterates through the neighbors of the current node.
+        - If a neighbor is not visited, it recursively calls dfs() on that neighbor.
+        - It detects cycles by identifying back edges when a neighbor is visited and is not the parent.
+        isCycle(ArrayList<ArrayList<Integer>> graph)
+        - This method checks if there's any cycle in the graph using DFS.
+        - It initializes a visited array to keep track of visited nodes.
+        - Iterates through all nodes and calls dfs() on unvisited nodes to detect cycles.
+        - Returns true if any cycle is detected, otherwise false.
+        main()
+        - Initializes an adjacency list (graph) representing the graph structure.
+        - The graph has 4 nodes (0, 1, 2, 3) with corresponding edges.
+        - Calls isCycle(graph) to check whether the graph contains a cycle and prints the result.
+# Key Points:
+        - The code represents the graph using an adjacency list (ArrayList<ArrayList<Integer>>).
+        - dfs() performs DFS traversal and cycle detection in the graph.
+        - isCycle() initiates DFS from unvisited nodes and returns true if any cycle is found.
+        - The main() method demonstrates the usage by creating a sample graph and checking for cycles.
 
 
-# C++ Code
-
-'''
+#    C++ Code    
 ```c++
-#include<iostream>
+#include<bits/stdc++.h>
 
-// Function to search for an element using linear search
-// Takes an array and the element to find as parameters
-
-void linearSearch(int arr[], int size, int element) {
-    for (int idx = 0; idx < size; idx++) {
-        if (arr[idx] == element) {
-            std::cout << "The element " << element << " found at index " << idx << " in the given array" << std::endl;
-            return;  // No need to continue searching if the element is found
+bool dfs(int node, std::vector<std::vector<int>>& graph, bool visited[], int parent) {
+    visited[node] = true;  // Mark the current node as visited
+    for (int neighbour : graph[node]) {
+        if (!visited[neighbour]) {
+            // If the neighbour is not visited, recursively call DFS
+            if (dfs(neighbour, graph, visited, node))
+                return true;
+        } else if (neighbour != parent) {
+            // If the neighbour is visited and not the parent (back edge), a cycle is found
+            return true;
         }
     }
-    std::cout << "The element " << element << " not found in the given array" << std::endl;
+    return false;  // No cycle found for the current node
 }
 
-// Test drive code
+bool isCycle(std::vector<std::vector<int>>& graph) {
+    int v = graph.size();
+    bool visited[v]{false};  // Initialize visited array for all vertices
+
+    for (int i = 0; i < v; i++) {
+        if (!visited[i] && dfs(i, graph, visited, -1)) {
+            // If the node is not visited and contains a cycle, return true
+            return true;
+        }
+    }
+    return false;  // No cycle found in the graph
+}
+
 int main() {
-    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-    int size = sizeof(arr) / sizeof(arr[0]);  // Calculate the size of the array
-    int target = 10;
-    linearSearch(arr, size, target);
+    // Create an adjacency list to represent the graph
+    std::vector<std::vector<int>> graph = {
+        {1, 2},
+        {0, 3},
+        {0},
+        {1}
+    };
+
+    std::cout << isCycle(graph);  // Check and print whether the graph contains a cycle
     return 0;
 }
 ```
-''' 
+### Output
+![Alt text](../Outputs/DCGC++.png)
+
+# C++ Code Explanation:
+        dfs(int node, std::vector<std::vector<int>>& graph, bool visited[], int parent)
+        - This function performs Depth-First Search (DFS) starting from a given node in the graph.
+        - visited array is used to track visited nodes.
+        - It iterates through the neighbors of the current node using the adjacency list (graph).
+        - Recursively explores unvisited neighbors and checks for cycles using back edges.
+        isCycle(std::vector<std::vector<int>>& graph)
+        - This function checks if there's any cycle in the graph using DFS.
+        - Initializes a visited array to track visited nodes.
+        - Iterates through all nodes and calls dfs() on unvisited nodes to detect cycles.
+        - Returns true if any cycle is detected, otherwise false.
+        main()
+        - Creates an adjacency list (graph) representing the graph structure.
+        - The graph has 4 nodes (0, 1, 2, 3) with corresponding edges.
+        - Calls isCycle(graph) to check whether the graph contains a cycle and prints the result.
+# Key Points:
+        - The code represents the graph using a vector of vectors (std::vector<std::vector<int>>).
+        - dfs() performs DFS traversal and cycle detection in the graph.
+        - isCycle() initiates DFS from unvisited nodes and returns true if any cycle is found.
+        - The main() method demonstrates the usage by creating a sample graph and checking for cycles.
+        - This C++ code utilizes a DFS-based approach to identify cycles in an undirected graph. It employs an adjacency list to represent the graph structure and detects cycles by traversing the graph using DFS.
 
 
-# Explanation of the Code
-    - Function Definition:
-        The linearSearch function takes three parameters: arr (the array to be searched), size (the size of the array), and element (the value being searched for).
-    - Iterating through the Array:
-        It uses a for loop to iterate through each element in the array arr.
-        The loop runs from index 0 to size - 1, where size represents the length of the array.
-    - Checking for a Match:
-        Inside the loop, it checks if the current element at index idx matches the element being searched for.
-        If a match is found, it prints a message indicating the element and its index and returns from the function, terminating the search.
-    - Completion of Loop:
-        If the loop completes without finding a match, it implies that the element is not present in the array.
-        In that case, it prints a message indicating that the element is not found in the given array.
-    - Test Drive Code:
-        The main function initializes an array arr with values [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].
-        The size of the array is calculated using sizeof(arr) / sizeof(arr[0]) to ensure the accurate size is passed to the function.
-        target is set to 10, which is the element being searched for.
-    - Function Call:
-        The linearSearch function is called with the array arr, its size size, and the target target as arguments to search for the element in the array.
+# Time Complexities of Detecting Cycle in a Graph 
+        - Worst Case : O(V + E)
+        - Best Case : O(1)
+        - Average Case : O(V + E)
+        The time complexity of cycle detection algorithms varies based on the approach used. For DFS-based cycle detection in a graph with 'V' vertices and 'E' edges, the complexity is typically O(V + E). Union-Find-based algorithms often have a similar time complexity.
 
+# Uses : 
+        Graph Theory
+        Compiler Design
+        Network Routing
+        Data Validation
+        Circuit Design
 
-# Real-world Applications
-    - Database Operations:
-        Linear search can be used in databases for basic search operations on unsorted datasets.
-        Finding Elements in Lists or Arrays:
-        It's applicable in scenarios where finding a specific element in a collection of data is required.
-    - Simple Search Operations:
-        Linear search can be applied in various programming scenarios where a basic search operation is needed and the dataset isn't too large.
-    - Handling Small Lists or Arrays:
-        It's efficient for small lists or arrays where the overhead of implementing complex search algorithms might not be justified.
-        Linear search, although straightforward, serves as a fundamental algorithmic concept and is often used as a starting point for understanding more complex searching algorithms.
-
-
+# Real-time applications:
+        - Software Engineering: Detecting cycles in dependency graphs helps manage software modules or libraries with interdependent relationships.
+        - Networking: Identifying cycles in network topologies assists in avoiding routing loops in communication networks.
+        - Resource Allocation: Graphs representing resource allocation can avoid circular allocations through cycle detection.
+# Summary:
+        - Cycle detection in a graph involves identifying closed loops or cycles formed by traversing through vertices and edges.
+        - Various algorithms like DFS or Union-Find are used to detect cycles efficiently.
+        - It's crucial in various domains, especially in scenarios where avoiding circular dependencies or loops is essential, like project scheduling, software engineering, or network management.
