@@ -1,8 +1,8 @@
 # TO LowerCase
 
 # Introduction
-    The toLowerCase() function is a fundamental text-processing tool available in many programming languages. Its primary role is to convert all characters in a string to lowercase, ensuring uniformity and enabling case-insensitive operations within the text. This function serves as a building block in various software development tasks, offering consistency and ease of manipulation when handling textual data.
-    The toLowerCase() function is a method available in many programming languages that converts all characters in a string to lowercase. It's a fundamental operation when dealing with text data processing.
+The toLowerCase() function is a fundamental text-processing tool available in many programming languages. Its primary role is to convert all characters in a string to lowercase, ensuring uniformity and enabling case-insensitive operations within the text. This function serves as a building block in various software development tasks, offering consistency and ease of manipulation when handling textual data.
+The toLowerCase() function is a method available in many programming languages that converts all characters in a string to lowercase. It's a fundamental operation when dealing with text data processing.
 # Exploration:
     This function provides a consistent and standardized way to convert text to lowercase, enabling uniformity and easing comparisons within strings.
 # Overview of ToLowerCase
