@@ -46,16 +46,26 @@ def string_palindrome(string):
     length=len(cleared_string)
     # loop iterates half of the length of string 
     for i in range(len(cleared_string)//2):
+        # Check if the character at index i is not equal to its corresponding character from the end
         if cleared_string[i]!=cleared_string[length-(i+1)]:
             print(string,"is not a palindrome string")
             break
     else:
+        # If the loop completes without breaking, it's a palindrome
         print(string,"is a palindrome string")
 
 #test drive code:
 string="radar! radar"
 string_palindrome(string)
 ```
+
+The output of the above test case
+
+```output
+    radar! radar is Palindrome
+```
+
+## Java Code
 
 ```java
 
