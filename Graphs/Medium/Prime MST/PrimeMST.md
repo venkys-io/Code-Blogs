@@ -275,7 +275,8 @@ The code provided demonstrates the implementation of Prim's algorithm to find th
     
     The **main** function initializes a 2D array **graph** representing the weighted graph and calls the **prims** function to find the minimum spanning tree.
     
-    ## Time and Space Complexity Analysis
+
+    ## Time and Space Complexity Analysis of Prime MST
     The time and space complexity of the Prime MST implementation can be analyzed as follows:
 
     ## Time Complexity Analysis
