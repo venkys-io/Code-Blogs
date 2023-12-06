@@ -443,12 +443,9 @@ int main(){
    - `using namespace std;` line allows the use of standard C++ entities without the need for the `std::` prefix.
 
 - **Function `isSafe`**
-   - The function takes a reference to a 2D vector `board` representing the Sudoku board, along with the current `row` and `col` indices, and the number `num` to be placed.
-   - It iterates through each row in the same column (`col`) and checks if the number `num` is already present. If found, it returns `false` as it violates the Sudoku rules.
-   - It iterates through each column in the same row (`row`) and checks if the number `num` is already present. If found, it returns `false` as it violates the Sudoku rules.
-   - It calculates the starting row (`sr`) and starting column (`sc`) of the 3x3 subgrid that contains the current position.
-   - It then iterates through the cells in that subgrid and checks if the number `num` is already present. If found, it returns `false`.
-   - If the number `num` can be safely placed in the current position without violating any Sudoku rules, the function returns `true`.
+   - Takes a reference to the Sudoku `board`, current `row`, `col`, and the number `num`.
+   - Checks if `num` violates Sudoku rules in the same row, column, or 3x3 subgrid.
+   - Returns `true` if placing `num` is valid, otherwise returns `false`.
 
 - **Function `helper`**
    - This recursive function is the core of the backtracking algorithm.
