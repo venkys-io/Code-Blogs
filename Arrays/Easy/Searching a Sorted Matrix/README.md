@@ -28,11 +28,15 @@ Let's say we want to find if the number 3 is present in this matrix. A brute-for
 
 Algorithm
 
-a. Perform a binary search within the row.
-b. Compare the middle element with the target.
-c. If the middle element is equal to the target, return True.
-d. If the middle element is less than the target, adjust the search space to the right or Update the 'low' index accordingly to 'mid + 1'.
-e. If the middle element is greater than the target, adjust the search space to the left or Update the 'high' index accordingly to 'mid - 1'.
+1. Perform a binary search within the row.
+
+2. Compare the middle element with the target.
+
+3. If the middle element is equal to the target, return True.
+
+4. If the middle element is less than the target, adjust the search space to the right or Update the 'low' index accordingly to 'mid + 1'.
+
+5. If the middle element is greater than the target, adjust the search space to the left or Update the 'high' index accordingly to 'mid - 1'.
 
 This approach optimally utilizes the sorted nature of each row
 
@@ -42,6 +46,9 @@ This approach optimally utilizes the sorted nature of each row
 # Copyrights to venkys.io
 # For more programs visit venkys.io 
 # Python program for Searching a sorted Matrix
+
+# time complexity:O(m*n)
+# space complexity:O(1)
 
 # Define a function named searchMatrix that takes a 2D matrix and a target integer as input
 def searchMatrix(matrix, target: int):
@@ -105,6 +112,8 @@ The output of the above test case
 // For more programs visit venkys.io
 // Java program for Searching a sorted Matrix
 
+// time complexity:O(m*n)
+// space complexity:O(1)
 
 public class Main {
     
@@ -170,6 +179,9 @@ The output of the above test case
 // Copyrights to venkys.io
 // For more programs visit venkys.io 
 // CPP program for Searching a sorted Matrix
+
+// time complexity:O(m*n)
+// space complexity:O(1)
 
 #include<iostream>
 #include<bits/stdc++.h>
