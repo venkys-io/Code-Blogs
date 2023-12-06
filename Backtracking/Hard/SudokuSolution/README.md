@@ -138,6 +138,7 @@ def solveSudoku(board, row, col):
 solveSudoku(board, 0, 0)
 ```
 ### Step-by-Step Explanation of Python Code
+
 - **Importing Counter**
    - This line imports the `Counter` class from the `collections` module.
    - `Counter` will be used later to count occurrences of elements in rows.
@@ -160,19 +161,340 @@ solveSudoku(board, 0, 0)
    - It uses a dictionary to count occurrences of non-empty elements.
    - If any non-empty element is repeated, the function returns `False`.
 
-- **Function to Check Validity of the Entire Board:**
+- **Function to Check Validity of the Entire Board**
    - `validBoard` function iterates through each cell and checks if the row, column, and block are all valid.
    - If any of them is invalid, the function returns `False`.
 
-- **Function to Print the Sudoku Board:**
+- **Function to Print the Sudoku Board**
    - `printBoard` function prints the current state of the Sudoku board.
 
-- **Function to Solve Sudoku using Backtracking:**
+- **Function to Solve Sudoku using Backtracking**
    - `solveSudoku` function is the main solver using a backtracking approach.
    - It starts from the top-left corner and recursively fills cells with numbers from 1 to 9.
    - It backtracks when the current filling doesn't lead to a solution.
 
-- **Starting the Solver:**
+- **Starting the Solver**
    - `solveSudoku(board, 0, 0)` Initiates the Sudoku solver by starting from the top-left corner (row=0, col=0).
 
+## JAVA Code
+```java
+// Copyrights to venkys.io
+// For more information, visit https://venkys.io 
 
+// Java Program for SudokuSolution
+// Stable: Yes
+// Inplace: Yes
+// Adaptive: No
+
+// Time Complexity: O(9^(n^2) where n is the size of the Sudoku board
+// Space Complexity: O(n^2)
+
+public class Main {
+    // Check if the element is correctly placed in terms of Sudoku rules
+    public static boolean isSafe(char[][] board, int row, int col, int num) {
+        // Check if the number already exists in the same column
+        for (int i = 0; i < board.length; i++) {
+            if (board[i][col] == (char) (num + '0')) {
+                return false;
+            }
+        }
+        // Check if the number already exists in the same row
+        for (int j = 0; j < board.length; j++) {
+            if (board[row][j] == (char) (num + '0')) {
+                return false;
+            }
+        }
+        // Check if the number already exists in the 3x3 subgrid
+        int sr = 3 * (row / 3);
+        int sc = 3 * (col / 3);
+        for (int i = sr; i < sr + 3; i++) {
+            for (int j = sc; j < sc + 3; j++) {
+                if (board[i][j] == (char) (num + '0')) {
+                    return false;
+                }
+            }
+        }
+        // If the number is not found in the same row, column, or subgrid, it's safe to
+        // place
+        return true;
+    }
+
+    // Helper function for Sudoku solving
+    public static boolean helper(char[][] board, int row, int col) {
+        // Base case: If we have reached the end of the row, the Sudoku is solved
+        if (row == board.length) {
+            return true;
+        }
+
+        // Determine the next row and column indices
+        int nrow = 0;
+        int ncol = 0;
+
+        // If we are at the last column, move to the next row (start from the first
+        // column)
+        if (col == board.length - 1) {
+            nrow = row + 1;
+            ncol = 0;
+        } else {
+            // Move to the next column in the same row
+            nrow = row;
+            ncol = col + 1;
+        }
+
+        // If the current cell is not empty, move to the next cell
+        if (board[row][col] != '.') {
+            // Recursively call helper for the next cell
+            return helper(board, nrow, ncol);
+        } else {
+            // checking the value in the empty places
+            for (int i = 1; i <= 9; i++) {
+                // Try placing numbers 1 to 9 and check if it's safe
+                if (isSafe(board, row, col, i)) {
+                    // Place the number in the current cell
+                    board[row][col] = (char) (i + '0');
+
+                    // Recursively call helper for the next cell
+                    if (helper(board, nrow, ncol)) {
+                        return true; // If the puzzle is solved, return true
+                    } else {
+                        // If placing the current number doesn't lead to a solution, backtrack
+                        board[row][col] = '.'; // Backtrack by resetting the cell to empty
+                    }
+                }
+            }
+        }
+        // If no number can be placed in the current cell, backtrack
+        return false;
+    }
+
+    // Printing the Sudoku board
+    public static void sudokoSol(char[][] board) {
+        // Start solving the Sudoku using the helper function
+        helper(board, 0, 0);
+
+        // Print the solved Sudoku
+        System.out.println("Sudoku");
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                System.out.print(board[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String args[]) {
+        // Initial Sudoku board configuration
+        char[][] board = new char[][] {
+                { '.', '.', '2', '.', '1', '.', '6', '8', '7' },
+                { '1', '.', '.', '.', '8', '.', '2', '5', '4' },
+                { '.', '6', '.', '.', '2', '.', '9', '1', '3' },
+                { '6', '8', '5', '.', '3', '.', '4', '7', '9' },
+                { '.', '.', '.', '.', '.', '8', '1', '.', '2' },
+                { '2', '.', '.', '7', '.', '.', '5', '.', '8' },
+                { '9', '.', '6', '8', '7', '.', '3', '4', '5' },
+                { '.', '.', '.', '.', '4', '.', '7', '.', '6' },
+                { '4', '7', '3', '.', '.', '6', '8', '.', '1' }
+        };
+
+        // Solve and print the Sudoku board
+        System.out.println("Sudoko after solving");
+        sudokoSol(board);
+
+    }
+}
+```
+### Step-by-Step Explanation of Java Code
+
+- **`isSafe` method**
+   - This method checks whether it is safe to place a number `num` at a given position `(row, col)` on the Sudoku board.
+   - It checks for the presence of the same number in the current row, current column, and the 3x3 subgrid to ensure Sudoku rules are not violated.
+
+- **`helper` method**
+   - This recursive method is the core of the backtracking algorithm.
+   - It iterates through each cell of the Sudoku board. If a cell is empty (`'.'`), it tries placing numbers from 1 to 9 using the `isSafe` method.
+   - If a number is safe, it places the number in the cell and recursively moves on to the next cell.
+   - If placing a number in a cell leads to a solution, the method returns `true`. Otherwise, it backtracks by resetting the cell to `'.'` and tries the next number.
+
+- **`sudokuSol` method**
+   - This method initializes the backtracking process by calling the `helper` method with the initial position `(0, 0)` (top-left corner of the board).
+   - Once the `helper` method returns `true` (indicating a solution is found), it prints the solved Sudoku board.
+
+- **`main` method**
+   - The `main` method creates a 9x9 Sudoku board represented by a 2D character array.
+   - It initializes the Sudoku puzzle with some initial values and prints the original puzzle.
+   - It then calls the `sudokuSol` method to solve the Sudoku puzzle and prints the solved Sudoku board.
+
+## CPP Code
+```CPP
+// Copyrights to venkys.io
+// For more information, visit https://venkys.io 
+
+// CPP Program for SudokuSolution
+// Stable: Yes
+// Inplace: Yes
+// Adaptive: No
+
+// Time Complexity: O(9^(n^2) where n is the size of the Sudoku board
+// Space Complexity: O(n^2)
+
+#include<bits/stdc++.h>
+
+using namespace std;
+
+// Function to check if placing 'num' at position (row, col) is safe
+bool isSafe(vector<vector<char>> &board,int row,int col,int num){
+  // Check if 'num' is present in the same column 
+  for(int i=1;i<board.size();i++){
+    
+    if(board[i][col] == (char) (num+'0')) return false;
+  }
+  // Check if 'num' is present in the same row 
+  for(int j=1;j<board.size();j++){
+    if(board[row][j] == (char) (num+'0')) return false;
+  }
+  // Check if 'num' is present in the 3x3 subgrid
+  int sr=3*(row/3);
+  int sc = 3*(col/3);
+  for(int i=sr;i<sr+3;i++){
+    for(int j=sc;j<sc+3; j++){
+      if(board[i][j] == (char) (num+'0')) return false;
+    }
+  }
+  // If 'num' is not present in the same row, column, or subgrid, it's safe
+  return true;
+}
+
+// Recursive helper function to solve the Sudoku
+bool helper(vector<vector<char>> &board, int row, int col) {
+    // Base case: If we have reached the end of the row, the Sudoku is solved
+    if (row == board.size()) return true;
+
+    // Determine the next row and column indices
+    int nrow = 0;
+    int ncol = 0;
+
+    // If we are at the last column, move to the next row (start from the first column)
+    if (col == board.size() - 1) {
+        nrow = row + 1;
+    } else {
+        // Move to the next column in the same row
+        nrow = row;
+        ncol = col + 1;
+    }
+
+    // If the current cell is not empty, move to the next cell
+    if (board[row][col] != '.') {
+        // Recursively call helper for the next cell
+        if (helper(board, nrow, ncol)) return true;
+    } else {
+        // If the current cell is empty, try placing numbers 1 to 9 and check if it's safe
+        for (int i = 1; i <= 9; i++) {
+            if (isSafe(board, row, col, i)) {
+                // Place the number in the current cell
+                board[row][col] = (char) (i + '0');
+
+                // Recursively call helper for the next cell
+                if (helper(board, nrow, ncol)) return true;
+                else board[row][col] = '.';  // If placing the current number doesn't lead to a solution, backtrack
+            }
+        }
+    }
+
+    // If no number can be placed in the current cell, backtrack
+    return false;
+}
+
+// Function to print the solved Sudoku
+void sudokoSol(vector<vector<char>> &board){
+  helper(board,0,0);
+  for(int i=0;i<9;i++){
+    for(int j=0;j<9;j++){
+      cout<<board[i][j]<<" ";
+    }
+    cout<<endl;
+  }
+}
+
+int main(){
+  // Example Sudoku board
+  vector<vector<char>> board {
+                { '.', '.', '2', '.', '1', '.', '6', '8', '7' },
+                { '1', '.', '.', '.', '8', '.', '2', '5', '4' },
+                { '.', '6', '.', '.', '2', '.', '9', '1', '3' },
+                { '6', '8', '5', '.', '3', '.', '4', '7', '9' },
+                { '.', '.', '.', '.', '.', '8', '1', '.', '2' },
+                { '2', '.', '.', '7', '.', '.', '5', '.', '8' },
+                { '9', '.', '6', '8', '7', '.', '3', '4', '5' },
+                { '.', '.', '.', '.', '4', '.', '7', '.', '6' },
+                { '4', '7', '3', '.', '.', '6', '8', '.', '1' }
+        };
+  cout<<"Sudoko after solving: "<<endl;
+  // Solve and print the Sudoku
+  sudokoSol(board);
+  return 0;
+}
+```
+### Step-by-Step Explanation of CPP Code
+
+- **Include Header Files**
+   - `#include<bits/stdc++.h>` line includes a set of standard C++ headers. It's a common practice to include all standard headers using this line to simplify the code.
+
+- **Namespace Declaration**
+   - `using namespace std;` line allows the use of standard C++ entities without the need for the `std::` prefix.
+
+- **Function `isSafe`**
+   - The function takes a reference to a 2D vector `board` representing the Sudoku board, along with the current `row` and `col` indices, and the number `num` to be placed.
+   - It iterates through each row in the same column (`col`) and checks if the number `num` is already present. If found, it returns `false` as it violates the Sudoku rules.
+   - It iterates through each column in the same row (`row`) and checks if the number `num` is already present. If found, it returns `false` as it violates the Sudoku rules.
+   - It calculates the starting row (`sr`) and starting column (`sc`) of the 3x3 subgrid that contains the current position.
+   - It then iterates through the cells in that subgrid and checks if the number `num` is already present. If found, it returns `false`.
+   - If the number `num` can be safely placed in the current position without violating any Sudoku rules, the function returns `true`.
+
+- **Function `helper`**
+   - This recursive function is the core of the backtracking algorithm.
+   - It iterates through each cell of the Sudoku board. If a cell is empty (`'.'`), it tries placing numbers from 1 to 9 using the `isSafe` function.
+   - If placing a number in a cell leads to a solution, the function returns `true`. Otherwise, it backtracks by resetting the cell to `'.'` and tries the next number.
+
+- **Function `sudokuSol`**
+   - This function initializes the backtracking process by calling the `helper` function with the initial position `(0, 0)` (top-left corner of the board).
+   - This code block uses nested loops to iterate over each cell of the Sudoku board (represented by a 2D vector `board`).
+   - The outer loop (`for(int i = 0; i < 9; i++)`) iterates over the rows, and the inner loop (`for(int j = 0; j < 9; j++)`) iterates over the columns.
+   - Inside the inner loop, it prints the value of each cell followed by a space.
+   - After completing each row, it inserts a newline (`cout << endl;`), creating a formatted output to display the Sudoku board.
+
+
+- **Main Function**
+   - The `main` function initializes a 9x9 Sudoku board represented by a 2D vector of characters.
+   - It prints the original Sudoku puzzle.
+   - It then calls the `sudokuSol` function to solve the Sudoku puzzle and prints the solved Sudoku board.
+
+- **Example Sudoku Board**
+   - The provided example Sudoku board is a 9x9 grid with some initial values. Empty cells are represented by `'.'`.
+
+- **Output**
+   - The program prints the original Sudoku board and then prints the solved Sudoku board.
+
+## Time and Space Complexity
+**Time Complexity:** Exponential due to backtracking exploration of all possible combinations for each empty cell (O(9<sup>n<sup>2</sup></sup>)).
+
+**Space Complexity:** Proportional to the maximum recursion depth, corresponding to the number of empty cells (O(n<sup>2</sup>)).
+
+## Real-World Applications of Sudoku Solution
+
+1. **Educational Software:**
+   The Sudoku solver can be incorporated into educational software to teach students about problem-solving, logic, and algorithms.
+
+2. **Game Development:**
+   The code can be adapted for game development, where Sudoku puzzles are a popular feature. 
+
+3. **Mobile Applications:**
+   Sudoku is a popular puzzle game on mobile devices. The solver can be integrated into Sudoku apps to provide users with hints or to automatically solve puzzles for them, making the game more accessible to a wider audience.
+
+4. **Algorithmic Challenges:**
+   The Sudoku solver can be used as a coding challenge or interview question to assess a programmer's understanding of backtracking algorithms and problem-solving skills. 
+
+5. **Automation in Data Entry:**
+   In scenarios where Sudoku-like grids are used for data entry, the solver could be adapted to validate and complete partially filled grids. 
+
+## Conclusion
+The Sudoku solution presented here demonstrates the power of backtracking algorithms in solving complex puzzles efficiently. Mastering backtracking, as showcased in this Sudoku solver, is a valuable skill with broad applications in various fields, including educational software, game development, mobile applications, algorithmic challenges, and data entry verification. Understanding and implementing backtracking algorithms is a versatile tool that can be applied to solve diverse real-world problems in computer science and beyond.

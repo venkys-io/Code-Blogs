@@ -165,7 +165,6 @@ public class Main {
         System.out.println(reorganizeString(s));
     }
 }
-
 ```
 ### Step-by-Step Explanation of Java Code
 
@@ -299,6 +298,7 @@ int main() {
 **Space Complexity:** The space complexity is O(N) for storing the rearranged characters.
 
 ## Real-World Applications of Reorganize String
+
 1. **DNA Sequence Analysis:** In bioinformatics, when analyzing DNA sequences, it might be useful to rearrange certain patterns or codons within a sequence to facilitate further analysis or to meet specific criteria.
 
 2. **Natural Language Processing (NLP):** In NLP, the code could be applied to preprocess text data, ensuring that certain characters or patterns are not repeated consecutively, which may improve the efficiency of subsequent language processing tasks.
