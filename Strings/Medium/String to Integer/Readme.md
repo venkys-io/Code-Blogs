@@ -390,7 +390,7 @@ public class main{
 
 The code essentially converts a given string to an integer, considering positive and negative signs, and handles overflow by checking against the limits of an integer. The `atoi` method returns the converted integer, and the `main` method tests it with the string "42".
 
-**Time and Space Complexity Analysis**:
+# Time and Space Complexity Analysis :
 
 The time and space complexity for the atoi method, which converts a string to an integer.
 
@@ -402,7 +402,7 @@ The time complexity of the atoi method is O(n), where n is the length of the inp
     The subsequent while loop for processing digits also runs in O(n) time, where n is the length of the string. This loop iterates through the digits of the string, and each iteration takes constant time.
 
 Therefore, the overall time complexity is O(n).
-Space Complexity:
+# Space Complexity:
 
 The space complexity of the atoi method is O(1), constant space.
 
