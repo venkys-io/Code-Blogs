@@ -171,7 +171,7 @@ if __name__ == "__main__":
 The code essentially converts a given string to an integer, considering positive and negative signs, and handles overflow by checking against the limits of a 32-bit signed integer. The `check` function ensures that the result does not exceed the specified integer limits.
 
 # C++ 
-code
+# code
 ```c++
 /* Copyrights to venkys.io
 For more information, visit https://venkys.io */
