@@ -335,7 +335,7 @@ class PalindromePartitioning {
 The code efficiently finds and prints all possible palindrome partitions of the input string "aab" using a recursive approach.
 
 
-**Time and Space Complexity Analysis**:
+# Time and Space Complexity Analysis:
 
 # Time Complexity:
 O(n^2), where n is the length of the input string.
