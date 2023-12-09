@@ -1,5 +1,5 @@
 ## Problem Statement - Four Number Sum
-Given an array of integers, find anyone combination of four elements in the array whose sum is equal to a given value X.
+Given an array of integers,find anyone combination of four elements in the array whose sum is equal to a given value X.
 
 ## Introduction
 The Four Number Sum Problem is a mathematical challenge that involves finding all unique sets of four integers within a given array that add up to a specific target sum. This problem requires algorithmic solutions to efficiently identify and return these sets of four numbers. It is a combinatorial problem that often requires careful consideration of various edge cases and optimization strategies to achieve a solution with optimal time and space complexity. The problem's complexity increases with the size of the input array and the magnitude of the target sum, making it an interesting problem for algorithmic and computational thinking. Efficient solutions to the Four Number Sum Problem can have applications in various fields, including data analysis, cryptography, and optimization.
