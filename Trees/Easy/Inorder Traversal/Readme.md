@@ -7,7 +7,7 @@ A tree is a hierarchical data structure which is composed of nodes, where each n
 Inorder traversal is a method of traversing a binary tree in a specific order. It starts from the leftmost node and moves towards the rightmost node, visiting the left subtree first, then the root, and finally the right subtree. This traversal strategy is fundamental for exploring and processing binary trees systematically.
 
 ## Overview
-The provided Python code defines a binary tree node using a class named `Node` and demonstrates recursive inorder traversal. The `Node` class has a constructor initializing the node with some data and two pointers, `left` and `right`, representing the left and right children.
+The binary tree node uses a class named `Node` and demonstrates recursive inorder traversal. The `Node` class has a constructor initializing the node with some data and two pointers, `left` and `right`, representing the left and right children.
 
 ## Step-by-Step Explanation
 
