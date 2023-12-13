@@ -24,7 +24,7 @@ def util(v,graph,visited,stack):
     for i in graph[v]:
         if visited[i]==False:
             util(i,graph,visited,stack)
-    stack.append(v)
+    stack.append(v) # Add the current vertex to the stack after visiting all its adjacent vertices
 
 def topologicalsort(graph):
     visited=[False]*len(graph)
@@ -62,6 +62,132 @@ The given code demonstrates the implementation of the topological sort algorithm
 By executing the **topologicalsort(graph)** function on the given graph, the output will be the topological sorting of the vertices: **[5, 4, 0, 2, 3, 1]**. This represents the order in which the tasks or events should be executed to satisfy all dependencies in the graph.
 
 
+**Code:**
+
+```java
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
+public class Main {
+    // Comment: This method performs a depth-first search traversal of the graph starting from vertex v.
+    public static void util(int v, List<List<Integer>> graph, boolean[] visited, Stack<Integer> stack) {
+        visited[v] = true;
+        for (int i : graph.get(v)) {
+            if (!visited[i]) {
+                util(i, graph, visited, stack);
+            }
+        }
+        stack.push(v);
+    }
+
+    // Comment: This method performs a topological sort on the given graph.
+    public static void topologicalsort(List<List<Integer>> graph) {
+        boolean[] visited = new boolean[graph.size()];
+        Stack<Integer> stack = new Stack<>();
+        for (int i = 0; i < graph.size(); i++) {
+            if (!visited[i]) {
+                util(i, graph, visited, stack);
+            }
+        }
+        List<Integer> result = new ArrayList<>();
+        while (!stack.isEmpty()) {
+            result.add(stack.pop());
+        }
+        System.out.println(result);
+    }
+
+    public static void main(String[] args) {
+        List<List<Integer>> graph = new ArrayList<>();
+        graph.add(new ArrayList<>());
+        graph.add(new ArrayList<>());
+        graph.add(new ArrayList<>(List.of(3)));
+        graph.add(new ArrayList<>(List.of(1)));
+        graph.add(new ArrayList<>(List.of(0, 1)));
+        graph.add(new ArrayList<>(List.of(0, 2)));
+        topologicalsort(graph);
+    }
+}
+
+
+```
+
+**Step-by-Step Explanation**
+1. The code provided implements the topological sort algorithm using a depth-first search (DFS) approach. Here's a breakdown of the code structure:
+
+2. The util method is a recursive helper function that performs the DFS traversal and pushes the visited vertices onto a stack.
+
+3. The topologicalsort method initializes the necessary data structures and iterates through each vertex in the graph. If a vertex has not been visited, it calls the util method to perform the DFS traversal.
+
+4. The main method creates a sample directed graph represented as a list of lists. Each inner list represents the outgoing edges from a vertex. Finally, it calls the topologicalsort method to obtain the topological ordering of the graph.
+
+
+
+**Code:**
+
+```cpp
+
+#include <iostream>
+#include <vector>
+#include <stack>
+using namespace std;
+
+void util(int v, vector<vector<int>>& graph, vector<bool>& visited, stack<int>& st) {
+    visited[v] = true;
+    for (int i : graph[v]) {
+        if (!visited[i]) {
+            util(i, graph, visited, st);
+        }
+    }
+    st.push(v); // Add the current vertex to the stack
+}
+
+void topologicalsort(vector<vector<int>>& graph) {
+    int n = graph.size();
+    vector<bool> visited(n, false);
+    stack<int> st;
+    for (int i = 0; i < n; i++) {
+        if (!visited[i]) {
+            util(i, graph, visited, st);
+        }
+    }
+    while (!st.empty()) {
+        cout << st.top() << " "; // Print the top element of the stack
+        st.pop(); // Remove the top element from the stack
+    }
+    cout << endl;
+}
+
+int main() {
+    vector<vector<int>> graph = {
+        {},
+        {},
+        {3},
+        {1},
+        {0, 1},
+        {0, 2}
+    };
+    topologicalsort(graph);
+    return 0;
+}
+
+
+```
+
+**Step-by-Step Explanation**
+
+1. The provided code consists of two main functions: util and topologicalsort, along with the main function.
+
+2. util function: This function is a helper function used to perform a depth-first search (DFS) traversal of the graph and push the visited vertices onto a stack. It takes the following parameters:
+
+- v: The current vertex being visited.
+- graph: The adjacency list representation of the graph.
+- visited: A boolean vector to keep track of visited vertices.
+- st: A stack to store the topological ordering.
+- topologicalsort function: This function initializes the necessary data structures and calls the util function for each unvisited vertex in the graph. After the DFS traversal is complete, it prints the vertices in the order they were pushed onto the stack.
+
+- main function: This is the entry point of the program. It initializes a sample directed graph represented by an adjacency list and calls the topologicalsort function.
 
 
 **Real world Applications of Topological Sort:**
