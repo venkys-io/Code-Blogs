@@ -53,6 +53,16 @@ Algorithms often involve a preprocessing phase to construct data structures that
 
 ```python
 def multi_string_search(text, patterns):
+    """
+    Performs multi-string search.
+
+    Args:
+    - text (str): The input text to search within.
+    - patterns (list): List of patterns to search for in the text.
+
+    Returns:
+    - result (list): List of patterns found in the text.
+    """
     result = []
 
     for pattern in patterns:
@@ -61,7 +71,6 @@ def multi_string_search(text, patterns):
             result.append(pattern)
 
     return result
-
 
 if __name__ == "__main__":
     # Sample text and patterns
@@ -74,17 +83,29 @@ if __name__ == "__main__":
     # Print the found patterns
     print("Found patterns:", *result)
 
+
 ```
-### Output
-![Alt text](../Outputs/MSSPY.png)
+
 
 ## Explanation:
-        - multi_string_search is a function that takes two parameters: text (the text to search within) and patterns (a list of patterns to find within the text).
-        - It initializes an empty list result to store the patterns found in the text.
-        - It iterates through each pattern in the patterns list.
-        - For each pattern, it checks if the pattern exists in the text using the find() method, which returns the index of the pattern in the text. If the pattern is not found, find() returns -1.
-        - If the pattern is found (i.e., find() doesn't return -1), the pattern is appended to the result list.
-        - Finally, it returns the list of found patterns.
+        - multi_string_search Function:
+            Purpose: Performs a multi-string search.
+        - Parameters:
+            text (str): The input text to search within.
+            patterns (list): List of patterns to search for in the text.
+            Return Type: result (list): List of patterns found in the text.
+        - Functionality:
+            Initializes an empty result list to store found patterns.
+            Iterates through each pattern in the patterns list.
+            Uses the find method on the text to check if the pattern is present.
+            If the pattern is found in the text (find returns a non-negative index), it appends the pattern to the result list.
+            Returns the result list containing all found patterns.
+        - main Block:
+            Purpose: Execution of the script when it's directly run (not imported as a module).
+            Defines a sample text and a patterns list with strings to search for.
+            Calls the multi_string_search function with the text and patterns.
+            Stores the result (found patterns) returned by multi_string_search in the result variable.
+            Prints the message "Found patterns:" followed by the patterns found in the result list.
 
 
 #    C++ Code    
@@ -95,9 +116,13 @@ if __name__ == "__main__":
 #include <vector>
 #include <algorithm>
 
-// Function to perform multi-string search
-// Returns a vector containing patterns found in the text
-
+/**
+ * Performs multi-string search.
+ *
+ * @param text The input text to search within.
+ * @param patterns List of patterns to search for in the text.
+ * @return List of patterns found in the text.
+ */
 std::vector<std::string> multiStringSearch(const std::string& text, const std::vector<std::string>& patterns) {
     std::vector<std::string> result;
 
@@ -128,17 +153,29 @@ int main() {
 
     return 0;
 }
+
 ```
-### Output
-![Alt text](../Outputs/MSSC++.png)
+
 
 # Explanation:
-        - multiStringSearch is a function that takes two parameters: text (the text to search within) and patterns (a vector of strings containing the patterns to find within the text).
-        - It initializes an empty vector result to store the patterns found in the text.
-        - It iterates through each pattern in the patterns vector.
-        - For each pattern, it uses std::search to find the occurrence of the pattern in the text. std::search searches for a range of elements within another range and returns an iterator to the first occurrence of the pattern within the text or text.end() if not found.
-        - If the pattern is found (i.e., std::search doesn't return text.end()), it adds the pattern to the result vector.
-        - Finally, it returns the result vector containing the found patterns.
+        multiStringSearch Function:
+        Purpose: Performs a multi-string search.
+        - Parameters:
+           text (const std::string&): The input text to search within.
+           patterns (const std::vectorstd::string&): List of patterns to search for in the text.
+           Return Type: std::vector<std::string>: List of patterns found in the text.
+        - Functionality:
+           Initializes an empty result vector to store found patterns.
+           Iterates through each pattern in the patterns vector.
+           Uses std::search to find the pattern in the text.
+           If the pattern is found in the text, it adds the pattern to the result vector.
+           Returns the result vector containing all found patterns.
+        - main Function:
+           Purpose: Entry point of the program.
+           Defines a sample text and a patterns vector with strings to search for.
+           Calls the multiStringSearch function with the text and patterns.
+           Stores the result (found patterns) returned by multiStringSearch in the result vector.
+           Prints the message "Found patterns:" followed by the patterns found in the result vector.
 
 
 #    JAVA Code    
@@ -150,13 +187,16 @@ import java.util.List;
 
 public class MultiStringSearch {
 
-    // Function to perform multi-string search
-    // Returns a list containing patterns found in the text
-
+    /**
+     * Performs multi-string search.
+     *
+     * @param text The input text to search within.
+     * @param patterns List of patterns to search for in the text.
+     * @return List of patterns found in the text.
+     */
     public static List<String> multiStringSearch(String text, List<String> patterns) {
         List<String> result = new ArrayList<>();
 
-        // Iterate through each pattern
         for (String pattern : patterns) {
             // Use String.contains to check if the pattern is present in the text
             if (text.contains(pattern)) {
@@ -168,7 +208,6 @@ public class MultiStringSearch {
     }
 
     public static void main(String[] args) {
-
         // Sample text and patterns
         String text = "This is a sample text for multi-string search.";
         List<String> patterns = List.of("sample", "search", "notfound");
@@ -184,17 +223,30 @@ public class MultiStringSearch {
         System.out.println();
     }
 }
+
 ```
 
-### Output
-![Alt text](../Outputs/MSSJAVA.png)
 
 # Explanation:
-        - multiStringSearch is a static method that takes two parameters: text (the text to search within) and patterns (a list of strings containing the patterns to find within the text).
-        - It initializes an empty ArrayList called result to store the patterns found in the text.
-        - The function iterates through each pattern in the patterns list using an enhanced for-loop.
-        - For each pattern, it uses the String.contains method to check if the pattern is present in the text. If found, it adds the pattern to the result list.
-        - Finally, it returns the result list containing the found patterns.
+        MultiStringSearch Class:
+          - multiStringSearch Method:
+            Purpose: This method performs the multi-string search.
+            Parameters:
+            text (String): The input text to search within.
+            patterns (List<String>): List of patterns to search for in the text.
+            Return Type: List<String>: List of patterns found in the text.
+          - Functionality:
+            It initializes an empty list called result to store found patterns.
+            Iterates through each pattern in the patterns list.
+            Uses the String.contains method to check if the current pattern exists in the text.
+            If a pattern is found in the text, it adds the pattern to the result list.
+            Finally, returns the result list containing all found patterns.
+          - main Method:
+            Purpose: The entry point of the program.
+            Initializes a sample text and a patterns list with strings to search for.
+            Calls the multiStringSearch method with the text and patterns.
+            Stores the result (found patterns) returned by multiStringSearch in the result list.
+            Prints the message "Found patterns:" followed by the patterns found in the result list.
 
 
 
