@@ -1,4 +1,14 @@
 def multi_string_search(text, patterns):
+    """
+    Performs multi-string search.
+
+    Args:
+    - text (str): The input text to search within.
+    - patterns (list): List of patterns to search for in the text.
+
+    Returns:
+    - result (list): List of patterns found in the text.
+    """
     result = []
 
     for pattern in patterns:
@@ -7,7 +17,6 @@ def multi_string_search(text, patterns):
             result.append(pattern)
 
     return result
-
 
 if __name__ == "__main__":
     # Sample text and patterns
