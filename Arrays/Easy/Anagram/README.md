@@ -59,25 +59,25 @@ def is_anagram(s1,s2):
         return False
     else:
         # Create a hashtable to store character counts
-        ht=dict()
+        hashtable=dict()
         # Iterate over characters in s1 
         for i in s1:
-            if i in ht. keys(): #If character i is already in the hashtable
+            if i in hashtable. keys(): #If character i is already in the hashtable
                 # Update count for characters in s1
-                ht[i]+=1
+                hashtable[i]+=1
             else:
                 # Otherwise, initialize its count to 1 
-                ht[i]=1
+                hashtable[i]=1
         # Iterate over characters in s2
         for j in s2:
             # If character j is not in the hashtable
-            if j not in ht. keys():
+            if j not in hashtable. keys():
                 # Strings can't be anagrams
                 return False
             # Decrement the count of character j in the hashtable
-            ht[j]-=1
+            hashtable[j]-=1
         # Check if all counts in the hashtable are zero
-        for key, value in ht. items():
+        for key, value in hashtable. items():
             if value!=0:
                 # If any count is not zero, strings are not anagrams
                 return False 
@@ -129,6 +129,7 @@ Finally, takes user input for two strings, calls the is_anagram function, and pr
 
 import java. util.HashMap;
 import java. util.Map;
+import java.util.Scanner;
 
 public class Main {
     // Method to check if two strings are anagrams.
@@ -150,7 +151,7 @@ public class Main {
         // Iterate through each character in the second string
         for(char ch:s2.toCharArray()){
             // Get the frequency of the character from the map
-            int value = map.getOrDefault(map, 0);
+            int value = map.getOrDefault(ch, 0);
             // If the frequency is 0, the strings are not anagrams
             if(value==0)
                 return false ;
@@ -162,8 +163,16 @@ public class Main {
     }
     // The main method
     public static void main(String[] args) {
-        String s1="hello";
-        String s2="olleh";
+        Scanner scanner = new Scanner(System.in);
+
+        // Input the first string 
+        System.out.print("Enter the first string: ");
+        String s1 = scanner.nextLine();
+
+        // Input the second string 
+        System.out.print("Enter the second string: ");
+        String s2 = scanner.nextLine();
+
         // Checking if the strings are anagrams and printing the result
         if(isAnagram(s1,s2)){
             System.out.println(s1+" and "+s2+" are Anagrams");
