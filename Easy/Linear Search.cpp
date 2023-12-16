@@ -1,7 +1,7 @@
 // C++ Code
 
 // Function to search for an element using linear search
-// Takes an array and the element to find as parameters
+// Takes an array and the element to find as parameters 
 void linearSearch(int arr[], int size, int element) {
     for (int idx = 0; idx < size; idx++) {
         if (arr[idx] == element) {
