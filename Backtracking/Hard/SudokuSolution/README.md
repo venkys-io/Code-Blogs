@@ -215,6 +215,8 @@ if __name__ == "__main__":
 // Time Complexity: O(9^(n^2) where n is the size of the Sudoku board
 // Space Complexity: O(n^2)
 
+import java.util.Scanner;
+
 public class Main {
     // Check if the element is correctly placed in terms of Sudoku rules
     public static boolean isSafe(char[][] board, int row, int col, int num) {
@@ -308,22 +310,34 @@ public class Main {
         }
     }
 
+ // Function to take user input for the initial Sudoku board
+    public static char[][] takeUserInput() {
+        // Create a Scanner object
+        Scanner scanner = new Scanner(System.in);
+
+        // Initialize a 9x9 char array to represent the Sudoku board
+        char[][] board = new char[9][9];
+
+        System.out.println("Enter the Sudoku puzzle row-wise. Use '.' for empty cells.");
+        // Iterate through each row
+        for (int i = 0; i < 9; i++) {
+            System.out.print("Enter values for row " + (i + 1) + " (use space between values): ");
+            String inputRow = scanner.nextLine().trim(); // Read the input row as a string and trim any leading or trailing spaces
+            
+            // Iterate through each column
+            for (int j = 0; j < 9; j++) {
+                 // Assign the character at the j-th position of the input row to the corresponding cell
+                board[i][j] = inputRow.charAt(j);
+            }
+        }
+        return board; // Return the filled Sudoku board
+    }
     public static void main(String args[]) {
-        // Initial Sudoku board configuration
-        char[][] board = new char[][] {
-                { '.', '.', '2', '.', '1', '.', '6', '8', '7' },
-                { '1', '.', '.', '.', '8', '.', '2', '5', '4' },
-                { '.', '6', '.', '.', '2', '.', '9', '1', '3' },
-                { '6', '8', '5', '.', '3', '.', '4', '7', '9' },
-                { '.', '.', '.', '.', '.', '8', '1', '.', '2' },
-                { '2', '.', '.', '7', '.', '.', '5', '.', '8' },
-                { '9', '.', '6', '8', '7', '.', '3', '4', '5' },
-                { '.', '.', '.', '.', '4', '.', '7', '.', '6' },
-                { '4', '7', '3', '.', '.', '6', '8', '.', '1' }
-        };
+        // Take user input for the initial Sudoku board configuration
+        char[][] board = takeUserInput();
 
         // Solve and print the Sudoku board
-        System.out.println("Sudoko after solving");
+        System.out.println("Sudoku after solving");
         sudokoSol(board);
 
     }
@@ -345,9 +359,12 @@ public class Main {
    - This method initializes the backtracking process by calling the `helper` method with the initial position `(0, 0)` (top-left corner of the board).
    - Once the `helper` method returns `true` (indicating a solution is found), it prints the solved Sudoku board.
 
+-  **`takeUserInput` Method**
+   - This method prompts the user to enter values row-wise for the initial Sudoku board, using '.' to represent empty cells. 
+   - It returns a 2D char array representing the filled Sudoku board based on user input.
+
 - **`main` method**
-   - The `main` method creates a 9x9 Sudoku board represented by a 2D character array.
-   - It initializes the Sudoku puzzle with some initial values and prints the original puzzle.
+   - Collects user input for the initial Sudoku board configuration using the `takeUserInput` method.
    - It then calls the `sudokuSol` method to solve the Sudoku puzzle and prints the solved Sudoku board.
 
 ## CPP Code
@@ -363,35 +380,37 @@ public class Main {
 // Time Complexity: O(9^(n^2) where n is the size of the Sudoku board
 // Space Complexity: O(n^2)
 
-#include<bits/stdc++.h>
-
-using namespace std;
+// Necessary header files for input/output and vector functionality
+#include <iostream>
+#include <vector>
 
 // Function to check if placing 'num' at position (row, col) is safe
-bool isSafe(vector<vector<char>> &board,int row,int col,int num){
-  // Check if 'num' is present in the same column 
-  for(int i=1;i<board.size();i++){
-    
-    if(board[i][col] == (char) (num+'0')) return false;
-  }
-  // Check if 'num' is present in the same row 
-  for(int j=1;j<board.size();j++){
-    if(board[row][j] == (char) (num+'0')) return false;
-  }
-  // Check if 'num' is present in the 3x3 subgrid
-  int sr=3*(row/3);
-  int sc = 3*(col/3);
-  for(int i=sr;i<sr+3;i++){
-    for(int j=sc;j<sc+3; j++){
-      if(board[i][j] == (char) (num+'0')) return false;
+bool isSafe(std::vector < std::vector <char> > &board, int row, int col, int num) {
+    // Check if 'num' is present in the same column 
+    for (int i = 1; i < board.size(); i++) {
+        if (board[i][col] == static_cast<char>(num + '0')) return false;
     }
-  }
-  // If 'num' is not present in the same row, column, or subgrid, it's safe
-  return true;
+    // Check if 'num' is present in the same row 
+    for (int j = 1; j < board.size(); j++) {
+        if (board[row][j] == static_cast<char>(num + '0')) return false;
+    }
+    // Check if 'num' is present in the 3x3 subgrid
+
+    int sr = 3 * (row / 3); // Calculate the starting row index of the 3x3 subgrid
+    int sc = 3 * (col / 3); // Calculate the starting column index of the 3x3 subgrid
+    // Iterate through each cell in the 3x3 subgrid
+    for (int i = sr; i < sr + 3; i++) {
+        for (int j = sc; j < sc + 3; j++) {
+            // Check if the current cell contains the specified number 'num'
+            if (board[i][j] == static_cast<char>(num + '0')) return false;
+        }
+    }
+    // If 'num' is not present in the same row, column, or subgrid, it's safe
+    return true;
 }
 
 // Recursive helper function to solve the Sudoku
-bool helper(vector<vector<char>> &board, int row, int col) {
+bool helper(std::vector<std::vector<char> > &board, int row, int col) {
     // Base case: If we have reached the end of the row, the Sudoku is solved
     if (row == board.size()) return true;
 
@@ -417,7 +436,7 @@ bool helper(vector<vector<char>> &board, int row, int col) {
         for (int i = 1; i <= 9; i++) {
             if (isSafe(board, row, col, i)) {
                 // Place the number in the current cell
-                board[row][col] = (char) (i + '0');
+                board[row][col] = static_cast<char>(i + '0');
 
                 // Recursively call helper for the next cell
                 if (helper(board, nrow, ncol)) return true;
@@ -431,42 +450,71 @@ bool helper(vector<vector<char>> &board, int row, int col) {
 }
 
 // Function to print the solved Sudoku
-void sudokoSol(vector<vector<char>> &board){
-  helper(board,0,0);
-  for(int i=0;i<9;i++){
-    for(int j=0;j<9;j++){
-      cout<<board[i][j]<<" ";
+void sudokuSol(std::vector<std::vector<char> > &board) {
+    // Call the helper function to solve the Sudoku starting from the top-left cell
+    helper(board, 0, 0);
+
+    // Iterate through each row of the Sudoku board
+    for (int i = 0; i < 9; i++) {
+        // Iterate through each column of the Sudoku board
+        for (int j = 0; j < 9; j++) {
+            // Output the value of the current cell followed by a space
+            std::cout << board[i][j] << " ";
+        }
+        // Move to the next line after printing each row to format the output
+        std::cout << std::endl;
     }
-    cout<<endl;
-  }
 }
 
-int main(){
-  // Example Sudoku board
-  vector<vector<char>> board {
-                { '.', '.', '2', '.', '1', '.', '6', '8', '7' },
-                { '1', '.', '.', '.', '8', '.', '2', '5', '4' },
-                { '.', '6', '.', '.', '2', '.', '9', '1', '3' },
-                { '6', '8', '5', '.', '3', '.', '4', '7', '9' },
-                { '.', '.', '.', '.', '.', '8', '1', '.', '2' },
-                { '2', '.', '.', '7', '.', '.', '5', '.', '8' },
-                { '9', '.', '6', '8', '7', '.', '3', '4', '5' },
-                { '.', '.', '.', '.', '4', '.', '7', '.', '6' },
-                { '4', '7', '3', '.', '.', '6', '8', '.', '1' }
-        };
-  cout<<"Sudoko after solving: "<<endl;
-  // Solve and print the Sudoku
-  sudokoSol(board);
-  return 0;
+// Function to take user input for the Sudoku board
+std::vector < std::vector <char> > takeUserInput() {
+    // Declare a 9x9 vector to represent the Sudoku board
+    std::vector < std::vector <char> > board(9, std::vector<char>(9));
+    std::cout << "Enter the Sudoku puzzle row-wise. Use '.' for empty cells." << std::endl;
+
+    // Iterate through each row of the Sudoku board
+    for (int i = 0; i < 9; i++) {
+        std::cout << "Enter values for row " << i + 1 << " (use space between values): ";
+
+        // Iterate through each column of the Sudoku board
+        for (int j = 0; j < 9; j++) {
+            std::cin >> board[i][j]; // Take user input for each cell and store it in the board 
+        }
+    }
+    // Return the filled Sudoku board
+    return board;
+}
+
+
+int main() {
+    // Example Sudoku board
+    std::vector<std::vector<char> > board = takeUserInput();
+
+    std::cout << "Sudoku after solving: " << std::endl;
+    // Solve and print the Sudoku
+    sudokuSol(board);
+
+    return 0;
 }
 ```
+### Example of Input
+```bash
+. . 2 . 1 . 6 8 7
+1 . . . 8 . 2 5 4
+. 6 . . 2 . 9 1 3
+6 8 5 . 3 . 4 7 9
+. . . . . 8 1 . 2
+2 . . 7 . . 5 . 8
+9 . 6 8 7 . 3 4 5
+. . . . 4 . 7 . 6
+4 7 3 . . 6 8 . 1
+```
+
 ### Step-by-Step Explanation of CPP Code
 
 - **Include Header Files**
-   - `#include<bits/stdc++.h>` line includes a set of standard C++ headers. It's a common practice to include all standard headers using this line to simplify the code.
-
-- **Namespace Declaration**
-   - `using namespace std;` line allows the use of standard C++ entities without the need for the `std::` prefix.
+   - `#include <iostream>`: Includes the standard input/output stream header.
+   - `#include <vector>`: Includes the vector header for using dynamic arrays.
 
 - **Function `isSafe`**
    - Takes a reference to the Sudoku `board`, current `row`, `col`, and the number `num`.
@@ -485,14 +533,14 @@ int main(){
    - Inside the inner loop, it prints the value of each cell followed by a space.
    - After completing each row, it inserts a newline (`cout << endl;`), creating a formatted output to display the Sudoku board.
 
+- **Function `takeUserInput`**
+   - Takes user input to initialize the Sudoku board.
+   - Declares a 9x9 vector, prompts the user for values row-wise, and stores input in the board.
 
 - **Main Function**
-   - The `main` function initializes a 9x9 Sudoku board represented by a 2D vector of characters.
-   - It prints the original Sudoku puzzle.
-   - It then calls the `sudokuSol` function to solve the Sudoku puzzle and prints the solved Sudoku board.
-
-- **Example Sudoku Board**
-   - The provided example Sudoku board is a 9x9 grid with some initial values. Empty cells are represented by `'.'`.
+   - Initializes a 9x9 Sudoku board with user input using `takeUserInput`.
+   - Prints the original Sudoku puzzle.
+   - Calls `sudokuSol` to solve the puzzle and prints the solved Sudoku board.
 
 - **Output**
    - The program prints the original Sudoku board and then prints the solved Sudoku board.
