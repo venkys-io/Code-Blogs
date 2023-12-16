@@ -30,3 +30,4 @@ int main() {
     linearSearch(arr, size, target);
     return 0;
 }
+
