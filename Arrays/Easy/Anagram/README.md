@@ -180,6 +180,8 @@ public class Main {
         else{
             System.out.println(s1+" and "+s2+" are not Anagrams");
         }
+        // Close the scanner to prevent resource leaks
+        scanner.close();
     }
 }
 ```
