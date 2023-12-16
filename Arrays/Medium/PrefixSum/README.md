@@ -21,9 +21,9 @@ Overall, prefix sum is a powerful technique that allows for efficient calculatio
 <h2>PYTHON</h2>
 
 ```
-#Copyrights to venkys.io
-#For more programs visit venkys.io 
-#Python program for PrefixSum
+# Copyrights to venkys.io
+# For more programs visit venkys.io
+# Python program for PrefixSum
 
 def prefixSum(arr):
     # Iterate through the array starting from index 1
@@ -33,10 +33,15 @@ def prefixSum(arr):
     # Print the resulting array after the prefix sum calculation
     print(*arr)
 
-# Example array
-arr = [1, 2, 3, 4, 5, 6]
-# Call the prefixSum function with the example array
-prefixSum(arr)
+if __name__ == "__main__":
+    # Read input from stdin
+    input_str = input("Enter elements of the array separated by space: ")
+
+    # Convert the input string to an array (list) of integers
+    arr = [int(num) for num in input_str.split()]
+
+    # Call the prefixSum function with the input array
+    prefixSum(arr)
 
 ```
 <h2>Step-by-Step Explanation</h2>
@@ -64,10 +69,13 @@ This line prints the resulting list after the prefix sum calculation. The *arr s
 // For more programs visit venkys.io 
 // Java program for PrefixSum
 
+import java.util.Scanner;
+
 public class PrefixSum {
     // Step 1: Define a class named PrefixSum
+
+    // Step 2: Define a method named prefixSum that takes an integer array as a parameter
     public static void prefixSum(int[] arr) {
-        // Step 2: Define a method named prefixSum that takes an integer array as a parameter
         for (int i = 1; i < arr.length; i++) {
             // Step 3: Iterate through the array starting from index 1
             arr[i] += arr[i - 1];
@@ -82,14 +90,25 @@ public class PrefixSum {
         // Step 7: Print a new line after printing all elements
     }
 
+    // Step 8: Define the main method
     public static void main(String[] args) {
-        // Step 8: Define the main method
-        int[] arr = {1, 2, 3, 4, 5, 6};
-        // Step 9: Create an integer array named arr with values 1, 2, 3, 4, 5, 6
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of elements for the array: ");
+        int numElements = scanner.nextInt();
+
+        int[] arr = new int[numElements];
+        // Step 9: Create an integer array named arr with user-input values
+        System.out.print("Enter the elements of the array separated by space: ");
+        for (int i = 0; i < numElements; i++) {
+            arr[i] = scanner.nextInt();
+        }
+
         prefixSum(arr);
         // Step 10: Call the prefixSum method with the array arr as an argument
     }
 }
+
 
 ```
 
@@ -119,6 +138,10 @@ The method iterates through the array starting from index 1, updating each eleme
 <h2>CPP</h2>
 
 ```
+// Copyrights to venkys.io
+// For more programs visit venkys.io
+// C++ program for PrefixSum
+
 #include <iostream>
 #include <vector>
 
@@ -141,8 +164,17 @@ void prefixSum(std::vector<int>& arr) {
 
 // Main function
 int main() {
-    // Create a vector named arr with initial values 1, 2, 3, 4, 5, 6
-    std::vector<int> arr = {1, 2, 3, 4, 5, 6};
+    // Read the number of elements from the user
+    std::cout << "Enter the number of elements for the array: ";
+    int num_elements;
+    std::cin >> num_elements;
+
+    // Create a vector named arr with user-input values
+    std::vector<int> arr(num_elements);
+    std::cout << "Enter the elements of the array separated by space: ";
+    for (int i = 0; i < num_elements; ++i) {
+        std::cin >> arr[i];
+    }
 
     // Call the prefixSum function to calculate and print the prefix sum
     prefixSum(arr);
