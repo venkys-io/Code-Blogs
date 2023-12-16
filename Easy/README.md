@@ -72,21 +72,24 @@ linear_search(arr, target)
 
 
 # Explanation of the Code
-    - Function Definition:
-        The linear_search function takes in two parameters: array (the list to be searched) and element (the value being searched for).
-    - Iterating through the List:
-        It uses a for loop with enumerate to iterate through each element in the list array.
-        enumerate allows simultaneous access to both the index (idx) and the value (val) of each element in the list.
-    - Checking for a Match:
-        Inside the loop, it checks if the current element val matches the element being searched for.
-        If a match is found, it prints a message indicating the element and its index and returns from the function, ending the search.
-    - Completion of Loop:
-        If the loop completes without finding a match (i.e., the return statement is not triggered), it implies that the element is not present in the list.
-        In that case, it prints a message indicating that the element is not found in the given array.
-    - Test Drive Code:
-        The arr variable holds the list [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], and target is set to 10, which is the element being searched for.
-    - Function Call:
-        The linear_search function is called with the array arr and the target target as arguments to search for the element in the list.
+    linear_search Function:
+    - Purpose:
+       The linear_search function is designed to search for a specific element within a list (array).
+    - Parameters:
+       It takes two parameters:
+       array: A list where the search will be conducted.
+       element: The target element that needs to be found in the list.
+    - Null or Empty List Check:
+       The function begins by checking whether the input list array is None or if it's an empty list. If either condition is true, it prints "Invalid input array" and returns from the function.
+    - Linear Search:
+       If the list is valid, it iterates through the list using a for loop and enumerate to get both index and value at each iteration.
+       For each value in the list, it checks if the current value (val) matches the target element (element).
+       If a match is found, it prints a message indicating the index at which the element is found in the list and exits the function.
+    - Result Messages:
+       If the loop completes without finding the element, it prints a message stating that the element was not found in the list.
+    - Testing the Function:
+       The code demonstrates the usage of the linear_search function by creating a list arr containing integers from 1 to 10 and setting a target element target to 10.
+       The linear_search function is called with these parameters (arr, target) to perform a search for the target element within the list.
 
 # Time Complexity and Space Complexity
     - Time Complexity:
@@ -133,21 +136,27 @@ public class LinearSearch {
 
 
 # Explanation of the Code
-    - Function Definition:
-        The linearSearch method is static and void, taking two parameters: array (the array to be searched) and element (the value being searched for).
-    - Iterating through the Array:
-        It uses a for loop to iterate through each element in the array array.
-        The loop runs from index 0 to the length of the array (array.length - 1).
-    - Checking for a Match:
-        Inside the loop, it checks if the current element at index idx matches the element being searched for.
-        If a match is found, it prints a message indicating the element and its index and returns from the method, terminating the search.
-    - Completion of Loop:
-        If the loop completes without finding a match, it implies that the element is not present in the array.
-        In that case, it prints a message indicating that the element is not found in the given array.
-    - Test Drive Code:
-        The main method initializes an array arr with values [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], and target is set to 10, which is the element being searched for.
-    - Function Call:
-        The linearSearch method is called with the array arr and the target target as arguments to search for the element in the array.
+    LinearSearch Class:
+     - linearSearch Method:
+        Purpose: The linearSearch method is responsible for performing a linear search in an array to find a particular element.
+        Parameters: It takes in two parameters:
+        array: An integer array where the search will be conducted.
+        element: The target element that needs to be found in the array.
+     - Null and Empty Check:
+        It starts by checking whether the input array array is null or if its length is 0 (indicating an empty array). If either condition is true, it prints 
+        "Invalid input array" and exits the method.
+     - Linear Search:
+        If the array is valid, it iterates through the array using a for loop.
+        For each element in the array, it checks if the current element (array[idx]) matches the target element (element).
+        If a match is found, it prints a message indicating the index at which the element is found in the array and exits the method.
+     - Result Messages:
+        If the loop completes without finding the element, it prints a message stating that the element was not found in the array.
+     - main Method:
+        Testing the linearSearch Method:
+        In the main method, there's a test scenario set up:
+        An array arr containing integers from 1 to 10 is created.
+        A target element target is set to 10.
+        linearSearch is called with these parameters (arr, target) to perform a search for the target element within the array.
 
 
 # C++ Code
@@ -191,23 +200,27 @@ int main() {
 
 
 # Explanation of the Code
-    - Function Definition:
-        The linearSearch function takes three parameters: arr (the array to be searched), size (the size of the array), and element (the value being searched for).
-    - Iterating through the Array:
-        It uses a for loop to iterate through each element in the array arr.
-        The loop runs from index 0 to size - 1, where size represents the length of the array.
-    - Checking for a Match:
-        Inside the loop, it checks if the current element at index idx matches the element being searched for.
-        If a match is found, it prints a message indicating the element and its index and returns from the function, terminating the search.
-    - Completion of Loop:
-        If the loop completes without finding a match, it implies that the element is not present in the array.
-        In that case, it prints a message indicating that the element is not found in the given array.
-    - Test Drive Code:
-        The main function initializes an array arr with values [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].
-        The size of the array is calculated using sizeof(arr) / sizeof(arr[0]) to ensure the accurate size is passed to the function.
-        target is set to 10, which is the element being searched for.
-    - Function Call:
-        The linearSearch function is called with the array arr, its size size, and the target target as arguments to search for the element in the array.
+  - linearSearch Function:
+     Purpose: The linearSearch function is designed to perform a linear search within an array to find a specific element.
+     Parameters: It takes in three parameters:
+     arr[]: An integer array where the search will be conducted.
+     size: The size of the array.
+     element: The target element that needs to be found in the array.
+  - Null and Size Check:
+     It starts by checking whether the input array arr is nullptr (i.e., null in C++) or if the size of the array is non-positive. If either condition is true, it prints "Invalid input array" and exits the function.
+  - Linear Search:
+     If the array is valid, it proceeds to iterate through the array using a for loop.
+     For each element in the array, it checks if the current element (arr[idx]) matches the target element (element).
+     If a match is found, it prints a message indicating the index at which the element is found in the array and exits the function.
+  - Result Messages:
+     If the loop completes without finding the element, it prints a message stating that the element was not found in the array.
+  - main Function:
+     Testing the linearSearch Function:
+      In the 'main' function, there's a test scenario set up:
+       An array 'arr' containing integers from 1 to 10 is created.
+       The size of the array is calculated using 'sizeof(arr) / sizeof(arr[0])', which determines the number of elements in the array.
+       A target element 'target' is set to 10.
+     'linearSearch' is called with these parameters ('arr', 'size', 'target') to perform a search for the target element within the array.
 
 
 # Real-world Applications
