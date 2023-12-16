@@ -497,7 +497,7 @@ int main() {
     return 0;
 }
 ```
-### Example of Input
+### Example of Input for 9 rows
 ```bash
 . . 2 . 1 . 6 8 7
 1 . . . 8 . 2 5 4
