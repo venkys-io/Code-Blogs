@@ -26,19 +26,6 @@ The Sudoku solving process is akin to systematically searching for the correct p
 # Import Counter from collections module to easily count occurrences of elements in a list
 from collections import Counter
 
-# Sudoku board represented as a 2D list
-board = [
-    [".", ".", "2", ".", "1", ".", "6", "8", "7"],
-    ["1", ".", ".", ".", "8", ".", "2", "5", "4"],
-    [".", "6", ".", ".", "2", ".", "9", "1", "3"],
-    ["6", "8", "5", ".", "3", ".", "4", "7", "9"],
-    [".", ".", ".", ".", ".", "8", "1", ".", "2"],
-    ["2", ".", ".", "7", ".", ".", "5", ".", "8"],
-    ["9", ".", "6", "8", "7", ".", "3", "4", "5"],
-    [".", ".", ".", ".", "4", ".", "7", ".", "6"],
-    ["4", "7", "3", ".", ".", "6", "8", ".", "1"]
-]
-
 # Function to check if a row in the Sudoku board is valid
 def validRow(board, row):
     # Count occurrences of elements in the row using Counter
@@ -134,17 +121,54 @@ def solveSudoku(board, row, col):
     # If none of the numbers work in the current cell, backtrack to the previous cell
     return False
 
-# Start solving the Sudoku puzzle from the top-left corner
-solveSudoku(board, 0, 0)
+# Function to take user input for the Sudoku board
+def takeUserInput():
+    print("Enter the Sudoku puzzle row-wise. Use '.' for empty cells.")
+    board = []
+    for i in range(9):
+        row = input(f"Enter values for row {i + 1} (use space between values): ").split()
+        # Validate the length of the input row
+        if len(row) != 9:
+            print("Invalid input. Please enter exactly 9 values for each row.")
+            return None
+        board.append(row)
+    return board
+
+
+#     Sudoku board represented as a 2D list as
+#     board = [
+#     [".", ".", "2", ".", "1", ".", "6", "8", "7"],
+#     ["1", ".", ".", ".", "8", ".", "2", "5", "4"],
+#     [".", "6", ".", ".", "2", ".", "9", "1", "3"],
+#     ["6", "8", "5", ".", "3", ".", "4", "7", "9"],
+#     [".", ".", ".", ".", ".", "8", "1", ".", "2"],
+#     ["2", ".", ".", "7", ".", ".", "5", ".", "8"],
+#     ["9", ".", "6", "8", "7", ".", "3", "4", "5"],
+#     [".", ".", ".", ".", "4", ".", "7", ".", "6"],
+#     ["4", "7", "3", ".", ".", "6", "8", ".", "1"]
+#     ]
+
+
+if __name__ == "__main__":
+    # Take user input for the Sudoku board
+    user_board = takeUserInput()
+
+    if user_board:
+        # Start solving the Sudoku puzzle from the top-left corner
+        solveSudoku(user_board, 0, 0)
 ```
 ### Step-by-Step Explanation of Python Code
 
 - **Importing Counter**
    - This line imports the `Counter` class from the `collections` module.
    - `Counter` will be used later to count occurrences of elements in rows.
+- **Taking User Input for the Sudoku Board**
+   - The new function `takeUserInput()` has been added to prompt the user to enter values row-wise for the Sudoku puzzle.
+   - The input is validated to ensure each row has exactly 9 values.
+   - If the input is valid, it is then passed to the `solveSudoku()` function for solving the puzzle.
 
 - **Defining the Sudoku Board**
-   - The initial state of the Sudoku board is represented as a 9x9 2D list.
+   - The initial state of the Sudoku board is now obtained from user input using the `takeUserInput()` function and is stored as a 9x9 2D list.
 
 - **Function to Check Validity of a Row**
    - `validRow` function checks if a given row is valid.
@@ -173,7 +197,9 @@ solveSudoku(board, 0, 0)
    - It starts from the top-left corner and recursively fills cells with numbers from 1 to 9.
    - It backtracks when the current filling doesn't lead to a solution.
 
-- **Starting the Solver**
+- **Starting the Solver with User Input**
+   - The script now includes a call to `takeUserInput()` to get the Sudoku board from the user.
+   - If the user input is valid, it is then passed to `solveSudoku(board, 0, 0)` to initiate the Sudoku solver.
    - `solveSudoku(board, 0, 0)` Initiates the Sudoku solver by starting from the top-left corner (row=0, col=0).
 
 ## JAVA Code
