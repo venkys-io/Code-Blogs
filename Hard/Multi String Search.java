@@ -3,12 +3,16 @@ import java.util.List;
 
 public class MultiStringSearch {
 
-    // Function to perform multi-string search
-    // Returns a list containing patterns found in the text
+    /**
+     * Performs multi-string search.
+     *
+     * @param text     The input text to search within.
+     * @param patterns List of patterns to search for in the text.
+     * @return List of patterns found in the text.
+     */
     public static List<String> multiStringSearch(String text, List<String> patterns) {
         List<String> result = new ArrayList<>();
 
-        // Iterate through each pattern
         for (String pattern : patterns) {
             // Use String.contains to check if the pattern is present in the text
             if (text.contains(pattern)) {
@@ -35,3 +39,4 @@ public class MultiStringSearch {
         System.out.println();
     }
 }
+
