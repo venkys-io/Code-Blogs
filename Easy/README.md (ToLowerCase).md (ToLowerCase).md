@@ -1,10 +1,10 @@
-# TO LowerCase
+# TO LOWER CASE
 
 # Introduction
-The toLowerCase() function is a fundamental text-processing tool available in many programming languages. Its primary role is to convert all characters in a string to lowercase, ensuring uniformity and enabling case-insensitive operations within the text. This function serves as a building block in various software development tasks, offering consistency and ease of manipulation when handling textual data.
-The toLowerCase() function is a method available in many programming languages that converts all characters in a string to lowercase. It's a fundamental operation when dealing with text data processing.
+    The toLowerCase() function is a fundamental text-processing tool available in many programming languages. Its primary role is to convert all characters in a string to lowercase, ensuring uniformity and enabling case-insensitive operations within the text. This function serves as a building block in various software development tasks, offering consistency and ease of manipulation when handling textual data.
+    The toLowerCase() function is a method available in many programming languages that converts all characters in a string to lowercase. It's a fundamental operation when dealing with text data processing.
 # Exploration:
-This function provides a consistent and standardized way to convert text to lowercase, enabling uniformity and easing comparisons within strings.
+    This function provides a consistent and standardized way to convert text to lowercase, enabling uniformity and easing comparisons within strings.
 # Overview of ToLowerCase
 The toLowerCase() function, available in programming languages like JavaScript, Java, Python, and many others, is a method used to convert all the characters within a string to their lowercase equivalents. Its primary purpose is to ensure uniformity in textual data by standardizing the case of all letters to lowercase, facilitating case-insensitive operations.
 
@@ -55,7 +55,7 @@ print(toLowerCase(string))
 #    JAVA Code   
 
 ```java
-public class Main {
+public class ToLowerCase {
 
     // Function to convert a string to lowercase
     // Returns the lowercase version of the input string
@@ -87,8 +87,11 @@ public class Main {
         System.out.println("Lowercase: " + toLowerCase(inputString));
     }
 }
+
 ```
 
+### Output
+![Alt text](../Outputs/TLCJAVA.png)
 
 # Explanation:
 
@@ -128,21 +131,7 @@ std::string toLowerCase(const std::string& s) {
     // Return the final lowercase result
     return result;
 }
-
-int main() {
-    // Example string
-    std::string inputString = "UpperCase";
-
-    // Print the original string
-    std::cout << "Original: " << inputString << std::endl;
-
-    // Convert the string to lowercase using the function and print the result
-    std::cout << "Lowercase: " << toLowerCase(inputString) << std::endl;
-
-    return 0;
-}
 ```
-
 
 # Explanation:
 

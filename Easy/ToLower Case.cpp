@@ -2,6 +2,7 @@
 
 // Function to convert a string to lowercase
 // Returns the lowercase version of the input string
+
 std::string toLowerCase(const std::string& s) {
     // Initialize an empty string to store the lowercase result
     std::string result = "";
@@ -20,17 +21,4 @@ std::string toLowerCase(const std::string& s) {
 
     // Return the final lowercase result
     return result;
-}
-
-int main() {
-    // Example string
-    std::string inputString = "UpperCase";
-
-    // Print the original string
-    std::cout << "Original: " << inputString << std::endl;
-
-    // Convert the string to lowercase using the function and print the result
-    std::cout << "Lowercase: " << toLowerCase(inputString) << std::endl;
-
-    return 0;
 }

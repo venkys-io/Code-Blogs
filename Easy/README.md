@@ -45,20 +45,28 @@ array until a match is found or the entire list has been traversed. It's also kn
      python     
 
 ```python
-# Function to search for an element using linear search
-# Takes an array and the element to find as parameters
+# Function to perform linear search in a list
 def linear_search(array, element):
-    for idx, val in enumerate(array):  # Using enumerate for a more Pythonic way to iterate with index
-        if val == element:  # Print a message indicating the element is found and its index
+    # Check for empty or None array
+    if array is None or not array:
+        print("Invalid input array")
+        return
+
+    # Iterate through the array to find the element
+    for idx, val in enumerate(array):
+        # If the element is found, print its index and exit the function
+        if val == element:
             print(f"The element {element} found at index {idx} in the given array")
-            # No need to continue searching if the element is found, so return from the function
             return
-    else:  # If the loop completes and the element is not found, print a message indicating so
-        print(f"The element {element} not found in the given array")
-# Test drive code
+    
+    # If the element is not found in the array, print a message
+    print(f"The element {element} not found in the given array")
+
+# Test list and target element
 arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 target = 10
-# Call the linear_search function to search for the target element in the array
+
+# Perform linear search on the list for the target element
 linear_search(arr, target)
 ```
 
@@ -92,23 +100,32 @@ linear_search(arr, target)
 ```java
 public class LinearSearch {
 
-    // Function to search for an element using linear search
-    // Takes an array and the element to find as parameters
-
+    // Function to perform linear search in an array
     static void linearSearch(int[] array, int element) {
+        // Check for null or empty array
+        if (array == null || array.length == 0) {
+            System.out.println("Invalid input array");
+            return;
+        }
+
+        // Iterate through the array to find the element
         for (int idx = 0; idx < array.length; idx++) {
+            // If the element is found, print its index and exit the function
             if (array[idx] == element) {
                 System.out.printf("The element %d found at index %d in the given array%n", element, idx);
-                return;  // No need to continue searching if the element is found
+                return;
             }
         }
+        // If the element is not found in the array, print a message
         System.out.printf("The element %d not found in the given array%n", element);
     }
 
-    // Test drive code
     public static void main(String[] args) {
+        // Test array and target element
         int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         int target = 10;
+
+        // Perform linear search on the array for the target element
         linearSearch(arr, target);
     }
 }
@@ -137,26 +154,35 @@ public class LinearSearch {
 
 '''
 ```c++
-#include<iostream>
+#include <iostream>
 
-// Function to search for an element using linear search
-// Takes an array and the element to find as parameters
-
+// Function to perform linear search in an array
 void linearSearch(int arr[], int size, int element) {
+    // Check for null array or non-positive size
+    if (arr == nullptr || size <= 0) {
+        std::cout << "Invalid input array" << std::endl;
+        return;
+    }
+
+    // Iterate through the array to find the element
     for (int idx = 0; idx < size; idx++) {
+        // If the element is found, print its index and exit the function
         if (arr[idx] == element) {
             std::cout << "The element " << element << " found at index " << idx << " in the given array" << std::endl;
-            return;  // No need to continue searching if the element is found
+            return;
         }
     }
+    // If the element is not found in the array, print a message
     std::cout << "The element " << element << " not found in the given array" << std::endl;
 }
 
-// Test drive code
 int main() {
+    // Test array and target element
     int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-    int size = sizeof(arr) / sizeof(arr[0]);  // Calculate the size of the array
+    int size = sizeof(arr) / sizeof(arr[0]);
     int target = 10;
+
+    // Perform linear search on the array for the target element
     linearSearch(arr, size, target);
     return 0;
 }

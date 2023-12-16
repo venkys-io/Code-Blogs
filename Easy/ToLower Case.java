@@ -1,7 +1,8 @@
-public class Main {
+public class ToLowerCase {
 
     // Function to convert a string to lowercase
     // Returns the lowercase version of the input string
+
     public static String toLowerCase(String s) {
         StringBuilder result = new StringBuilder();
 

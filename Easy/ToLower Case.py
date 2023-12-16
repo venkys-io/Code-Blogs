@@ -1,22 +1,20 @@
+def toLowerCase(s: str) -> str:
+    # Initialize an empty string to store the converted characters
+    lowercase = ""
 
-def multi_string_search(text, patterns):
-    result = []
+    # Loop through each character in the input string
+    for char in s:
+        # Check if the character is uppercase
+        if 'A' <= char <= 'Z':
+            # Convert the uppercase character to lowercase using ASCII manipulation
+            lowercase += chr(ord(char) + 32)
+        else:
+            # If the character is not uppercase, keep it unchanged
+            lowercase += char 
 
-    for pattern in patterns:
-        # Use the built-in find method to check if the pattern is present in the text
-        if text.find(pattern) != -1:
-            result.append(pattern)
+    # Return the converted string with lowercase characters
+    return lowercase
 
-    return result
-
-
-if __name__ == "__main__":
-    # Sample text and patterns
-    text = "This is a sample text for multi-string search."
-    patterns = ["sample", "search", "notfound"]
-
-    # Perform multi-string search
-    result = multi_string_search(text, patterns)
-
-    # Print the found patterns
-    print("Found patterns:", *result)
+# Test the function
+string = "UpperCase"
+print(toLowerCase(string))
