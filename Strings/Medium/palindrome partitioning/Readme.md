@@ -196,91 +196,217 @@ For more information, visit https://venkys.io */
 // Space complexity:O(n^2)
 // Time complexity:O(n^2) 
 
-#include<bits/stdc++.h>
-bool isPalindrome(std::string s, int i, int j) {
-    // While loop checks the string symmetrically.
-    while (i <= j) {
-        // If characters at different ends don't match, it's not a palindrome.
-        if (s[i++] != s[j--]) return false;
+#include <iostream>
+#include <vector>
+#include <string>
+
+// Function to find all palindrome partitions of a given string
+std::vector<std::vector<std::string>> partition(const std::string& str) {
+    // Check if the input string is empty
+    if (str.empty()) {
+        return {{}};
     }
-    // If the loop is finished, the string is a palindrome.
-    return true;
-}
-void util(int i,std::string s,std::vector<std::vector<std::string>>& res,std::vector<std::string>& path){
-    // base case: when string s is fully processed
-    if(i==s.size()){
-        res.push_back(path);
-        return ;
-    }
-    // iteratively checking each substring
-    for(int j=i;j<s.size();++j){
-        // checking if the substring is a palindrome
-        if(isPalindrome(s,i,j)) {
-            //If it is, adding the substring to the path
-            path.push_back(s.substr(i,j-i+1));
-            // recursively calling util to process the rest of the string
-            util(j+1,s,res,path);
-            //Removing the added substring from the path
-            path.pop_back();
+
+    // Initialize dynamic programming array
+    std::vector<std::vector<std::vector<std::string>>> dp(str.size() + 1);
+
+    // Initialize the first state with an empty partition
+    dp[0] = {{}};
+
+    // Iterate over each character of the string
+    for (size_t j = 1; j <= str.size(); ++j) {
+        // Iterate through each previous character
+        for (size_t i = 0; i < j; ++i) {
+            // Check if the substring is a palindrome
+            if (str.substr(i, j - i) == std::string(str.rbegin() + (str.size() - j), str.rend())) {
+                // If so, extend the partitions ending at i with the palindrome substring
+                for (const auto& each : dp[i]) {
+                    dp[j].push_back(each);
+                    dp[j].back().push_back(str.substr(i, j - i));
+                }
+            }
         }
     }
+
+    // Return the final state, which contains all valid partitions
+    return dp.back();
 }
-std::vector<std::vector<std::string>> partition (std::string s){
-    // Output list of all palindrome partitions
-    std::vector<std::vector<std::string>> res;
-    // List to keep track of the current path
-    std::vector<std::string> path;
-    // Utility function to find all palindrome partitions
-    util(0,s,res,path);
-    return res;
-}
-int main(){
-    // initial string to be partitioned
-    std::string s = "aaab";
-    // function call to get all partitions
-    std::vector<std::vector<std::string>> ans=partition(s);
-    // loop to print all partitions
-    for(auto& a:ans){
-        for(auto& b:a){
-            std::cout<<b<<" ";
-        }
-        std::cout<<std::endl;
+
+int main() {
+    // Read input from standard input
+    std::cout << "Enter a string: ";
+    std::string inputString;
+    std::getline(std::cin, inputString);
+
+    // Check for empty string
+    if (inputString.empty()) {
+        std::cout << "Empty input. Exiting." << std::endl;
+        return 0;
     }
+
+    // Call the partition function and get the result
+    auto result = partition(inputString);
+
+    // Print the result
+    std::cout << "Partitions:" << std::endl;
+    for (const auto& partitionSet : result) {
+        for (const auto& substring : partitionSet) {
+            std::cout << substring << " ";
+        }
+        std::cout << std::endl;
+    }
+
+    // Print the count of partitions
+    std::cout << "\nNumber of Partitions: " << result.size() << std::endl;
+
     return 0;
 }
+
 
 ```
 
 # Code Explanation
 
-1. **isPalindrome Function:**
-   - `isPalindrome` function checks whether a given substring of a string `s` is a palindrome. It uses two indices (`i` and `j`) to check symmetrically from both ends of the substring.
+Let's go through the C++ code step by step:
 
-2. **util Function:**
-   - The `util` function is a recursive utility function that generates all possible palindrome partitions of the input string.
-   - It takes parameters:
-      - `i`: Current index in the string.
-      - `s`: The input string.
-      - `res`: A vector of vectors to store all palindrome partitions.
-      - `path`: A vector to keep track of the current path of partitions.
-   - It uses a nested loop to iterate through all possible substrings starting from the current index `i` and checks if each substring is a palindrome using the `isPalindrome` function.
-   - If a palindrome substring is found, it is added to the current path, and the function is recursively called to process the rest of the string.
-   - After processing, the added substring is removed from the path to explore other possibilities.
+```cpp
+#include <iostream>
+#include <vector>
+#include <string>
+```
 
-3. **partition Function:**
-   - The `partition` function initializes the necessary vectors (`res` and `path`) and calls the `util` function to find all palindrome partitions.
+1. **Header Includes:**
+   - `#include <iostream>`: Provides input and output functionality.
+   - `#include <vector>`: Allows the use of dynamic arrays (vectors).
+   - `#include <string>`: Enables string manipulation.
 
-4. **main Function:**
-   - The `main` function demonstrates the usage of the `partition` function on the string "aaab."
-   - It prints all the palindrome partitions obtained in the `ans` vector.
+```cpp
+std::vector<std::vector<std::string>> partition(const std::string& str) {
+```
+
+2. **Function Declaration - `partition`:**
+   - Declares a function named `partition` that takes a constant reference to a string (`str`) as an argument.
+   - The function returns a vector of vectors of strings, representing the palindrome partitions.
+
+```cpp
+    if (str.empty()) {
+        return {{}};
+    }
+```
+
+3. **Check for Empty String:**
+   - Checks if the input string is empty. If so, returns a vector containing an empty vector (representing an empty partition).
+
+```cpp
+    std::vector<std::vector<std::vector<std::string>>> dp(str.size() + 1);
+```
+
+4. **Dynamic Programming Array Initialization:**
+   - Initializes a 3D vector (`dp`) to store intermediate results during dynamic programming.
+   - Its size is set to `str.size() + 1` to accommodate substrings of different lengths.
+
+```cpp
+    dp[0] = {{}};
+```
+
+5. **Initial State Initialization:**
+   - Sets the initial state of `dp` to contain a single empty vector (representing an empty partition for an empty substring).
+
+```cpp
+    for (size_t j = 1; j <= str.size(); ++j) {
+        for (size_t i = 0; i < j; ++i) {
+```
+
+6. **Nested Loops - Iterating Over Substrings:**
+   - Outer loop (`j`): Iterates over each character of the input string.
+   - Inner loop (`i`): Iterates through each previous character (from 0 to `j`).
+
+```cpp
+            if (str.substr(i, j - i) == std::string(str.rbegin() + (str.size() - j), str.rend())) {
+```
+
+7. **Checking for Palindrome:**
+   - Uses `substr` to extract the substring from index `i` to `j`.
+   - Compares the substring with its reverse by creating a temporary reversed string using `rbegin` and `rend`.
+
+```cpp
+                for (const auto& each : dp[i]) {
+                    dp[j].push_back(each);
+                    dp[j].back().push_back(str.substr(i, j - i));
+                }
+            }
+        }
+    }
+```
+
+8. **Extending Partitions:**
+   - If the substring is a palindrome, extends the partitions ending at index `i` with the palindrome substring.
+   - Iterates over each partition in `dp[i]` and appends a new partition formed by adding the palindrome substring.
+
+```cpp
+    return dp.back();
+}
+```
+
+9. **Returning Final State:**
+   - Returns the last state of the dynamic programming array (`dp`), which contains all valid partitions for the entire input string.
+
+```cpp
+int main() {
+    std::cout << "Enter a string: ";
+    std::string inputString;
+    std::getline(std::cin, inputString);
+```
+
+10. **Main Function:**
+    - Prompts the user to enter a string using `std::cout`.
+    - Reads the entire line of input using `std::getline` and stores it in `inputString`.
+
+```cpp
+    if (inputString.empty()) {
+        std::cout << "Empty input. Exiting." << std::endl;
+        return 0;
+    }
+```
+
+11. **Checking for Empty String:**
+    - Checks if the input string is empty. If so, prints a message and exits the program.
+
+```cpp
+    auto result = partition(inputString);
+```
+
+12. **Calling the Partition Function:**
+    - Calls the `partition` function with the input string and stores the result in the variable `result`.
+
+```cpp
+    std::cout << "Partitions:" << std::endl;
+    for (const auto& partitionSet : result) {
+        for (const auto& substring : partitionSet) {
+            std::cout << substring << " ";
+        }
+        std::cout << std::endl;
+    }
+```
+
+13. **Printing Partitions:**
+    - Prints each partition set in the result.
+
+```cpp
+    std::cout << "\nNumber of Partitions: " << result.size() << std::endl;
+
+    return 0;
+}
+```
+
+14. **Printing the Count of Partitions:**
+    - Prints the total number of partitions using `result.size()`. The program then returns 0, indicating successful execution.
 
 **Example Output:**
 ```
 a a a b 
 aa a b 
 ```
-
-This code efficiently finds and prints all possible palindrome partitions of the input string "aaab" using a recursive approach.
 
 
 # java
