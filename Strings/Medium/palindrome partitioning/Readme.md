@@ -78,29 +78,106 @@ if __name__ == "__main__":
 ```
 # Code Explanation
 
-1. **Dynamic Programming Array (`dp`):**
-   - `dp` is a list of lists used for dynamic programming. It represents the state of the algorithm at each position in the input string.
+Let's go through each line of code in detail:
 
-2. **Initialization:**
-   - `dp[0]` is initialized with an empty list representing the empty partition for the first state.
+```python
+def partition(string):
+    # Check if the input string is None or empty
+    if string is None or not string.strip():
+        return [[]]
 
-3. **Iterating Over Characters (`j`):**
-   - The outer loop (`for j in range(1, len(string) + 1)`) iterates over each character in the input string, starting from the second character.
+    # Initialize dynamic programming array
 
-4. **Iterating Over Previous Characters (`i`):**
-   - The inner loop (`for i in range(j)`) iterates through each previous character (from the beginning of the string up to `j`).
 
-5. **Palindrome Check:**
-   - `if string[i:j] == string[i:j][::-1]:` checks if the substring from `i` to `j` is a palindrome.
+```python
+    dp = [[] for _ in range(len(string) + 1)]
+```
 
-6. **Updating Partitions:**
-   - If the substring is a palindrome, it extends the partitions ending at position `i` with the palindrome substring. It uses a nested loop to iterate through each existing partition at position `i` (`for each in dp[i]`) and appends the current palindrome substring to create new partitions.
+Here, a dynamic programming array `dp` is initialized. The list comprehension creates a list of empty lists. The length of this list is set to `len(string) + 1`. The array will be used to store intermediate results during the computation of palindrome partitions.
 
-7. **Final Result:**
-   - The final state is represented by `dp[-1]`, which contains all valid partitions, and it is returned as the output of the function.
+```python
+    # Initialize the first state with an empty partition
+    dp[0] = [[]]
+```
 
-8. **Example Usage:**
-   - The provided example with `string = "ababa"` demonstrates how the function can be called and prints the result of partitioning the given string into palindromic substrings.
+The first state of the dynamic programming array is initialized to contain a single empty list. This represents the partition of an empty string.
+
+```python
+    # Iterate over each character of the string
+    for j in range(1, len(string) + 1):
+```
+
+This loop iterates over each character in the input string. The variable `j` represents the current index being considered.
+
+```python
+        # Iterate through each previous character
+        for i in range(j):
+```
+
+Within the outer loop, there is another loop that iterates over each character from the beginning of the string up to the current index (`j`). The variable `i` represents the starting index of the substring.
+
+```python
+            # Check if the substring is a palindrome
+            if string[i:j] == string[i:j][::-1]:
+```
+
+This line checks whether the substring from index `i` to `j` is a palindrome. The slicing `string[i:j]` extracts the substring, and `string[i:j][::-1]` reverses it. If the reversed substring is equal to the original substring, it is a palindrome.
+
+```python
+                # If so, extend the partitions ending at i with the palindrome substring
+                for each in dp[i]:
+                    dp[j].append(each + [string[i:j]])
+```
+
+If the substring is a palindrome, this code extends the partitions that end at index `i` with the palindrome substring. It iterates over each partition in `dp[i]` and appends a new partition formed by adding the palindrome substring.
+
+```python
+    # Return the final state, which contains all valid partitions
+    return dp[-1]
+```
+
+Finally, the function returns the last state of the dynamic programming array, which contains all valid partitions for the entire input string.
+
+```python
+def main():
+    # Read input from standard input
+    string = input("Enter a string: ")
+```
+
+The `main` function prompts the user to input a string.
+
+```python
+    # Check for None or empty string
+    if string is None or not string.strip():
+        print("Empty or None input. Exiting.")
+        return
+```
+
+This checks if the input string is None or empty. If so, it prints a message and exits the program.
+
+```python
+    # Call the partition function and get the result
+    result = partition(string)
+```
+
+The `partition` function is called with the input string, and the result is stored in the variable `result`.
+
+```python
+    # Print the result
+    print("Partitions:")
+    for partition_set in result:
+        print(partition_set)
+```
+
+The code then prints each partition set in the result.
+
+```python
+    # Print the count of partitions
+    print(f"\nNumber of Partitions: {len(result)}")
+```
+
+Finally, it prints the total number of partitions. The `len(result)` gives the count of valid partitions.
+  
 
 The algorithm employs dynamic programming to efficiently find and extend palindrome partitions in the input string.
 
@@ -113,7 +190,7 @@ For more information, visit https://venkys.io */
 
 // C++ program Palindrome Partitioning
 // Stable: No 
-// Inplace:No
+// Inplace: No
 // Adaptive: Not applicable (Adaptivity is a characteristic more associated with sorting algorithms and may not directly apply to palindrome partitioning.) 
 
 // Space complexity:O(n^2)
@@ -126,7 +203,7 @@ bool isPalindrome(std::string s, int i, int j) {
         // If characters at different ends don't match, it's not a palindrome.
         if (s[i++] != s[j--]) return false;
     }
-    // If loop finished, the string is a palindrome.
+    // If the loop is finished, the string is a palindrome.
     return true;
 }
 void util(int i,std::string s,std::vector<std::vector<std::string>>& res,std::vector<std::string>& path){
@@ -139,11 +216,11 @@ void util(int i,std::string s,std::vector<std::vector<std::string>>& res,std::ve
     for(int j=i;j<s.size();++j){
         // checking if the substring is a palindrome
         if(isPalindrome(s,i,j)) {
-            // if it is, adding the substring to the path
+            //If it is, adding the substring to the path
             path.push_back(s.substr(i,j-i+1));
             // recursively calling util to process the rest of the string
             util(j+1,s,res,path);
-            // removing the added substring from the path
+            //Removing the added substring from the path
             path.pop_back();
         }
     }
