@@ -402,11 +402,6 @@ int main() {
 14. **Printing the Count of Partitions:**
     - Prints the total number of partitions using `result.size()`. The program then returns 0, indicating successful execution.
 
-**Example Output:**
-```
-a a a b 
-aa a b 
-```
 
 
 # java
@@ -426,87 +421,256 @@ For more information, visit https://venkys.io */
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
-class PalindromePartitioning {
-    // Function to check if a substring is a palindrome
-    static boolean checkPalindrome(String str, int startIndex, int lastIndex){
-        while(startIndex <= lastIndex){
-            if(str.charAt(startIndex) != str.charAt(lastIndex))
-                return false;
-            startIndex++;
-            lastIndex--;
-        }
-        return true;
-    }
+public class PalindromePartition {
 
-    // Function to generate all the palindrome partitioning
-    static void palindromePartition(int index, List<String> ds, List<List<String>> output, String str){
-        if(index == str.length()){
-            output.add(new ArrayList<>(ds));
-            return;
+    public static List<List<String>> partition(String input) {
+        // Check if the input string is null or empty
+        if (input == null || input.trim().isEmpty()) {
+            List<List<String>> result = new ArrayList<>();
+            result.add(new ArrayList<>());
+            return result;
         }
-        for(int i = index; i < str.length(); i++){
-            if(checkPalindrome(str, index, i)){
-                ds.add(str.substring(index, i + 1));
-                palindromePartition(i+1, ds, output, str);
-                ds.remove(ds.size()-1);
+
+        // Initialize dynamic programming array
+        List<List<String>>[] dp = new ArrayList[input.length() + 1];
+        for (int i = 0; i <= input.length(); i++) {
+            dp[i] = new ArrayList<>();
+        }
+
+        // Initialize the first state with an empty partition
+        dp[0].add(new ArrayList<>());
+
+        // Iterate over each character of the string
+        for (int j = 1; j <= input.length(); j++) {
+            // Iterate through each previous character
+            for (int i = 0; i < j; i++) {
+                // Check if the substring is a palindrome
+                if (input.substring(i, j).equals(new StringBuilder(input.substring(i, j)).reverse().toString())) {
+                    // If so, extend the partitions ending at i with the palindrome substring
+                    for (List<String> each : dp[i]) {
+                        List<String> partition = new ArrayList<>(each);
+                        partition.add(input.substring(i, j));
+                        dp[j].add(partition);
+                    }
+                }
             }
         }
-    }
 
-    // Main function to return all the palindrome partitioning
-    static List<List<String>> partition(String s) {
-        List<List<String>> output = new ArrayList<>();
-        List<String> ds = new ArrayList<>();
-        palindromePartition(0, ds, output, s);
-        return output;
+        // Return the final state, which contains all valid partitions
+        return dp[input.length()];
     }
 
     public static void main(String[] args) {
-        String s="aab";
-        System.out.println(partition(s));
-    }
+        // Read input from standard input
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String inputString = scanner.nextLine();
 
+        // Check for null or empty string
+        if (inputString == null || inputString.trim().isEmpty()) {
+            System.out.println("Empty or null input. Exiting.");
+            return;
+        }
+
+        // Call the partition function and get the result
+        List<List<String>> result = partition(inputString);
+
+        // Print the result
+        System.out.println("Partitions:");
+        for (List<String> partitionSet : result) {
+            System.out.println(partitionSet);
+        }
+
+        // Print the count of partitions
+        System.out.println("\nNumber of Partitions: " + result.size());
+    }
 }
 
 ```
 # Code Explanation
 
-1. **`checkPalindrome` Function:**
-   - This function checks whether a given substring of a string is a palindrome.
-   - It takes three parameters:
-      - `str`: The input string.
-      - `startIndex`: The starting index of the substring.
-      - `lastIndex`: The ending index of the substring.
-   - It uses a `while` loop to check if the characters at the given indices are equal, iterating towards the center of the substring. If at any point they are not equal, the function returns `false`. Otherwise, it returns `true`.
+Let's go through the provided Java code step by step:
 
-2. **`palindromePartition` Function:**
-   - This recursive function generates all possible palindrome partitions of the input string.
-   - It takes four parameters:
-      - `index`: The current index in the string.
-      - `ds`: A list representing the current path of partitions.
-      - `output`: A list of lists to store all palindrome partitions.
-      - `str`: The input string.
-   - The base case is when the `index` reaches the length of the string. At this point, the current path (`ds`) is added to the `output` list.
-   - It uses a `for` loop to iterate from the current index to the end of the string.
-   - If the substring from the current index to the loop variable `i` is a palindrome (checked using `checkPalindrome`), it adds the substring to the current path (`ds`) and recursively calls itself with the updated index (`i + 1`).
-   - After the recursive call, it removes the last added substring from the current path to explore other possibilities.
+```java
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+```
 
-3. **`partition` Function:**
-   - This is the main function that initializes the necessary lists and calls `palindromePartition` to find all palindrome partitions.
-   - It takes the input string `s`, creates an empty list for the output, and an empty list for the current path (`ds`).
-   - It calls `palindromePartition` with the initial index (`0`), current path (`ds`), output list (`output`), and the input string (`s`).
+1. **Imports:**
+   - Import necessary packages: `ArrayList` and `List` from `java.util` and `Scanner` for user input.
 
-4. **`main` Function:**
-   - The `main` function demonstrates the usage of the `partition` function on the string "aab."
-   - It prints the result obtained from the `partition` function.
+```java
+public class PalindromePartition {
+```
 
-**Example Output:**
+2. **Class Declaration:**
+   - Declare a class named `PalindromePartition`.
 
-[[a, a, b], [aa, b]]
+```java
+    /**
+     * Find all palindrome partitions of a given string.
+     *
+     * @param input The input string
+     * @return List of palindrome partitions
+     */
+    public static List<List<String>> partition(String input) {
+```
 
+3. **Method Declaration - partition:**
+   - Declare a method named `partition` that takes a string (`input`) as a parameter.
+   - The method returns a list of lists of strings, representing palindrome partitions.
+   - The `@param` and `@return` annotations provide documentation.
 
-The code efficiently finds and prints all possible palindrome partitions of the input string "aab" using a recursive approach.
+```java
+        // Check if the input string is null or empty
+        if (input == null || input.trim().isEmpty()) {
+            // Return a list containing an empty list (representing an empty partition)
+            List<List<String>> result = new ArrayList<>();
+            result.add(new ArrayList<>());
+            return result;
+        }
+```
+
+4. **Input Validation:**
+   - Check if the input string is null or empty. If true, return a list containing an empty list (representing an empty partition).
+
+```java
+        // Initialize dynamic programming array
+        List<List<String>>[] dp = new ArrayList[input.length() + 1];
+        for (int i = 0; i <= input.length(); i++) {
+            dp[i] = new ArrayList<>();
+        }
+```
+
+5. **Dynamic Programming Array Initialization:**
+   - Initialize a 2D array (`dp`) to store intermediate results during dynamic programming.
+   - Each element of `dp` is a list of strings, representing partitions.
+
+```java
+        // Initialize the first state with an empty partition
+        dp[0].add(new ArrayList<>());
+```
+
+6. **Initial State Initialization:**
+   - Set the initial state of `dp` to contain a single empty list (representing an empty partition for an empty substring).
+
+```java
+        // Iterate over each character of the string
+        for (int j = 1; j <= input.length(); j++) {
+            // Iterate through each previous character
+            for (int i = 0; i < j; i++) {
+```
+
+7. **Nested Loops - Iterating Over Substrings:**
+   - Outer loop (`j`): Iterates over each character of the input string.
+   - Inner loop (`i`): Iterates through each previous character (from 0 to `j`).
+
+```java
+                // Check if the substring is a palindrome
+                if (input.substring(i, j).equals(new StringBuilder(input.substring(i, j)).reverse().toString())) {
+```
+
+8. **Checking for Palindrome:**
+   - Use `substring` to extract the substring from index `i` to `j`.
+   - Compare the substring with its reverse using `StringBuilder`.
+   - If the substring is a palindrome:
+
+```java
+                    // If so, extend the partitions ending at i with the palindrome substring
+                    for (List<String> each : dp[i]) {
+                        List<String> partition = new ArrayList<>(each);
+                        partition.add(input.substring(i, j));
+                        dp[j].add(partition);
+                    }
+                }
+            }
+        }
+```
+
+9. **Extending Partitions:**
+   - If the substring is a palindrome, extend the partitions ending at index `i` with the palindrome substring.
+   - Iterate over each partition in `dp[i]` and append a new partition formed by adding the palindrome substring.
+
+```java
+        // Return the final state, which contains all valid partitions
+        return dp[input.length()];
+    }
+```
+
+10. **Returning Final State:**
+    - Return the last state of the dynamic programming array (`dp`), which contains all valid partitions for the entire input string.
+
+```java
+    /**
+     * Prompts the user for input and returns the entered string.
+     *
+     * @return The user-entered string
+     */
+    private static String getUserInput() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        return scanner.nextLine();
+    }
+```
+
+11. **User Input Method - getUserInput:**
+    - A private method to prompt the user for input and return the entered string.
+
+```java
+    public static void main(String[] args) {
+        // Uncomment the line below to read input from stdin
+        // String inputString = getUserInput();
+
+        // Example input (remove/comment this line if using stdin)
+        String inputString = "example";
+```
+
+12. **Main Method:**
+    - The main method where the program starts execution.
+    - Optionally, read input from stdin by uncommenting the `getUserInput` line or provide an example input.
+
+```java
+        // Check for null or empty string
+        if (inputString == null || inputString.trim().isEmpty()) {
+            System.out.println("Empty or null input. Exiting.");
+            return;
+        }
+```
+
+13. **Input Validation in Main:**
+    - Check if the input string is null or empty. If true, print a message and exit the program.
+
+```java
+        // Call the partition function and get the result
+        List<List<String>> result = partition(inputString);
+```
+
+14. **Calling partition Function:**
+    - Call the `partition` function with the input string and store the result in the variable `result`.
+
+```java
+        // Print the result
+        System.out.println("Partitions:");
+        for (List<String> partitionSet : result) {
+            System.out.println(partitionSet);
+        }
+```
+
+15. **Printing Partitions:**
+    - Print each partition set in the result.
+
+```java
+        // Print the count of partitions
+        System.out.println("\nNumber of Partitions: " + result.size());
+    }
+}
+```
+
+16. **Printing the Count of Partitions:**
+    - Print the total number of partitions using `result.size()`. The program then exits.
 
 
 **Time and Space Complexity Analysis**:
