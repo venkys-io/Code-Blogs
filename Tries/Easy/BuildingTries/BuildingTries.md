@@ -12,22 +12,27 @@ Tries are tree-like structures that represent a dynamic set of strings, where th
 
 To build a trie, we need to perform the following key operations:
 
-1. **Initialization**: Create a trie data structure.
+1. `Initialization`: Create a trie data structure.
 
-2. **Insertion**: Insert a word into the trie.
+2. `Insertion`: Insert a word into the trie.
 
-3. **Search**: Check if a given word exists in the trie.
+3. `Search`: Check if a given word exists in the trie.
 
-4. **Deletion**: Remove a word from the trie.
+4. `Deletion`: Remove a word from the trie.
 
 ## Code
 
 ### Java Implementation
 
 ```java
-/* Copyrights to vsdevelopers.io */
-/* For more programs visit vsdevelopers.io */
-/* Java program for implementing Tries */
+/* Copyrights to vsdevelopers.io 
+   For more programs visit vsdevelopers.io
+   Java program for implementing Tries 
+
+   Space Complexity : O(L), L is the length of the word
+   Time Complexity : O(N * L),N is the number of words,
+   L is the average length of the words */
+
 import java.util.Arrays;
 
 public class VSDBuildingTries {
@@ -156,12 +161,20 @@ public class VSDBuildingTries {
         }
     }
 }
-
 ```
 
 ### Python Implementation
 
 ```python
+""" Copyrights to vsdevelopers.io 
+For more programs visit vsdevelopers.io
+Java program for implementing Tries 
+
+Space Complexity : O(L), L is the length of the word
+Time Complexity : O(N * L),
+N is the number of words,
+L is the average length of the words """
+
 import numpy as np
 
 class VSDTrieNode:
@@ -241,12 +254,20 @@ VSDPrintTrieRecursive(rootNode)
 searchKey = VSDconvertlong2longarray(aadhaarList[1])
 if not VSDSearchTrieRecursive(rootNode, searchKey, 0):
     print("Key not found")
-
 ```
 
 ### C++ Implementation
 
 ```cpp
+/* Copyrights to vsdevelopers.io 
+   For more programs visit vsdevelopers.io
+   Java program for implementing Tries 
+
+   Space Complexity : O(L), L is the length of the word
+   Time Complexity : O(N * L),
+   N is the number of words,
+   L is the average length of the words */
+
 #include <iostream>
 #include <vector>
 #include <array>
@@ -357,33 +378,31 @@ int main() {
 
     return 0;
 }
-
-
 ```
 
 ## Step-by-Step Explanation
 
-1. **Initialization**: We create a trie data structure with a root node.
+1. `Initialization`: We create a trie data structure with a root node.
 
-2. **Insertion**: For each character in the word, we traverse the trie, adding nodes if necessary.
+2. `Insertion`: For each character in the word, we traverse the trie, adding nodes if necessary.
 
-3. **Search**: We navigate the trie to check if a given word is present.
+3. `Search`: We navigate the trie to check if a given word is present.
 
-4. **Deletion**: We remove nodes corresponding to the characters in the word, pruning the trie as needed.
+4. `Deletion`: We remove nodes corresponding to the characters in the word, pruning the trie as needed.
 
 ## Time and Space Complexity Analysis
 
-- Time complexity for insertion, search, and deletion: O(L), where L is the length of the word.
-- Space complexity: O(N * L), where N is the number of words and L is the average length of the words.
+- Time complexity for insertion, search, and deletion: **O(L)**, where L is the length of the word.
+- Space complexity: **O(N * L)**, where N is the number of words and L is the average length of the words.
 
 ## Real-World Applications
 
 Tries are widely used in real-world scenarios, including:
 
-1. **Autocomplete Systems**: Tries efficiently store and retrieve words based on prefixes, making them ideal for autocomplete suggestions.
+1. `Autocomplete Systems`: Tries efficiently store and retrieve words based on prefixes, making them ideal for autocomplete suggestions.
 
-2. **Spell Checkers**: Tries help quickly identify misspelled words by traversing the structure to check for valid words.
+2. `Spell Checkers`: Tries help quickly identify misspelled words by traversing the structure to check for valid words.
 
-3. **IP Routers**: Tries can be employed in IP routers to efficiently match IP addresses, optimizing routing decisions.
+3. `IP Routers`: Tries can be employed in IP routers to efficiently match IP addresses, optimizing routing decisions.
 
 In conclusion, building tries is a fundamental skill in computer science, and mastering their implementation in different programming languages enhances your problem-solving capabilities. Whether you're developing search functionalities or optimizing network routing, understanding and implementing tries can significantly improve the efficiency of your algorithms.
