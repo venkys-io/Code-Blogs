@@ -196,6 +196,9 @@ For more information, visit https://venkys.io */
 // Space complexity:O(n^2)
 // Time complexity:O(n^2) 
 
+/* Copyrights to venkys.io
+For more information, visit https://venkys.io */
+
 #include <iostream>
 #include <vector>
 #include <string>
