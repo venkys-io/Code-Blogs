@@ -82,6 +82,7 @@ int main() {
 Compile and run the program, and it will defang the entered IP address. For example:
 ```
 Enter an IP address: 192.168.1.1
+
 Defanged IP address: 192[.]168[.]1[.]1
 ```
 ```
