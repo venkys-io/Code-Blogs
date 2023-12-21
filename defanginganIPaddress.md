@@ -25,65 +25,64 @@ By defanging an IP address, it becomes a plaintext representation that can be sa
 ```cpp
 #include <iostream>
 #include <string>
-```
 
-```cpp
-std::string defangIPaddr(const std::string& ip) {
-std::string defangedIP;
-for (char c : ip) {
-if (c == '.') {
-defangedIP += "[.]";
-} else {
-defangedIP += c;
-}
-}
-return defangedIP;
-}
-```
+// Function to defang an IP address
+std::string defangIPaddr(std::string address) {
+    std::string defangedIP;
 
-```cpp
+    // Iterate through each character in the IP address
+    for (char c : address) {
+        // If the character is a dot '.', replace it with '[.]'
+        if (c == '.') {
+            defangedIP += "[.]";
+        } else {
+            // Otherwise, keep the character as it is
+            defangedIP += c;
+        }
+    }
+
+    return defangedIP;
+}
+
 int main() {
-std::string ipAddress;
-std::cout << "Enter IP address: ";
-std::cin >> ipAddress;
-```
+    // Prompt the user to enter an IP address
+    std::cout << "Enter an IP address: ";
+    std::string ipAddress;
+    std::cin >> ipAddress;
 
-```cpp
-std::string defangedIP = defangIPaddr(ipAddress);
+    // Call the defangIPaddr function to defang the IP address
+    std::string defangedIPAddress = defangIPaddr(ipAddress);
 
-std::cout << "Defanged IP address: " << defangedIP << std::endl;
+    // Display the defanged IP address
+    std::cout << "Defanged IP address: " << defangedIPAddress << std::endl;
 
-return 0;
-
-```
-
-```cpp
+    return 0;
 }
+
 ```
 
 ## Step-By-Step Explanation:
+```
+01.Include necessary headers: The program includes the necessary header files, <iostream> for input/output and <string> for string manipulation.
 
-1. **Header Files**: Include necessary header files like **`<iostream>`** and **`<string>`**.
-2. **Function `defangIPaddr`**:
-    - **`const std::string &address`**: The function takes a constant reference to a string (the original IP address) as a parameter.
-    - **`std::string defangedAddress`**: This variable will store the defanged IP address.
-    
-    Inside the function:
-    
-    - A **`for`** loop iterates through each character in the original address.
-    - It checks if the character is a dot (**`.`**).
-    - If it's a dot, it appends **`"[.]"`** to the defanged address; otherwise, it appends the character itself.
-    - Finally, the defanged address is returned.
-3. **`main` Function**:
-    - **`std::string ipAddress = "192.168.1.1";`**: Define an example IP address.
-    - **`std::string defangedIPAddress = defangIPaddr(ipAddress);`**: Call the **`defangIPaddr`** function to get the defanged IP address.
-    - **`std::cout << "Original IP address: " << ipAddress << std::endl;`**: Display the original IP address.
-    - **`std::cout << "Defanged IP address: " << defangedIPAddress << std::endl;`**: Display the defanged IP address.
-4. Output:
+02.Define defangIPaddr function: This function takes an IP address as a string and returns the defanged IP address.
 
-```cpp
-Original IP address: 192.168.1.1
+03.Initialize defangedIP string: This string will store the defanged IP address.
+
+04.Loop through each character: The program uses a for-each loop to iterate through each character in the input IP address.
+
+05.Check if the character is a dot: If the character is a dot '.', it is replaced with '[.]'. Otherwise, the character is appended to the defangedIP string.
+
+06.Prompt user for input: In the main function, the user is prompted to enter an IP address.
+
+07.Call defangIPaddr function: The entered IP address is passed to the defangIPaddr function.
+
+08.Display defanged IP address: Finally, the defanged IP address is displayed to the user.
+
+Compile and run the program, and it will defang the entered IP address. For example:
+Enter an IP address: 192.168.1.1
 Defanged IP address: 192[.]168[.]1[.]1
+
 ```
 
 ## Program in `python`:
