@@ -144,45 +144,53 @@ Defanged IP address: 192[.]168[.]1[.]1
 
 ## Program in `java`:
 
-```python
+```java
+import java.util.Scanner;
+
 public class DefangIPAddress {
-```
+    public static void main(String[] args) {
+        // Create a Scanner object to read from standard input
+        Scanner scanner = new Scanner(System.in);
 
-```
-public static String defangIPaddr(String address) {
-    StringBuilder defangedAddress = new StringBuilder();
+        // Prompt the user to enter an IP address
+        System.out.print("Enter an IP address: ");
 
-    // Iterate through each character in the original address
-    for (char c : address.toCharArray()) {
-        // Check if the character is a dot
-        if (c == '.') {
-            // If it's a dot, add "[.]" to the defanged address
-            defangedAddress.append("[.]");
-        } else {
-            // If it's not a dot, simply add the character to the defanged address
-            defangedAddress.append(c);
-        }
+        // Read the IP address from the user
+        String ipAddress = scanner.nextLine();
+
+        // Defang the IP address
+        String defangedIPAddress = defangIPAddr(ipAddress);
+
+        // Display the original and defanged IP addresses
+        System.out.println("Original IP address: " + ipAddress);
+        System.out.println("Defanged IP address: " + defangedIPAddress);
+
+        // Close the Scanner to release resources
+        scanner.close();
     }
 
-    // Return the defanged address
-    return defangedAddress.toString();
-}
+    private static String defangIPAddr(String address) {
+        StringBuilder defangedAddress = new StringBuilder();
 
-public static void main(String[] args) {
-    // Example usage
-    String ipAddress = "192.168.1.1";
-    String defangedIPAddress = defangIPaddr(ipAddress);
+        // Iterate through each character in the original address
+        for (char ch : address.toCharArray()) {
+            // Check if the character is a dot
+            if (ch == '.') {
+                // If it's a dot, add "[.]" to the defanged address
+                defangedAddress.append("[.]");
+            } else {
+                // If it's not a dot, simply add the character to the defanged address
+                defangedAddress.append(ch);
+            }
+        }
 
-    // Display the result
-    System.out.println("Original IP address: " + ipAddress);
-    System.out.println("Defanged IP address: " + defangedIPAddress);
+        // Return the defanged address
+        return defangedAddress.toString();
+    }
 }
 
 ```
 
-```python
-}
-```
 
 ## Step-By-Step Explanation:
 
