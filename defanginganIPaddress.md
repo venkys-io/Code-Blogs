@@ -90,35 +90,29 @@ Defanged IP address: 192[.]168[.]1[.]1
 
 ```python
 def defangIPaddr(address):
-defanged_address = ""
+    defanged_address = ""
 ```
 
 ```python
-# Iterate through each character in the original address
-for char in address:
-    # Check if the character is a dot
-    if char == '.':
-        # If it's a dot, add "[.]" to the defanged address
-        defanged_address += '[.]'
-    else:
-        # If it's not a dot, simply add the character to the defanged address
-        defanged_address += char
+    # Iterate through each character in the original address
+    for char in address:
+        # Check if the character is a dot
+        if char == '.':
+            # If it's a dot, add "[.]" to the defanged address
+            defanged_address += '[.]'
+        else:
+            # If it's not a dot, simply add the character to the defanged address
+            defanged_address += char
 
-# Return the defanged address
-return defanged_address
+    # Return the defanged address
+    return defanged_address
 
 ```
 
 ```python
-ip_address = "192.168.1.1"
+ip_address = str(input("Enter the IP address before Defanging: "))
 defanged_ip_address = defangIPaddr(ip_address)
-```
 
-```python
-Display the result
-```
-
-```cpp
 print(f"Original IP address: {ip_address}")
 print(f"Defanged IP address: {defanged_ip_address}")
 ```
