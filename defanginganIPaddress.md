@@ -63,28 +63,21 @@ int main() {
 
 ## Step-By-Step Explanation:
 ```
-01.Include necessary headers: The program includes the necessary header files, <iostream> for input/output and <string> for string manipulation.
+# 
 
-02.Define defangIPaddr function: This function takes an IP address as a string and returns the defanged IP address.
-
-03.Initialize defangedIP string: This string will store the defanged IP address.
-
-04.Loop through each character: The program uses a for-each loop to iterate through each character in the input IP address.
-
-05.Check if the character is a dot: If the character is a dot '.', it is replaced with '[.]'. Otherwise, the character is appended to the defangedIP string.
-
-06.Prompt user for input: In the main function, the user is prompted to enter an IP address.
-
-07.Call defangIPaddr function: The entered IP address is passed to the defangIPaddr function.
-
-08.Display defanged IP address: Finally, the defanged IP address is displayed to the user.
+1. **Include necessary headers:** The program includes the necessary header files, `<iostream>` for input/output and `<string>` for string manipulation.
+2. **Define `defangIPaddr` function:** This function takes an IP address as a string and returns the defanged IP address.
+3. **Initialize `defangedIP` string:** This string will store the defanged IP address.
+4. **Loop through each character:** The program uses a for-each loop to iterate through each character in the input IP address.
+5. **Check if the character is a dot:** If the character is a dot '.', it is replaced with '[.]'. Otherwise, the character is appended to the `defangedIP` string.
+6. **Prompt user for input:** In the `main` function, the user is prompted to enter an IP address.
+7. **Call `defangIPaddr` function:** The entered IP address is passed to the `defangIPaddr` function.
+8. **Display defanged IP address:** Finally, the defanged IP address is displayed to the user.
 
 Compile and run the program, and it will defang the entered IP address. For example:
-```
 Enter an IP address: 192.168.1.1
-
 Defanged IP address: 192[.]168[.]1[.]1
-```
+
 ```
 
 ## Program in `python`:
