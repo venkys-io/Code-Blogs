@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 
@@ -29,13 +30,26 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        // Create an adjacency list to represent the graph
-        ArrayList<ArrayList<Integer>> graph = new ArrayList<>() {{
-            add(new ArrayList<>(List.of(1, 3)));  // Neighbors of node 0
-            add(new ArrayList<>(List.of(0, 3)));  // Neighbors of node 1
-            add(new ArrayList<>(List.of(0)));     // Neighbors of node 2
-            add(new ArrayList<>(List.of(1)));     // Neighbors of node 3
-        }};
+        Scanner scanner = new Scanner(System.in);
+
+        // Input vertices and edges
+        System.out.print("Enter the number of vertices: ");
+        int vertices = scanner.nextInt();
+        ArrayList<ArrayList<Integer>> graph = new ArrayList<>(vertices);
+
+        // Adding edges to the graph
+        System.out.print("Enter the number of edges: ");
+        int edges = scanner.nextInt();
+        for (int i = 0; i < vertices; i++) {
+            graph.add(new ArrayList<>());
+        }
+        System.out.println("Enter edges (u v): ");
+        for (int i = 0; i < edges; i++) {
+            int u = scanner.nextInt();
+            int v = scanner.nextInt();
+            graph.get(u).add(v);
+            graph.get(v).add(u);
+        }
 
         System.out.println(isCycle(graph));  // Check and print whether the graph contains a cycle
     }
