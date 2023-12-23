@@ -12,30 +12,30 @@ The detection of cycles in a graph involves identifying if there's a closed loop
  - Pop the current vertex from the current path stack, as we are backtracking.
 
 # Overview of Detecting Cycles in a Graph:
-        - Graph Representation:
-                Graphs consist of vertices (nodes) and edges (connections between nodes).
-                The detection of cycles typically applies to both directed and undirected graphs.
-        - Objective:
-                The primary goal is to identify whether a graph contains any cycles.
-        - Algorithms:
-                Various algorithms tackle this problem, including Depth-First Search (DFS), Breadth-First Search (BFS), and Union-Find (Disjoint Set).
-                DFS explores the graph depth-wise, marking visited nodes and backtracking when necessary to find cycles.
-                Union-Find maintains sets of connected components and tracks if adding an edge forms a cycle.
-        - Traversing and Marking:
-                During traversal, algorithms mark visited nodes or use data structures to keep track of visited vertices.
-                These methods detect when a vertex is revisited, indicating the existence of a cycle.
-        - Cycle Identification:
-                Detecting a cycle involves recognizing a closed loop, meaning traversal leads back to a previously visited vertex, forming a cycle.
-        - Complexities:
-                The time complexity for cycle detection algorithms varies:
-                DFS and BFS generally have a complexity of O(V + E), where V represents vertices and E represents edges.
-                Union-Find often performs with a similar time complexity.
-        - Applications:
-                Crucial in various domains like network analysis, project scheduling, software engineering, and resource allocation.
-                Helps identify and prevent circular dependencies or loops that might cause issues in systems.
-        - Importance:
-                Plays a critical role in understanding the structure of graphs and preventing unintended or problematic connections.
-                Facilitates error detection, loop avoidance, and efficient resource allocation.
+  - Graph Representation:
+      Graphs consist of vertices (nodes) and edges (connections between nodes).
+      The detection of cycles typically applies to both directed and undirected graphs.
+  - Objective:
+      The primary goal is to identify whether a graph contains any cycles.
+  - Algorithms:
+      Various algorithms tackle this problem, including Depth-First Search (DFS), Breadth-First Search (BFS), and Union-Find (Disjoint Set).
+      DFS explores the graph depth-wise, marking visited nodes and backtracking when necessary to find cycles.
+      Union-Find maintains sets of connected components and tracks if adding an edge forms a cycle.
+  - Traversing and Marking:
+      During traversal, algorithms mark visited nodes or use data structures to keep track of visited vertices.
+      These methods detect when a vertex is revisited, indicating the existence of a cycle.
+  - Cycle Identification:
+      Detecting a cycle involves recognizing a closed loop, meaning traversal leads back to a previously visited vertex, forming a cycle.
+  - Complexities:
+      The time complexity for cycle detection algorithms varies:
+      DFS and BFS generally have a complexity of O(V + E), where V represents vertices and E represents edges.
+      Union-Find often performs with a similar time complexity.
+  - Applications:
+      Crucial in various domains like network analysis, project scheduling, software engineering, and resource allocation.
+      Helps identify and prevent circular dependencies or loops that might cause issues in systems.
+  - Importance:
+      Plays a critical role in understanding the structure of graphs and preventing unintended or problematic connections.
+      Facilitates error detection, loop avoidance, and efficient resource allocation.
 
 
 # Algorithm:
