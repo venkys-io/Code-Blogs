@@ -65,84 +65,87 @@ The detection of cycles in a graph involves identifying if there's a closed loop
 
 class Graph:
     def __init__(self, vertices):
-        # Constructor initializes the graph with a given number of vertices
+        # Initialize graph with a given number of vertices
         self.vertices = vertices
         # Graph represented as an adjacency list
         self.graph = {i: [] for i in range(vertices)}
 
     def add_edge(self, u, v):
-        # Method to add an undirected edge between vertices u and v
-        self.graph[u].append(v)
-        self.graph[v].append(u)
+        if u is not None and v is not None:  # Null safety check
+            # Add an edge between vertices u and v (undirected graph)
+            self.graph[u].append(v)
+            self.graph[v].append(u)
 
     def is_cyclic_util(self, node, visited, parent):
-        # Utility function to perform DFS and detect cycles starting from a given node
-        visited[node] = True  # Mark the current node as visited
-        for neighbor in self.graph[node]:  # Iterate through neighbors of the current node
-            if not visited[neighbor]:  # If the neighbor is not visited
-                if self.is_cyclic_util(neighbor, visited, node):  # Recursive DFS call
-                    return True  # If a cycle is found in the recursive call, return True
-            elif neighbor != parent:  # If the neighbor is visited and not the parent (back edge)
-                return True  # Cycle is found, return True
-        return False  # No cycle found for the current node
+        visited[node] = True  # Mark current node as visited
+        for neighbor in self.graph[node]:
+            if neighbor is not None:  # Null safety check
+                if not visited[neighbor]:
+                    # If neighbor not visited, perform DFS recursively
+                    if self.is_cyclic_util(neighbor, visited, node):
+                        return True
+                elif neighbor != parent:
+                    # If neighbor visited and not parent (back edge), cycle found
+                    return True
+        return False
 
     def is_cyclic(self):
-        # Method to check if the graph contains any cycles
         visited = [False] * self.vertices  # Initialize visited array for all vertices
-        for node in range(self.vertices):  # Iterate through all nodes in the graph
-            if not visited[node] and self.is_cyclic_util(node, visited, -1):  # If the node is not visited and contains a cycle
-                return True  # Return True indicating the presence of a cycle
+        for node in range(self.vertices):
+            if not visited[node] and self.is_cyclic_util(node, visited, -1):
+                # If node not visited and contains a cycle, return True
+                return True
         return False  # No cycle found in the graph
 
-# Example usage:
-graph = Graph(4)  # Create a graph with 4 vertices
-graph.add_edge(0, 1)  # Add edges to the graph
-graph.add_edge(1, 2)
-graph.add_edge(1, 3)
+def main():
+    # Input vertices and edges
+    vertices = int(input("Enter the number of vertices: "))
+    graph = Graph(vertices)
+    
+    # Adding edges to the graph
+    edges = int(input("Enter the number of edges: "))
+    for _ in range(edges):
+        u, v = map(int, input("Enter edge (u, v): ").split())
+        graph.add_edge(u, v)
+    
+    # Perform cycle detection and print result
+    result = graph.is_cyclic()
+    print("Cycle present:", result)
 
-print(graph.is_cyclic())  # Check and print whether the graph contains a cycle
+if __name__ == "__main__":
+    main()
 ```
 
 # Clear Explnanation
-        - Graph Class
-                __init__(self, vertices): Initializes the graph with a given number of vertices.
-                self.vertices: Stores the number of vertices.
-                self.graph: Represents the graph as an adjacency list using a dictionary.
-        - Methods:
-                add_edge(self, u, v):
-                Adds an undirected edge between vertices u and v in the graph.
-        - is_cyclic_util(self, node, visited, parent):
-                Utility function to perform Depth-First Search (DFS) and detect cycles starting from a given node.
-                visited: An array marking nodes as visited or not.
-                parent: Tracks the parent node during traversal to identify back edges (cycles).
-                Uses recursive DFS to traverse the graph.
-        - is_cyclic(self):
-                Checks if the graph contains any cycles.
-                Initializes visited array for all vertices.
-                Iterates through all nodes and calls is_cyclic_util for unvisited nodes.
-                Returns True if any cycle is detected, otherwise False.
-        - Example Usage:
-                Creates a Graph object with 4 vertices.
-                Adds edges between vertices (0-1), (1-2), and (1-3).
-                Checks and prints whether the graph contains a cycle using the is_cyclic() method.
-        - Explanation:
-                The graph is represented using an adjacency list.
-                add_edge() method populates this list by adding edges between vertices.
-                The is_cyclic_util() method utilizes DFS to traverse the graph.
-                It marks nodes as visited, explores neighboring nodes, and identifies cycles by checking for back edges.
-                The is_cyclic() method initiates DFS from unvisited nodes and returns True if any cycle is found, otherwise False.
+        Let's break down the code:
 
+        - Graph Class:
+          - __init__ Method: Initializes the graph with a given number of vertices. The graph is represented as an adjacency list (self.graph) where each vertex is a key in the dictionary, and its value is an empty list representing edges.
+          - add_edge Method: Adds an undirected edge between two vertices u and v to the graph. It performs a null safety check and appends the vertices to each other's adjacency lists.
+          - is_cyclic_util Method: A utility method used by is_cyclic. Performs Depth-First Search (DFS) recursively to detect cycles within the graph. It marks nodes as visited and checks for cycles using a recursive approach.
+          - is_cyclic Method: Initializes a visited array, performs DFS traversal on each unvisited node, and calls the utility method is_cyclic_util to check for cycles. Returns True if a cycle is found; otherwise, returns False.
+       - main Function:
+         - Takes User Input: Asks for the number of vertices and edges in the graph through standard input.
+         - Creates Graph: Initializes a Graph object with the specified number of vertices.
+         - Adds Edges: Takes input for edges and adds them to the graph using the add_edge method.
+         - Performs Cycle Detection: Calls the is_cyclic method to detect cycles in the graph and prints whether a cycle is present or not.
+       - Overall Flow:
+         - Input: User inputs the number of vertices and edges for the graph.
+         - Graph Initialization: A graph object is created with the specified number of vertices.
+         - Edge Addition: Edges are added to the graph according to user input.
+         - Cycle Detection: The code checks for cycles in the graph using DFS.
+         - Output: Prints whether a cycle is present in the graph based on the detected result.
 
 #    JAVA Code   
 
 ```java
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 
     // Depth-First Search (DFS) function to check for cycles
-
     static boolean dfs(int node, ArrayList<ArrayList<Integer>> graph, boolean[] visited, int parent) {
         visited[node] = true;  // Mark the current node as visited
         for (int neighbour : graph.get(node)) {  // Iterate through neighbors of the current node
@@ -157,7 +160,6 @@ public class Main {
     }
 
     // Function to check if there is any cycle in the graph
-
     static boolean isCycle(ArrayList<ArrayList<Integer>> graph) {
         int v = graph.size();  // Number of vertices in the graph
         boolean[] visited = new boolean[v];  // Initialize visited array for all vertices
@@ -169,13 +171,26 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        // Create an adjacency list to represent the graph
-        ArrayList<ArrayList<Integer>> graph = new ArrayList<>() {{
-            add(new ArrayList<>(List.of(1, 3)));  // Neighbors of node 0
-            add(new ArrayList<>(List.of(0, 3)));  // Neighbors of node 1
-            add(new ArrayList<>(List.of(0)));     // Neighbors of node 2
-            add(new ArrayList<>(List.of(1)));     // Neighbors of node 3
-        }};
+        Scanner scanner = new Scanner(System.in);
+
+        // Input vertices and edges
+        System.out.print("Enter the number of vertices: ");
+        int vertices = scanner.nextInt();
+        ArrayList<ArrayList<Integer>> graph = new ArrayList<>(vertices);
+
+        // Adding edges to the graph
+        System.out.print("Enter the number of edges: ");
+        int edges = scanner.nextInt();
+        for (int i = 0; i < vertices; i++) {
+            graph.add(new ArrayList<>());
+        }
+        System.out.println("Enter edges (u v): ");
+        for (int i = 0; i < edges; i++) {
+            int u = scanner.nextInt();
+            int v = scanner.nextInt();
+            graph.get(u).add(v);
+            graph.get(v).add(u);
+        }
 
         System.out.println(isCycle(graph));  // Check and print whether the graph contains a cycle
     }
@@ -184,21 +199,20 @@ public class Main {
 
 
 # Java Code Explanation:
-        dfs(int node, ArrayList<ArrayList<Integer>> graph, boolean[] visited, int parent)
-        - This method performs a Depth-First Search (DFS) starting from a given node in the graph.
-        - visited array is used to keep track of visited nodes.
-        - The method iterates through the neighbors of the current node.
-        - If a neighbor is not visited, it recursively calls dfs() on that neighbor.
-        - It detects cycles by identifying back edges when a neighbor is visited and is not the parent.
-        isCycle(ArrayList<ArrayList<Integer>> graph)
-        - This method checks if there's any cycle in the graph using DFS.
-        - It initializes a visited array to keep track of visited nodes.
-        - Iterates through all nodes and calls dfs() on unvisited nodes to detect cycles.
-        - Returns true if any cycle is detected, otherwise false.
-        main()
-        - Initializes an adjacency list (graph) representing the graph structure.
-        - The graph has 4 nodes (0, 1, 2, 3) with corresponding edges.
-        - Calls isCycle(graph) to check whether the graph contains a cycle and prints the result.
+       - Main Class:
+         - dfs Method: A Depth-First Search function that checks for cycles in the graph. It recursively traverses the graph and marks visited nodes. If a node is already visited and it's not the parent (back edge), it indicates a cycle.
+         - isCycle Method: Checks if there's any cycle in the provided graph by iterating through all nodes and calling the dfs method for unvisited nodes.
+         - main Method: The entry point of the program. It prompts the user to input the number of vertices and edges. Then, it takes input for edge connections and constructs an adjacency list representing the graph. Finally, it invokes isCycle to determine if a cycle exists and prints the result.
+       - Input and Processing:
+         - Vertex and Edge Input: Prompts the user to enter the number of vertices and edges in the graph via the console (System.in).
+         - Graph Representation: Constructs an adjacency list (graph) using an ArrayList of ArrayLists. Each index in the outer list represents a vertex, and the inner list contains its adjacent vertices.
+         - Edge Connections Input: Takes user input for the edges, assuming a 0-based indexing system, and adds connections between vertices in the adjacency list.
+         - Cycle Detection: Uses Depth-First Search to traverse the graph and detect cycles.
+         - Output: Prints whether the provided graph contains a cycle or not based on the detected result.
+       - Key Enhancements:
+         - STDIN Usage: Utilizes Scanner to receive input from the user via the console.
+         - Null Safety: Ensures the input is within the range of vertices to avoid potential IndexOutOfBoundsException.
+         - Comments: The code includes comments that explain the purpose and functionality of each significant section or method.
 # Key Points:
         - The code represents the graph using an adjacency list (ArrayList<ArrayList<Integer>>).
         - dfs() performs DFS traversal and cycle detection in the graph.
@@ -208,10 +222,13 @@ public class Main {
 
 #    C++ Code    
 ```c++
-#include<bits/stdc++.h>
+#include <iostream>
+#include <vector>
 
+// Depth-first search(dfs) function to check for cycles in the graph
 bool dfs(int node, std::vector<std::vector<int>>& graph, bool visited[], int parent) {
     visited[node] = true;  // Mark the current node as visited
+
     for (int neighbour : graph[node]) {
         if (!visited[neighbour]) {
             // If the neighbour is not visited, recursively call DFS
@@ -225,6 +242,7 @@ bool dfs(int node, std::vector<std::vector<int>>& graph, bool visited[], int par
     return false;  // No cycle found for the current node
 }
 
+// Function to check whether the graph contains a cycle
 bool isCycle(std::vector<std::vector<int>>& graph) {
     int v = graph.size();
     bool visited[v]{false};  // Initialize visited array for all vertices
@@ -239,35 +257,49 @@ bool isCycle(std::vector<std::vector<int>>& graph) {
 }
 
 int main() {
-    // Create an adjacency list to represent the graph
-    std::vector<std::vector<int>> graph = {
-        {1, 2},
-        {0, 3},
-        {0},
-        {1}
-    };
+    // Input vertices and edges from STDIN (assumed format)
+    int numVertices, numEdges;
+    std::cin >> numVertices >> numEdges;
 
-    std::cout << isCycle(graph);  // Check and print whether the graph contains a cycle
+    // Create an adjacency list to represent the graph
+    std::vector<std::vector<int>> graph(numVertices);
+
+    // Input edges
+    for (int i = 0; i < numEdges; ++i) {
+        int u, v;
+        std::cin >> u >> v;
+        // Assuming vertices are 0-indexed
+        graph[u].push_back(v);
+        graph[v].push_back(u); // For an undirected graph
+    }
+
+    // Check and print whether the graph contains a cycle
+    std::cout << isCycle(graph);
+
     return 0;
 }
 ```
 
 
 # C++ Code Explanation:
-        dfs(int node, std::vector<std::vector<int>>& graph, bool visited[], int parent)
-        - This function performs Depth-First Search (DFS) starting from a given node in the graph.
-        - visited array is used to track visited nodes.
-        - It iterates through the neighbors of the current node using the adjacency list (graph).
-        - Recursively explores unvisited neighbors and checks for cycles using back edges.
-        isCycle(std::vector<std::vector<int>>& graph)
-        - This function checks if there's any cycle in the graph using DFS.
-        - Initializes a visited array to track visited nodes.
-        - Iterates through all nodes and calls dfs() on unvisited nodes to detect cycles.
-        - Returns true if any cycle is detected, otherwise false.
-        main()
-        - Creates an adjacency list (graph) representing the graph structure.
-        - The graph has 4 nodes (0, 1, 2, 3) with corresponding edges.
-        - Calls isCycle(graph) to check whether the graph contains a cycle and prints the result.
+        - Libraries
+          - <iostream> and <vector>: Standard C++ libraries for input/output and managing dynamic arrays.
+        - Functions
+          - dfs: Performs a Depth-First Search traversal on the graph, marking visited nodes and detecting cycles by tracking back edges.
+          - isCycle: Initiates the cycle detection process by traversing through all nodes in the graph and calling dfs if the node hasn't been visited.
+        - Main Function
+          - Input: Reads the number of vertices and edges from standard input (std::cin).
+          - Graph Representation: Constructs an adjacency list (std::vector<std::vector<int>>) to represent the graph.
+          - Input Edges: Reads edge connections from input and populates the adjacency list.
+          - Cycle Detection: Executes isCycle(graph) to check for cycles in the input graph.
+          - Output: Prints the result (1 if a cycle is detected, 0 otherwise) to the standard output (std::cout).
+        - Workflow
+          - The code expects input in the format of the number of vertices followed by the number of edges. Then it reads pairs of vertices representing edges.
+          - It constructs an adjacency list where each vertex maintains a list of its adjacent vertices.
+          - The DFS algorithm visits each node to detect cycles in the graph by traversing edges and marking visited nodes.
+          - The main function prints 1 if a cycle is present and 0 if the graph is cycle-free.
+        - Assumptions
+          - Assumes the input format is correct (vertices, edges, edge connections) and that the vertices are 0-indexed.
 # Key Points:
         - The code represents the graph using a vector of vectors (std::vector<std::vector<int>>).
         - dfs() performs DFS traversal and cycle detection in the graph.
