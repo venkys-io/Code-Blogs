@@ -200,25 +200,25 @@ public class Main {
 
 
 # Java Code Explanation:
-    - Main Class:
-      - dfs Method: A Depth-First Search function that checks for cycles in the graph. It recursively traverses the graph and marks visited nodes. If a node is already visited and it's not the parent (back edge), it indicates a cycle.
-      - isCycle Method: Checks if there's any cycle in the provided graph by iterating through all nodes and calling the dfs method for unvisited nodes.
-      - main Method: The entry point of the program. It prompts the user to input the number of vertices and edges. Then, it takes input for edge connections and constructs an adjacency list representing the graph. Finally, it invokes isCycle to determine if a cycle exists and prints the result.
-    - Input and Processing:
-      - Vertex and Edge Input: Prompts the user to enter the number of vertices and edges in the graph via the console (System.in).
-      - Graph Representation: Constructs an adjacency list (graph) using an ArrayList of ArrayLists. Each index in the outer list represents a vertex, and the inner list contains its adjacent vertices.
-      - Edge Connections Input: Takes user input for the edges, assuming a 0-based indexing system, and adds connections between vertices in the adjacency list.
-      - Cycle Detection: Uses Depth-First Search to traverse the graph and detect cycles.
-      - Output: Prints whether the provided graph contains a cycle or not based on the detected result.
-    - Key Enhancements:
-      - STDIN Usage: Utilizes Scanner to receive input from the user via the console.
-      - Null Safety: Ensures the input is within the range of vertices to avoid potential IndexOutOfBoundsException.
-      - Comments: The code includes comments that explain the purpose and functionality of each significant section or method.
+ - Main Class:
+    - dfs Method: A Depth-First Search function that checks for cycles in the graph. It recursively traverses the graph and marks visited nodes. If a node is already visited and it's not the parent (back edge), it indicates a cycle.
+    - isCycle Method: Checks if there's any cycle in the provided graph by iterating through all nodes and calling the dfs method for unvisited nodes.
+    - main Method: The entry point of the program. It prompts the user to input the number of vertices and edges. Then, it takes input for edge connections and constructs an adjacency list representing the graph. Finally, it invokes isCycle to determine if a cycle exists and prints the result.
+  - Input and Processing:
+    - Vertex and Edge Input: Prompts the user to enter the number of vertices and edges in the graph via the console (System.in).
+    - Graph Representation: Constructs an adjacency list (graph) using an ArrayList of ArrayLists. Each index in the outer list represents a vertex, and the inner list contains its adjacent vertices.
+    - Edge Connections Input: Takes user input for the edges, assuming a 0-based indexing system, and adds connections between vertices in the adjacency list.
+    - Cycle Detection: Uses Depth-First Search to traverse the graph and detect cycles.
+    - Output: Prints whether the provided graph contains a cycle or not based on the detected result.
+  - Key Enhancements:
+    - STDIN Usage: Utilizes Scanner to receive input from the user via the console.
+    - Null Safety: Ensures the input is within the range of vertices to avoid potential IndexOutOfBoundsException.
+    - Comments: The code includes comments that explain the purpose and functionality of each significant section or method.
 # Key Points:
-        - The code represents the graph using an adjacency list (ArrayList<ArrayList<Integer>>).
-        - dfs() performs DFS traversal and cycle detection in the graph.
-        - isCycle() initiates DFS from unvisited nodes and returns true if any cycle is found.
-        - The main() method demonstrates the usage by creating a sample graph and checking for cycles.
+   - The code represents the graph using an adjacency list (ArrayList<ArrayList<Integer>>).
+   - dfs() performs DFS traversal and cycle detection in the graph.
+   - isCycle() initiates DFS from unvisited nodes and returns true if any cycle is found.
+   - The main() method demonstrates the usage by creating a sample graph and checking for cycles.
 
 
 #    C++ Code    
@@ -283,24 +283,24 @@ int main() {
 
 
 # C++ Code Explanation:
-     - Libraries
-       - <iostream> and <vector>: Standard C++ libraries for input/output and managing dynamic arrays.
-     - Functions
-       - dfs: Performs a Depth-First Search traversal on the graph, marking visited nodes and detecting cycles by tracking back edges.
-       - isCycle: Initiates the cycle detection process by traversing through all nodes in the graph and calling dfs if the node hasn't been visited.
-     - Main Function
-       - Input: Reads the number of vertices and edges from standard input (std::cin).
-       - Graph Representation: Constructs an adjacency list (std::vector<std::vector<int>>) to represent the graph.
-       - Input Edges: Reads edge connections from input and populates the adjacency list.
-       - Cycle Detection: Executes isCycle(graph) to check for cycles in the input graph.
-       - Output: Prints the result (1 if a cycle is detected, 0 otherwise) to the standard output (std::cout).
-     - Workflow
-       - The code expects input in the format of the number of vertices followed by the number of edges. Then it reads pairs of vertices representing edges.
-       - It constructs an adjacency list where each vertex maintains a list of its adjacent vertices.
-       - The DFS algorithm visits each node to detect cycles in the graph by traversing edges and marking visited nodes.
-       - The main function prints 1 if a cycle is present and 0 if the graph is cycle-free.
-     - Assumptions
-       - Assumes the input format is correct (vertices, edges, edge connections) and that the vertices are 0-indexed.
+  - Libraries
+    - <iostream> and <vector>: Standard C++ libraries for input/output and managing dynamic arrays.
+  - Functions
+    - dfs: Performs a Depth-First Search traversal on the graph, marking visited nodes and detecting cycles by tracking back edges.
+    - isCycle: Initiates the cycle detection process by traversing through all nodes in the graph and calling dfs if the node hasn't been visited.
+  - Main Function
+    - Input: Reads the number of vertices and edges from standard input (std::cin).
+    - Graph Representation: Constructs an adjacency list (std::vector<std::vector<int>>) to represent the graph.
+    - Input Edges: Reads edge connections from input and populates the adjacency list.
+    - Cycle Detection: Executes isCycle(graph) to check for cycles in the input graph.
+    - Output: Prints the result (1 if a cycle is detected, 0 otherwise) to the standard output (std::cout).
+  - Workflow
+    - The code expects input in the format of the number of vertices followed by the number of edges. Then it reads pairs of vertices representing edges.
+    - It constructs an adjacency list where each vertex maintains a list of its adjacent vertices.
+    - The DFS algorithm visits each node to detect cycles in the graph by traversing edges and marking visited nodes.
+    - The main function prints 1 if a cycle is present and 0 if the graph is cycle-free.
+  - Assumptions
+    - Assumes the input format is correct (vertices, edges, edge connections) and that the vertices are 0-indexed.
 # Key Points:
    - The code represents the graph using a vector of vectors (std::vector<std::vector<int>>).
    - dfs() performs DFS traversal and cycle detection in the graph.
@@ -310,12 +310,10 @@ int main() {
 
 
 # Time Complexities of Detecting Cycle in a Graph 
-        - Worst Case : O(V + E)
-        - Best Case : O(1)
-        - Average Case : O(V + E)
-        The time complexity of cycle detection algorithms varies based on the approach used. 
-        For DFS-based cycle detection in a graph with 'V' vertices and 'E' edges, the complexity 
-        is typically O(V + E). Union-Find-based algorithms often have a similar time complexity.
+   - Worst Case : O(V + E)
+   - Best Case : O(1)
+   - Average Case : O(V + E)
+   The time complexity of cycle detection algorithms varies based on the approach used. For DFS-based cycle detection in a graph with 'V' vertices and 'E' edges, the complexity is typically O(V + E). Union-Find-based algorithms often have a similar time complexity.
 
 # Uses : 
         Graph Theory
@@ -325,10 +323,10 @@ int main() {
         Circuit Design
 
 # Real-time applications:
-        - Software Engineering: Detecting cycles in dependency graphs helps manage software modules or libraries with interdependent relationships.
-        - Networking: Identifying cycles in network topologies assists in avoiding routing loops in communication networks.
-        - Resource Allocation: Graphs representing resource allocation can avoid circular allocations through cycle detection.
+    - Software Engineering: Detecting cycles in dependency graphs helps manage software modules or libraries with interdependent relationships.
+    - Networking: Identifying cycles in network topologies assists in avoiding routing loops in communication networks.
+    - Resource Allocation: Graphs representing resource allocation can avoid circular allocations through cycle detection.
 # Summary:
-        - Cycle detection in a graph involves identifying closed loops or cycles formed by traversing through vertices and edges.
-        - Various algorithms like DFS or Union-Find are used to detect cycles efficiently.
-        - It's crucial in various domains, especially in scenarios where avoiding circular dependencies or loops is essential, like project scheduling, software engineering, or network management.
+    - Cycle detection in a graph involves identifying closed loops or cycles formed by traversing through vertices and edges.
+    - Various algorithms like DFS or Union-Find are used to detect cycles efficiently.
+    - It's crucial in various domains, especially in scenarios where avoiding circular dependencies or loops is essential, like project scheduling, software engineering, or network management.
