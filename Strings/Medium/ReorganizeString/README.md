@@ -66,8 +66,10 @@ def reorganizeString(string):
 
 # Test the function
 if __name__ == "__main__":
-    string = "aab"  # Test string
-    print(reorganizeString(string))  # Print the result of the function
+    #  Example string: aab
+    string = input("Enter a String: ").strip()
+    if string:
+        print(reorganizeString(string))  # Print the result of the function
 
 ```
 ### Step-by-Step Explanation of Python Code
@@ -92,7 +94,7 @@ if __name__ == "__main__":
    - Finally, it joins the characters in the list `ans` into a string and returns the result.
    
 - **Main Section**
-   - This section tests the `reorganizeString` function with the input string "aab" and prints the result.
+   - This section tests the `reorganizeString` function with the input string by taking input and prints the result.
 
 ## JAVA Code
 ```java
@@ -107,16 +109,17 @@ if __name__ == "__main__":
 // Time Complexity: O(N log N)
 // Space Complexity: O(N)
 
+import java.util.Scanner;
+
 public class Main {
 
-    // Method to reorganize the string
+    // Function to reorganize the string
     static String reorganizeString(String S) {
         int[] hash = new int[26];  // Array to store character frequencies 
 
         // Count character frequencies in the input string
         for (int i = 0; i < S.length(); i++) {
-            // increments the value at the corresponding index in the hash array
-            hash[S.charAt(i) - 'a']++; 
+            hash[S.charAt(i) - 'a']++; // increments the value at the corresponding index in the hash array
         }
         int max = 0, letter = 0;
 
@@ -133,8 +136,7 @@ public class Main {
             return "";
         }
 
-        // Array to store the rearranged characters
-        char[] res = new char[S.length()];  
+        char[] res = new char[S.length()];  // Array to store the rearranged characters
         int idx = 0;
 
         // Place characters with the maximum frequency at even indices
@@ -159,9 +161,14 @@ public class Main {
         return String.valueOf(res);  // Convert char array to string and return
     }
 
-    // Main method to test the method
+    // Main method to test the function
     public static void main(String[] args) {
-        String s = "aab";
+        // Scanner class is used for taking input
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter a String: ");
+        // Example string aab
+        // Taking Input 
+        String s = sc.next();
         System.out.println(reorganizeString(s));
     }
 }
@@ -196,7 +203,7 @@ public class Main {
 
 - **Testing the Method**
 
-    The main method tests the `reorganizeString` method with the input string "aab" and prints the result. In this case, it would print the rearranged string or an empty string if no valid rearrangement is possible.
+    The main method tests the `reorganizeString` method with the input string and prints the result. In this case, it would print the rearranged string or an empty string if no valid rearrangement is possible.
 
 ## CPP Code
 ```CPP
@@ -211,7 +218,10 @@ public class Main {
 // Time Complexity: O(N log N)
 // Space Complexity: O(N)
 
-#include<bits/stdc++.h>
+#include <iostream>
+#include <string>
+#include <unordered_map>
+#include <vector>
 
 // Function to reorganize the string
 std::string reorganizeString(std::string s) {
@@ -264,12 +274,19 @@ std::string reorganizeString(std::string s) {
 
 // Main function to test the reorganizeString function
 int main() {
-    std::string s = "aab";
-    std::cout << reorganizeString(s);  // Print the result of the function
+    // Declare a string variable to store user input
+    std::string s;
+    std::cout << "Enter a string: ";
+    // Read the input string from the user
+    std::cin >> s;
+    std::cout << "Reorganized string: " << reorganizeString(s) << std::endl;  // Print the result of the function
     return 0;
 }
 ```
 ### Step-by-Step Explanation of CPP Code
+
+- **Headers**
+  - The C++ code includes essential library headers for console interaction `iostream`, string manipulation `string`, efficient character frequency storage `unordered_map`, and dynamic array handling `vector`.
 
 - **Function to Reorganize String**
    - The `reorganizeString` function takes a string `s` as input and returns a string. It uses an `unordered_map` named `mp` to store the frequencies of characters.
@@ -290,7 +307,7 @@ int main() {
 
 - **Testing the Function**
 
-  The `main` function tests the `reorganizeString` function with the input string "aab" and prints the result. In this case, it would print the rearranged string or an empty string if no valid rearrangement is possible.
+  The `main` function tests the `reorganizeString` function with the input string and prints the result. In this case, it would print the rearranged string or an empty string if no valid rearrangement is possible.
 
 ## Time and Space Complexity
 **Time Complexity:** The time complexity is O(N log N) due to character frequency counting and sorting.
