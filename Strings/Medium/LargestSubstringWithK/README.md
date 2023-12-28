@@ -169,10 +169,15 @@ def longestSubstring(string, k):
 
     return ans
 
+def main():
+    # Example usage
+    input_str = "ababbc"
+    k_value = 2
+    result = longestSubstring(input_str, k_value)
+    print(result)
+
 if __name__ == "__main__":
-    string = "ababbc"
-    k = 2
-    print(longestSubstring(string, k))
+    main()
 
 ```
 
