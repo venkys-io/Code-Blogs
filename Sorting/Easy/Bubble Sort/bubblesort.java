@@ -8,7 +8,7 @@
 //Space Complexity: O(1)
 
 import java.util.Scanner;
-public class BubbleSort 
+public class bubbleSort 
     {
     //Function to perform Bubble sort
      public static void VSDsort(int n,int[] a) {
@@ -26,7 +26,7 @@ public class BubbleSort
                  a[t2]=temp;
       }
             
-        //Function to print output
+    //Function to print output
     public static void VSDprintOutput(int n,int a[]) {
 	System.out.println("The sorted order is:");
         	for(int i=0;i<n;i++) {
@@ -35,11 +35,13 @@ public class BubbleSort
         	}
 		    public static void main(String args[]) {
 			Scanner scanner = new Scanner(System.in);
+			//Input the size of the array
                         System.out.print("Enter the size of the array: ");
                         int n = scanner.nextInt();
 
                         int[] a = new int[n];
 
+			//Input the elements of the array
                         System.out.println("Enter the elements of the array:");
                         for (int i = 0; i < n; i++) {
                             a[i] = scanner.nextInt();
