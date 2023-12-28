@@ -418,21 +418,23 @@ Java program to add two numbers in a linked list*/
 
 //Time Complexity:O(max(N, M)), where N and M are the lengths of the input linked lists.
 
-import java.util.Scanner;
+import java.util.Scanner; //Importing scanner class from java.util package for user input
 
+//Node class representing a node in linked list
 class Node{
     int data;
     Node next;
 
+    //Constructor to initialize a node with given data
     Node(int data){
         this.data=data;
     }
 }
 
-public class addSLL{
+public class Linkedlistsum{
 
-		// Function to print the linked list in reverse order 
-		static void printReverse(Node head) {
+	// Function to print the linked list in reverse order 
+	static void printReverse(Node head) {
         if (head == null) {
             return;
         }
@@ -455,15 +457,15 @@ public class addSLL{
         Node temp=new Node(0);
         Node head=temp;
         for(int i=0;i<arr.length;i++){
-            temp.next=new Node(arr[i]);
-            temp=temp.next;
+            temp.next=new Node(arr[i]); //Create a new node with array element and link it
+            temp=temp.next; // Move the temporary pointer to newly created node
         }
         return head.next;
     }
 
     // Function to add two numbers represented as linked lists
     static Node addTwoNumbers(Node l1,Node l2){
-        Node temp=new Node(0);
+        Node temp=new Node(0); //Create a dummy node
         Node head=temp;
 
         int c=0;
@@ -476,11 +478,11 @@ public class addSLL{
                 c+=l2.data;
                 l2=l2.next;
             }
-            temp.next=new Node(c%10);
-            c=c/10;
-            temp=temp.next;
+            temp.next=new Node(c%10); //Create a new node with the digit sum and link it
+            c=c/10; //Update the carry for the next iteration
+            temp=temp.next; //Move the temporary Pointer to the newly created node
         }
-        return head.next;
+        return head.next; //Return the head of the resulting linked list(skipping dummy node)
 
     }
 
