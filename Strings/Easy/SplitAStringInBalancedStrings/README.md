@@ -21,10 +21,10 @@ The "Split a String In Balanced Strings" program is designed to count the maximu
 
 ```python
 # Copyrights to venkys.io
-# For more information, visit https://venkys.io 
+# For more information, visit https://venkys.io
 
-#Space complexity: O(N)
-#Time complexity: O(1)
+# Space complexity: O(N)
+# Time complexity: O(1)
 def balancedStringSplit(string: str) -> int:
     # Initialize counters
     check = answer = 0
@@ -36,17 +36,25 @@ def balancedStringSplit(string: str) -> int:
             check += 1
         else:
             check -= 1
-        
+
         # Check if the counters are balanced (check equals zero)
         if check == 0:
             answer += 1
-    
+
     # Return the total count of balanced string segments
     return answer
 
-# Example usage
-input_str = "RLRRRLLRLL"
-print(balancedStringSplit(input_str))
+
+def main():
+    # Example usage
+    input_str = "RLRRRLLRLL"
+    result = balancedStringSplit(input_str)
+    print(result)
+
+
+if __name__ == "__main__":
+    main()
+
 ```
 ### Java
 
