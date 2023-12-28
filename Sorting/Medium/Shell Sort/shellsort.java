@@ -9,10 +9,10 @@
 
 //Time Complexity:  O(n^2) in the worst-case scenario, and O(n log n) in the average case scenario.
 
-import java.util.Scanner;
-import java.util.ArrayList;
+import java.util.Scanner; //Importing Scanner class from java.util package for user input
+import java.util.ArrayList; //Importing ArrayList class from java.util package to use dynamic arrays
 
-public class Shellsort 
+public class shellsort 
     {
         static int n;//size of array
         static int arr[];//array of numbers to be sorted
@@ -20,7 +20,7 @@ public class Shellsort
         //Function to perform shell sort
         public static void VSDSort() 
             {
-                int shellsize=8;
+                int shellsize=8;//Initial shell size
 		            while(shellsize>=1)
                 	{
         			for(int i=shellsize,k=0;i<n&&k<shellsize;){
@@ -61,6 +61,8 @@ public class Shellsort
 	public static void main(String args[])
         	{
         	    Scanner scanner = new Scanner(System.in);
+
+		    //Input the elements seperated by space
                     System.out.print("Enter the elements separated by space: ");
                     String input = scanner.nextLine();
                     String[] elements = input.split(" ");
@@ -70,7 +72,11 @@ public class Shellsort
                           arr[i] = Integer.parseInt(elements[i]);
                      }
                    scanner.close();
+
+		//Perform Shell Sort
         	VSDSort();
+
+		//Print the sorted array
         	VSDprintOutput();
 	}
 }
