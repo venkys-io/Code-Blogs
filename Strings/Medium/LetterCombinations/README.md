@@ -22,10 +22,11 @@ In C++, a similar recursive function is used, along with a std::map to store dig
 
 ```python
 # Copyrights to venkys.io
-# For more information, visit https://venkys.io 
+# For more information, visit https://venkys.io
 
-#Space complexity: O(n) + O(k^n)
-#Time complexity: O(k^n)
+# Space complexity: O(n) + O(k^n)
+# Time complexity: O(k^n)
+
 def letterCombinations(digits):
     # Check if the input string is empty
     if len(digits) == 0:
@@ -64,9 +65,15 @@ def letterCombinations(digits):
     # Return the final list of letter combinations
     return res
 
-if __name__ == "__main__":
+def main():
+    # Example usage
     digits = "23"
-    print(letterCombinations(digits))
+    result = letterCombinations(digits)
+    print(result)
+
+if __name__ == "__main__":
+    main()
+
 
 ```
 
