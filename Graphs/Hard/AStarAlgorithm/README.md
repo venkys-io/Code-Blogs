@@ -221,7 +221,7 @@ class Graph:
             # find a node with the lowest value of f() - evaluation function
             for v in open_list:
                 if n == None or g[v] + self.h(v) < g[n] + self.h(n):
-                    n = v;
+                    n = v
 
             if n == None:
                 print('Path does not exist!')
@@ -272,13 +272,18 @@ class Graph:
         print('Path does not exist!')
         return None
 
-adjacency_list = {
-    'A': [('B', 1), ('C', 3), ('D', 7)],
-    'B': [('D', 5)],
-    'C': [('D', 12)]
-}
-graph1 = Graph(adjacency_list)
-graph1.a_star_algorithm('A', 'D')
+def main():
+    adjacency_list = {
+        'A': [('B', 1), ('C', 3), ('D', 7)],
+        'B': [('D', 5)],
+        'C': [('D', 12)]
+    }
+    graph1 = Graph(adjacency_list)
+    graph1.a_star_algorithm('A', 'D')
+
+if __name__ == "__main__":
+    main()
+
 ```
 
 ### C++ Implementation
