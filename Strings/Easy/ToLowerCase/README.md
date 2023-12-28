@@ -88,16 +88,16 @@ Certainly! Let's break down the Java code step by step in simple terms:
 ### Python
 
 ```python
-#Copyrights to venkys.io
-#For more information, visit https://venkys.io 
+# Copyrights to venkys.io
+# For more information, visit https://venkys.io
 
-#Space complexity: O(n)
-#Time complexity: O(n)
+# Space complexity: O(n)
+# Time complexity: O(n)
 
 def toLowerCase(s: str) -> str:
     # Initialize an empty string to store the converted result
     ans = ""
-    
+
     # Iterate through each character in the input string
     for i in s:
         # Check if the ASCII value of the character is in the range of uppercase letters (65 to 90)
@@ -107,14 +107,19 @@ def toLowerCase(s: str) -> str:
         else:
             # If it's not an uppercase letter, append the character as is
             ans += i
-    
+
     # Return the final converted string
     return ans
 
-# Example usage
-string = "UpperCase"
-# Call the toLowerCase function and print the result
-print(toLowerCase(string))
+def main():
+    # Example usage
+    input_str = "UpperCase"
+    result = toLowerCase(input_str)
+    print(result)
+
+if __name__ == "__main__":
+    main()
+
 ```
 Certainly! Let's break down the provided Python code step by step in simple terms:
 
