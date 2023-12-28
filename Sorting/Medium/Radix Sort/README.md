@@ -258,9 +258,8 @@ Let's consider an array of 5 values for our example: [4, 2, 4, 1, 3].
     2. **radixSort() function**: The `radixSort` function finds the maximum number in the array and then repeatedly calls the `countingSort` function for each digit place to sort the numbers in the array.
     
     # Code in Java:
-    
-    ```java
-    /*Copyrights to venkys.io*/
+```java
+/*Copyrights to venkys.io*/
 /*For more programs visit venkys.io */
 /*Java program for Radix sort*/
 // Stable : Yes
@@ -369,7 +368,7 @@ public class radixsort{
 		VSDprintOutput(n,a);
 	}
 
-}
+
     ```
     
     **Java Radix Sort Algorithm Explanation:**
