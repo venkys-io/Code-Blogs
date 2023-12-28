@@ -368,15 +368,16 @@ public class radixsort{
 		VSDprintOutput(n,a);
 	}
 
+}
+```
 
-    ```
+
+**Java Radix Sort Algorithm Explanation:**
     
-    **Java Radix Sort Algorithm Explanation:**
+Few of the functions used in Java are:
     
-    Few of the functions used in Java are:
-    
-    1. VSDMax→ To obtain maximum element from an array
-    2. VSDdigitcount→ To count number of digits in the maximum value
-    3. VSDRadix→ To sort numbers based on their radix
-    4. VSDcountingsort→Performs counting sort algorithm
-    5. VSDprintOutput→ To print the sorted array through radix sort algorithm.
+1. VSDMax→ To obtain maximum element from an array
+2. VSDdigitcount→ To count number of digits in the maximum value
+3. VSDRadix→ To sort numbers based on their radix
+4. VSDcountingsort→Performs counting sort algorithm
+5. VSDprintOutput→ To print the sorted array through radix sort algorithm.
