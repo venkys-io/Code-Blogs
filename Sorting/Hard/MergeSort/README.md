@@ -23,51 +23,58 @@ Overall, merge sort is a reliable and efficient sorting algorithm that is widely
 
 def merge_sort(array):
     # Divide strategy
-	if len(array) > 1:
+    if len(array) > 1:
+        # Finding the mid index of the array
+        midx = len(array) // 2
 
-		# Finding the mid index of the array
-		midx = len(array)//2
+        # Dividing the array elements into left and right subarrays
+        Larray = array[:midx]
+        Rarray = array[midx:]
 
-		# Dividing the array elements
-		Larray = array[:midx]
-		Rarray = array[midx:]
+        # Recursively apply merge_sort on left and right subarrays
+        merge_sort(Larray)
+        merge_sort(Rarray)
 
-		merge_sort(Larray)
-		merge_sort(Rarray)
-		
-    # Conqure strategy
-    
-		idx1 = 0 # to track left array
-		idx2 = 0 # to track right array
-		idx = 0 # to track array
+        # Conquer strategy
+        idx1 = 0  # Initialize index for the left subarray
+        idx2 = 0  # Initialize index for the right subarray
+        idx = 0   # Initialize index for the merged array
 
-		while idx1 < len(Larray) and idx2  < len(Rarray):
-			if Larray[idx1] < Rarray[idx2]:
-				array[idx] = Larray[idx1]
-				idx1 += 1
-			else:
-				array[idx] = Rarray[idx2]
-				idx2 += 1
-			idx += 1
+        # Merge the left and right subarrays in sorted order
+        while idx1 < len(Larray) and idx2 < len(Rarray):
+            if Larray[idx1] < Rarray[idx2]:
+                array[idx] = Larray[idx1]
+                idx1 += 1
+            else:
+                array[idx] = Rarray[idx2]
+                idx2 += 1
+            idx += 1
 
-		# sorting the remaining elements
-		
-		while idx1 < len(Larray):
-			array[idx] = Larray[idx1]
-			idx1 += 1
-			idx += 1
+        # Sorting the remaining elements in the left subarray
+        while idx1 < len(Larray):
+            array[idx] = Larray[idx1]
+            idx1 += 1
+            idx += 1
 
-		while idx2 < len(Rarray):
-			array[idx] = Rarray[idx2]
-			idx2 += 1
-			idx += 1
+        # Sorting the remaining elements in the right subarray
+        while idx2 < len(Rarray):
+            array[idx] = Rarray[idx2]
+            idx2 += 1
+            idx += 1
 
 # Test drive code
-if __name__=="__main__":
-    n=7
-    array=[34, 2, 12, 96, 456, 899, 24]
+if __name__ == "__main__":
+    # Reading the size of the array from STDIN
+    n = int(input("Enter the size of the array: "))
+
+    # Reading the array elements from STDIN
+    array = list(map(int, input("Enter the array elements separated by space: ").split()))
+
+    # Applying merge_sort to the array
     merge_sort(array)
-    print(*array)
+
+    # Printing the sorted array
+    print("Sorted Array:", *array)
 
 ```
 <h2>Step-by-Step Explanation:</h2>
@@ -90,99 +97,139 @@ if __name__=="__main__":
 //For more programs visit venkys.io 
 //Java program for Merge sort
 
+import java.util.Scanner;
 
-public class Main {
-	
-	
-	static void VSDmerge(int[] array,int l, int r)
-	{
-		if(l<r) {
-			int m =l+(r-l)/2;
-			//Recursively calling merge method to divide the array
-			VSDmerge(array,l,m);
-			VSDmerge(array,m+1,r);
-			//Combines the divided array pieces in sorted order
-			VSDMergesort(array,l,m,r);
-		}
-	}
-	 
-   static void VSDMergesort(int[] array,int l, int m, int r){
-	   //Assigning sizes for temporary arrays
-	   	int n1 = m-l+1;
-        int n2 = r-m;
-        //Temporary arrays to sort divided elements
-        int Left[] = new int[n1];
-        int Right[] = new int[n2];
-        //Assigning elements
-        for (int i=0;i<n1;i++)
-            Left[i] = array[l + i];
-        for (int j=0;j<n2;j++)
-            Right[j] = array[m+1+j];
-        //Initial indexes to sort elements using temporary arrays
-        int i = 0,j = 0;
-        //Index for original array
+public class MergeSort {
+    
+    // Function to perform merge sort on the array
+    static void mergeSort(int[] array, int l, int r) {
+        if (l < r) {
+            int m = l + (r - l) / 2;
+            // Recursively calling mergeSort method to divide the array
+            mergeSort(array, l, m);
+            mergeSort(array, m + 1, r);
+            // Combines the divided array pieces in sorted order
+            merge(array, l, m, r);
+        }
+    }
+
+    // Function to merge two subarrays
+    static void merge(int[] array, int l, int m, int r) {
+        // Assigning sizes for temporary arrays
+        int n1 = m - l + 1;
+        int n2 = r - m;
+        // Temporary arrays to sort divided elements
+        int[] left = new int[n1];
+        int[] right = new int[n2];
+        // Assigning elements
+        for (int i = 0; i < n1; i++)
+            left[i] = array[l + i];
+        for (int j = 0; j < n2; j++)
+            right[j] = array[m + 1 + j];
+        // Initial indexes to sort elements using temporary arrays
+        int i = 0, j = 0;
+        // Index for the original array
         int k = l;
-        //Comparing elements to arrange them in sorted order in original array
-        while (i<n1 && j<n2) {
-            if (Left[i]<=Right[j]) {
-                array[k]=Left[i];
+        // Comparing elements to arrange them in sorted order in the original array
+        while (i < n1 && j < n2) {
+            if (left[i] <= right[j]) {
+                array[k] = left[i];
                 i++;
-            }
-            else {
-                array[k]=Right[j];
+            } else {
+                array[k] = right[j];
                 j++;
             }
             k++;
         }
-        //Arranging remaining elements from left array
+        // Arranging remaining elements from the left array
         while (i < n1) {
-           array[k]=Left[i];
+            array[k] = left[i];
             i++;
             k++;
         }
-      //Arranging remaining elements from right array
+        // Arranging remaining elements from the right array
         while (j < n2) {
-            array[k]=Right[j];
+            array[k] = right[j];
             j++;
             k++;
         }
-        
     }
-   //Function to take user input
 
-//Function to print output
-public static void VSDprintOutput(int[] array) {
-	System.out.println("The sorted order is:");
-	for(int a:array){
-        System.out.print(a+" ");
+    // Function to print the sorted array
+    public static void printOutput(int[] array) {
+        System.out.println("The sorted order is:");
+        for (int a : array) {
+            System.out.print(a + " ");
+        }
+        System.out.println();
     }
-    System.out.println();
+
+    public static void main(String args[]) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the size of the array: ");
+        int size = scanner.nextInt();
+
+        // Reading the array elements from STDIN
+        int[] array = new int[size];
+        System.out.print("Enter the array elements separated by space: ");
+        for (int i = 0; i < size; i++) {
+            array[i] = scanner.nextInt();
+        }
+
+        // Calling mergeSort for the entire array
+        mergeSort(array, 0, size - 1);
+        
+        // Printing the sorted array
+        printOutput(array);
+        
+        scanner.close();
+    }
 }
-public static void main(String args[]) {
-	int[] array={34, 2, 12, 96, 456, 899, 24};
-    int size=array.length;
-	VSDmerge(array,0,size-1);//Calling merge for the entire array
-	VSDprintOutput(array);//Printing output
-}
-}
+
 
 ```
 <h2>Step-by-Step Explanation:</h2>
 
-1. The Java code provided implements the merge sort algorithm to sort an array of integers.
-2. The VSDmerge method is a recursive function that performs the merge sort algorithm. It takes three parameters: the array to be sorted, the left index, and the right index.
-3. Inside the VSDmerge method, the middle index m is calculated as l + (r - l) / 2, which represents the midpoint of the array.
-4. The VSDmerge method is recursively called on the left half of the array (l to m) and the right half of the array (m+1 to r).
-5. The VSDMergesort method is used to merge the divided subarrays in sorted order. It takes four parameters: the array, the left index l, the middle index m, and the right index r.
-6. In the VSDMergesort method, two temporary arrays, Left and Right, are created to store the divided elements of the original array.
-7. The elements of the divided subarrays are assigned to the Left and Right arrays accordingly.
-8. Using three index variables (i, j, and k), the elements from Left and Right arrays are compared and merged back into the original array in sorted order.
-9. After merging the elements, any remaining elements in either the Left or Right arrays are appended to the original array.
-10. Once the VSDmerge and VSDMergesort methods complete their execution, the original array will be sorted in ascending order.
-11. The VSDprintOutput method is used to print the sorted array as output.
-12. In the main method, an array of integers is declared and initialized.
-13. The VSDmerge method is called with the array and the indices of the first and last elements of the array.
-14. Finally, the VSDprintOutput method is called to print the sorted array.
+1.Import Statements:
+	import java.util.Scanner;: Imports the Scanner class for reading input from the console.
+ 
+2.Class Declaration:
+	public class MergeSort {: Declares a class named MergeSort.
+ 
+3.mergeSort Function:
+	static void mergeSort(int[] array, int l, int r) {: This is the main function for the merge sort algorithm.
+	if (l < r) {: Checks if the array has more than one element.
+	int m = l + (r - l) / 2;: Calculates the middle index of the array.
+	mergeSort(array, l, m);: Recursively calls mergeSort on the left subarray.
+	mergeSort(array, m + 1, r);: Recursively calls mergeSort on the right subarray.
+	merge(array, l, m, r);: Calls the merge function to combine the sorted subarrays.
+ 
+4.merge Function:
+	static void merge(int[] array, int l, int m, int r) {: Merges two sorted subarrays.
+	int n1 = m - l + 1;: Calculates the size of the left subarray.
+	int n2 = r - m;: Calculates the size of the right subarray.
+	int[] left = new int[n1];: Creates a temporary array for the left subarray.
+	int[] right = new int[n2];: Creates a temporary array for the right subarray.
+	Copies elements from the original array to the temporary arrays.
+	Initializes indexes (i, j, k) for merging the subarrays.
+	Compares elements from the left and right subarrays and arranges them in sorted order.
+ 
+5.printOutput Function:
+	public static void printOutput(int[] array) {: Prints the sorted array.
+	Iterates through the array and prints each element.
+ 
+6.Main Function:
+	public static void main(String args[]) {: The main function where the program execution begins.
+	Creates a Scanner object to read input.
+	Reads the size of the array (size) from the user.
+	Creates an array (array) to store the elements.
+	Reads the array elements from the user.
+	Calls mergeSort to sort the array.
+	Calls printOutput to print the sorted array.
+	Closes the Scanner to release resources.
+ 
+This program uses the merge sort algorithm to sort an array and prints the sorted order to the console. It takes user input for the size of the array and the array elements.
 
 <h2>CPP</h2>
 
@@ -191,15 +238,12 @@ public static void main(String args[]) {
 // For more programs visit venkys.io 
 // CPP program for Merge sort
 
-#include<iostream>
-
-using namespace std;
+#include <iostream>
 
 // Merge two subarrays of arr[]
 // First subarray is arr[l..m]
 // Second subarray is arr[m+1..r]
-
-void VSDmerge(int arr[], int l, int m, int r) {
+void merge(int arr[], int l, int m, int r) {
     // Calculate sizes of the two subarrays
     int n1 = m - l + 1;
     int n2 = r - m;
@@ -249,33 +293,44 @@ void VSDmerge(int arr[], int l, int m, int r) {
 }
 
 // Recursive function to perform merge sort on the array
-void VSDmergesort(int arr[], int l, int r) {
+void mergeSort(int arr[], int l, int r) {
     if (l < r) {
         // Same as (l+r)/2, but avoids overflow for large l and r
         int m = l + (r - l) / 2;
 
         // Recursively sort the first and second halves
-        VSDmergesort(arr, l, m);
-        VSDmergesort(arr, m + 1, r);
+        mergeSort(arr, l, m);
+        mergeSort(arr, m + 1, r);
 
         // Merge the sorted halves
-        VSDmerge(arr, l, m, r);
+        merge(arr, l, m, r);
     }
 }
 
 int main() {
-    int n = 7;
-    int arr[] = {34, 2, 12, 96, 456, 899, 24};
+    int n;
+    
+    // Read the size of the array from STDIN
+    std::cout << "Enter the size of the array: ";
+    std::cin >> n;
+
+    int arr[n];
+
+    // Read the array elements from STDIN
+    std::cout << "Enter the array elements separated by space: ";
+    for (int i = 0; i < n; i++) {
+        std::cin >> arr[i];
+    }
 
     // Call the merge sort function
-    VSDmergesort(arr, 0, n - 1);
+    mergeSort(arr, 0, n - 1);
 
     // Print the sorted array
-    cout << "Sorted array: ";
+    std::cout << "Sorted array: ";
     for (int i = 0; i < n; i++) {
-        cout << arr[i] << " ";
+        std::cout << arr[i] << " ";
     }
-    cout << endl;
+    std::cout << std::endl;
 
     return 0;
 }
@@ -283,17 +338,34 @@ int main() {
 ```
 <h2>Step-by-Step Explanation:</h2>
 
-1. The C++ code provided implements the merge sort algorithm to sort an array of integers.
-2. The VSDmerge function is defined to merge two subarrays of the array. It takes four parameters: the array to be sorted, the left index, the middle index, and the right index.
-3. Inside the VSDmerge function, the sizes of the two subarrays are calculated: n1 for the left subarray and n2 for the right subarray.
-4. Temporary arrays left and right are created to store the elements of the left and right subarrays, respectively.
-5. The elements from the original array are copied to the temporary arrays left and right.
-6. The elements of the temporary arrays are merged back into the original array in sorted order. The variables i, j, and k are used as indices to compare and merge the elements.
-7. Any remaining elements in either the left or right subarray are copied to the original array.
-8. The VSDmergesort function is defined to perform the merge sort algorithm recursively. It takes three parameters: the array to be sorted, the left index, and the right index.
-9. Inside the VSDmergesort function, if the left index is less than the right index, the middle index m is calculated as l + (r - l) / 2.
-10. The VSDmergesort function is recursively called for the left half of the array (l to m) and the right half of the array (m+1 to r).
-11. Finally, the main function initializes an array of integers and calls the VSDmergesort function to sort the array. The sorted array is then printed as output.
+1.Include Header:
+	#include <iostream>: Includes the iostream header for input and output operations.
+ 
+2.Merge Function:
+	void merge(int arr[], int l, int m, int r): Function to merge two sorted subarrays.
+	Calculates sizes of two subarrays, creates temporary arrays, and copies data.
+	Merges the temporary arrays back into the original array in sorted order.
+ 
+3.Merge Sort Function:
+	void mergeSort(int arr[], int l, int r): Recursive function for merge sort.
+	Divides the array into two halves, recursively sorts each half, and then merges them.
+ 
+4.Main Function:
+	int main() {: The main function where the program execution begins.
+	Reads the size of the array (n) from STDIN.
+	Creates an array (arr) to store the elements.
+	Reads the array elements from STDIN.
+	Calls mergeSort to sort the array.
+	Prints the sorted array to STDOUT.
+ 
+5.Input and Output:
+	std::cout << "Enter the size of the array: ";: Prompts the user to enter the size of the array.
+	std::cin >> n;: Reads the size of the array from the user.
+	std::cout << "Enter the array elements separated by space: ";: Prompts the user to enter the array elements.
+	std::cin >> arr[i];: Reads each array element from the user.
+	After sorting, the sorted array is printed to the console.
+ 
+This program uses the merge sort algorithm to sort an array and interacts with the user through STDIN and STDOUT. The use of functions and comments enhances code readability and maintainability.
 
 <h2>OUTPUT</h2>
 
