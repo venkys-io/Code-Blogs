@@ -24,22 +24,24 @@ In the first step of Bucket Sort, elements are distributed into buckets based on
 
 ```python
 # Copyrights to venkys.io for more information, visit https://venkys.io
+import sys
+
 def VSDBucketSort(arr, n):
-    #Find the minimum and maximum values in the array
+    # Find the minimum and maximum values in the array
     mini = min(arr)
     maxi = max(arr)
-    
-    #Create 'n' buckets
+
+    # Create 'n' buckets
     bucket = [[] for i in range(n)]
 
-    #Distribute elements into buckets
+    # Distribute elements into buckets
     for i in range(n):
         # Determine the bucket index for each element based on its value
         j = n * (arr[i] - mini) // (maxi + 1 - mini)
         # Append the element to the corresponding bucket
         bucket[j].append(arr[i])
 
-    #Sort each individual bucket
+    # Sort each individual bucket
     i = 0
     for j in range(n):
         temp = bucket[j]
@@ -49,13 +51,27 @@ def VSDBucketSort(arr, n):
             arr[i] = temp[k]
             i += 1
 
-    #Print the sorted array
-    print(*arr, sep=" ")
+    # Return the sorted array
+    return arr
+
+def main():
+    try:
+        # Read input values from command-line arguments
+        n = int(sys.argv[1])
+        arr = list(map(int, sys.argv[2:]))
+
+        # Call the sorting function
+        sorted_arr = VSDBucketSort(arr, n)
+
+        # Print the sorted array to standard output
+        print(*sorted_arr, sep=" ")
+
+    except (ValueError, IndexError):
+        print("Error: Invalid input. Please enter valid integers.")
 
 if __name__ == "__main__":
-    n = 7
-    arr = [2, 24, 12, 96, 456, 899, 34]
-    VSDBucketSort(arr, n)
+    main()
+
 ```
 
 ## Step-by step explanation:
