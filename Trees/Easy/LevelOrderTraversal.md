@@ -1,4 +1,5 @@
-# Levelorder traversal
+# LEVEL ORDER TRAVERSAL
+
 Level order traversal, also known as breadth-first traversal, is a fundamental technique in computer science and data structures used to explore and traverse trees, particularly binary trees and binary search trees. This method is also applicable to other data structures like graphs with slight modifications.
 
 ## INTRODUCTION
@@ -35,32 +36,37 @@ Here's an overview of level order traversal:
 
 #A node structure
 class Node:
-    def __init__(self,data):
-# A utility function to create a new node
-        self.data=data 
-        self.left=self.right=None 
+    def __init__(self, data):
+        self.data = data
+        self.left = self.right = None
 
 # Function to print level order traversal of tree
 def VSDlevelorder(root):
-    queue=[root]
+    queue = [root]
     while queue:
-        node=queue.pop(0)
+        node = queue.pop(0)
         if node.left:
             queue.append(node.left)
         if node.right:
             queue.append(node.right)
         print(node.data)
 
-#driver program to test above function
-if __name__=="__main__":
-    root=Node(10)
-    root.left=Node(20)
-    root.right=Node(30)
-    root.left.left=Node(40)
-    root.left.right=Node(50)
-    root.right.left=Node(60)
-    root.right.right=Node(70)
+# Driver program to test above function
+if __name__ == "__main__":
+    # Taking input for the binary tree nodes from stdin
+    root_data = int(input("Enter the value for the root node: "))
+    root = Node(root_data)
 
+    root.left = Node(int(input("Enter the value for the left child of the root: ")))
+    root.right = Node(int(input("Enter the value for the right child of the root: ")))
+
+    root.left.left = Node(int(input("Enter the value for the left child of the left child: ")))
+    root.left.right = Node(int(input("Enter the value for the right child of the left child: ")))
+
+    root.right.left = Node(int(input("Enter the value for the left child of the right child: ")))
+    root.right.right = Node(int(input("Enter the value for the right child of the right child: ")))
+
+    # Calling the function for level order traversal
     VSDlevelorder(root)
 ```
 
@@ -75,18 +81,7 @@ if __name__=="__main__":
 
 3) In this block, a binary tree is created by instantiating nodes and linking them appropriately.
 
-- The root node is assigned the value 10, and child nodes are connected to it.
 - Finally, the level order function is called with the root of the tree, which prints the level order traversal of the binary tree.
-
-The output of the program, when run, will be the level order traversal of the binary tree:
-
-10
-20
-30
-40
-50
-60
-70
 
 This code essentially demonstrates a basic implementation of a level order traversal algorithm for a binary tree using a queue data structure.
 
@@ -114,50 +109,60 @@ In a balanced binary tree, the maximum number of nodes in the queue at any given
 
 // Importing necessary Java utility classes
 import java.util.LinkedList;
-
 import java.util.Queue;
+import java.util.Scanner;
 
 // Definition of a Node in a binary tree
 class Node {
     int data;
-    Node left=null, right=null;
-// Constructor to initialize a Node with data
+    Node left = null, right = null;
+
+    // Constructor to initialize a Node with data
     Node(int data) {
         this.data = data;
     }
 }
 
-public class Main {   
+public class Main {
 
-// Function to perform level order traversal of a binary tree
-    static void levelOrder(Node root){
-        Queue<Node> q=new LinkedList<>();
+    // Function to perform level order traversal of a binary tree
+    static void levelOrder(Node root) {
+        Queue<Node> q = new LinkedList<>();
 
-// Create a queue to store nodes during traversal
+        // Create a queue to store nodes during traversal
         q.add(root);
-// Add the root node to the queue
-        while(!q.isEmpty()){
-            Node node=q.poll();
-            if(node.left!=null)
+        // Add the root node to the queue
+        while (!q.isEmpty()) {
+            Node node = q.poll();
+            if (node.left != null)
                 q.add(node.left);
-            if(node.right!=null)
+            if (node.right != null)
                 q.add(node.right);
-            System.out.print(node.data+" ");
+            System.out.print(node.data + " ");
         }
-        
+
     }
 
-   
-// Main method to test the levelOrder function
+    // Main method to test the levelOrder function
     public static void main(String[] args) {
-        Node root=new Node(10);
-        root.left=new Node(20);
-        root.right=new Node(30);
-        root.left.left=new Node(40);
-        root.left.right=new Node(50);
-        root.right.left=new Node(60);
-        root.right.right=new Node(70);
-// Calling the levelOrder function to perform level order traversal
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the value for the root node:");
+        int rootValue = scanner.nextInt();
+        Node root = new Node(rootValue);
+
+        System.out.println("Enter values for left and right children of the root node (0 if no child):");
+        root.left = new Node(scanner.nextInt());
+        root.right = new Node(scanner.nextInt());
+
+        root.left.left = new Node(scanner.nextInt());
+        root.left.right = new Node(scanner.nextInt());
+
+        root.right.left = new Node(scanner.nextInt());
+        root.right.right = new Node(scanner.nextInt());
+
+        // Calling the levelOrder function to perform level order traversal
+        System.out.println("Level Order Traversal:");
         levelOrder(root);
     }
 }
@@ -182,52 +187,91 @@ public class Main {
 - It creates a sample binary tree by instantiating nodes and connecting them.
 - The level order method is called with the root of the tree, initiating the level-order traversal.
 
-5) 10 20 30 40 50 60 70 is the code output.
-
-6) The program prints the data of each node in the binary tree in level-order.
+5) The program prints the data of each node in the binary tree in level-order.
 
 In summary, the code defines a binary tree, implements a level-order traversal algorithm using a queue, creates a sample binary tree in the main method, and finally, executes the level-order traversal on the tree. The output demonstrates the order in which the nodes are visited during the traversal.
 
 ```cpp
-#include<bits/stdc++.h>
+// copyrights to venkys.io
+// for more programs visit venkys.io
+// c++ program for levelordertraversal
+#include <iostream>
+#include <queue>
+
 // Node class to represent a binary tree node
-class Node{
-    public:
-        int data;
-        Node *left=NULL;
-        Node *right=NULL;
-// Constructor to initialize a node with data
-        Node(int val){
-            data=val;
-        }
+class Node {
+public:
+    int data;
+    Node *left = nullptr;
+    Node *right = nullptr;
+
+    // Constructor to initialize a node with data
+    Node(int val) {
+        data = val;
+    }
 };
+
 // Function to perform level order traversal of a binary tree
-void levelOrder(Node* root){
-    std::queue<Node*> q;// Create a queue to store nodes during traversal
-    q.push(root);// Enqueue the root node to start the traversal
-// Continue traversal until the queue is empty
-    while(!q.empty()){
-        Node* node=q.front();
-        
+void levelOrder(Node *root) {
+    std::queue<Node *> q;  // Create a queue to store nodes during traversal
+    q.push(root);          // Enqueue the root node to start the traversal
+
+    // Continue traversal until the queue is empty
+    while (!q.empty()) {
+        Node *node = q.front();
         q.pop();
-        if(node->left)
+
+        if (node->left)
             q.push(node->left);
-        if(node->right)
+        if (node->right)
             q.push(node->right);
-        std::cout<<node->data<<" ";
+
+        std::cout << node->data << " ";  // Print the data of the current node
     }
 }
+
 // Main function to test the levelOrder function
-int main(){
-    Node* root=new Node(10);
-    root->left=new Node(20);
-    root->right=new Node(30);
-    root->left->left=new Node(40);
-    root->left->right=new Node(50);
-    root->right->left=new Node(60);
-    root->right->right=new Node(70);
-// Calling the levelOrder function to perform level order traversal
+int main() {
+    int rootData;
+    std::cout << "Enter the value for the root node: ";
+    std::cin >> rootData;
+
+    Node *root = new Node(rootData);
+
+    // Taking input for the binary tree nodes from stdin
+    std::cout << "Enter the value for the left child of the root: ";
+    int leftData;
+    std::cin >> leftData;
+    root->left = new Node(leftData);
+
+    std::cout << "Enter the value for the right child of the root: ";
+    int rightData;
+    std::cin >> rightData;
+    root->right = new Node(rightData);
+
+    std::cout << "Enter the value for the left child of the left child: ";
+    int leftLeftData;
+    std::cin >> leftLeftData;
+    root->left->left = new Node(leftLeftData);
+
+    std::cout << "Enter the value for the right child of the left child: ";
+    int leftRightData;
+    std::cin >> leftRightData;
+    root->left->right = new Node(leftRightData);
+
+    std::cout << "Enter the value for the left child of the right child: ";
+    int rightLeftData;
+    std::cin >> rightLeftData;
+    root->right->left = new Node(rightLeftData);
+
+    std::cout << "Enter the value for the right child of the right child: ";
+    int rightRightData;
+    std::cin >> rightRightData;
+    root->right->right = new Node(rightRightData);
+
+    // Calling the levelOrder function to perform level order traversal
     levelOrder(root);
+
     return 0;
 }
 ```
@@ -246,9 +290,7 @@ int main(){
 
 3) **Main Function:** The main function is the entry point for the program. It creates a sample binary   tree by dynamically allocating nodes and connecting them using pointers. The levelorder function is called with the root of the tree, initiating the level-order traversal.
 
-4) 10 20 30 40 50 60 70 is the output of this code.
-
-5) The program prints the data of each node in the binary tree in level-order.
+4) The program prints the data of each node in the binary tree in level-order.
 
 In summary, the C++ code is similar to the Java code you provided earlier. It defines a binary tree, implements a level-order traversal algorithm using a queue, creates a sample binary tree in the main function, and executes the level-order traversal on the tree. The output demonstrates the order in which the nodes are visited during the traversal.
 
