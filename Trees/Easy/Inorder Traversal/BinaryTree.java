@@ -1,21 +1,18 @@
-class TreeNode {
-    int data; 
-    // Store integer data
-    TreeNode left = null,         
-    // Left child reference
-             right = null;         
-    // Right child reference
+import java.util.Scanner;
 
-    public TreeNode(int data) {   
-     // Constructor to create a new TreeNode
-        this.data = data;           
-    // Assign the given data to this node
+class TreeNode {
+    int data;
+    TreeNode left = null; // Left child reference
+    TreeNode right = null; // Right child reference
+
+    // Constructor to create a new TreeNode
+    public TreeNode(int data) {
+        this.data = data; // Assign the given data to this node
     }
 }
 
 public class BinaryTree {
-// Method for inorder traversal
-
+    // Method for inorder traversal
     static void inorderTraversal(TreeNode root) {
         if (root != null) {
             inorderTraversal(root.left);
@@ -25,27 +22,43 @@ public class BinaryTree {
     }
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-        // Creating a binary tree with root node having data 10
-        TreeNode root = new TreeNode(10);
+        // Prompt user to enter the series of numbers
+        System.out.println("Enter a series of numbers separated by spaces:");
+        String input = scanner.nextLine();
+        String[] values = input.split("\\s+");
 
-        // Adding nodes to the root of the created binary tree
-        // Adding left and right child nodes to the root
-        root.left = new TreeNode(20);
-        root.right = new TreeNode(30);
+        // Convert the string values to integers
+        int[] intValues = new int[values.length];
+        for (int i = 0; i < values.length; i++) {
+            intValues[i] = Integer.parseInt(values[i]);
+        }
 
-        // Adding left and right child nodes to the left child of the root
-        root.left.left = new TreeNode(40);
-        root.left.right = new TreeNode(50);
-
-        // Adding left and right child nodes to the right child of the root
-        root.right.left = new TreeNode(60);
-        root.right.right = new TreeNode(70);
+        // Build the binary tree using the series of numbers
+        TreeNode root = buildBinaryTree(intValues, 0);
 
         // Printing the message before performing inorder traversal
         System.out.print("Inorder Traversal: ");
 
         // Calling the inorderTraversal method to perform inorder traversal
         inorderTraversal(root);
+
+        // Close the scanner
+        scanner.close();
+    }
+
+    // Method to build the binary tree using the series of numbers
+    static TreeNode buildBinaryTree(int[] values, int index) {
+        TreeNode node = null;
+        if (index < values.length) {
+            // Create a new node with the current value
+            node = new TreeNode(values[index]);
+
+            // Recursively build the left and right subtrees
+            node.left = buildBinaryTree(values, 2 * index + 1);
+            node.right = buildBinaryTree(values, 2 * index + 2);
+        }
+        return node;
     }
 }
