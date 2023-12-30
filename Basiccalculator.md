@@ -8,36 +8,28 @@ This basic calculator program allows the user to perform addition, subtraction, 
 
 # Program in `cpp`:
 
-```python
+```cpp
 #include <iostream>
-```
 
-```python
+
+
 using namespace std;
-```
 
-```python
 // Function to add two numbers
 double add(double x, double y) {
 return x + y;
 }
-```
 
-```python
 // Function to subtract two numbers
 double subtract(double x, double y) {
 return x - y;
 }
-```
 
-```python
 // Function to multiply two numbers
 double multiply(double x, double y) {
 return x * y;
 }
-```
 
-```python
 // Function to divide two numbers
 double divide(double x, double y) {
 if (y != 0) {
@@ -47,15 +39,11 @@ cout << "Error: Cannot divide by zero!" << endl;
 return 0;  // You can customize the return value for division by zero
 }
 }
-```
 
-```python
 int main() {
 char operation;
 double num1, num2, result;
-```
 
-```
 cout << "Enter operator (+, -, *, /): ";
 cin >> operation;
 
@@ -87,10 +75,8 @@ cout << "Result: " << result << endl;
 
 return 0;
 
-```
-
-```python
 }
+
 ```
 
 ## Step-By-Step Explanation in:
