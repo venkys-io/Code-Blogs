@@ -70,43 +70,31 @@ When working with Excel column numbers programmatically, you may need to convert
 ```cpp
 #include <iostream>
 #include <string>
-```
 
-```cpp
 using namespace std;
-```
 
-```cpp
 int excelColumnToNumber(const string& column) {
-int result = 0;
-for (char c : column) {
-result = result * 26 + (c - 'A' + 1);
+    int result = 0;
+    for (char c : column) {
+        result = result * 26 + (c - 'A' + 1);
+    }
+    return result;
 }
-return result;
-}
-```
 
-```cpp
 int main() {
-string columnName;
-```
+    string columnName;
 
-```cpp
-// Input the column name from the user
-cout << "Enter Excel column name: ";
-cin >> columnName;
+    // Input the column name from the user
+    cout << "Enter Excel column name: ";
+    cin >> columnName;
 
-// Convert the column name to a column number
-int columnNumber = excelColumnToNumber(columnName);
+    // Convert the column name to a column number
+    int columnNumber = excelColumnToNumber(columnName);
 
-// Output the result
-cout << "Column number for " << columnName << " is: " << columnNumber << endl;
+    // Output the result
+    cout << "Column number for " << columnName << " is: " << columnNumber << endl;
 
-return 0;
-
-```
-
-```cpp
+    return 0;
 }
 ```
 
