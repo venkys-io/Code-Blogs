@@ -81,246 +81,256 @@ public:
     Graph(int vertices);
 
     void addEdge(int u, int v);
-    bool is2EdgeConnected();
+    void printGraph();
 
 private:
     int vertices;
     vector<vector<int>> adjList;
-
-    void DFS(int u, vector<bool>& visited, vector<int>& disc, vector<int>& low, vector<int>& parent, vector<pair<int, int>>& bridges);
-    bool isBridge(int u, int v, const vector<pair<int, int>>& bridges);
 };
 
 Graph::Graph(int vertices) : vertices(vertices), adjList(vertices) {}
 
 void Graph::addEdge(int u, int v) {
+    // Adding edge from u to v
     adjList[u].push_back(v);
+
+    // Adding edge from v to u (making it bidirectional)
     adjList[v].push_back(u);
 }
 
-void Graph::DFS(int u, vector<bool>& visited, vector<int>& disc, vector<int>& low, vector<int>& parent, vector<pair<int, int>>& bridges) {
-    static int time = 0;
-
-    visited[u] = true;
-    disc[u] = low[u] = ++time;
-
-    for (int v : adjList[u]) {
-        if (!visited[v]) {
-            parent[v] = u;
-            DFS(v, visited, disc, low, parent, bridges);
-
-            low[u] = min(low[u], low[v]);
-
-            if (low[v] > disc[u])
-                bridges.push_back({u, v});
-        } else if (v != parent[u]) {
-            low[u] = min(low[u], disc[v]);
-        }
-    }
-}
-
-bool Graph::isBridge(int u, int v, const vector<pair<int, int>>& bridges) {
-    for (const auto& bridge : bridges) {
-        if ((bridge.first == u && bridge.second == v) || (bridge.first == v && bridge.second == u)) {
-            return true;
-        }
-    }
-    return false;
-}
-
-bool Graph::is2EdgeConnected() {
-    vector<bool> visited(vertices, false);
-    vector<int> disc(vertices, -1);
-    vector<int> low(vertices, -1);
-    vector<int> parent(vertices, -1);
-    vector<pair<int, int>> bridges;
-
+void Graph::printGraph() {
     for (int i = 0; i < vertices; ++i) {
-        if (!visited[i]) {
-            DFS(i, visited, disc, low, parent, bridges);
+        cout << "Vertex " << i << ": ";
+        for (int neighbor : adjList[i]) {
+            cout << neighbor << " ";
         }
+        cout << endl;
     }
-
-    // Check connectivity after removing non-bridge edges
-    for (int u = 0; u < vertices; ++u) {
-        for (int v : adjList[u]) {
-            if (!isBridge(u, v, bridges)) {
-                // Temporarily remove the non-bridge edge (u, v)
-                int temp = adjList[u].back();
-                adjList[u].pop_back();
-                int temp2 = adjList[v].back();
-                adjList[v].pop_back();
-
-                // Check connectivity
-                vector<bool> tempVisited(vertices, false);
-                DFS(0, tempVisited, disc, low, parent, bridges);
-                for (bool visitedVertex : tempVisited) {
-                    if (!visitedVertex) {
-                        // Restore the edge and return false
-                        adjList[u].push_back(temp);
-                        adjList[v].push_back(temp2);
-                        return false;
-                    }
-                }
-
-                // Restore the removed edge
-                adjList[u].push_back(temp);
-                adjList[v].push_back(temp2);
-            }
-        }
-    }
-
-    // If the graph passes all checks, it is 2-edge-connected
-    return true;
 }
 
 int main() {
-    Graph g(4);
-    g.addEdge(0, 1);
-    g.addEdge(1, 2);
-    g.addEdge(2, 3);
-    g.addEdge(3, 0);
+    int vertices, edges;
+    
+    // Input the number of vertices and edges
+    cout << "Enter the number of vertices: ";
+    cin >> vertices;
+    
+    cout << "Enter the number of edges: ";
+    cin >> edges;
 
-    if (g.is2EdgeConnected()) {
-        cout << "The graph is 2-edge-connected." << endl;
-    } else {
-        cout << "The graph is not 2-edge-connected." << endl;
+    Graph g(vertices);
+
+    // Input edges
+    cout << "Enter edges (format: u v):" << endl;
+    for (int i = 0; i < edges; ++i) {
+        int u, v;
+        cin >> u >> v;
+        g.addEdge(u, v);
     }
+
+    // Print the double-edge graph
+    cout << "Double-Edge Graph:" << endl;
+    g.printGraph();
 
     return 0;
 }
 
+
 ```
 
 ## **Step-by-Step Explanation:**
 
-1. **Graph Class:**
-    - The `Graph` class is created to represent an undirected graph using an adjacency list.
-2. **DFS Function:**
-    - The `DFS` function is implemented to perform a depth-first search and identify bridges in the graph.
-3. **Bridge Identification:**
-    - The `DFS` function marks edges as bridges based on the low and discovery times.
-4. **isBridge Function:**
-    - The `isBridge` function checks if an edge is a bridge.
-5. **is2EdgeConnected Function:**
-    - The `is2EdgeConnected` function utilizes DFS and bridge identification to check the graph's 2-edge-connectedness.
-    - It also checks the graph's connectivity after temporarily removing non-bridge edges.
-6. **Main Function:**
-    - The `main` function creates a graph, adds edges, and checks if the graph is 2-edge-connected.
+1. Include Header Files
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+```
+Include necessary header files for input/output and vector.
+
+2. Define the Graph Class
+```cpp
+class Graph {
+public:
+    Graph(int vertices);
+    void addEdge(int u, int v);
+    void printGraph();
+private:
+    int vertices;
+    vector<vector<int>> adjList;
+};
+```
+Define a `Graph` class with public methods for adding edges and printing the graph. The private members include the number of vertices (`vertices`) and an adjacency list (`adjList`) to represent the graph.
+
+3. Implement the Graph Constructor
+```cpp
+Graph::Graph(int vertices) : vertices(vertices), adjList(vertices) {}
+```
+Implement the constructor for the `Graph` class. It initializes the number of vertices and resizes the adjacency list vector to accommodate the given number of vertices.
+
+4. Implement the `addEdge` Method
+```cpp
+void Graph::addEdge(int u, int v) {
+    adjList[u].push_back(v);
+    adjList[v].push_back(u); // Add the reverse edge for a double-edged graph
+}
+```
+Implement the `addEdge` method to add an undirected edge between vertices `u` and `v`. Since it's a double-edged graph, the method adds the reverse edge as well.
+
+5. Implement the `printGraph` Method
+```cpp
+void Graph::printGraph() {
+    for (int i = 0; i < vertices; ++i) {
+        cout << "Vertex " << i << " connected to:";
+        for (int neighbor : adjList[i]) {
+            cout << " " << neighbor;
+        }
+        cout << endl;
+    }
+}
+```
+Implement the `printGraph` method to print the adjacency list representation of the graph. It prints each vertex and its connected neighbors.
+
+6. Implement the `main` Function
+```cpp
+int main() {
+    int numVertices, numEdges;
+    cout << "Enter the number of vertices and edges: ";
+    cin >> numVertices >> numEdges;
+
+    Graph g(numVertices);
+
+    cout << "Enter the edges (format: u v):" << endl;
+    for (int i = 0; i < numEdges; ++i) {
+        int u, v;
+        cin >> u >> v;
+        g.addEdge(u, v);
+    }
+
+    cout << "Double-edged graph representation:" << endl;
+    g.printGraph();
+
+    return 0;
+}
+```
+In the `main` function:
+- Get the number of vertices and edges from the user.
+- Create a `Graph` object `g` with the specified number of vertices.
+- Prompt the user to enter edges and call `addEdge` for each edge.
+- Print the adjacency list representation of the double-edged graph.
+
+7. Example Input and Output
+Example Input:
+```
+Enter the number of vertices and edges: 4 5
+Enter the edges (format: u v):
+0 1
+1 2
+2 3
+3 0
+0 2
+```
+Example Output:
+```
+Double-edged graph representation:
+Vertex 0 connected to: 1 3 2
+Vertex 1 connected to: 0 2
+Vertex 2 connected to: 1 0 3
+Vertex 3 connected to: 2 0
+```
+
 
 # Program in `python`:
 
 ```python
-class Graph:
-    def __init__(self, vertices):
-        self.vertices = vertices
-        self.adj_list = {v: [] for v in range(vertices)}
-        self.edges = set()
+class DoubleEdgeGraph:
+    def __init__(self):
+        self.graph = {}
 
     def add_edge(self, u, v):
-        self.adj_list[u].append(v)
-        self.adj_list[v].append(u)
-        self.edges.add((u, v))
+        if u not in self.graph:
+            self.graph[u] = []
+        if v not in self.graph:
+            self.graph[v] = []
 
-    def dfs(self, u, parent, visited, disc, low, bridges):
-        visited[u] = True
-        disc[u] = low[u] = self.time
-        self.time += 1
+        self.graph[u].append(v)
+        self.graph[v].append(u)
 
-        for v in self.adj_list[u]:
-            if not visited[v]:
-                self.dfs(v, u, visited, disc, low, bridges)
+    def display_graph(self):
+        for vertex, edges in self.graph.items():
+            print(f"Vertex {vertex}: {edges}")
 
-                low[u] = min(low[u], low[v])
-
-                if low[v] > disc[u]:
-                    bridges.add((u, v))
-            elif v != parent:
-                low[u] = min(low[u], disc[v])
-
-    def is_2_edge_connected(self):
-        visited = [False] * self.vertices
-        disc = [float("inf")] * self.vertices
-        low = [float("inf")] * self.vertices
-        bridges = set()
-        self.time = 0
-
-        self.dfs(0, -1, visited, disc, low, bridges)
-
-        if not bridges:
-            return True  # No bridges, so the graph is 2-edge-connected
-
-        for edge in self.edges:
-            if edge not in bridges:
-                u, v = edge
-                self.edges.remove(edge)
-
-                visited = [False] * self.vertices
-                self.dfs(0, -1, visited, disc, low, set())
-
-                self.edges.add(edge)
-
-                if any(not visited[i] for i in range(self.vertices)):
-                    return False  # Removing the edge disconnects the graph
-
-        return True  # All edges were tested and the graph is 2-edge-connected
-
-# Example usage:
+# Example Input
 if __name__ == "__main__":
-    g = Graph(5)
-    g.add_edge(0, 1)
-    g.add_edge(1, 2)
-    g.add_edge(2, 3)
-    g.add_edge(3, 0)
-    g.add_edge(1, 4)
+    # Create a double edge graph
+    double_edge_graph = DoubleEdgeGraph()
 
-    result = g.is_2_edge_connected()
+    # Input the number of edges
+    num_edges = int(input("Enter the number of edges: "))
 
-    if result:
-        print("The graph is 2-edge-connected.")
-    else:
-        print("The graph is not 2-edge-connected.")
+    # Input edges
+    for _ in range(num_edges):
+        u, v = map(int, input("Enter edge (u v): ").split())
+        double_edge_graph.add_edge(u, v)
+
+    # Display the graph
+    print("\nDouble Edge Graph:")
+    double_edge_graph.display_graph()
 
 ```
 
-## **Step-by-Step Explanation:**
+### Step-by-Step Explanation:
 
-1. **Initialization:**
-    - The `Graph` class is initialized with an adjacency list and a set to store edges.
-2. **Adding Edges:**
-    - Edges are added to the graph using the `add_edge` method.
-3. **Depth-First Search (DFS):**
-    - The `dfs` method performs a depth-first search to identify bridges in the graph.
-4. **Bridges Identification:**
-    - The set `bridges` stores identified bridges.
-5. **Connectivity Check:**
-    - The graph's connectivity is checked after temporarily removing each non-bridge edge.
-6. **Result:**
-    - The result is determined based on the presence of bridges and the connectivity check.
+1. **`DoubleEdgeGraph` Class:**
+   - Defines a class `DoubleEdgeGraph` to represent a double edge graph.
+   - The `__init__` method initializes an empty graph represented as a dictionary.
+
+2. **`add_edge` Method:**
+   - The `add_edge` method adds double edges to the graph.
+   - Checks if vertices `u` and `v` are already in the graph; if not, adds them.
+   - Appends `v` to the list of edges for vertex `u` and vice versa.
+
+3. **`display_graph` Method:**
+   - The `display_graph` method prints the vertices and their corresponding edges.
+
+4. **Input Section:**
+   - `if __name__ == "__main__":` ensures that the following code is executed only if the script is run directly, not if it's imported as a module.
+
+5. **Create an Instance of `DoubleEdgeGraph`:**
+   - Creates an instance of the `DoubleEdgeGraph` class named `double_edge_graph`.
+
+6. **Input Number of Edges:**
+   - Asks the user to input the number of edges in the graph.
+
+7. **Input Edges:**
+   - Uses a loop to iterate over the number of edges specified by the user.
+   - For each iteration, takes input for the edge in the format "u v" and adds the double edge to the graph using the `add_edge` method.
+
+8. **Display the Graph:**
+   - Prints the double edge graph using the `display_graph` method.
+
+9. **Example Input and Output:**
+   - The user provides the number of edges (e.g., 4) and enters the edges (e.g., 0 1, 1 2, 2 3, 3 0) when prompted.
+   - The program displays the resulting double edge graph.
+
+10. **Final Output:**
+   - Prints the vertices and their corresponding edges in the double edge graph.
+
 
 # Program in `java`:
 
 ```java
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
-class Edge {
-    int u, v;
-
-    public Edge(int u, int v) {
-        this.u = u;
-        this.v = v;
-    }
-}
-
-public class TwoEdgeConnectedGraph {
-
+class Graph {
     private int vertices;
-    private List<List<Integer>> adjList;
+    private ArrayList<ArrayList<Integer>> adjList;
 
-    public TwoEdgeConnectedGraph(int vertices) {
+    public Graph(int vertices) {
         this.vertices = vertices;
         this.adjList = new ArrayList<>(vertices);
+
         for (int i = 0; i < vertices; i++) {
             adjList.add(new ArrayList<>());
         }
@@ -328,84 +338,152 @@ public class TwoEdgeConnectedGraph {
 
     public void addEdge(int u, int v) {
         adjList.get(u).add(v);
-        adjList.get(v).add(u);
+        adjList.get(v).add(u); // Adding the reverse edge
     }
 
-    public boolean is2EdgeConnected() {
-        int[] discoveryTime = new int[vertices];
-        int[] low = new int[vertices];
-        boolean[] visited = new boolean[vertices];
-
-        int time = 0;
-
-        // DFS from the first vertex (can be any vertex)
-        dfs(0, -1, discoveryTime, low, visited, time);
-
-        // Check for any unvisited vertex, indicating disconnected components
+    public void printGraph() {
         for (int i = 0; i < vertices; i++) {
-            if (!visited[i]) {
-                return false;
+            System.out.print("Vertex " + i + " is connected to: ");
+            for (int neighbor : adjList.get(i)) {
+                System.out.print(neighbor + " ");
             }
+            System.out.println();
         }
-
-        return true;
-    }
-
-    private void dfs(int current, int parent, int[] discoveryTime, int[] low, boolean[] visited, int time) {
-        visited[current] = true;
-        discoveryTime[current] = low[current] = ++time;
-
-        for (int neighbor : adjList.get(current)) {
-            if (!visited[neighbor]) {
-                dfs(neighbor, current, discoveryTime, low, visited, time);
-
-                low[current] = Math.min(low[current], low[neighbor]);
-
-                if (low[neighbor] > discoveryTime[current]) {
-                    // (current, neighbor) is a bridge
-                    return;
-                }
-            } else if (neighbor != parent) {
-                low[current] = Math.min(low[current], discoveryTime[neighbor]);
-            }
-        }
-    }
-
-    public static void main(String[] args) {
-        // Example usage
-        TwoEdgeConnectedGraph graph = new TwoEdgeConnectedGraph(4);
-        graph.addEdge(0, 1);
-        graph.addEdge(1, 2);
-        graph.addEdge(2, 3);
-
-        boolean is2EdgeConnected = graph.is2EdgeConnected();
-        System.out.println("Is the graph 2-edge-connected? " + is2EdgeConnected);
     }
 }
+
+public class DoubleEdgeGraphExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of vertices: ");
+        int vertices = scanner.nextInt();
+
+        Graph graph = new Graph(vertices);
+
+        System.out.println("Enter edges (vertex pairs, -1 to stop):");
+        while (true) {
+            int u = scanner.nextInt();
+            if (u == -1) break;
+            int v = scanner.nextInt();
+            if (v == -1) break;
+
+            graph.addEdge(u, v);
+        }
+
+        System.out.println("Double Edge Graph:");
+        graph.printGraph();
+    }
+}
+
 
 ```
 
 ## **Step-by-step Explanation:**
 
-1. **Class Setup:**
-    - `Edge` class represents an edge between two vertices.
-    - `TwoEdgeConnectedGraph` class is the main class for the graph.
-2. **Graph Initialization:**
-    - Constructor initializes the graph with the specified number of vertices.
-3. **Adding Edges:**
-    - `addEdge` method adds an undirected edge between two vertices.
-4. **DFS for Bridge Identification:**
-    - `dfs` method performs a depth-first search (DFS) to identify bridges (cut edges) in the graph.
-5. **DFS Initialization:**
-    - Arrays `discoveryTime`, `low`, and `visited` are used to keep track of DFS information.
-6. **Bridge Identification:**
-    - The algorithm identifies bridges during the DFS traversal.
-7. **Connectivity Check:**
-    - After DFS, check if any vertex is unvisited, indicating disconnected components.
-8. **Main Method:**
-    - Creates an example graph, adds edges, and checks whether it is 2-edge-connected.
+1. **Graph Class:**
+   - `Graph` class represents an undirected graph using an adjacency list.
+   - It has a constructor that initializes the number of vertices and creates an empty adjacency list for each vertex.
 
-This Java program uses Tarjan's algorithm for finding bridges in an undirected graph. The `is2EdgeConnected` method returns `true` if the graph is 2-edge-connected and `false` otherwise.
+```java
+class Graph {
+    private int vertices;
+    private ArrayList<ArrayList<Integer>> adjList;
+
+    // Constructor
+    public Graph(int vertices) {
+        this.vertices = vertices;
+        this.adjList = new ArrayList<>(vertices);
+
+        for (int i = 0; i < vertices; i++) {
+            adjList.add(new ArrayList<>());
+        }
+    }
+
+    // Methods for adding edges and printing the graph
+    // ...
+}
+```
+
+2. **addEdge Method:**
+   - The `addEdge` method adds an undirected edge between two vertices, updating the adjacency list for both vertices.
+
+```java
+    public void addEdge(int u, int v) {
+        adjList.get(u).add(v);
+        adjList.get(v).add(u); // Adding the reverse edge
+    }
+```
+
+3. **printGraph Method:**
+   - The `printGraph` method prints the adjacency list representation of the graph.
+
+```java
+    public void printGraph() {
+        for (int i = 0; i < vertices; i++) {
+            System.out.print("Vertex " + i + " is connected to: ");
+            for (int neighbor : adjList.get(i)) {
+                System.out.print(neighbor + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+```
+
+4. **DoubleEdgeGraphExample Class (Main Class):**
+   - `DoubleEdgeGraphExample` class contains the `main` method, which is the entry point of the program.
+   - It creates a `Scanner` object to read user input.
+
+```java
+import java.util.Scanner;
+
+public class DoubleEdgeGraphExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // ...
+    }
+}
+```
+
+5. **User Input:**
+   - The program prompts the user to enter the number of vertices.
+
+```java
+        System.out.print("Enter the number of vertices: ");
+        int vertices = scanner.nextInt();
+```
+
+6. **Graph Initialization:**
+   - It creates a `Graph` object with the specified number of vertices.
+
+```java
+        Graph graph = new Graph(vertices);
+```
+
+7. **Edge Input Loop:**
+   - The program then prompts the user to enter edges (vertex pairs) until they enter `-1`.
+
+```java
+        System.out.println("Enter edges (vertex pairs, -1 to stop):");
+        while (true) {
+            int u = scanner.nextInt();
+            if (u == -1) break;
+            int v = scanner.nextInt();
+            if (v == -1) break;
+
+            graph.addEdge(u, v);
+        }
+```
+
+8. **Print Graph:**
+   - Finally, it prints the double-edge graph using the `printGraph` method.
+
+```java
+        System.out.println("Double Edge Graph:");
+        graph.printGraph();
+```
 
 # Time and Space Complexities:
 
