@@ -367,9 +367,6 @@ int main() {
  
 This program uses the merge sort algorithm to sort an array and interacts with the user through STDIN and STDOUT. The use of functions and comments enhances code readability and maintainability.
 
-<h2>OUTPUT</h2>
-
-The sorted order is:  2 12 24 34 96 456 899
 
 <h2>Time and Space complexity analysis:</h2>
 
