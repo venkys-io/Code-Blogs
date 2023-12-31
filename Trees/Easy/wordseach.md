@@ -83,10 +83,13 @@ def display_word_search(grid):
         print(' '.join(row))
 
 def word_search():
-    words = ["PYTHON", "JAVA", "C", "HTML", "CSS", "JAVASCRIPT"]
-    grid_size = 10
+    print("Enter the words to include in the puzzle (separated by spaces):")
+    words = input().split()
 
-    print("Word Search Puzzle:")
+    print("Enter the size of the puzzle grid:")
+    grid_size = int(input())
+
+    print("\nWord Search Puzzle:")
     word_search_grid = generate_word_search(words, grid_size)
     display_word_search(word_search_grid)
 
@@ -115,6 +118,7 @@ if __name__ == "__main__":
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 
 public class WordSearchGenerator {
 
@@ -176,10 +180,15 @@ public class WordSearchGenerator {
     }
 
     public static void main(String[] args) {
-        String[] words = {"JAVA", "PYTHON", "C", "HTML", "CSS", "JAVASCRIPT"};
-        int gridSize = 10;
+        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Word Search Puzzle:");
+        System.out.print("Enter the words to include in the puzzle (separated by spaces): ");
+        String[] words = scanner.nextLine().split(" ");
+
+        System.out.print("Enter the size of the puzzle grid: ");
+        int gridSize = scanner.nextInt();
+
+        System.out.println("\nWord Search Puzzle:");
         char[][] wordSearchGrid = generateWordSearch(words, gridSize);
         displayWordSearch(wordSearchGrid);
 
@@ -187,83 +196,9 @@ public class WordSearchGenerator {
         for (String word : words) {
             System.out.println(word);
         }
-    }
-}
 
-import java.util.Arrays;
-import java.util.Random;
-
-public class WordSearchGenerator {
-
-    public static char[][] generateWordSearch(String[] words, int size) {
-        char[][] grid = new char[size][size];
-
-        // Initialize the grid with spaces
-        for (char[] row : grid) {
-            Arrays.fill(row, ' ');
-        }
-
-        Random random = new Random();
-
-        // Place words randomly in the grid
-        for (String word : words) {
-            String direction = randomDirection(random);
-            int row = random.nextInt(size);
-            int col = random.nextInt(size);
-
-            if ("horizontal".equals(direction) && col + word.length() <= size) {
-                for (int i = 0; i < word.length(); i++) {
-                    grid[row][col + i] = word.charAt(i);
-                }
-            } else if ("vertical".equals(direction) && row + word.length() <= size) {
-                for (int i = 0; i < word.length(); i++) {
-                    grid[row + i][col] = word.charAt(i);
-                }
-            } else if ("diagonal".equals(direction) && row + word.length() <= size && col + word.length() <= size) {
-                for (int i = 0; i < word.length(); i++) {
-                    grid[row + i][col + i] = word.charAt(i);
-                }
-            }
-        }
-
-        // Fill the remaining empty spaces with random letters
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                if (grid[i][j] == ' ') {
-                    grid[i][j] = (char) ('A' + random.nextInt(26));
-                }
-            }
-        }
-
-        return grid;
-    }
-
-    private static String randomDirection(Random random) {
-        String[] directions = {"horizontal", "vertical", "diagonal"};
-        return directions[random.nextInt(directions.length)];
-    }
-
-    public static void displayWordSearch(char[][] grid) {
-        for (char[] row : grid) {
-            for (char cell : row) {
-                System.out.print(cell + " ");
-            }
-            System.out.println();
-        }
-    }
-
-    public static void main(String[] args) {
-        String[] words = {"JAVA", "PYTHON", "C", "HTML", "CSS", "JAVASCRIPT"};
-        int gridSize = 10;
-
-        System.out.println("Word Search Puzzle:");
-        char[][] wordSearchGrid = generateWordSearch(words, gridSize);
-        displayWordSearch(wordSearchGrid);
-
-        System.out.println("\nList of Words to Find:");
-        for (String word : words) {
-            System.out.println(word);
-        }
+        // Close the scanner
+        scanner.close();
     }
 }
 ```
@@ -280,34 +215,40 @@ These statements import necessary classes for handling arrays and generating ran
 ```cpp
 //copyrights to venkys.io
 // for more programs visit venkys.io
-// java program for pre order traversal
+// c++ program for word search
 
 #include <iostream>
 #include <vector>
 #include <cstdlib>
 #include <ctime>
 
-using namespace std;
+std::vector<std::vector<char>> generateWordSearch(const std::vector<std::string>& words, int size) {
+    std::vector<std::vector<char>> grid(size, std::vector<char>(size, ' '));
 
-vector<vector<char>> generateWordSearch(const vector<string>& words, int size) {
-    vector<vector<char>> grid(size, vector<char>(size, ' '));
+    // Initialize the grid with spaces
+    for (auto& row : grid) {
+        std::fill(row.begin(), row.end(), ' ');
+    }
+
+    // Seed for random number generation
+    std::srand(std::time(0));
 
     // Place words randomly in the grid
-    for (const string& word : words) {
-        string direction = (rand() % 3 == 0) ? "diagonal" : ((rand() % 2 == 0) ? "horizontal" : "vertical");
-        int row = rand() % size;
-        int col = rand() % size;
+    for (const auto& word : words) {
+        std::string direction = randomDirection();
+        int row = std::rand() % size;
+        int col = std::rand() % size;
 
         if (direction == "horizontal" && col + word.length() <= size) {
-            for (int i = 0; i < word.length(); i++) {
+            for (size_t i = 0; i < word.length(); i++) {
                 grid[row][col + i] = word[i];
             }
         } else if (direction == "vertical" && row + word.length() <= size) {
-            for (int i = 0; i < word.length(); i++) {
+            for (size_t i = 0; i < word.length(); i++) {
                 grid[row + i][col] = word[i];
             }
         } else if (direction == "diagonal" && row + word.length() <= size && col + word.length() <= size) {
-            for (int i = 0; i < word.length(); i++) {
+            for (size_t i = 0; i < word.length(); i++) {
                 grid[row + i][col + i] = word[i];
             }
         }
@@ -317,7 +258,7 @@ vector<vector<char>> generateWordSearch(const vector<string>& words, int size) {
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
             if (grid[i][j] == ' ') {
-                grid[i][j] = 'A' + rand() % 26;
+                grid[i][j] = 'A' + std::rand() % 26;
             }
         }
     }
@@ -325,28 +266,42 @@ vector<vector<char>> generateWordSearch(const vector<string>& words, int size) {
     return grid;
 }
 
-void displayWordSearch(const vector<vector<char>>& grid) {
+std::string randomDirection() {
+    std::vector<std::string> directions = {"horizontal", "vertical", "diagonal"};
+    return directions[std::rand() % directions.size()];
+}
+
+void displayWordSearch(const std::vector<std::vector<char>>& grid) {
     for (const auto& row : grid) {
         for (char cell : row) {
-            cout << cell << " ";
+            std::cout << cell << ' ';
         }
-        cout << endl;
+        std::cout << '\n';
     }
 }
 
 int main() {
-    srand(static_cast<unsigned>(time(nullptr)));
+    std::cout << "Enter the words to include in the puzzle (separated by spaces): ";
+    std::vector<std::string> words;
+    std::string input;
+    std::getline(std::cin, input);
+    std::istringstream iss(input);
+    std::string word;
+    while (iss >> word) {
+        words.push_back(word);
+    }
 
-    vector<string> words = {"JAVA", "PYTHON", "C", "HTML", "CSS", "JAVASCRIPT"};
-    int gridSize = 10;
+    std::cout << "Enter the size of the puzzle grid: ";
+    int gridSize;
+    std::cin >> gridSize;
 
-    cout << "Word Search Puzzle:" << endl;
+    std::cout << "\nWord Search Puzzle:\n";
     auto wordSearchGrid = generateWordSearch(words, gridSize);
     displayWordSearch(wordSearchGrid);
 
-    cout << "\nList of Words to Find:" << endl;
-    for (const string& word : words) {
-        cout << word << endl;
+    std::cout << "\nList of Words to Find:\n";
+    for (const auto& word : words) {
+        std::cout << word << '\n';
     }
 
     return 0;
