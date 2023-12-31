@@ -392,10 +392,6 @@ for (int vertex : dfsTraversal) {
 }
 Print the DFS traversal result.
 
-<h2>OUTPUT</h2>
-
-The DFS traversal of the graph is: 0 2 3 1
-
 <h2>Time and Space complexity analysis:</h2>
 
 The time complexity of the DFS traversal is O(V + E), where V is the number of vertices and E is the number of edges in the graph. Here's the breakdown:
