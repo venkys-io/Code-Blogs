@@ -38,34 +38,78 @@ def DFS(graph):
 
     return visited
 
-# Test drive code:
-graph = {
-    0: [1, 2],
-    1: [2],
-    2: [0, 3],
-    3: [3]
-}
+def main():
+    # Take input for the graph
+    graph = {}
+    n = int(input("Enter the number of vertices: "))
+    for i in range(n):
+        vertex = int(input(f"Enter neighbors for vertex {i}: "))
+        neighbors = list(map(int, input().split()))
+        graph[vertex] = neighbors
 
-print("The DFS traversal of the graph is:", DFS(graph))
+    # Call DFS function and print the result
+    print("The DFS traversal of the graph is:", DFS(graph))
+
+if __name__ == "__main__":
+    main()
 
 ```
 
 <h2>Step-by-Step Explanation:</h2>
 
-1. **Initialization:**
-    - stack : This is used as a stack to keep track of the vertices to be explored in the DFS traversal.
-    - visited : This list is used to store the vertices that have been visited during the traversal.
-    - first : The starting vertex is chosen as the first vertex in the graph (based on the assumption that the graph is non-empty).
-2. **DFS Traversal:**
-    - The DFS traversal starts with the chosen starting vertex. It is pushed onto the stack.
-    - The traversal continues until the stack is empty.
-    - In each iteration, the top vertex is popped from the stack (current_vertex), and it is marked as visited.
-    - The neighbors of the current vertex that have not been visited or are not in the stack are added to the stack for further exploration.
-3. **Return:**
-    - The final result is the list of visited vertices, representing the DFS traversal order.
-4. **Test Drive:**
-    - The provided graph is an example graph with vertices 0, 1, 2, and 3, and their corresponding edges.
-    - The DFS traversal is printed as the output.
+1.Import Libraries:
+The code doesn't require any external libraries, so there are no import statements.
+
+2.Define DFS Function:
+
+DFS(graph): This function performs Depth-First Search on a graph.
+stack: A stack is used to keep track of vertices to be visited.
+visited: A list to store visited vertices.
+first: Selects the first vertex in the graph as the starting point.
+stack.append(first): Adds the starting vertex to the stack.
+
+3.DFS Traversal:
+
+while stack:: This loop continues until the stack is empty.
+current_vertex = stack.pop(): Pops the top vertex from the stack.
+visited.append(current_vertex): Marks the current vertex as visited.
+
+4.Explore Neighbors:
+
+for neighbor in graph[current_vertex]:: Iterates through neighbors of the current vertex.
+if neighbor not in stack and neighbor not in visited:: Checks if the neighbor is not already in the stack or visited.
+stack.append(neighbor): Adds the neighbor to the stack for further exploration.
+
+5.Return Visited List:
+
+return visited: Returns the list of visited vertices after DFS traversal.
+
+6.Define Main Function:
+
+main(): Takes input for the graph and calls the DFS function.
+graph = {}: Initializes an empty dictionary to represent the graph.
+
+7.Input Graph:
+
+n = int(input("Enter the number of vertices: ")): Takes the number of vertices as input.
+for i in range(n):: Loops through each vertex to input neighbors.
+vertex = int(input(f"Enter neighbors for vertex {i}: ")): Takes the vertex as input.
+neighbors = list(map(int, input().split())): Takes a list of neighbors as input.
+graph[vertex] = neighbors: Adds the vertex and its neighbors to the graph.
+
+8.Call DFS Function:
+
+print("The DFS traversal of the graph is:", DFS(graph)): Calls the DFS function and prints the result.
+
+9.Run Main Function:
+
+if __name__ == "__main__":: Ensures that the main() function is executed when the script is run.
+
+10.Execution:
+
+The script is executed, prompting the user to input the graph information.
+DFS is performed on the input graph.
+The DFS traversal result is printed.
 
 <h2>JAVA</h2>
 
@@ -103,12 +147,28 @@ public class DFSGraphTraversal {
     }
 
     public static void main(String[] args) {
-        // Test drive code
+        // Take input for the graph
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of vertices: ");
+        int numVertices = scanner.nextInt();
+
         Map<Integer, List<Integer>> graph = new HashMap<>();
-        graph.put(0, Arrays.asList(1, 2));
-        graph.put(1, Collections.singletonList(2));
-        graph.put(2, Arrays.asList(0, 3));
-        graph.put(3, Collections.singletonList(3));
+        for (int i = 0; i < numVertices; i++) {
+            System.out.print("Enter neighbors for vertex " + i + ": ");
+            int vertex = scanner.nextInt();
+            List<Integer> neighbors = new ArrayList<>();
+
+            // Input neighbors for the current vertex
+            while (scanner.hasNextInt()) {
+                neighbors.add(scanner.nextInt());
+            }
+
+            graph.put(vertex, neighbors);
+        }
+
+        // Close the scanner to prevent resource leaks
+        scanner.close();
 
         // Perform DFS traversal
         List<Integer> dfsTraversal = dfs(graph);
@@ -184,56 +244,66 @@ NOTE: In Java, Map is used to represent the graph, and ArrayList and LinkedList 
 //CPP program for DFS
 
 #include <iostream>
-#include <unordered_map>
 #include <vector>
+#include <unordered_map>
 #include <stack>
-
-using namespace std;
+#include <algorithm>
 
 // Function to perform DFS traversal on a graph
-vector<int> dfs(const unordered_map<int, vector<int>>& graph) {
-    stack<int> stk;    // Used to implement the DFS logic
-    vector<int> visited; // Used to store visited vertices
+std::vector<int> dfs(const std::unordered_map<int, std::vector<int>>& graph) {
+    std::stack<int> dfsStack;  // Used to implement the DFS logic
+    std::vector<int> visited;   // Used to store visited vertices
 
     // Choose the first vertex in the graph as the starting point
     int first = graph.begin()->first;
-    stk.push(first);
+    dfsStack.push(first);
 
-    // DFS traversal loop
-    while (!stk.empty()) {
-        int currentVertex = stk.top();  // Get the top vertex from the stack
-        stk.pop();  // Pop the top vertex from the stack
-        visited.push_back(currentVertex);  // Mark the current vertex as visited
+    while (!dfsStack.empty()) {
+        int currentVertex = dfsStack.top();  // Get the top vertex from the stack
+        dfsStack.pop();
+        visited.push_back(currentVertex);    // Mark the current vertex as visited
 
         // Explore neighbors of the current vertex
         for (int neighbor : graph.at(currentVertex)) {
-            // If neighbor is not in the stack and not visited, push it onto the stack
-            if (find(stk.begin(), stk.end(), neighbor) == stk.end() &&
-                find(visited.begin(), visited.end(), neighbor) == visited.end()) {
-                stk.push(neighbor);
+            // Check if the neighbor is not already in the stack or visited
+            if (std::find(dfsStack.begin(), dfsStack.end(), neighbor) == dfsStack.end() &&
+                std::find(visited.begin(), visited.end(), neighbor) == visited.end()) {
+                dfsStack.push(neighbor);
             }
         }
     }
 
-    return visited;  // Return the list of visited vertices
+    return visited;
 }
 
 int main() {
-    // Test drive code
-    unordered_map<int, vector<int>> graph = {
-        {0, {1, 2}},
-        {1, {2}},
-        {2, {0, 3}},
-        {3, {3}}
-    };
+    // Take input for the graph
+    int numVertices;
+    std::cout << "Enter the number of vertices: ";
+    std::cin >> numVertices;
+
+    std::unordered_map<int, std::vector<int>> graph;
+    for (int i = 0; i < numVertices; ++i) {
+        int vertex, numNeighbors;
+        std::cout << "Enter vertex " << i << " and the number of neighbors: ";
+        std::cin >> vertex >> numNeighbors;
+
+        std::vector<int> neighbors(numNeighbors);
+        std::cout << "Enter the neighbors for vertex " << i << ": ";
+        for (int j = 0; j < numNeighbors; ++j) {
+            std::cin >> neighbors[j];
+        }
+
+        graph[vertex] = neighbors;
+    }
 
     // Perform DFS traversal
-    vector<int> dfsTraversal = dfs(graph);
+    std::vector<int> dfsTraversal = dfs(graph);
 
     // Print the DFS traversal result
-    cout << "The DFS traversal of the graph is: ";
+    std::cout << "The DFS traversal of the graph is: ";
     for (int vertex : dfsTraversal) {
-        cout << vertex << " ";
+        std::cout << vertex << " ";
     }
 
     return 0;
@@ -241,60 +311,86 @@ int main() {
 
 ```
 
-<h2>Step-by-Step Explanation:</h2>
+<h2>Step-By-Step Explanation:</h2>
 
-1.Include Statements:
+1Include Headers:
 
-#include <iostream>: Includes the necessary header file for input/output operations.
-#include <unordered_map>: Includes the header file for unordered maps.
-#include <vector>: Includes the header file for vectors.
-#include <stack>: Includes the header file for stacks.
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+#include <stack>
+#include <algorithm>
+Include necessary C++ standard library headers for input/output, vectors, unordered_map, stack, and algorithm.
 
-2.Namespace:
+2.DFS Function:
 
-using namespace std;: Declares that the code will be using the standard namespace.
+std::vector<int> dfs(const std::unordered_map<int, std::vector<int>>& graph) {
+    // Function code...
+}
+Define a function named dfs that takes an unordered_map representing the graph and returns a vector of integers (the DFS traversal result).
+The function uses a stack to implement the DFS logic and a vector to store visited vertices.
 
-3.DFS Function:
+3.DFS Logic:
 
-vector<int> dfs(const unordered_map<int, vector<int>>& graph) {: Declares a function dfs that takes an unordered map representing the graph and 	returns a vector of integers.
+int first = graph.begin()->first;
+dfsStack.push(first);
+Choose the first vertex in the graph as the starting point and push it onto the stack.
 
-4.Initialize Stack and Visited List:
+4.DFS Traversal Loop:
 
-stack<int> stk;: Creates a stack to implement DFS logic.
-vector<int> visited;: Creates a vector to store visited vertices.
+while (!dfsStack.empty()) {
+    int currentVertex = dfsStack.top();
+    dfsStack.pop();
+    // DFS logic...
+}
+Continue the loop until the stack is empty.
+Pop the top vertex from the stack and mark it as visited.
 
-5.Choose Starting Vertex:
+5.Explore Neighbors:
 
-int first = graph.begin()->first;: Chooses the first vertex in the graph as the starting point.
-stk.push(first);: Pushes the starting vertex onto the stack.
+for (int neighbor : graph.at(currentVertex)) {
+    // Check if the neighbor is not already in the stack or visited
+    if (std::find(dfsStack.begin(), dfsStack.end(), neighbor) == dfsStack.end() &&
+        std::find(visited.begin(), visited.end(), neighbor) == visited.end()) {
+        dfsStack.push(neighbor);
+    }
+}
+Iterate through the neighbors of the current vertex.
+Check if the neighbor is not already in the stack or visited, then push it onto the stack.
 
-6.DFS Traversal Loop:
+6.Main Function:
 
-while (!stk.empty()) {: Initiates a loop until the stack is empty.
-int currentVertex = stk.top();: Gets the top vertex from the stack.
-stk.pop();: Pops the top vertex from the stack.
-visited.push_back(currentVertex);: Marks the current vertex as visited.
+int main() {
+    // Main function code...
+}
+Entry point of the program.
 
-7.Explore Neighbors:
+7.Take Input for the Graph:
 
-for (int neighbor : [graph.at](http://graph.at/)(currentVertex)) {: Iterates over the neighbors of the current vertex.
-Checks if the neighbor is not in the stack and not visited before pushing it onto the stack.
+int numVertices;
+std::cout << "Enter the number of vertices: ";
+std::cin >> numVertices;
+Prompt the user to enter the number of vertices.
 
-8.Return Visited List:
+8.Build the Graph:
 
-return visited;: Returns the list of visited vertices after the DFS traversal.
+std::unordered_map<int, std::vector<int>> graph;
+// Loop to input vertices and neighbors...
+Use an unordered_map to represent the graph.
+Prompt the user to enter each vertex and its neighbors.
 
-9.Main Method:
+9.Perform DFS Traversal:
 
-int main() {: Declares the main method for test drive.
-Creates an unordered map representing the graph.
-Calls the dfs function to perform DFS traversal.
-Prints the DFS traversal result.
+std::vector<int> dfsTraversal = dfs(graph);
+Call the dfs function to perform DFS traversal on the input graph.
 
-10.Print Result:
+10.Print DFS Traversal Result:
 
-"The DFS traversal of the graph is: " Prints a message.
-Iterates over the DFS traversal result and prints each vertex.
+std::cout << "The DFS traversal of the graph is: ";
+for (int vertex : dfsTraversal) {
+    std::cout << vertex << " ";
+}
+Print the DFS traversal result.
 
 <h2>OUTPUT</h2>
 
