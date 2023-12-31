@@ -38,9 +38,9 @@ In conclusion, preorder traversal is a versatile and efficient technique for exp
 #python program for preorder traversal
 # Define a Node class to represent a node in the binary tree
 class Node:
-    def __init__(self,data):
-        self.data=data 
-        self.left=self.right=None 
+    def __init__(self, data):
+        self.data = data
+        self.left = self.right = None
 
 # Define a function for Preorder Traversal (VSD stands for Visit, Traverse Left, Traverse Right)
 def VSDpreorder(root):
@@ -49,16 +49,21 @@ def VSDpreorder(root):
         VSDpreorder(root.left)
         VSDpreorder(root.right)
 
-if __name__=="__main__":
-# Create a binary tree
-    root=Node(10)
-    root.left=Node(20)
-    root.right=Node(30)
-    root.left.left=Node(40)
-    root.left.right=Node(50)
-    root.right.left=Node(60)
-    root.right.right=Node(70)
+if __name__ == "__main__":
+    # Create a binary tree based on user input
+    root_data = int(input("Enter the value for the root node: "))
+    root = Node(root_data)
 
+    root.left = Node(int(input("Enter the value for the left child of the root: ")))
+    root.right = Node(int(input("Enter the value for the right child of the root: ")))
+
+    root.left.left = Node(int(input("Enter the value for the left child of the left child: ")))
+    root.left.right = Node(int(input("Enter the value for the right child of the left child: ")))
+
+    root.right.left = Node(int(input("Enter the value for the left child of the right child: ")))
+    root.right.right = Node(int(input("Enter the value for the right child of the right child: ")))
+
+    # Calling the VSDpreorder function to perform Preorder Traversal
     VSDpreorder(root)
 ```
 
@@ -81,7 +86,6 @@ The function VSD preorder is a recursive implementation of the Preorder Traversa
       A binary tree is created by instantiating a Node for each element.
 
 - The VSD preorder function is then called with the root of the tree (root) to perform preorder traversal.
-- The expected output will be the values of nodes printed in preorder: 10, 20, 40, 50, 30, 60, 70.
 
 In summary, this Python code demonstrates the creation of a binary tree and the application of the preorder traversal algorithm to print the values of nodes in a specific order. The recursive nature of the traversal allows it to navigate through the tree efficiently.
 
@@ -90,17 +94,20 @@ In summary, this Python code demonstrates the creation of a binary tree and the 
 // for more programs visit venkys.io
 // java program for pre order traversal
 // Define a Node class to represent a node in the binary tree
+import java.util.Scanner;
+
 class Node {
     int data;
-    Node left=null, right=null;
-// Constructor to initialize a node with given data
+    Node left = null, right = null;
+
+    // Constructor to initialize a node with given data
     Node(int data) {
         this.data = data;
     }
 }
-// The main class that contains the preorder traversal function and the main method
-public class test {   
-// Preorder Traversal function: Visit, Traverse Left, Traverse Right
+
+public class Test {
+    // Preorder Traversal function: Visit, Traverse Left, Traverse Right
     static void preorder(Node root) {
         if (root != null) {
             System.out.print(root.data + " ");
@@ -109,18 +116,43 @@ public class test {
         }
     }
 
-   
-// The main method where the program execution begins
+    // The main method where the program execution begins
     public static void main(String[] args) {
-// Create a binary tree
-        Node root=new Node(10);
-        root.left=new Node(20);
-        root.right=new Node(30);
-        root.left.left=new Node(40);
-        root.left.right=new Node(50);
-        root.right.left=new Node(60);
-        root.right.right=new Node(70);
+        Scanner scanner = new Scanner(System.in);
+
+        // Create a binary tree based on user input
+        System.out.print("Enter the value for the root node: ");
+        int rootData = scanner.nextInt();
+        Node root = new Node(rootData);
+
+        System.out.print("Enter the value for the left child of the root: ");
+        int leftData = scanner.nextInt();
+        root.left = new Node(leftData);
+
+        System.out.print("Enter the value for the right child of the root: ");
+        int rightData = scanner.nextInt();
+        root.right = new Node(rightData);
+
+        System.out.print("Enter the value for the left child of the left child: ");
+        int leftLeftData = scanner.nextInt();
+        root.left.left = new Node(leftLeftData);
+
+        System.out.print("Enter the value for the right child of the left child: ");
+        int leftRightData = scanner.nextInt();
+        root.left.right = new Node(leftRightData);
+
+        System.out.print("Enter the value for the left child of the right child: ");
+        int rightLeftData = scanner.nextInt();
+        root.right.left = new Node(rightLeftData);
+
+        System.out.print("Enter the value for the right child of the right child: ");
+        int rightRightData = scanner.nextInt();
+        root.right.right = new Node(rightRightData);
+
+        // Calling the preorder method to perform Preorder Traversal
         preorder(root);
+
+        scanner.close();
     }
 }
 ```
@@ -156,40 +188,85 @@ The preorder method is called with the root of the tree (root) to perform preord
 The output represents the result of the preorder traversal, showing the values of each node in the specified order.
 
 ```cpp
+// copyrights to venkys.io
+// for more programs visit venkys.io
 // c++ program for pre order traversal
 // Include necessary headers
-#include<bits/stdc++.h>
+#include <iostream>
+
 // Define a Node class to represent a node in the binary tree
-class Node{
-    public:
-        int data;
-        Node *left=NULL;
-        Node *right=NULL;
-// Constructor to initialize a node with given data
-        Node(int val){
-            data=val;
-        }
+class Node {
+public:
+    int data;
+    Node *left = nullptr;
+    Node *right = nullptr;
+
+    // Constructor to initialize a node with given data
+    Node(int val) {
+        data = val;
+    }
 };
+
 // Preorder Traversal function: Visit, Traverse Left, Traverse Right
-void preorder(Node* root){
-// Base case: If the current node is not NULL
-    if(root!=NULL){
-        std::cout<<root->data<<" ";
+void preorder(Node *root) {
+    // Base case: If the current node is not NULL
+    if (root != nullptr) {
+        std::cout << root->data << " ";
         preorder(root->left);
         preorder(root->right);
     }
 }
+
 // The main function where the program execution begins
-int main(){
-// Create a binary tree
-    Node* root=new Node(10);
-    root->left=new Node(20);
-    root->right=new Node(30);
-    root->left->left=new Node(40);
-    root->left->right=new Node(50);
-    root->right->left=new Node(60);
-    root->right->right=new Node(70);
+int main() {
+    // Create a binary tree based on user input
+    int rootData;
+    std::cout << "Enter the value for the root node: ";
+    std::cin >> rootData;
+    Node *root = new Node(rootData);
+
+    std::cout << "Enter the value for the left child of the root: ";
+    int leftData;
+    std::cin >> leftData;
+    root->left = new Node(leftData);
+
+    std::cout << "Enter the value for the right child of the root: ";
+    int rightData;
+    std::cin >> rightData;
+    root->right = new Node(rightData);
+
+    std::cout << "Enter the value for the left child of the left child: ";
+    int leftLeftData;
+    std::cin >> leftLeftData;
+    root->left->left = new Node(leftLeftData);
+
+    std::cout << "Enter the value for the right child of the left child: ";
+    int leftRightData;
+    std::cin >> leftRightData;
+    root->left->right = new Node(leftRightData);
+
+    std::cout << "Enter the value for the left child of the right child: ";
+    int rightLeftData;
+    std::cin >> rightLeftData;
+    root->right->left = new Node(rightLeftData);
+
+    std::cout << "Enter the value for the right child of the right child: ";
+    int rightRightData;
+    std::cin >> rightRightData;
+    root->right->right = new Node(rightRightData);
+
+    // Calling the preorder function to perform Preorder Traversal
     preorder(root);
+
+    // Free allocated memory
+    delete root->left->right;
+    delete root->left->left;
+    delete root->left;
+    delete root->right->right;
+    delete root->right->left;
+    delete root->right;
+    delete root;
+
     return 0;
 }
 ```
@@ -209,10 +286,6 @@ The preorder function is a recursive implementation of the Preorder Traversal al
 - An instance of the Node class is created to represent the root of a binary tree with the value 10.
 - Additional nodes are created to form a binary tree structure.
 - The preorder function is called with the root of the tree (root) to perform a preorder traversal.
-
-### ****Output:****
-
-10 20 40 50 30 60 70
 
 The output represents the result of the preorder traversal, showing the values of each node in the specified order.
 
