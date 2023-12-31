@@ -14,34 +14,35 @@ The Zig Zag Conversion is a string manipulation problem that involves converting
 #copyrights to venkys.io
 #for more programs visit venkys.io
 #python program for zigzag conversion
-
-def convert(string,numRowstring):
-# Check base cases
+def convert(string, numRows):
+    # Check base cases
     if numRows == 1 or numRows >= len(string):
         return string
-# Initialize a list to store characters in each row of ZigZag pattern
+
+    # Initialize a list to store characters in each row of ZigZag pattern
     L = [''] * numRows
-# Initialize variables for current row index and direction of movement
+    # Initialize variables for current row index and direction of movement
     index, step = 0, 1
 
     for x in string:
         L[index] += x
-# Update direction of movement based on current row
+        # Update direction of movement based on the current row
         if index == 0:
             step = 1
-        elif index == numRows -1:
+        elif index == numRows - 1:
             step = -1
-# Update current row index
+        # Update current row index
         index += step
 
     return ''.join(L)
-    
 
-if __name__=="__main__":
-    string="PAYPALISHIRING"
-    numRows=4
-# Print the ZigZag conversion result
-    print(convert(string,numRows))
+if __name__ == "__main__":
+    # Read input from stdin
+    string = input("Enter the string: ")
+    numRows = int(input("Enter the number of rows: "))
+    
+    # Print the ZigZag conversion result
+    print(convert(string, numRows))
 ```
 
 ## STEP-BY-STEP EXPLAINATION
@@ -102,44 +103,55 @@ PINALSIGYAHPI
 // for more programs visit venkys.io
 // java program for zigzag conversion
 
+import java.util.Scanner;
+
 public class Main {
-// Function to perform ZigZag conversion
+    // Function to perform ZigZag conversion
     static String convert(String s, int numRows) {
         if (numRows == 1 || numRows >= s.length()) {
             return s;
         }
 
- // Initialize an array to store characters in each row of ZigZag pattern
+        // Initialize an array to store characters in each row of ZigZag pattern
         String[] L = new String[numRows];
         for (int i = 0; i < numRows; i++) {
             L[i] = "";
         }
 
         int index = 0, step = 1;
-// Iterate through each character in the input string
+        // Iterate through each character in the input string
         for (char x : s.toCharArray()) {
-// Add the current character to the corresponding row in ZigZag pattern
+            // Add the current character to the corresponding row in ZigZag pattern
             L[index] += x;
-// Update direction of movement based on the current row
+            // Update direction of movement based on the current row
             if (index == 0) {
                 step = 1; 
             } else if (index == numRows - 1) {
                 step = -1;
             }
-// Update current row index
+            // Update current row index
             index += step;
         }
 
-// Join the rows to form the final ZigZag pattern
+        // Join the rows to form the final ZigZag pattern
         return String.join("", L);
     }
 
     public static void main(String[] args) {
-// Example usage
-        String s = "PAYPALISHIRING";
-        int numRows = 4;
- // Print the ZigZag conversion result
+        // Read input from stdin
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the string: ");
+        String s = scanner.nextLine();
+
+        System.out.print("Enter the number of rows: ");
+        int numRows = scanner.nextInt();
+
+        // Print the ZigZag conversion result
         System.out.println(convert(s, numRows));
+
+        // Close the scanner
+        scanner.close();
     }
 }
 ```
@@ -191,35 +203,36 @@ public class Main {
 // for more programs visit venkys.io
 // c++ program for zigzag conversion
 
-#include <bits/stdc++.h>
+#include <iostream>
+#include <string>
 
 // Function to perform ZigZag conversion
 std::string convert(std::string s, int numRows) {
     if (numRows == 1 || numRows >= s.length())
         return s;
 
-// Initialize an array to store characters in each row of ZigZag pattern
+    // Initialize an array to store characters in each row of ZigZag pattern
     std::string L[numRows]{""};
 
     int index = 0, step = 1;
 
-// Iterate through each character in the input string
+    // Iterate through each character in the input string
     for (char x : s) {
-// Add the current character to the corresponding row in ZigZag pattern
+        // Add the current character to the corresponding row in ZigZag pattern
         L[index] += x;
-// Update direction of movement based on the current row
+        // Update direction of movement based on the current row
         if (index == 0) {
-            step = 1; 
+            step = 1;
         } else if (index == numRows - 1) {
             step = -1;
         }
-// Update current row index
+        // Update current row index
         index += step;
     }
 
     std::string result = "";
 
-// Join the rows to form the final ZigZag pattern
+    // Join the rows to form the final ZigZag pattern
     for (std::string x : L) {
         result += x;
     }
@@ -227,10 +240,20 @@ std::string convert(std::string s, int numRows) {
 }
 
 int main() {
-    std::string s = "PAYPALISHIRING";
-    int numRows = 4;
-// Print the ZigZag conversion result
+    // Read input from stdin
+    std::string s;
+    int numRows;
+
+    std::cout << "Enter the string: ";
+    std::cin >> s;
+
+    std::cout << "Enter the number of rows: ";
+    std::cin >> numRows;
+
+    // Print the ZigZag conversion result
     std::cout << convert(s, numRows);
+
+    return 0;
 }
 ```
 
