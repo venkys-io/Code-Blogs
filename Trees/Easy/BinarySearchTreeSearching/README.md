@@ -18,6 +18,23 @@ There are two ways to search: one is more like following branches until we find 
 
 If the list is neat and tidy (balanced), searching is quick, usually log N time. If it's messy (unbalanced), it can take longer, up to N time in the worst case. That's why people like using BSTs for searching when things are well-organized.
 
+## Sample Test Cases
+```bash
+6
+50 20 30 70 40 10
+70
+```
+```bash
+7
+10 20 30 70 60 40 90
+80
+```
+```bash
+5
+3 4 6 8 9
+6
+```
+
 ## Python Code
 ```python
 # Copyrights to venkys.io
@@ -31,13 +48,13 @@ If the list is neat and tidy (balanced), searching is quick, usually log N time.
 # Time complexity: O(log N) for average case (balanced tree), O(N) for worst case (unbalanced tree)
 # Space complexity: O(log N) for average case, O(N) for worst case
 
-# Class to represent a node
+# Define a class to represent a node in a binary tree
 class Node:
     def __init__(self, data):
         self.data = data  # Data stored in the node
         self.left = self.right = None  # Left and right child nodes
 
-# Function to insert an element into a BST
+# Function to insert an element into a Binary Search Tree (BST)
 def insertBST(root, data):
     if root is None:
         return Node(data)  # Create a new node with the given data if the root is None
@@ -69,8 +86,11 @@ def inorder(root):
 
 # Main section
 if __name__ == "__main__":
-    arr = [50, 20, 30, 70, 40, 10]
     root = None  # Initialize an empty root for the BST
+    # Taking input
+    n=int(input("Enter number of elements: "))
+    arr=[int(x) for x in input("Enter elements: ").split()][:n]
+    key=int(input("Enter key to search in BST: "))
 
     # Insert elements into the BST
     for i in arr:
@@ -78,11 +98,12 @@ if __name__ == "__main__":
 
     # inorder(root)
     # Search for an element in the BST
-    result = searchBST(root, 80)
+    result = searchBST(root, key)
     if result != -1:
         print("Found")
     else:
         print("Not Found")
+
 ```
 ### Step-by-Step Explanation of Python Code
 - **Node Class**
@@ -116,10 +137,12 @@ For more information, visit https://venkys.io */
 // Inplace: No (No changes made directly to the input tree)
 // Adaptive: No (Search complexity is not dependent on the input)
 
-// Time complexity: O(log N) for average case (balanced tree), O(N) for worst case (unbalanced tree)
-// Space complexity: O(log N) for average case, O(N) for worst case
+// Space complexity: O(V) (where V is the number of nodes in the tree)
+// Time complexity: O(V+E) (where E is the number of edges in the tree)
 
-// Class to represent a node
+import java.util.Scanner;
+
+// Define a class to represent a node in a binary tree
 class Node { 
     int data;
     Node left, right;
@@ -131,7 +154,7 @@ class Node {
 
 public class Main {
 
-    // Method to insert an element into a BST
+    // Function to insert an element into a Binary Search Tree (BST)
     static Node insertBST(Node root, int data) {
         // If the root is null, create a new node with the given data
         if (root == null)
@@ -151,7 +174,7 @@ public class Main {
         return root;
     }
 
-    // Method to perform an in-order traversal of a BST
+    // Function to perform an in-order traversal of a BST
     static void inorder(Node root) {
         if (root != null) {
             inorder(root.left);  // Traverse the left subtree
@@ -160,7 +183,7 @@ public class Main {
         }
     }
 
-    // Method to search for a specific element in a BST
+    // Function to search for a specific element in a BST
     static Node searchBST(Node root, int data) {
         if (root == null)
             return null;  // If the root is null, or the data is not found, return null
@@ -173,16 +196,28 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        int[] arr = {50, 20, 30, 70, 40, 10};
+        // Scanner class is used for taking input
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter the number of elements: ");
+        int n = sc.nextInt();
+
+        //Array to store n elements
+        int[] arr = new int[n];
+        System.out.println("Enter the elements:");
+        // Insert each element from the array into the BST
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        
+        // Search for an element in the BST
+        System.out.print("Enter the key to search: ");
+        int key = sc.nextInt();
+
         Node root = null;  // Initialize an empty root for the BST
 
-        // Insert each element from the array into the BST
-        for (int i : arr) {
-            root = insertBST(root, i);
-        }
-
         // Search for an element in the BST
-        if(searchBST(root, 80)!=null) System.out.println("Found");
+        if(searchBST(root, key)!=null) System.out.println("Found");
         else System.out.println("Not Found");        
     }
 }
@@ -206,7 +241,7 @@ public class Main {
 
 - **Main Method**
 
-  In the main section, an array `arr` is used to insert elements into the BST using the `insertBST` method. The `searchBST` method is then used to search for the element in the BST. If found, it prints "Found"; otherwise, it prints "Not Found."
+  In the main section, an array `arr` is used to insert elements into the BST using the `insertBST` method. The `searchBST` method is then used to search for the element in the BST. If found, it prints "Found"; otherwise, it prints "Not Found".
 
 ## CPP Code
 ```CPP
@@ -218,13 +253,13 @@ For more information, visit https://venkys.io */
 // Inplace: No (No changes made directly to the input tree)
 // Adaptive: No (Search complexity is not dependent on the input)
 
-// Time complexity: O(log N) for average case (balanced tree), O(N) for worst case (unbalanced tree)
-// Space complexity: O(log N) for average case, O(N) for worst case
+// Space complexity: O(n)
+// Time complexity:  O(n)
 
-#include<bits/stdc++.h>
+
 #include<iostream>
 
-// Class to represent a node
+// Define a class to represent a node in a binary tree
 class Node {
 public:
     int data;
@@ -236,7 +271,7 @@ public:
     }
 };
 
-// Function to insert an element into a BST
+// Function to insert an element into a Binary Search Tree (BST)
 Node* insertBST(Node* root, int data) {
     if (root == NULL)
         return new Node(data);  // Create a new node with the given data if the root is NULL
@@ -278,7 +313,16 @@ void inorder(Node* root) {
 }
 
 int main() {
-    int arr[] = {50, 20, 30, 70, 40, 10};
+    int n;
+    std::cout << "Enter the number of elements: ";
+    std::cin >> n;
+
+    int arr[n];
+    std::cout << "Enter the elements: ";
+    for (int i = 0; i < n; i++) {
+        std::cin >> arr[i];
+    }
+
     Node* root = NULL;  // Initialize an empty root for the BST
 
     // Insert each element from the array into the BST
@@ -286,8 +330,13 @@ int main() {
         root = insertBST(root, arr[i]);
     }
 
+    // Taking input to search for an element in the BST
+    int key;
+    std::cout << "Enter the key to search: ";
+    std::cin >> key;
+
     // Search for an element in the BST
-    if(searchBST(root,80)!=NULL) std::cout<<"Found";
+    if(searchBST(root,key)!=NULL) std::cout<<"Found";
     else std::cout<<"Not Found";
     return 0;
 }
