@@ -32,45 +32,58 @@ BFS has a broad range of practical applications, making it a fundamental tool in
 
 ```python
 # Copyrights to venkys.io for more information, visit https://venkys.io
-# Iterative Binary Search Function method Python Implementation  
-# It returns index of n in given list1 if present,   
-# else returns -1   
-def binary_search(list1, n):  
-    low = 0  
-    high = len(list1) - 1  
-    mid = 0  
-  
-    while low <= high:  
-        # for get integer result   
-        mid = (high + low) // 2  
-  
-        # If n is greater, compared to the left of mid    
-        if list1[mid] < n:  
-            low = mid + 1  
-  
-        # If n is smaller, compare to the right of mid   
-        elif list1[mid] > n:  
-            high = mid - 1  
-  
-        # If n is present at mid
-        else:  
-            return mid  
-  
-    # element was not present in the list, return -1  
-    return -1  
-  
-  
-# Initial list1  
-list1 = [12, 24, 32, 39, 45, 50, 54]  
-n = 45  
-  
-# Function call   
-result = binary_search(list1, n)  
-  
-if result != -1:  
-    print("Element is present at index", str(result))  
-else:  
-    print("Element is not present in list1")
+import sys
+
+def VSDBucketSort(arr, n):
+    # Find the minimum and maximum values in the array
+    mini = min(arr)
+    maxi = max(arr)
+
+    # Create 'n' buckets
+    bucket = [[] for i in range(n)]
+
+    # Distribute elements into buckets
+    for i in range(n):
+        # Determine the bucket index for each element based on its value
+        j = n * (arr[i] - mini) // (maxi + 1 - mini)
+        # Append the element to the corresponding bucket
+        bucket[j].append(arr[i])
+
+    # Sort each individual bucket
+    i = 0
+    for j in range(n):
+        temp = bucket[j]
+        temp.sort()
+        # Step 5: Concatenate sorted buckets to obtain the final sorted array
+        for k in range(len(temp)):
+            arr[i] = temp[k]
+            i += 1
+
+    # Return the sorted array
+    return arr
+
+def main():
+    try:
+        # Read input values from standard input
+        print("Enter the number of elements:")
+        n = int(input())
+        
+        print("Enter the elements separated by space:")
+        arr = list(map(int, input().split()))
+
+        # Call the sorting function
+        sorted_arr = VSDBucketSort(arr, n)
+
+        # Print the sorted array to standard output
+        print("Sorted Array:", *sorted_arr)
+
+    except (ValueError, IndexError):
+        print("Error: Invalid input. Please enter valid integers.")
+
+if __name__ == "__main__":
+    main()
+
+
 ```
 
 ## Step-by-step explanation
