@@ -50,6 +50,23 @@ BST deletion is a careful process balancing removal and maintaining order, with 
    - Swap the node to be deleted with this replacement.
    - Now, delete the replacement, which has at most one child, following the previous rules.
 
+## Sample Test Cases
+```bash
+6
+50 20 30 70 40 10
+20
+```
+```bash
+7
+10 20 30 70 60 40 90
+80
+```
+```bash
+5
+3 4 6 8 9
+3
+```
+
 ## Python Code
 ```python
 # Copyrights to venkys.io
@@ -130,8 +147,13 @@ def inorder(root):
 
 # Main section
 if __name__ == "__main__":
-    arr = [50, 20, 30, 70, 40, 10]
     root = None  # Initialize an empty BST
+
+    # Taking input
+    n=int(input("Enter number of elements: "))
+    arr=[int(x) for x in input("Enter elements: ").split()][:n]
+    key=int(input("Enter key to delete in BST: "))
+
     for i in arr:
         root = insertBST(root, i)  # Insert elements into the BST
 
@@ -139,8 +161,8 @@ if __name__ == "__main__":
     inorder(root)  # Print the in-order traversal of the BST
     print()
 
-    root = deleteBST(root, 20)  # Delete node with value 20
-    print("In-order traversal after deleting node with value 20:")
+    root = deleteBST(root, key)  # Delete node with value 
+    print("In-order traversal after deleting node:")
     inorder(root)  # Print the in-order traversal after deletion
 ```
 ### Step-by-Step Explanation of Python Code
@@ -173,7 +195,7 @@ if __name__ == "__main__":
 - **Main Section:**
   - Insert elements from array `arr` into a Binary Search Tree (BST) using `insertBST`.
   - Print the BST values in ascending order through in-order traversal.
-  - Delete the node with the value 20 from the BST using `deleteBST`.
+  - Delete the node with the value from the BST using `deleteBST`.
   - Print the in-order traversal again, showing the modified BST after deletion.
 
 ## Java Code
@@ -188,6 +210,8 @@ For more information, visit https://venkys.io */
 
 // Space complexity: O(n) (where n is the number of nodes in the tree)
 // Time complexity: O(n^2)
+
+import java.util.Scanner;
 
 //Node Class
 class Node {
@@ -264,7 +288,22 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        int[] arr = { 50, 20, 30, 70, 40, 10 };
+        // Scanner class is used for taking input
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter the number of elements: ");
+        int n = sc.nextInt();
+
+        int[] arr = new int[n]; //Array to store n elements
+        System.out.println("Enter the elements:");
+        // Insert each element from the array into the BST
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        
+        // Search for an element in the BST
+        System.out.print("Enter the key to delete: ");
+        int key = sc.nextInt();
         Node root = null; // Initialize an empty root for the BST
 
         // Insert each element from the array into the BST
@@ -274,9 +313,132 @@ public class Main {
         // Print the in-order traversal of the BST
         inorder(root); 
         System.out.println();
-        // Delete the node with value 20
-        root = deleteBST(root, 20); 
+        // Delete the node with value
+        root = deleteBST(root, key); 
         // Print the in-order traversal after deletion
+        System.out.println("In-order traversal after deleting node:");
+        inorder(root); 
+    }
+}/*Copyrights to venkys.io
+For more information, visit https://venkys.io */
+
+// Java Program for Binary Search Tree (BST) Deletion
+// Stable: No (Deletion can change the tree structure)
+// Inplace: Yes (Deletion is performed within the existing tree structure)
+// Adaptive: No (Deletion complexity is not dependent on the input)
+
+// Space complexity: O(n) (where n is the number of nodes in the tree)
+// Time complexity: O(n^2)
+
+import java.util.Scanner;
+
+//Node Class
+class Node {
+    int data;
+    Node left, right; 
+
+    Node(int data) {
+        this.data = data; // Initialize the data of the node
+    }
+}
+
+public class Main {
+    // Function to insert an element into a BST
+    static Node insertBST(Node root, int data) {
+        if (root == null)
+            // Create a new node if the tree is empty
+            return new Node(data); 
+        if (root.data == data)
+            // Return the current root if data matches
+            return root; 
+        else if (data < root.data)
+            // Recursively insert into the left subtree
+            root.left = insertBST(root.left, data); 
+        else
+            // Recursively insert into the right subtree
+            root.right = insertBST(root.right, data);
+        // Return the updated root of the tree 
+        return root; 
+    }
+
+    // Function to find the minimum node in a BST
+    static Node minValue(Node root) {
+        Node temp = root;
+        while (temp.left != null)
+            temp = temp.left; // Traverse the left subtree until the leftmost node is reached
+        return temp; // Return the minimum node
+    }
+
+    // Function to delete a node with the given data from a BST
+    static Node deleteBST(Node root, int data) {
+        if (root == null)
+            // If the tree is empty or the node is not found, return the current root
+            return root; 
+        if (data < root.data)
+            // Recursively delete from the left subtree
+            root.left = deleteBST(root.left, data); 
+        else if (data > root.data)
+            // Recursively delete from the right subtree
+            root.right = deleteBST(root.right, data); 
+        else {
+            if (root.left == null)
+                // If the node has no left child, replace it with its right child
+                return root.right; 
+            else if (root.right == null)
+                // If the node has no right child, replace it with its left child
+                return root.left; 
+            Node temp = minValue(root.right);
+            // Replace the node to be deleted with the minimum value node from the right subtree
+            root.data = temp.data; 
+            // Recursively delete the minimum value node
+            root.right = deleteBST(root.right, temp.data); 
+        }
+        // Return the updated root of the tree
+        return root; 
+    }
+
+    // Function to perform an in-order traversal of a BST
+    static void inorder(Node root) {
+        if (root != null) {
+            inorder(root.left);  // Recursively traverse the left subtree
+            System.out.print(root.data + " ");  // Print the data in the current node
+            inorder(root.right);  // Recursively traverse the right subtree
+        }
+    }
+
+    public static void main(String[] args) {
+        // Scanner class is used for taking input
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter the number of elements: ");
+        int n = sc.nextInt();
+
+        //Array to store n elements
+        int[] arr = new int[n];
+        System.out.println("Enter the elements:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt(); // Insert elements into array
+        }
+
+        Node root = null; // Initialize an empty root for the BST
+
+        // Insert each element from the array into the BST
+        for (int i : arr) {
+            root = insertBST(root, i);
+        }
+
+        // Print the in-order traversal of the BST
+        System.out.println("In-order traversal of the BST:");
+        inorder(root); 
+        System.out.println();
+
+        // Delete an element in the BST
+        System.out.print("Enter the key to delete: ");
+        int key = sc.nextInt();
+        root = deleteBST(root, key); // Delete the node with value
+        
+        // Print the in-order traversal after deletion
+        System.out.println("In-order traversal after deleting node:");
         inorder(root); 
     }
 }
@@ -308,7 +470,7 @@ public class Main {
 
 - **Main Method**
 
-    In the `main` method, an array of integers is inserted into the BST using the `insertBST` function. It then prints the in-order traversal of the original BST, deletes a node with value 20 using the `deleteBST` function, and prints the in-order traversal again after the deletion.
+    In the `main` method, an array of integers is inserted into the BST using the `insertBST` function. It then prints the in-order traversal of the original BST, deletes a node with value using the `deleteBST` function, and prints the in-order traversal again after the deletion.
 
 ## CPP Code
 ```CPP
@@ -323,7 +485,6 @@ public class Main {
 // Space complexity: O(n) (where n is the number of nodes in the tree)
 // Time complexity: O(n^2) 
 
-#include<bits/stdc++.h>
 #include<iostream>
 
 // Node class 
@@ -401,22 +562,38 @@ void inorder(Node* root) {
 
 // Main function
 int main() {
-    int arr[] = {50, 20, 30, 70, 40, 10};
-    Node* root = NULL; // Initialize an empty root for the BST
+    int n;
+    std::cout << "Enter the number of elements: ";
+    std::cin >> n;
+
+    int arr[n];
+    std::cout << "Enter the elements: ";
+    for (int i = 0; i < n; i++) {
+        std::cin >> arr[i];
+    }
+
+    Node* root = NULL;  // Initialize an empty root for the BST
 
     // Insert each element from the array into the BST
     for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
         root = insertBST(root, arr[i]);
     }
 
-    // Print the in-order traversal of the BST
+    // Print the in-order traversal
+    std::cout << "In-order traversal of the BST: ";
     inorder(root);
+    std::cout << std::endl;
 
-    // Delete the node with value 20
-    root = deleteBST(root, 20);
+    // Taking input to delete for an element in the BST
+    int key;
+    std::cout << "Enter the key to delete: ";
+    std::cin >> key;
+
+    // Delete the node with value 
+    root = deleteBST(root, key);
 
     // Print the in-order traversal after deletion
-    std::cout << std::endl;
+    std::cout << "In-order traversal after deleting node:" << std::endl;
     inorder(root);
 
     return 0; 
@@ -455,9 +632,9 @@ int main() {
 
 - **Main Section**
    - Initializes an empty root for the BST.
-   - Inserts each element from the array `{50, 20, 30, 70, 40, 10}` into the BST using `insertBST`.
+   - Inserts each element from the array into the BST using `insertBST`.
    - Prints the in-order traversal of the BST.
-   - Deletes the node with the value `20` from the BST using `deleteBST`.
+   - Deletes the node with the value from the BST using `deleteBST`.
    - Prints the in-order traversal again, showing the modified BST after deletion.
 
 ## Time and Space Complexity

@@ -205,18 +205,21 @@ public class Main {
         //Array to store n elements
         int[] arr = new int[n];
         System.out.println("Enter the elements:");
-        // Insert each element from the array into the BST
+        // Insert elements into array
         for (int i = 0; i < n; i++) {
             arr[i] = sc.nextInt();
         }
-        
-        // Search for an element in the BST
-        System.out.print("Enter the key to search: ");
-        int key = sc.nextInt();
 
         Node root = null;  // Initialize an empty root for the BST
 
+        // Insert each element from the array into the BST
+        for (int i : arr) {
+            root = insertBST(root, i);
+        }
+
         // Search for an element in the BST
+        System.out.print("Enter the key to search: ");
+        int key = sc.nextInt();
         if(searchBST(root, key)!=null) System.out.println("Found");
         else System.out.println("Not Found");        
     }
