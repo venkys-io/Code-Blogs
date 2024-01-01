@@ -12,6 +12,8 @@ The height of an empty BST is considered to be -1, while a BST with only one nod
 
 <h2>CODE</h2>
 
+<h2>Python</h2>
+
 ```
 #Copyrights to venkys.io
 #For more information, visit https://venkys.io 
@@ -19,180 +21,256 @@ The height of an empty BST is considered to be -1, while a BST with only one nod
 #Space complexity: O(n)
 #Time complexity: O(n)
 
-# Define a Node class to represent nodes in a binary tree
 class Node:
-    def __init__(self, data):
-        # Constructor to initialize a node with given data
-        self.data = data
-        self.left = self.right = None
+    def __init__(self, key):
+        # Constructor to initialize a new node with a given key
+        self.key = key
+        self.left = None
+        self.right = None
 
-# Function to calculate the height of a binary search tree (BST)
-def heightBST(root):
-    # Base case: if the root is None, the height is 0
-    if not root:
-        return 0
-    
-    # Recursive case: calculate the height of the left and right subtrees
-    # and return the maximum height plus 1 (for the current level)
-    return max(heightBST(root.left) + 1, heightBST(root.right) + 1)
+def insert(root, key):
+    # Function to insert a key into the BST
+    if root is None:
+        # If the tree is empty, create a new node with the given key
+        return Node(key)
+    else:
+        if root.key < key:
+            # If the key is greater than the current node's key, insert into the right subtree
+            root.right = insert(root.right, key)
+        else:
+            # If the key is less than or equal to the current node's key, insert into the left subtree
+            root.left = insert(root.left, key)
+    return root
 
-# Main block to create a sample BST and print its height
+def height(root):
+    # Function to calculate the height of the BST
+    if root is None:
+        # Base case: an empty tree has height -1
+        return -1
+    else:
+        # Recursively calculate the height of the left and right subtrees
+        left_height = height(root.left)
+        right_height = height(root.right)
+        # The height of the tree is the maximum of the heights of its left and right subtrees, plus 1
+        return 1 + max(left_height, right_height)
+
+def build_tree(num_nodes, values):
+    # Function to build a BST from a list of values
+    root = None
+    for value in values:
+        # Insert each value into the BST
+        root = insert(root, value)
+    return root
+
 if __name__ == "__main__":
-    # Create a sample BST with the given structure
-    root = Node(10)
-    root.left = Node(20)
-    root.right = Node(30)
-    root.left.left = Node(40)
-    root.left.right = Node(50)
-    root.right.left = Node(60)
-    root.right.right = Node(70)
+    # Input number of nodes in the BST
+    num_nodes = int(input("Enter the number of nodes in the BST: "))
 
-    # Print the height of the BST
-    print(heightBST(root))
+    # Input values of the nodes
+    print("Enter the values of the nodes:")
+    values = [int(input()) for _ in range(num_nodes)]
+
+    # Build the BST
+    root = build_tree(num_nodes, values)
+
+    # Calculate and print the height of the BST
+    bst_height = height(root)
+    print("Height of the BST:", bst_height)
 
 ```
-JAVA
+<h2>Step-By-Step Explanation</h2>
+
+1.Node Class: Defines a class for a node in the BST with a constructor to initialize a node with a key and pointers to the left and right children.
+
+2.Insert Function: Inserts a key into the BST by recursively navigating the tree based on key values.
+
+3.Height Function: Calculates the height of the BST recursively. The height of an empty tree is -1, and for non-empty trees, it is the maximum height of its left and right subtrees plus 1.
+
+4.Build Tree Function: Constructs a BST by inserting values from a list into the tree.
+
+5.Main Section: Takes user input for the number of nodes and their values, builds the BST, and then calculates and prints the height of the BST.
+
+<h2>JAVA</h2>
 
 ```
 //Copyrights to venkys.io
 //For more information, visit https://venkys.io 
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.Scanner;
 
-// Node class to represent nodes in a binary tree
+// Define a class for a node in the Binary Search Tree (BST)
 class Node {
-    int data;
-    Node left = null, right = null;
+    int key;
+    Node left, right;
 
-    // Constructor to initialize a node with the given data
-    Node(int data) {
-        this.data = data;
+    // Constructor to initialize a new node with a given key
+    public Node(int item) {
+        key = item;
+        left = right = null;
     }
 }
 
-public class Main {
-    // Function to calculate the height of a binary search tree (BST)
-    static int heightBST(Node root) {
-        // Base case: if the root is null, the height is 0
-        if (root == null) return 0;
+public class BSTHeight {
 
-        // Recursive case: calculate the height of the left and right subtrees
-        // and return the maximum height plus 1 (for the current level)
-        return Math.max(heightBST(root.left) + 1, heightBST(root.right) + 1);
+    // Function to insert a key into the BST
+    static Node insert(Node root, int key) {
+        if (root == null) {
+            // If the tree is empty, create a new node with the given key
+            return new Node(key);
+        } else {
+            if (key > root.key) {
+                // If the key is greater than the current node's key, insert into the right subtree
+                root.right = insert(root.right, key);
+            } else {
+                // If the key is less than or equal to the current node's key, insert into the left subtree
+                root.left = insert(root.left, key);
+            }
+            return root;
+        }
+    }
+
+    // Function to calculate the height of the BST
+    static int height(Node root) {
+        if (root == null) {
+            // Base case: an empty tree has height -1
+            return -1;
+        } else {
+            // Recursively calculate the height of the left and right subtrees
+            int leftHeight = height(root.left);
+            int rightHeight = height(root.right);
+            // The height of the tree is the maximum of the heights of its left and right subtrees, plus 1
+            return 1 + Math.max(leftHeight, rightHeight);
+        }
     }
 
     public static void main(String[] args) {
-        // Create a sample BST with the given structure
-        Node root = new Node(10);
-        root.left = new Node(20);
-        root.right = new Node(30);
-        root.left.left = new Node(40);
-        root.left.right = new Node(50);
-        root.right.left = new Node(60);
-        root.right.right = new Node(70);
+        Scanner scanner = new Scanner(System.in);
 
-        // Print the height of the BST
-        System.out.println(heightBST(root));
+        // Input number of nodes in the BST
+        System.out.print("Enter the number of nodes in the BST: ");
+        int numNodes = scanner.nextInt();
+
+        Node root = null;
+
+        // Input values of the nodes
+        System.out.println("Enter the values of the nodes:");
+        for (int i = 0; i < numNodes; i++) {
+            int value = scanner.nextInt();
+            // Insert each value into the BST
+            root = insert(root, value);
+        }
+
+        // Calculate and print the height of the BST
+        int bstHeight = height(root);
+        System.out.println("Height of the BST: " + bstHeight);
     }
 }
 
 ```
-CPP
+
+<h2>Step-By-Step Explanation</h2>
+
+1.Node Class: Defines a class for a node in the BST with a constructor to initialize a node with a key and pointers to the left and right children.
+
+2.Insert Function: Inserts a key into the BST by recursively navigating the tree based on key values.
+
+3.Height Function: Calculates the height of the BST recursively. The height of an empty tree is -1, and for non-empty trees, it is the maximum height of its left and right subtrees plus 1.
+
+4.Main Section: Takes user input for the number of nodes and their values using Scanner, builds the BST, and then calculates and prints the height of the BST.
+
+<h2>CPP</h2>
 
 ```
 //Copyrights to venkys.io
 //For more information, visit https://venkys.io 
 
-#include<bits/stdc++.h>
+// Include necessary header file for input/output operations
+#include <iostream>
 
-// Node class to represent nodes in a binary tree
+// Define a class for a node in the Binary Search Tree (BST)
 class Node {
 public:
-    int data;
-    Node *left = NULL;
-    Node *right = NULL;
+    int key;
+    Node* left;
+    Node* right;
 
-    // Constructor to initialize a node with the given value
-    Node(int val) {
-        data = val;
+    // Constructor to initialize a new node with a given key
+    Node(int item) {
+        key = item;
+        left = right = nullptr;
     }
 };
 
-// Function to calculate the height of a binary search tree (BST)
-int heightBST(Node* root) {
-    // Base case: if the root is null, the height is 0
-    if (!root) return 0;
-
-    // Recursive case: calculate the height of the left and right subtrees
-    // and return the maximum height plus 1 (for the current level)
-    return std::max(heightBST(root->left) + 1, heightBST(root->right) + 1);
+// Function to insert a key into the BST
+Node* insert(Node* root, int key) {
+    if (root == nullptr) {
+        // If the tree is empty, create a new node with the given key
+        return new Node(key);
+    } else {
+        if (key > root->key) {
+            // If the key is greater than the current node's key, insert into the right subtree
+            root->right = insert(root->right, key);
+        } else {
+            // If the key is less than or equal to the current node's key, insert into the left subtree
+            root->left = insert(root->left, key);
+        }
+        return root;
+    }
 }
 
-int main() {
-    // Create a sample BST with the given structure
-    Node* root = new Node(10);
-    root->left = new Node(20);
-    root->right = new Node(30);
-    root->left->left = new Node(40);
-    root->left->right = new Node(50);
-    root->right->left = new Node(60);
-    root->right->right = new Node(70);
+// Function to calculate the height of the BST
+int height(Node* root) {
+    if (root == nullptr) {
+        // Base case: an empty tree has height -1
+        return -1;
+    } else {
+        // Recursively calculate the height of the left and right subtrees
+        int leftHeight = height(root->left);
+        int rightHeight = height(root->right);
+        // The height of the tree is the maximum of the heights of its left and right subtrees, plus 1
+        return 1 + std::max(leftHeight, rightHeight);
+    }
+}
 
-    // Print the height of the BST
-    std::cout << "Height of the BST: " << heightBST(root);
+// Main function
+int main() {
+    // Input number of nodes in the BST
+    std::cout << "Enter the number of nodes in the BST: ";
+    int numNodes;
+    std::cin >> numNodes;
+
+    Node* root = nullptr;
+
+    // Input values of the nodes
+    std::cout << "Enter the values of the nodes:" << std::endl;
+    for (int i = 0; i < numNodes; i++) {
+        int value;
+        std::cin >> value;
+        // Insert each value into the BST
+        root = insert(root, value);
     }
 
+    // Calculate and print the height of the BST
+    int bstHeight = height(root);
+    std::cout << "Height of the BST: " << bstHeight << std::endl;
+
+    return 0;
+}
+
 ```
-<h2>Step-by-Step Explanation (Python)</h2>
+<h2>Step-by-Step Explanation</h2>
 
-1.Define the Node class:
+1.Include Header File: The #include <iostream> statement includes the necessary header file for input/output operations.
 
-The Node class is defined to represent nodes in a binary tree. Each node has three attributes:
-Data: Stores a value associated with the node.
-Left: Represents the left child of the node, initialized to None.
-Right: Represents the right child of the node, also initialized to None.
+2.Node Class Definition: The Node class is defined with public attributes for the key, left child, and right child. The constructor initializes a node with a given key.
 
-2.Define the heightBST function:
+3.Insert Function: The insert function inserts a key into the BST by recursively navigating the tree based on key values.
 
-The  heightBST function calculates the height of a binary tree rooted at the given root node.
-The height of a binary tree is the maximum number of edges on the longest path from the root node to a leaf node.
+4.Height Function: The height function calculates the height of the BST recursively. The height of an empty tree is -1, and for non-empty trees, it is the maximum height of its left and right subtrees plus 1.
 
-3.Base Case - Check if root is None:
+5.Main Function: The main function takes user input for the number of nodes and their values, builds the BST, and then calculates and prints the height of the BST using std::cout and std::cin.
 
-If the root is None, it means there are no nodes, so the function returns 0. This is the termination condition for the recursion.
-
-4.Recursive Step - Calculate the height:
-
-If the root is not None, the function recursively calculates the height of the left and right subtrees.
-It calls heightBST(root.left) to calculate the height of the left subtree and adds 1 to account for the current node.
-It also calls heightBST(root.right) to calculate the height of the right subtree and adds 1 to account for the current node.
-
-5.Return the maximum height:
-
-The max function is used to find the maximum height between the left and right subtrees. This step ensures that the height returned represents the longest path from the root.
-
-6.In the if **name** == "**main**": block:
-
-Create a sample Binary Search Tree by creating nodes and connecting them together.
-The root node is initialized with a value of 10.
-Child nodes are created and connected to root to form the BST structure.
-
-7.Call heightBST function with the root node:
-
-The heightBST function is called with the root node as an argument, which is the topmost node of the BST.
-
-8.Print the calculated height:
-
-The calculated height of the BST is printed using print.
-
-<h2>OUTPUT</h2>
-
-The code calculates the height of the provided BST and prints it. In this case, the BST is balanced, and the height is **3**.
-<h2>Time and Space Complexity Analysis</h2>
-
-Time Complexity:
+<h2>Time Complexity:</h2>
 The time complexity of the heightBST function is O(n), where n is the number of nodes in the binary tree. This is because, in the worst case, the function visits every node in the tree once.
 
 Here's why the time complexity is O(n):
@@ -200,7 +278,7 @@ Here's why the time complexity is O(n):
 The function makes a recursive call for each node in the tree (both left and right children).
 The recursion explores the entire tree by visiting each node once.
 
-Space Complexity:
+<h2>Space Complexity:</h2>
 The space complexity of the program is determined by the space used by the call stack during the recursive function calls. Each function call consumes space on the call stack.
 
 In the worst case, when the tree is highly unbalanced (again, a linked list), the space complexity of the program is O(n). This is because the recursive calls can stack up to a depth of n, where n is the number of nodes in the tree.
