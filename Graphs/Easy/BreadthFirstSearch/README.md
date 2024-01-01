@@ -88,43 +88,99 @@ else:
 ### ***Java code:***
 
 ```java
-//Copyrights to venkys.io for more information, visit https://venkys.io
-// Java implementation of iterative binary search
-// It returns index of target in given list1 if present,   
-// else returns -1  
-// Driver class 
-public class Main{
+// Copyrights to venkys.io. For more information, visit https://venkys.io
 
-    using namespace std;
-        static int binarySearch(int[] arr,int target){
-        int low=0,high=arr.length-1,mid;
-        while(low<=high){
-            mid=(low+high)/2;
-            // Check if target is present in the middle itself
-            if(arr[mid]==target){
-                System.out.println("found at index "+mid);
-                return mid;
-            }
-           // If target is smaller, compare to the right of mid
-            else if(target<arr[mid]){
-                high=mid-1;
-            }
-          // If target is greater, compare to the right of mid
-            else{
-                low=mid+1;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+
+    // Array of buckets to hold sorted elements
+    static ArrayList<Integer>[] temp = new ArrayList[10];
+
+    // Function to perform bucket sort
+    public static void VSDSort(int n, int[] arr) {
+        // Creating buckets to hold a certain range of numbers
+        for (int i = 0; i < 10; i++) {
+            temp[i] = new ArrayList<Integer>();
+        }
+
+        // Arranging input numbers into appropriate buckets in a sorted order using
+        // insertion sort
+        for (int i = 0; i < arr.length; i++) {
+            int t = arr[i] / 10; // Determine the bucket index
+            int element = arr[i];
+
+            if (temp[t].isEmpty())
+                temp[t].add(element);
+            else if (element > temp[t].get(temp[t].size() - 1))
+                temp[t].add(element);
+            else if (element < temp[t].get(0)) {
+                // Insert at the beginning of the bucket
+                for (int j = temp[t].size() - 1; j >= 0; j--) {
+                    if (j + 1 == temp[t].size())
+                        temp[t].add(j + 1, temp[t].get(j));
+                    else
+                        temp[t].set(j + 1, temp[t].get(j));
+                }
+                temp[t].set(0, element);
+            } else {
+                // Insert in the middle of the bucket
+                for (int j = 0; j < temp[t].size(); j++) {
+                    if (element > temp[t].get(j) && element < temp[t].get(j + 1)) {
+                        for (int k = temp[t].size() - 1; k >= j; k--) {
+                            if (k + 1 == temp[t].size())
+                                temp[t].add(k + 1, temp[t].get(k));
+                            else
+                                temp[t].set(k + 1, temp[t].get(k));
+                        }
+                        temp[t].set(j + 1, element);
+                    }
+                }
             }
         }
-        // If target is not present in the given array
-        System.out.println("Not found");
-        return -1;
     }
-   // Driver method to test above
-    public static void main(String[] args) {
-        int[] arr={1,2,3,4,5,6,7,8,9,10};
-        binarySearch(arr, 10);
-        binarySearch(arr, 0);   
+
+    // Function to print the sorted output
+    public static void VSDprintOutput() {
+        System.out.println("The sorted order is:");
+        for (int i = 0; i < temp.length; i++) {
+            for (int k = 0; k < temp[i].size(); k++) {
+                System.out.print(temp[i].get(k) + " ");
+            }
+        }
+        System.out.println();
+    }
+
+    public static void main(String args[]) {
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            // Read the number of elements from the user
+            System.out.print("Enter the number of elements: ");
+            int n = scanner.nextInt();
+
+            int[] a = new int[n];
+
+            // Read the elements from the user
+            System.out.print("Enter the elements separated by space: ");
+            for (int i = 0; i < n; i++) {
+                a[i] = scanner.nextInt();
+            }
+
+            // Perform bucket sort
+            VSDSort(n, a);
+
+            // Print the sorted output
+            VSDprintOutput();
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        } finally {
+            scanner.close();
+        }
     }
 }
+
 ```
 
 ## Step-by-step explanation:
