@@ -44,6 +44,7 @@ Backtracking is typically implemented using recursion. The recursive nature allo
 #  Python program for NQeens
 
 # Function to take user input
+#In the First Step we used **‘getBoard’** function initializes the chessboard as a 2D list of zeros with dimensions ‘n x n’.
 def getBoard(n):
     result=[]
     board=[[0 for i in range(n)] for j in range(n)]
@@ -51,6 +52,7 @@ def getBoard(n):
 # result=[]
 
 # Function to print board
+#In this step the **‘printboard’** function is used to print the chessboard with ‘Q’ representing the queens and ‘_’ representing empty spaces.
 def printboard(board,n):
     for i in range(n):
         for j in range(n):
@@ -61,6 +63,7 @@ def printboard(board,n):
         print()
 
 # Function to check if the given box is safe or not
+#The **‘isSafe’** function checks whether it is safe to place a queen at the given row and column by examining the row, column, and both diagonals (upper diagonal and lower diagonal) to ensure no other queen is present.
 def isSafe(board,row,col):
 
     # For same row
@@ -94,6 +97,7 @@ def isSafe(board,row,col):
     return True
 
 # Function to solve the board
+#the **‘VSDsolveboard’** function is a recursive backtracking function that tries to place queens row by row, calling itself for the next row.
 def VSDsolveboard(board,row,n,res):
     if row==n:
         for i in range(n):
@@ -112,14 +116,13 @@ def VSDsolveboard(board,row,n,res):
 
 # The Driver Function
 if __name__=="__main__":
-    n=4
+    n=int(input("Enter the value :"))
     board,result=getBoard(n)
     VSDsolveboard(board,0,n,result)
     print("-"*30)
     printboard(board,n)
     print("-"*30)
-    print("The result is ",*result,sep=" ")E
-+
+    print("The result is ",*result,sep=" ")
 ```
 
 # Explanation
@@ -151,111 +154,69 @@ In this step the main driver function initializes the board, calls the **‘VSDs
 ## Code
 
 ```java
-// Copyrights to venkys.io
-// For more programs visit venkys.io 
-// Java program for NQeens
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.*;
+import java.util.Scanner;
 
-public class Main {
-    // return whether quuen is correctly placed
-    public static boolean isSafe(int row, int col, char[][] board) {
-        for (int j = 0; j < board.length; j++) {
-            if (board[row][j] == 'Q') {
-                return false;
-            }
-        }
-        // upper right
-        for (int i = 0; i < board[0].length; i++) {
-            if (board[i][col] == 'Q') {
-                return false;
-            }
-        }
-        // upper left
-        int r = row;
-        for (int c = col; c >= 0 && r >= 0; c--, r--) {
-            if (board[r][c] == 'Q') {
-                return false;
-            }
-        }
-        // upper right
-        r = row;
-        for (int c = col; c < board.length && r >= 0; c++, r--) {
-            if (board[r][c] == 'Q') {
-                return false;
-            }
-        }
-        // lower left
-        r = row;
-        for (int c = col; c >= 0 && r < board.length; c--, r++) {
-            if (board[r][c] == 'Q') {
-                return false;
-            }
-        }
-        // lower right
-        r = row;
-        for (int c = col; r < board.length && c < board.length; r++, c++) {
-            if (board[r][c] == 'Q') {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    // updating the queen position in board
-    public static void saveBoard(char[][] board, List<List<String>> allBoards) {
-        String row;
-        List<String> newBoard = new ArrayList<>();
-        for (int i = 0; i < board.length; i++) {
-            row = "";
-            for (int j = 0; j < board[0].length; j++) {
-                if (board[i][j] == 'Q') {
-                    row += 'Q';
-                    System.out.print("Q"+" ");
-                } else {
-                    row += '.';
-                    System.out.print("_"+" ");
-                }
-            }
-            System.out.println();
-            newBoard.add(row);
-        }
-        allBoards.add(newBoard);
-        System.out.println("------------------------");
-    }
-
-    // placing the queen in correct position in board
-    public static void helper(char[][] board, List<List<String>> allBoards, int col) {
-        if (col == board.length) {
-            saveBoard(board, allBoards);
-            return;
-        }
-        for (int row = 0; row < board.length; row++) {
-            if (isSafe(row, col, board)) {
-                board[row][col] = 'Q';
-                helper(board, allBoards, col + 1);
-                board[row][col] = '.';
-            }
-        }
-    }
-
-    // return board after placing the queen
-    public static List<List<String>> solveQueens(int n) {
-        List<List<String>> allBoards = new ArrayList<>();
-        char[][] board = new char[n][n];
-        helper(board, allBoards, 0);
-        return allBoards;
-    }
+public class NQueens {
+    private static int N;
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-        int n = 4;
+        System.out.print("Enter the size of the chessboard (N): ");
+        N = scanner.nextInt();
 
-        List<List<String>> lst = solveQueens(n);
-        System.out.println("Queen can be placed in chess board by the following code:");
-        System.out.println(lst);
+        solveNQueens(); // Call the solveNQueens method to find and print the solutions
+    }
+
+    private static void solveNQueens() {
+        int[][] board = new int[N][N]; // Initialize a 2D array to represent the chessboard
+        if (solveNQueensUtil(board, 0)) {
+            System.out.println("Solution found:");
+            printSolution(board); // If a solution is found, print the chessboard configuration
+        } else {
+            System.out.println("No solution exists.");
+        }
+    }
+
+    private static boolean solveNQueensUtil(int[][] board, int col) {
+        if (col >= N) {
+            return true; // All queens are placed successfully, base case for recursion
+        }
+
+        for (int i = 0; i < N; i++) {
+            if (isSafe(board, i, col)) {
+                board[i][col] = 1; // Place the queen in the current position
+
+                if (solveNQueensUtil(board, col + 1)) {
+                    return true; // Recursively try to place queens in the next column
+                }
+
+                board[i][col] = 0; // Backtrack if placing the queen didn't lead to a solution
+            }
+        }
+
+        return false; // No solution found in this column
+    }
+
+    private static boolean isSafe(int[][] board, int row, int col) {
+        for (int i = 0; i < col; i++) {
+            // Check if there is a queen in the same row, column, or diagonal
+            if (board[row][i] == 1 || board[i][col] == 1 || (row - i >= 0 && board[row - i][col - i] == 1) || (row + i < N && board[row + i][col - i] == 1)) {
+                return false; // If a conflict is found, return false
+            }
+        }
+
+        return true; // No conflicts found, it's safe to place a queen in this position
+    }
+
+    private static void printSolution(int[][] board) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                System.out.print(board[i][j] + " "); // Print the chessboard configuration
+            }
+            System.out.println();
+        }
     }
 }
 ```
@@ -266,25 +227,37 @@ Now we have the basic understanding of backtracking algorithm and the concept of
 
 Let’s dive into the step-by-step process of placing N queens on a board using backtracking.
 
-[1.Is](http://1.Is)safe Function:
+### **1. Import Statements**
 
-In the first step the ‘isSafe’ function checks whether placing a queen at a given position is safe, considering the row, column, and both diagonals.
+This line imports the Scanner class, which is used to take input from the user.
 
-2.saveBoard Function
+### **2. Class Declaration**
 
-In the next step the ‘saveBoard’ function prints the current chessboard configuration and saves it in a list.
+The class is named NQueens.
 
-3.helper Function
+### **3. Class Variables**
 
-In this step the ‘helper’ function is a recursive backtracking function that tries to place queens column-wise, ensuring that they do not attack each other. It calls ‘saveBoard’ when a valid placement is found.
+A private static variable N is declared to store the size of the chessboard.
 
-4.solveQueen Function
+### **4. main Method**
 
-In this step the ‘solveQueens’ function initializes the chessboard and calls the ‘helper’ function to find all valid configurations.
+The main method initializes a Scanner object to take input from the user. It prompts the user to enter the size of the chessboard (N) and then calls the solveNQueens method.
 
-5.main Function 
+### **5. solveNQueens Method**
 
-In the ‘main’ function, the program sets ‘n’ to 4 (you can change it to solve for different board sizes) and then calls ‘solveQueens’. The resulting configurations are printed.
+This method initializes a 2D array (board) representing the chessboard. It then calls the **`solveNQueensUtil`** method to find a solution. If a solution is found, it prints the board; otherwise, it displays a message.
+
+### **6. `solveNQueensUtil` Method**
+
+This recursive method attempts to place queens on the chessboard. If a queen can be placed in the current column (col), it places the queen and makes a recursive call to place queens in the next column. If placing the queen in the current position doesn't lead to a solution, it backtracks.
+
+### **7. isSafe Method**
+
+This method checks if it is safe to place a queen at a given position on the chessboard by examining the row, column, and diagonals.
+
+### **8. printSolution Method**
+
+This method prints the chessboard configuration when a solution is found.
 
 ## Code
 
@@ -297,7 +270,7 @@ In the ‘main’ function, the program sets ‘n’ to 4 (you can change it to 
 
 using namespace std;
 
-bool isSafe(int row,int col,vector<vector<char>> &board){
+bool isSafe(int row,int col,vector<vector<char>> &board){//the ‘isSafe’ checks whether placing a queen at a given position is safe, considering the row, column, and both diagonals.
   for(int j=0;j<board.size();j++){
     if(board[row][j] == 'Q'){
       return false;
@@ -322,7 +295,7 @@ bool isSafe(int row,int col,vector<vector<char>> &board){
 
 }
 
-void saveBoard(vector<vector<char>> board,vector<vector<string>> allBoards){
+void saveBoard(vector<vector<char>> board,vector<vector<string>> allBoards){//the ‘saveBoard’ prints the current chessboard configuration and saves it in a list.
   string row;
   vector<string> newBoard;
   for(int i=0;i<board.size();i++){
@@ -358,7 +331,7 @@ void helper(vector<vector<char>> board,vector<vector<string>> allBoards,int col)
   }
 }
 
-vector<vector<string>> solveQueens(int n){
+vector<vector<string>> solveQueens(int n){//the ‘solveQueen’ initializes the chessboard and calls the ‘helper’ function to find all valid configurations.
   vector<vector<string>> allBoards;
   vector<vector<char>> board(n,vector<char>(n,'.'));
   helper(board,allBoards,0);
@@ -366,9 +339,11 @@ vector<vector<string>> solveQueens(int n){
 
 }
 
-int main(){
+int main(){//the program sets the size of the chessboard and then calls ‘solveQueens’.
 
-  int n=4;
+  int n;
+  cout << "Enter the size of the chessboard : ";
+  cin >> n;
   vector<vector<string>> lst = solveQueens(n);
   cout<<"Queen can be placed in chess board by the following code"<<endl;
   return 0;
