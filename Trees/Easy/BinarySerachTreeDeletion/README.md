@@ -566,10 +566,10 @@ int main() {
     std::cout << "Enter the number of elements: ";
     std::cin >> n;
 
-    int arr[n];
+    int arr[n]; //Array to store n elements
     std::cout << "Enter the elements: ";
     for (int i = 0; i < n; i++) {
-        std::cin >> arr[i];
+        std::cin >> arr[i]; // Insert elements into array
     }
 
     Node* root = NULL;  // Initialize an empty root for the BST
