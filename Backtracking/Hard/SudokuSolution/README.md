@@ -10,6 +10,41 @@ Solving Sudoku involves employing various techniques to fill in the grid systema
 ## Overview of Sudoku Solving
 The Sudoku solving process is akin to systematically searching for the correct placement of numbers. Starting with an empty grid, we iteratively make decisions on placing numbers based on the rules of Sudoku. If a conflict arises, we backtrack to explore alternative possibilities until a valid solution is found.
 
+## Sample Test Cases
+```bash
+. . 2 . 1 . 6 8 7
+1 . . . 8 . 2 5 4
+. 6 . . 2 . 9 1 3
+6 8 5 . 3 . 4 7 9
+. . . . . 8 1 . 2
+2 . . 7 . . 5 . 8
+9 . 6 8 7 . 3 4 5
+. . . . 4 . 7 . 6
+4 7 3 . . 6 8 . 1
+```
+```bash
+. 3 . 1 8 4 . 6 .
+1 . . . 6 . . . 7
+9 8 . . . . . 1 5
+6 . . . 4 . . . 3
+. . 8 . . . 2 . .
+4 . . . 5 . . . 8
+8 7 . . . . . 2 9
+5 . . . 2 . . . 4
+. 6 . 4 3 8 . 5 .
+```
+```bash
+. . . 6 7 4 . . .
+. 3 4 . . . 7 9 .
+7 . . . . . . . 5
+. . 6 . 5 . 9 . .
+. 8 . 9 . 3 . 7 .
+. . 7 . 4 . 5 . .
+1 . . . . . . . 3
+. 7 8 . . . 2 5 .
+. . . 4 8 9 . . .
+```
+
 ## Python Code
 ```python
 # Copyrights to venkys.io
@@ -126,7 +161,7 @@ def takeUserInput():
     print("Enter the Sudoku puzzle row-wise. Use '.' for empty cells.")
     board = []
     for i in range(9):
-        row = input(f"Enter values for row {i + 1} (use space between values): ").split()
+        row = input().split()
         # Validate the length of the input row
         if len(row) != 9:
             print("Invalid input. Please enter exactly 9 values for each row.")
@@ -321,7 +356,6 @@ public class Main {
         System.out.println("Enter the Sudoku puzzle row-wise. Use '.' for empty cells.");
         // Iterate through each row
         for (int i = 0; i < 9; i++) {
-            System.out.print("Enter values for row " + (i + 1) + " (use space between values): ");
             String inputRow = scanner.nextLine().trim(); // Read the input row as a string and trim any leading or trailing spaces
             
             // Iterate through each column
@@ -474,7 +508,6 @@ std::vector < std::vector <char> > takeUserInput() {
 
     // Iterate through each row of the Sudoku board
     for (int i = 0; i < 9; i++) {
-        std::cout << "Enter values for row " << i + 1 << " (use space between values): ";
 
         // Iterate through each column of the Sudoku board
         for (int j = 0; j < 9; j++) {
