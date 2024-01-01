@@ -145,45 +145,89 @@ public class Main{
 ### ***Cpp code:***
 
 ```cpp
-//Copyrights to venkys.io for more information, visit https://venkys.io
-// Java implementation of iterative binary search
-// It returns index of target in given list1 if present,   
-// else returns -1 
-#include<bits/stdc++.h>
+// Copyrights to venkys.io. For more information, visit https://venkys.io
+
+#include<iostream>
+#include<vector>
+#include<algorithm> // Include the algorithm header for the sort function
 
 using namespace std;
-// Binary search function
-int binarySearch(int arr[],int n,int target){
-    int low=0,mid,high=n-1;
-    // Find the middle index
-    while(low<=high){
-        mid=(low+high)/2;
-        // Check if the target is present at the middle
-        if(arr[mid]==target){
-            cout<<"Found at index"<<" "<<mid<<endl;
-            return mid;
-        }
-        // If the target is smaller, ignore the right half
-        else if(target<arr[mid]){
-            high=mid-1;
-        }
-         // If the target is greater, ignore the left half
-        else{
-            low=mid+1;
+
+// Function to find the minimum value in the array
+int findMin(int arr[], int n) {
+    int mini = arr[0];
+    for (int i = 0; i < n; i++) {
+        if (arr[i] < mini)
+            mini = arr[i];
+    }
+    return mini;
+}
+
+// Function to find the maximum value in the array
+int findMax(int arr[], int n) {
+    int maxi = arr[0];
+    for (int i = 0; i < n; i++) {
+        if (arr[i] > maxi)
+            maxi = arr[i];
+    }
+    return maxi;
+}
+
+// Bucket Sort function
+void bucketSort(int arr[], int n) {
+    // Step 1: Find the minimum and maximum values in the array
+    int mini = findMin(arr, n);
+    int maxi = findMax(arr, n);
+
+    // Step 2: Create a vector of vectors to represent the buckets
+    vector<vector<int>> bucket(n);
+
+    // Step 3: Distribute elements into buckets
+    for (int i = 0; i < n; i++) {
+        // Calculate the index for each element in the array
+        int j = n * (arr[i] - mini) / (maxi + 1 - mini);
+        bucket[j].push_back(arr[i]);
+    }
+
+    // Step 4: Sort each individual bucket
+    int index = 0;
+    for (int j = 0; j < n; j++) {
+        vector<int>& bj = bucket[j]; // Reference to the bucket vector
+        sort(bj.begin(), bj.end());
+
+        // Step 5: Concatenate sorted buckets to obtain the final sorted array
+        for (int k = 0; k < bj.size(); k++) {
+            arr[index++] = bj.at(k);
         }
     }
-    cout<<"Not found"<<endl;
-    // If Target not found
-    return -1;
 }
-// Driver method to test the binarySearch function
-int main(){
-    int arr[]{1,2,3,4,4,5,6,7,8,8};
-    int n=sizeof(arr)/sizeof(arr[0]);
-    binarySearch(arr,n,1);
-    binarySearch(arr,n,8);
+
+int main() {
+    // Step 6: Example usage in the main function
+    cout << "Enter the number of elements: ";
+    int n;
+    cin >> n;
+
+    int arr[n];
+
+    cout << "Enter the elements: ";
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    // Step 7: Apply Bucket Sort
+    bucketSort(arr, n);
+
+    // Step 8: Print the sorted array
+    cout << "Sorted Array: ";
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
     return 0;
 }
+
 ```
 
 ## Step-by-step explanation:
