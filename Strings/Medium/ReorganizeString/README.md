@@ -16,6 +16,17 @@ Reorganizing a string involves strategically arranging its characters to minimiz
 - **Sorting Logic**: Depending on the uniformity of character frequencies, the algorithm employs sorting to prepare for rearrangement.
 - **Efficient Rearrangement**: Characters are rearranged in the final string using a systematic approach inspired by the sorted order of characters.
 
+## Sample Test Cases
+```bash
+aab
+```
+```bash
+abbba
+```
+```bash
+aaa
+```
+
 ## Python Code
 ```Python
 # Copyrights to venkys.io
