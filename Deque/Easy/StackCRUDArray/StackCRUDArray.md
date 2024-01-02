@@ -28,26 +28,25 @@ By using a stack CRUD array, data can be efficiently managed by easily adding or
 /* Copyrights to venkys.io
 For more information, visit https://venkys.io */
 
-// Python program for performing Stack CRUD Array operations
-// Stable: No
-// Inplace: yes
-// Adaptive: No
+# Python program for performing Stack CRUD Array operations
+# Stable: No
+# Inplace: yes
+# Adaptive: No
 
-// Space complexity: O(n)
-// Time complexity: O(1)
+# Space complexity: O(n)
+# Time complexity: O(1)
 
 
 class STACK:
+    def __init__(self, size):
+        self.stack = []
+        self.top = -1
+        self.size = size - 1
 
-    def __init__(self,size):
-        self.stack=[]
-        self.top=-1
-        self.size=size-1
-
-    # push operation on stack     
-    def push(self,val):
-        self.top+=1
-        if self.top <= self.size :
+     # push operation on stack  
+    def push(self, val):
+        self.top += 1
+        if self.top <= self.size:
             self.stack.append(val)
         else:
             print("STACK AS OVER-FLOWN")
@@ -56,7 +55,7 @@ class STACK:
     def pop(self):
         if self.top >= 0:
             self.stack.pop(self.top)
-            self.top-=1
+            self.top -= 1
         else:
             print("STACK AS UNDER-FLOWN")
 
@@ -67,56 +66,56 @@ class STACK:
         else:
             print("THE STACK IS NOT UNDER-FLOWN")
 
-    # isoverflown function on stack
+     # isoverflown function on stack
     def is_overflown(self):
-        if self.top > self.size :
+        if self.top > self.size:
             print("THE STACK IS OVER-FLOWN")
         else:
             print("THE STACK IS NOT OVER-FLOWN")
 
-    # display function on stack
+     # display function on stack
     def display(self):
         if self.top == -1:
             print("|| EMPTY ||")
         else:
-            for i in range(self.top+1):
+            for i in range(self.top + 1):
                 print(f"|| {self.stack[i]} ||")
 
-    # Top function on stack
+     # Top function on stack
     def display_top(self):
-        print("THE TOP MOST ELEMENT IN STACK IS :",self.stack[self.top])
-
+        if self.top == -1:
+            print("THE STACK IS EMPTY")
+        else:
+            print("THE TOP MOST ELEMENT IN STACK IS:", self.stack[self.top])
 
 
 # Test drive code:
 
-stack = STACK(5)
+size = int(input("Enter the size of the stack: "))
+stack = STACK(size)
+
 print("------IS UNDER-FLOWN OPERATION ON STACK---------")
 stack.is_underflown()
 stack.display()
 print()
 print("------------PUSH OPERATION ON STACK-------------")
-stack.push(10)
-print("stack status after push operation")
-stack.display()
-stack.push(20)
-print("stack status after push operation")
-stack.display()
-stack.push(30)
-print("stack status after push operation")
-stack.display()
-print()
+for _ in range(size):
+    element = int(input("Enter element to push onto the stack: "))
+    stack.push(element)
+    print("Stack status after push operation:")
+    stack.display()
+    print()
+
 print("----------DISPLAY OPERATION ON STACK-----------")
 stack.display()
 print()
-print("------------pop OPERATION ON STACK-------------")
-stack.pop()
-print("stack status after pop operation")
-stack.display()
-stack.pop()
-print("stack status after pop operation")
-stack.display()
-print()
+print("------------POP OPERATION ON STACK-------------")
+for _ in range(size):
+    stack.pop()
+    print("Stack status after pop operation:")
+    stack.display()
+    print()
+
 print("------IS OVER-FLOWN OPERATION ON STACK---------")
 stack.is_overflown()
 stack.display()
@@ -155,6 +154,8 @@ For more information, visit https://venkys.io */
 // Space complexity: O(n)
 // Time complexity: O(1)
 
+import java.util.Scanner;
+
 class Stack {
     int top = -1;
     int size;
@@ -165,6 +166,7 @@ class Stack {
         arr = new int[size];
     }
 
+    // push operation on stack  
     void push(int data) {
         if (top == -1) {
             arr[0] = data;
@@ -177,9 +179,9 @@ class Stack {
         }
         System.out.println("Stack Overflow");
         return;
-
     }
 
+    // pop operation on stack
     void pop() {
         if (top == -1) {
             System.out.println("Empty Stack");
@@ -188,6 +190,7 @@ class Stack {
         arr[top--] = 0;
     }
 
+    // peek operation on stack
     void peek() {
         if (top == -1)
             return;
@@ -202,18 +205,44 @@ class Stack {
         System.out.println();
     }
 }
+
 public class Main {
     public static void main(String[] args) {
-        Stack s = new Stack(5);
-        s.push(10);
-        s.push(20);
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the size of the stack: ");
+        int size = scanner.nextInt();
+        Stack s = new Stack(size);
+
+        System.out.print("Enter the number of elements to push onto the stack: ");
+        int numElements = scanner.nextInt();
+        for (int i = 0; i < numElements; i++) {
+            System.out.print("Enter element to push onto the stack: ");
+            int element = scanner.nextInt();
+            s.push(element);
+        }
+
+        System.out.print("Top element of the stack: ");
         s.peek();
+
+        System.out.println("Elements in the stack: ");
         s.print();
-        s.pop();
-        s.pop();
-        s.push(1);
-        s.push(2);
-        s.push(3);
+
+        System.out.print("Enter the number of elements to pop from the stack: ");
+        int numPop = scanner.nextInt();
+        for (int i = 0; i < numPop; i++) {
+            s.pop();
+        }
+
+        System.out.print("Enter the number of elements to push onto the stack: ");
+        numElements = scanner.nextInt();
+        for (int i = 0; i < numElements; i++) {
+            System.out.print("Enter element to push onto the stack: ");
+            int element = scanner.nextInt();
+            s.push(element);
+        }
+
+        System.out.println("Elements in the stack: ");
         s.print();
     }
 }
