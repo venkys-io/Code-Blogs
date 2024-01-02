@@ -186,10 +186,10 @@ public class Main {
 ```
 ### Step-by-Step Explanation of Java Code
 
-- **reorganizeString method:**
+- **reorganizeString method**
     This method takes a string `S` as input and returns a string. The goal is to reorganize the characters in the string such that no two adjacent characters are the same.
 
-- **Character Frequency Counting:**
+- **Character Frequency Counting**
     The code initializes an array `hash` of size 26 to store the frequency of each lowercase letter in the input string `S`. It then iterates through each character in the string and increments the corresponding frequency in the `hash` array.
 
 - **Finding the Character with Maximum Frequency**
@@ -338,4 +338,4 @@ int main() {
 5. **Cryptography:** In certain cryptographic algorithms, manipulating the order of characters in a string can be a step in creating encoded messages or achieving specific cryptographic properties.
 
 ## Conclusion
-The reorganize string code efficiently addresses the task of minimizing consecutive repetitions by strategically rearranging characters based on their frequencies. Its versatility finds applications in diverse domains, offering solutions to challenges in bioinformatics, natural language processing, data compression, and more. With a time complexity of O(N log N) and space complexity of O(N), the code strikes a balance between efficiency and resource utilization. Overall, it stands as a valuable tool for character manipulation in software development, contributing to effective data processing and problem-solvin
+The reorganize string code efficiently addresses the task of minimizing consecutive repetitions by strategically rearranging characters based on their frequencies. Its versatility finds applications in diverse domains, offering solutions to challenges in bioinformatics, natural language processing, data compression, and more. With a time complexity of O(N log N) and space complexity of O(N), the code strikes a balance between efficiency and resource utilization. Overall, it stands as a valuable tool for character manipulation in software development, contributing to effective data processing and problem-solving.
