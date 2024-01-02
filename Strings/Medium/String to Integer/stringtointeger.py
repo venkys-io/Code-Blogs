@@ -1,40 +1,43 @@
-def check(answer):
-    if answer<-2**31:
-        return -2**31
-    elif answer>=2**31:
-        return 2**31-1
-    else:
-        return answer
+def convertStringToInteger(s):
+    # Define constants for the 32-bit signed integer range
+    INT_MIN, INT_MAX = -2**31, 2**31 - 1
+    
+    # Initialize variables for the result, sign, and position in the string
+    answer, sign, i = 0, 1, 0
 
-def myAtoi(string):
-    answer=0
-    sign=0
-    i=0
+    # Skip leading whitespaces
+    while i < len(s) and s[i] == " ":
+        i += 1
 
-    while(i<len(string) and string[i]==" "):
-        i+=1
-    if i==len(string):
-        return answer 
-    if string[i]=="+" and sign==0:
-        sign=1
-        i+=1
-    if i==len(string):
-        return answer
-    if string[i]=="-" and sign==0:
-        sign=-1 
-        i+=1
-    while (i<len(string)):
-        if string[i].isdigit():
-            answer=answer*10+int(string[i])
-            i+=1
-        else:
-            if sign!=0:
-                answer=sign*answer 
-            return check(answer)
-    if sign!=0:
-        answer=sign*answer
-    return check(answer)
+    # Check for empty string or non-numeric input
+    if i == len(s) or (s[i] not in ["+", "-"] and not s[i].isdigit()):
+        print("Error: Invalid input. Please enter a valid numeric string.")
+        return None
 
-if __name__=="__main__":
-    s="42"
-    print(myAtoi(s))
+    # Handle sign
+    if s[i] in ["+", "-"]:
+        # Set the sign based on the presence of a positive or negative sign
+        sign = -1 if s[i] == "-" else 1
+        i += 1
+
+    # Process digits
+    while i < len(s) and s[i].isdigit():
+        digit = int(s[i])
+        # Check for overflow
+        if (INT_MAX - digit) // 10 < answer:
+            return INT_MAX if sign == 1 else INT_MIN
+        # Update the result by multiplying by 10 and adding the current digit
+        answer = answer * 10 + digit
+        i += 1
+
+    # Return the final result multiplied by the sign
+    return sign * answer
+
+if __name__ == "__main__":
+    # Example usage
+    input_string = input("Enter a string: ")
+    result = convertStringToInteger(input_string)
+
+    # Check for None to handle cases of invalid input
+    if result is not None:
+        print("Converted integer:", result)
