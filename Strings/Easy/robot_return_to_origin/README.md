@@ -1,6 +1,6 @@
 # **Exploring String Algorithms : Robot return to Origin**
 
-Discover the realm of array algorithms with a particular emphasis on uncovering anagrams through the utilization of a hash table. This intriguing challenge not only captivates but also offers a practical avenue to delve into the intricacies of data structures and foster algorithmic thinking.
+Discover the realm of a particular emphasis on uncovering the robot return to origin problem through the utilization of string algorithm. This intriguing challenge not only captivates but also offers a practical avenue to delve into the intricacies of data structures and foster algorithmic thinking.
 
 # Introduction to String Algorithms
 
@@ -16,6 +16,14 @@ The "Robot Return to Origin" is a challenge, where a robot follows a sequence of
 
  It involves a robot moving on a 2D plane, following a sequence of instructions represented by the characters 'U' (up), 'D' (down), 'R' (right), and 'L' (left). The task is to determine whether the robot returns to the origin (0, 0) after executing the given instructions.
 
+          U
+          |
+        
+L —    (origin)    — R
+     
+          |
+          D             
+
 ## Python Code
 
 ```python
@@ -23,27 +31,35 @@ The "Robot Return to Origin" is a challenge, where a robot follows a sequence of
 #  For more programs visit venkys.io 
 #  Python program for robot return to origin
 
-def robot_return_to_origin(input):# Function to check if the robot returns to the origin
-    x = y = 0 #initialize the dimensions to zero assuming origin
-    for i in input:# Update the position based on the current character
-        if i == "U":
+def robot_return_to_origin(input):
+    # Initialize the coordinates to (0, 0)
+    x = y = 0
+
+    # Iterate through each character in the input string
+    for i in input:
+        # Update coordinates based on the current direction
+        if i == "U": #U denotes "UP" and it moves towards top from the origin(y-axis)
             y += 1
-        elif i == "D":
+        elif i == "D": #D denotes "DOWN" and it moves bottom from the origin(y-axis)
             y -= 1
-        elif i == "R":
+        elif i == "R": #R denotes "RIGHT" and it moves right hand side from the origin(x-axis)
             x += 1
-        elif i == "L":
+        elif i == "L": #L denotes "LEFT" and it moves left hand side from the origin(x-axis)
             x -= 1
         else:
-            print("wrong input")
-    return x == 0 and y == 0 #Check if the final position is the origin (0, 0)
+            # Handle invalid input characters other than "R,U,L,D"
+            print("Wrong input")
 
-z = input("Enter the directions: ")# Get user input for robot directions
-z=z.upper()
-if robot_return_to_origin(z):# Check if the robot returns to the origin
-    print("Got the Robot")
-else:
-    print("lost your robot")
+    # Check if the final coordinates are at the origin (0, 0)
+    return x == 0 and y == 0
+
+# Get user input for directions (case-insensitive)
+z = input("Enter the directions: ")
+z = z.upper()  # Convert input to uppercase for case-insensitivity
+
+# Call the function and print the result
+print(robot_return_to_origin(z))
+#returns True if the robot returns to the origin else returns False
 ```
 
 ### **Step-by-Step Explanation:**
@@ -67,18 +83,16 @@ else:
     - `elif i == "D": y -= 1`: Move down (decrement `y`).
     - `elif i == "R": x += 1`: Move right (increment `x`).
     - `elif i == "L": x -= 1`: Move left (decrement `x`).
-    - `else: print("wrong input")`: Prints an error message if the input contains an invalid character.
-
-**5. Convert Input to Uppercase:**
-
+    - `else: print("wrong input")`: Prints an error message if the input contains an invalid character other than “R”,”L”,”U”,”D”.
+- The `return x == 0 and y == 0` checks if the final coordinates are at the origin (0, 0).
+1. **Convert Input to Uppercase:**
 - `z = input("Enter the directions: ")`: Prompts the user to enter the directions for the robot. The input is stored in the variable `z`.
 - `z = z.upper()`: Converts the input string to uppercase, ensuring case-insensitivity.
 
-**6. Check and Print Result:**
+7**. Check and Print Result:**
 
 - `if robot_return_to_origin(z):`: Calls the `robot_return_to_origin` function with the user-input directions and checks if the robot returns to the origin.
-    - `print("Got the Robot")`: If the robot returns to the origin, prints a success message.
-- `else: print("lost your robot")`: If the robot does not return to the origin, prints a message indicating that the robot is lost.
+- If the robot returns to the origin ,then it returns true orelse it returns false.
 
 In summary, this Python code prompts the user to input a sequence of directions for a robot (U for up, D for down, R for right, L for left), updates the robot's position accordingly, and then checks if the robot returns to the origin. The result is printed to the user.
 
@@ -90,58 +104,59 @@ In summary, this Python code prompts the user to input a sequence of directions 
 // c++ program for robot return to origin
 
 #include <iostream>
-#include <string>
-using namespace std;
+#include <cctype> // For toupper function
 
-bool robot_return_to_origin(const string &input) // Function to check if the robot returns to the origin
+bool robotReturnToOrigin(const std::string &input)
 {
+    // Initialize the coordinates to (0, 0)
     int x = 0, y = 0;
-    for (char i : input) // Iterate through each character in the input string
+
+    // Iterate through each character in the input string
+    for (char i : input)
     {
-        if (i == 'U') // Update the position based on the current character
-        {
+        // Update coordinates based on the current direction
+        if (i == 'U')
+        { // U denotes "UP" and it moves towards top from the origin(y-axis)
             y += 1;
         }
         else if (i == 'D')
-        {
+        { // D denotes "DOWN" and it moves bottom from the origin(y-axis)
             y -= 1;
         }
         else if (i == 'R')
-        {
+        { // R denotes "RIGHT" and it moves right hand side from the origin(x-axis)
             x += 1;
         }
         else if (i == 'L')
-        {
+        { // L denotes "LEFT" and it moves left hand side from the origin(x-axis)
             x -= 1;
         }
         else
         {
-            cout << "wrong input" << endl; // Handle invalid input
-            return false;
+            // Handle invalid input characters other than "R,U,L,D"
+            std::cout << "Wrong input" << std::endl;
         }
     }
-    return x == 0 && y == 0; // Check if the final position is the origin (0, 0)
+
+    // Check if the final coordinates are at the origin (0, 0)
+    return x == 0 && y == 0;
 }
 
 int main()
 {
-    string directions;
-    cout << "Enter the directions: ";
-    cin >> directions; // Read user input
-    for (char &c : directions)
+    // Get user input for directions (case-insensitive)
+    std::string z;
+    std::cout << "Enter the directions: ";
+    std::cin >> z;
+
+    // Convert input to uppercase for case-insensitivity
+    for (char &c : z)
     {
-        c = toupper(c); // Convert the input string to uppercase for case-insensitive comparison
+        c = std::toupper(c);
     }
 
-    if (robot_return_to_origin(directions)) // Convert the input string to uppercase for case-insensitive comparison
-    {
-        cout << "Robot gotcha" << endl;
-    }
-    else
-    {
-        cout << "Lost your robot" << endl;
-    }
-
+    // Call the function and print the result
+    std::cout << (robotReturnToOrigin(z) ? "true" : "false") << std::endl; // returns True if the robot returns to the origin else returns False
     return 0;
 }
 ```
@@ -168,6 +183,7 @@ int main()
     - `else if (i == 'R')`: Increments `x` to move the robot right.
     - `else if (i == 'L')`: Decrements `x` to move the robot left.
     - `else`: Prints an error message if the input contains an invalid character and returns `false` to indicate an issue with the input.
+- The `return x == 0 && y == 0` checks if the final coordinates are at the origin (0, 0).
 
 **5. Convert Input to Uppercase:**
 
@@ -177,8 +193,7 @@ int main()
 **6. Check and Print Result:**
 
 - `if (robot_return_to_origin(directions))`: Calls the `robot_return_to_origin` function with the processed user-input directions and checks if the robot returns to the origin.
-    - `cout << "Robot gotcha" << endl;`: If the robot returns to the origin, prints a success message.
-- `else cout << "Lost your robot" << endl;`: If the robot does not return to the origin, prints a message indicating that the robot is lost.
+- If the robot returns to the origin ,then it returns true orelse it returns false.
 
 In summary, this C++ code prompts the user to input a sequence of directions for a robot (U for up, D for down, R for right, L for left), updates the robot's position accordingly, and then checks if the robot returns to the origin. The result is printed to the user, and the program ensures case-insensitivity by converting all input characters to uppercase.
 
@@ -213,15 +228,15 @@ public class robotreturn {
     }
 
     public static void main(String[] args) {
-        try (Scanner scanner = new Scanner(System.in)) {
-            System.out.print("Enter the directions: ");
-            String directions = scanner.nextLine().toUpperCase();
+        Scanner scanner = new Scanner(System.in);
 
-            if (isRobotReturnToOrigin(directions)) {
-                System.out.println("Robot gotcha");
-            } else {
-                System.out.println("Lost your robot");
-            }
+        System.out.print("Enter the directions: ");
+        String directions = scanner.nextLine().toUpperCase();
+
+        if (isRobotReturnToOrigin(directions)) {
+            System.out.println("Robot gotcha");
+        } else {
+            System.out.println("Lost your robot");
         }
     }
 }
@@ -249,6 +264,7 @@ public class robotreturn {
     - `else if (i == 'R')`: Increments `x` to move the robot right.
     - `else if (i == 'L')`: Decrements `x` to move the robot left.
     - `else`: Prints an error message if the input contains an invalid character and returns `false` to indicate an issue with the input.
+- The `return x == 0 and y == 0` checks if the final coordinates are at the origin (0, 0).
 
 **5. Convert Input to Uppercase:**
 
@@ -257,8 +273,7 @@ public class robotreturn {
 **6. Check and Print Result:**
 
 - `if (isRobotReturnToOrigin(directions)) { }`: Calls the `isRobotReturnToOrigin` function with the processed user-input directions and checks if the robot returns to the origin.
-    - `System.out.println("Robot gotcha");`: If the robot returns to the origin, prints a success message.
-- `else System.out.println("Lost your robot");`: If the robot does not return to the origin, prints a message indicating that the robot is lost.
+- If the robot returns to the origin ,then it returns true orelse it returns false.
 
 ## **Time and Space Complexity Analysis**
 
