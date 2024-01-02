@@ -41,61 +41,49 @@ For more information, visit https://venkys.io */
 // Space complexity:O(n) 
 // Time complexity:O(1)
 
-def check(answer):
-    # Check if the answer is less than the minimum 32-bit signed integer
-    if answer < -2**31:
-        return -2**31
-    # Check if the answer is greater than or equal to the maximum 32-bit signed integer
-    elif answer >= 2**31:
-        return 2**31 - 1
-    else:
-        return answer
-
-def myAtoi(string):
-    # Initialize variables
-    answer = 0
-    sign = 0  # 0 represents no sign, 1 represents positive sign, -1 represents negative sign
-    i = 0
+def convertStringToInteger(s):
+    # Define constants for the 32-bit signed integer range
+    INT_MIN, INT_MAX = -2**31, 2**31 - 1
+    
+    # Initialize variables for the result, sign, and position in the string
+    answer, sign, i = 0, 1, 0
 
     # Skip leading whitespaces
-    while i < len(string) and string[i] == " ":
-        i += 1
-    # If the entire string is composed of whitespaces, return the current answer
-    if i == len(string):
-        return answer 
-
-    # Check for positive sign
-    if string[i] == "+" and sign == 0:
-        sign = 1
+    while i < len(s) and s[i] == " ":
         i += 1
 
-    # Check for negative sign
-    if i < len(string) and string[i] == "-" and sign == 0:
-        sign = -1 
+    # Check for empty string or non-numeric input
+    if i == len(s) or (s[i] not in ["+", "-"] and not s[i].isdigit()):
+        print("Error: Invalid input. Please enter a valid numeric string.")
+        return None
+
+    # Handle sign
+    if s[i] in ["+", "-"]:
+        # Set the sign based on the presence of a positive or negative sign
+        sign = -1 if s[i] == "-" else 1
         i += 1
 
-    # Process the digits of the string
-    while i < len(string):
-        # Check if the current character is a digit
-        if string[i].isdigit():
-            # Update the answer by multiplying it by 10 and adding the current digit
-            answer = answer * 10 + int(string[i])
-            i += 1
-        else:
-            # If a non-digit character is encountered, apply the sign if present and return the result after checking for overflow
-            if sign != 0:
-                answer = sign * answer 
-            return check(answer)
+    # Process digits
+    while i < len(s) and s[i].isdigit():
+        digit = int(s[i])
+        # Check for overflow
+        if (INT_MAX - digit) // 10 < answer:
+            return INT_MAX if sign == 1 else INT_MIN
+        # Update the result by multiplying by 10 and adding the current digit
+        answer = answer * 10 + digit
+        i += 1
 
-    # Apply the sign if present and return the result after checking for overflow
-    if sign != 0:
-        answer = sign * answer
-    return check(answer)
+    # Return the final result multiplied by the sign
+    return sign * answer
 
-# Test the function with the provided string "42"
 if __name__ == "__main__":
-    s = "42"
-    print(myAtoi(s))
+    # Example usage
+    input_string = input("Enter a string: ")
+    result = convertStringToInteger(input_string)
+
+    # Check for None to handle cases of invalid input
+    if result is not None:
+        print("Converted integer:", result)
 
 ```
 # Code Explanation
