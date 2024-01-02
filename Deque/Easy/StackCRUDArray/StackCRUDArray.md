@@ -210,30 +210,35 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+        // Size of stack
         System.out.print("Enter the size of the stack: ");
         int size = scanner.nextInt();
         Stack s = new Stack(size);
 
+        // no.of elements to push in stack
         System.out.print("Enter the number of elements to push onto the stack: ");
         int numElements = scanner.nextInt();
+        // enter elements to be pushed into stack
         for (int i = 0; i < numElements; i++) {
             System.out.print("Enter element to push onto the stack: ");
             int element = scanner.nextInt();
             s.push(element);
         }
-
+        // Printing top element of stack
         System.out.print("Top element of the stack: ");
         s.peek();
-
+        // printing elments of present stack
         System.out.println("Elements in the stack: ");
         s.print();
 
+        // no.of elements to pop in stack
         System.out.print("Enter the number of elements to pop from the stack: ");
         int numPop = scanner.nextInt();
         for (int i = 0; i < numPop; i++) {
             s.pop();
         }
 
+        // enter elements to be pushed into stack
         System.out.print("Enter the number of elements to push onto the stack: ");
         numElements = scanner.nextInt();
         for (int i = 0; i < numElements; i++) {
@@ -242,6 +247,7 @@ public class Main {
             s.push(element);
         }
 
+        // printing elements of stack after operations
         System.out.println("Elements in the stack: ");
         s.print();
     }
