@@ -179,3 +179,38 @@ The time complexity of converting a fraction to a recurring decimal is O(log n) 
 ## Space complexity :
 
 The space complexity of converting a fraction to recurring decimal is O(1). This is because the conversion involves either storing a fixed size integer representation of the fraction or using a floating point representation that requires a fixed amount of memory, regardless of the size of the input fraction. If you meant to ask about the space complexity of storing recurring decimal to fraction conversion formulas, it would be O(klogk) where k is the precision of the recurring decimal.
+
+
+TEST CASE--1:
+
+INPUT :
+
+Numerator: 2
+Denominator: 3
+
+OUTPUT :
+
+"0.(6)"
+
+TEST CASE--2
+
+INPUT : 
+
+Numerator: 4
+Denominator: 5
+
+OUTPUT :
+
+"0.8"
+
+TEST CASE-3 :
+
+INPUT :
+
+Numerator: 1
+Denominator: 2
+
+OUTPUT :
+
+"0.5"
+
