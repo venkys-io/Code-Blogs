@@ -49,61 +49,61 @@ if __name__ == "__main__":
 ## C++ code :
 
 #include <iostream>
-#include <unordered_map>
-#include <string>
+#include <vector>
+#include <algorithm>
 
-std::string fraction_to_recurring_decimal(int numerator, int denominator) {
-if (numerator == 0) {
-return "0";
-}std::string result = "";
-
-// Handle the sign
-if ((numerator < 0) ^ (denominator < 0)) {
-    result += "-";
-}
-
-// Convert both numerator and denominator to positive
-long long numerator_abs = std::abs(static_cast<long long>(numerator));
-long long denominator_abs = std::abs(static_cast<long long>(denominator));
-
-// Calculate the integral part
-result += std::to_string(numerator_abs / denominator_abs);
-long long remainder = numerator_abs % denominator_abs;
-
-if (remainder == 0) {
-    return result;
-}
-
-result += ".";
-
-// Use an unordered_map to store the position of each remainder
-std::unordered_map<long long, int> remainder_positions;
-
-while (remainder != 0) {
-    if (remainder_positions.find(remainder) != remainder_positions.end()) {
-        // The remainder repeats, so add parentheses and break the loop
-        result.insert(remainder_positions[remainder], 1, '(');
-        result += ')';
-        break;
+std::string longestCommonPrefix(const std::vector<std::string>& strings) {
+    if (strings.empty()) {
+        return "";
     }
 
-    // Store the current remainder position in the result
-    remainder_positions[remainder] = result.length();
+    // Sort the strings to get the lexicographically smallest and largest strings
+    std::vector<std::string> sortedStrings = strings;
+    std::sort(sortedStrings.begin(), sortedStrings.end());
 
-    remainder *= 10;
-    result += std::to_string(remainder / denominator_abs);
-    remainder %= denominator_abs;
+    // Compare the first and last strings in the sorted list
+    std::string prefix = "";
+    const std::string& firstString = sortedStrings.front();
+    const std::string& lastString = sortedStrings.back();
+
+    for (size_t i = 0; i < firstString.length(); ++i) {
+        if (firstString[i] == lastString[i]) {
+            prefix += firstString[i];
+        } else {
+            break;
+        }
+    }
+
+    return prefix;
 }
 
-return result;
-}
 int main() {
-int numerator;
-int denominator;
-std::string result = fraction_to_recurring_decimal(numerator, denominator);
-std::cout << numerator << "/" << denominator << " = " << result << std::endl;
-return 0;
+    int numStrings;
+    std::cout << "Enter the number of strings: ";
+    std::cin >> numStrings;
+
+    std::vector<std::string> inputStrings;
+    inputStrings.reserve(numStrings);
+
+    // Taking user input for a vector of strings
+    for (int i = 0; i < numStrings; ++i) {
+        std::string inputString;
+        std::cout << "Enter string " << i + 1 << ": ";
+        std::cin >> inputString;
+        inputStrings.push_back(inputString);
+    }
+
+    std::string result = longestCommonPrefix(inputStrings);
+
+    if (!result.empty()) {
+        std::cout << "Longest common prefix: " << result << std::endl;
+    } else {
+        std::cout << "No common prefix." << std::endl;
+    }
+
+    return 0;
 }
+
 
 ## Java Code :
 
