@@ -25,10 +25,10 @@ Suppose we have an unsorted array of numbers: [6, 4, 9, 3, 7]. The goal of bubbl
 Here's how bubble sort would go about sorting the array:
 
 1. First, the algorithm would compare the first two elements (6 and 4) and swap them since 4 is smaller than 6. The corrected array becomes [4, 6, 9, 3, 7].
-2. Next, the algorithm would compare the second and third elements (6 and 9) and  no swap is necessary sinche 6<9.  Array=[4,6,9,3,7]
+2. Next, the algorithm would compare the second and third elements (6 and 9) and no swap is necessary sinche 6<9. Array=[4,6,9,3,7]
 3. Then the algorithm compares third and fourth elements (9 and 3) swap them since 9 is larger than 3. The corrected array becomes [4, 6, 3, 9, 7].
 4. The algorithm would then compare the fourth and fifth elements (9 and 7) and swap them since 7 is smaller than 9. The corrected array becomes [4, 6, 3, 7, 9].
-5. Now we reached the end of the array and the largest element is sorted and placed at the last place in the list or the array. 
+5. Now we reached the end of the array and the largest element is sorted and placed at the last place in the list or the array.
 6. The algorithm repeats steps 1 to 5 for the second pass and so on until all the elements are sorted
 7. Array= [4,6,3,7,9]
 8. (4<6) - No swap needed.
@@ -98,45 +98,94 @@ Here's how bubble sort would go about sorting the array:
 
 ---
 
-```python
-'''Copyrights to venkys.io
-For more programs visit venkys.io 
-Python program for Bubble sort'''
-#Stable: Yes
-#Inplace: Yes
-#Adaptive: No
-#Time Complexity: Best case - O(n), Average and worst case - O(n^2)
-#Space Complexity: O(1)
+```
+# Copyrights to venkys.io
+# For more programs visit venkys.io
+# Python program for Bubble sort
+
+# Stable: Yes
+# Inplace: Yes
+# Adaptive: No
+# Time Complexity: Best case - O(n), Average and worst case - O(n^2)
+# Space Complexity: O(1)
+
+# Function to perform Bubble Sort on given array
+'''
+Parameters:
+    - array (list): The list to be sorted.
+
+Returns:
+    - list: The sorted list.
+'''
 def bubbleSort(array):
-    n=len(array)
+    n = len(array)
+
+    # Traverse through all elements
     for i in range(n):
-        for j in range(0,n-i-1):
-            if array[j]>array[j+1]:
-                array[j],array[j+1]=array[j+1],array[j]
+        # Last i elements are already sorted, so we don't check them
+        for j in range(0, n - i - 1):
+            # Compare adjacent elements, Swap if the elements found is greater than the next element
+            if array[j] > array[j + 1]:
+                array[j], array[j + 1] = array[j + 1], array[j]
+
+    # The sorted array is returned
     return array
 
-if __name__=="__main__":
-    array = list(map(int, input("Enter the array elements separated by space: ").split()))
-    print(bubbleSort(array))
+def main():
+    try:
+        # Taking input from the user
+        array = list(map(int, input("Enter the array elements separated by space:").split()))
+
+        # Check if the array is empty
+        if not array:
+            print("Array is empty. No elements to sort.")
+            return
+
+        # Calling the bubble Sort Function
+        sorted_array = bubbleSort(array)
+
+        # Printing the sorted array
+        print("Sorted Array:", sorted_array)
+
+    except ValueError as ve:
+        print(f"Error: {ve}")
+
+if __name__ == "__main__":
+    main()
 ```
 
 - Bubble Sort is not adaptive. Its performance remains the same regardless of the initial order of elements. It performs the same number of comparisons and swaps in every pass through the array.
-- def bubbleSort(array):
+
+### **Explanation:**
+
+**def bubbleSort(array):**
 
 This defines a function called `bubbleSort` that takes a single argument, `array`.
 
-- for i in range(len(array)):
+**for i in range(len(array)):**
 
 A `for` loop is used to iterate through each element in the `array`. The loop variable `i` is used to keep track of the current element being processed.
 
-- for j in range(i,len(array)-1-i):
+**for j in range(i,len(array)-1-i):**
 
 A nested `for` loop is used within the `bubbleSort` function to compare adjacent elements in the `array`. The outer variable `i` is used to keep track of the current element being processed, and the inner variable `j` is used to compare adjacent elements starting from the next element after the one currently being processed. The expression `len(array)-1-i` is used to subtract the current index (`i`) from the total length of the array (`len(array)`).
 
-- if array[j]>array[j+1]:
-array[j],array[j+1]=array[j+1],array[j]
+**if array[j]>array[j+1]: array[j],array[j+1]=array[j+1],array[j]**
 
 An `if` statement is used to compare adjacent elements in the `array`. If the element at index `j` is greater than the element at index `j+1`, the two elements are swapped using the tuple unpacking assignment operator `=`.
+
+### Example Test Cases:
+
+1. **Basic Test Case:**
+    - Input: **`5 2 9 1 5`**
+    - Output: **`Sorted Array: [1, 2, 5, 5, 9]`**
+2. **Empty Array Test Case:**
+    - Input: (empty array)
+    - Output: **`Array is empty. No elements to sort.`**
+    - Explanation: The program correctly handles the case when the input array is empty.
+3. **Already Sorted Test Case:**
+    - Input: **`1 2 3 4 5`**
+    - Output: **`Sorted Array: [1, 2, 3, 4, 5]`**
 
 # C++ code for Bubble Sort:
 
@@ -156,53 +205,116 @@ An `if` statement is used to compare adjacent elements in the `array`. If the
 // Include the input/output stream header file
 
 using namespace std;
- // Namespace identifies the code is part of the standard library
+// Namespace identifies the code is part of the standard library
 
-void swap(int array[], int i, int j) //swapping function to swap two elemts when compared adjacently
+void swap(int array[], int i, int j)
+// Swapping function to swap two elements when compared adjacently through a temporary variable 'temp'
 {
     int temp = array[i];
     array[i] = array[j];
     array[j] = temp;
 }
 
-void bubbleSort(int array[], int n) //bubble sort function
+// Function to perform bubble sort on an array
+void bubbleSort(int array[], int n)
 {
-    for (int i = 0; i < n-1; i++)
+    // Check for null or negative array size
+    if (array == NULL || n <= 0)
     {
+        cerr << "Error: Invalid array size or null pointer. Exiting.\n";
+        return;
+    }
+
+    // Outer loop: Iterate through each element in the array (except the last one)
+    for (int i = 0; i < n - 1; i++)
+    {
+        // Inner loop: Compare and swap adjacent elements to move the largest element to the end
         for (int j = 0; j < n - i - 1; j++)
         {
+            // Check for null pointer in array
+            if (array == NULL)
+            {
+                cerr << "Error: Null pointer in array. Exiting.\n";
+                return;
+            }
+
+            // Check if the current element is greater than the next element
             if (array[j] > array[j + 1])
             {
+                // Swap the current and next elements if they are in the wrong order
                 swap(array, j, j + 1);
             }
         }
     }
+
+    // Display the sorted array
+    cout << "Sorted Array: ";
     for (int k = 0; k < n; k++)
     {
-        cout << array[k] << " ";
+        cout << array[k] << " "; // Print each element of the sorted array
     }
+    cout << endl; // Move to the next line after printing the sorted array
 }
+
 int main()
 {
+    // Prompt the user to enter the size of the array
     cout << "Enter the size of the array: ";
-    int n;
-    cin >> n;
+    int n; // Declare a variable 'n' to store the size of the array
 
+    // Check for invalid input (non-numeric or negative size)
+    if (!(cin >> n) || n <= 0)
+    {
+        cerr << "Error: Invalid input for array size. Exiting.\n";
+        return 1;
+    }
+
+    // Dynamically allocate memory for an integer array of size 'n'
     int *array = new int[n];
 
+    // Prompt the user to enter the elements of the array
     cout << "Enter the elements of the array: ";
+    // Loop to read 'n' elements and store them in the dynamically allocated array
     for (int i = 0; i < n; i++)
     {
-        cin >> array[i];
+        // Check for invalid input (non-numeric)
+        if (!(cin >> array[i]))
+        {
+            cerr << "Error: Invalid input for array element. Exiting.\n";
+            delete[] array; // Free dynamically allocated memory before exiting
+            return 1;
+        }
     }
-		bubbleSort(array,n);
-		
-delete[] array; //freeing allocated memory
+
+    // Calling the bubble Sort function to sort the array
+    bubbleSort(array, n);
+
+    delete[] array; // Freeing allocated memory
 
     return 0;
 }
-
 ```
+
+### Example Test Cases:
+
+**Test case 1: Normal Input**
+Enter the size of the array: 5
+Enter the elements of the array: 3 1 5 4 2
+
+Output:
+Sorted Array: 1 2 3 4 5
+
+**Test case 2: Empty Array**
+Enter the size of the array: 0
+
+Output:
+Error: Invalid array size or null pointer. Exiting.
+
+**Test case 3: Non-Numeric Input for Array Size**
+Enter the size of the array: abc
+
+Output:
+Error: Invalid input for array size. Exiting.
 
 # Java code for Bubble sort:
 
@@ -212,53 +324,122 @@ delete[] array; //freeing allocated memory
 /*Copyrights to venkys.io*/
 /*For more programs visit venkys.io */
 /*Java program for Bubble sort*/
+
 //Stable: Yes
 //Inplace: Yes
 //Adaptive: No
 //Time Complexity: Best case - O(n), Average and worst case - O(n^2)
 //Space Complexity: O(1)
 
-import java.util.Scanner;
-public class bubbleSort 
+import java.util.InputMismatchException;  // Import the InputMismatchException class for handling input errors
+import java.util.Scanner; // Importing the Scanner class from java.util package for user input
+public class bubbleSort{// Declaration of the bubbleSort class
+    public static void VSDsort(int n,int[] a)
     {
-    //Function to perform Bubble sort
-     public static void VSDsort(int n,int[] a) {
-		for(int i=0;i<n;i++) {
-			for(int j=0;j<n-i-1;j++) {
-				if (a[j]>a[j+1]) 
-					VSDswapElementsAt(a,j+1,j);//Swapping to place higher element correctly
-			}
-		}
-    }
-    //Function to swap the elements of array
-     public static void VSDswapElementsAt(int[] a,int t1,int t2) {
-    		   int temp=a[t1];
-                 a[t1]=a[t2];
-                 a[t2]=temp;
+        // Declaration of a static method named VSDsort that takes an integer n and an integer array a as parameters
+        // Null check for the array
+        if (a == null) {
+            System.out.println("Error: Input array is null.");
+            return;
+        }
+        for(int i=0;i<n;i++) {
+            // Outer loop: iterating through each element of the array
+        	for(int j=0;j<n-i-1;j++) {
+		// Inner loop: iterating through the unsorted part of the array
+		if (a[j]>a[j+1]) {
+		// Checking if the current element is greater than the next element
+		VSDswapElementsAt(a,j+1,j);}  // Calling a method to swap elements if necessary 
+            }
+	}
       }
-            
+
+    // Method to swap elements at two specified positions in the array
+     public static void VSDswapElementsAt(int[] a,int t1,int t2)
+     {
+       {
+            int temp = a[t1];
+            a[t1] = a[t2];
+            a[t2] = temp;
+        
+      }
+    }      
     //Function to print output
     public static void VSDprintOutput(int n,int a[]) {
+        // Null check for the array
+        if (a == null) {
+            System.out.println("Error: Input array is null.");
+            return;
+        }
 	System.out.println("The sorted order is:");
-        	for(int i=0;i<n;i++) {
-        		System.out.print(a[i]+" ");
-            	}
-        	}
-		    public static void main(String args[]) {
-			Scanner scanner = new Scanner(System.in);
-			//Input the size of the array
-                        System.out.print("Enter the size of the array: ");
-                        int n = scanner.nextInt();
+        for(int i=0;i<n;i++) {
+            System.out.print(a[i]+" ");
+        }
+    }
+    public static void main(String args[]) {
+	Scanner scanner = new Scanner(System.in);// Create a Scanner object for user input
+    	//Input the size of the array
+        System.out.print("Enter the size of the array: ");
+        int n;
+        try {
+            n= scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("Error: Please enter valid integer for array size.");
+            return;
+        }
+            
+        // Edge case: Non-positive array size
+        if (n <= 0) {
+            System.out.println("Error: Array size must be a positive integer.");
+            return;
+        }
 
-                        int[] a = new int[n];
-
-			//Input the elements of the array
-                        System.out.println("Enter the elements of the array:");
-                        for (int i = 0; i < n; i++) {
-                            a[i] = scanner.nextInt();
-                        }
-			VSDsort(n,a);//Call to sort the array
-			VSDprintOutput(n,a);//Printing output
-		}
+        int[] a = new int[n];
+        //Input the elements of the array
+        System.out.println("Enter the elements of the array:");
+        for (int i = 0; i < n; i++) {
+                    try {
+                        a[i] = scanner.nextInt();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Error: Please enter valid integers for array elements.");
+                        return;
+        	
+            }
+        }
+        VSDsort(n,a);//Call to sort the array
+        VSDprintOutput(n,a);//Printing output
+    }
 }
 ```
+
+**Test Case 1: Basic Input**
+
+Enter the size of the array: 5
+Enter the elements of the array:
+4 2 7 1 5
+The sorted order is:
+1 2 4 5 7
+
+**Test Case 2: Array with Duplicate Elements**
+
+Enter the size of the array: 6
+Enter the elements of the array:
+3 1 5 2 5 1
+The sorted order is:
+1 1 2 3 5 5
+
+**Test Case 3: Empty Array and Negative Integer Input**
+
+Enter the size of the array: 0
+Error: Array size must be a positive integer.
+
+**Test Case 6: Non-Integer Array Size Input**
+
+Enter the size of the array: abc
+Error: Please enter a valid integer for the array size.
+
+### **Test Case 4: Non-Integer Array Element Input**
+
+Enter the size of the array: 3
+Enter the elements of the array:
+1 xyz 3
+Error: Please enter valid integers for array elements.
