@@ -17,11 +17,31 @@ The Generate Parenthesis problem involves generating all valid combinations of p
 This problem can be solved using both recursive and iterative approaches, and is a great introduction to backtracking style recursion.
 Coding :
 Python code :
-def generate_parentheses(n): def generate(p, left, right, parens=[]): if left: generate(p + '(', left-1, right) if right > left: generate(p + ')', left, right-1) if not right: parens += p, return parens return generate('', n, n)
 
-print(generate_parentheses(3))
+def generate_parentheses(n):
+    def backtrack(s, left, right):
+        if len(s) == 2 * n:
+            result.append(s)
+            return
+        if left < n:
+            backtrack(s + '(', left + 1, right)
+        if right < left:
+            backtrack(s + ')', left, right + 1)
+
+    result = []
+    backtrack('', 0, 0)
+    return result
+
+if __name__ == "__main__":
+    n = int(input("Enter the number of pairs of parentheses: "))
+    parentheses_combinations = generate_parentheses(n)
+
+    print("Valid parentheses combinations:")
+    for combination in parentheses_combinations:
+         print(combination)
 
 Explanation :
+
 This Python code defines a function called "generate_parentheses" that takes an integer "n" as input. The function uses a helper function called "generate" to recursively create all valid combinations of balanced parentheses pairs.
 
 Within the "generate" function, there are three main conditions being checked:
@@ -122,3 +142,35 @@ The space complexity of the recursive algorithm is O(4^n / sqrt(n)) as well.
 
 This complexity mainly arises from the space used by the recursive call stack during the generation of all valid combinations of balanced parentheses.
 Each recursive call consumes space on the call stack until the base case is reached, and then the space is freed when the function returns. As the number of recursive calls is directly related to the number of valid combinations (the Catalan number), the space complexity is also O(4^n / sqrt(n)).
+
+TEST CASE--1 :
+
+INPUT :
+
+Number of pairs of parentheses: 2
+
+OUTPUT : 
+
+["(())", "()()"]
+
+
+TEST CASE-2 :
+
+INPUT : 
+
+Number of pairs of parentheses: 0
+
+OUTPUT : 
+
+[]
+
+
+TEST CASE-3 :
+
+INPUT : 
+
+Number of pairs of parentheses: 3
+
+OUTPUT :
+
+["((()))", "(()())", "(())()", "()(())", "()()()"]
