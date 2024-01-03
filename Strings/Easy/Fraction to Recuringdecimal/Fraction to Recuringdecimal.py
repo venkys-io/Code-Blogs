@@ -1,41 +1,45 @@
 def fraction_to_recurring_decimal(numerator, denominator):
-if numerator == 0:
-return "0"result = ""
+    if numerator == 0:
+        return "0"
 
-# Handle the sign
-if (numerator < 0) ^ (denominator < 0):
-    result += "-"
+    result = []
 
-# Convert both numerator and denominator to positive
-numerator, denominator = abs(numerator), abs(denominator)
+    # Handle the sign
+    if (numerator < 0) ^ (denominator < 0):
+        result.append("-")
 
-# Calculate the integral part
-result += str(numerator // denominator)
-remainder = numerator % denominator
+    # Take the absolute values
+    numerator, denominator = abs(numerator), abs(denominator)
 
-if remainder == 0:
-    return result
+    # Add the integer part
+    result.append(str(numerator // denominator))
+    remainder = numerator % denominator
 
-result += "."
+    if remainder == 0:
+        return ''.join(result)
 
-# Use a dictionary to store the position of each remainder
-remainder_positions = {}
+    result.append(".")
+    seen_remainders = {}
 
-while remainder != 0:
-    if remainder in remainder_positions:
-        # The remainder repeats, so add parentheses and break the loop
-        result = result[:remainder_positions[remainder]] + "(" + result[remainder_positions[remainder]:] + ")"
-        break
+    while remainder != 0:
+        if remainder in seen_remainders:
+            # Recurring part found
+            index = seen_remainders[remainder]
+            result.insert(index, "(")
+            result.append(")")
+            break
 
-    # Store the current remainder position in the result
-    remainder_positions[remainder] = len(result)
+        seen_remainders[remainder] = len(result)
+        remainder *= 10
+        result.append(str(remainder // denominator))
+        remainder %= denominator
 
-    remainder *= 10
-    result += str(remainder // denominator)
-    remainder %= denominator
+    return ''.join(result)
 
-return result
-numerator = int(input())
-denominator = int(input())
-result = fraction_to_recurring_decimal(numerator, denominator)
-print(f"{numerator}/{denominator} = {result}")
+if __name__ == "__main__":
+    numerator = int(input("Enter the numerator: "))
+    denominator = int(input("Enter the denominator: "))
+
+    result = fraction_to_recurring_decimal(numerator, denominator)
+
+    print(f"The recurring decimal representation is: {result}")
