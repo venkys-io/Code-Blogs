@@ -10,7 +10,7 @@ Due to its simplicity and ease of implementation, insertion sort is commonly use
 
 ---
 
-An in-place comparison-based algorithm is a sorting algorithm that rearranges the elements of a list using only a constant amount of additional memory space, regardless of the size of the input. In other words, it operates directly on the input data without requiring any auxiliary data structures proportional to the input size. 
+An in-place comparison-based algorithm is a sorting algorithm that rearranges the elements of a list using only a constant amount of additional memory space, regardless of the size of the input. In other words, it operates directly on the input data without requiring any auxiliary data structures proportional to the input size.
 
 In the context of sorting algorithms, "in-place" means that the algorithm doesn't create a separate copy of the input list to perform the sorting. Instead, it rearranges the elements within the original list itself.
 
@@ -100,7 +100,7 @@ It's important to note that while Insertion Sort has its practical applications,
 
 ---
 
-```python
+```
 '''Copyrights to venkys.io
 For more information, visite https://venkys.io"/
 
@@ -114,94 +114,192 @@ Python program to sort a given array in order using Insertion sort algorithm.'''
 
 #Time Complexity:O(n^2) in the worst-case scenario, and O(n) in the best-case scenario.
 
-def VSDInsertionSort(arr,n):#parameters are array and length of array
+def VSDInsertionSort(arr,n):
+		'''
+    Function to perform Insertion Sort on the given array.
 
+    Parameters:
+    arr (list): The input list to be sorted.
+    n (int): The length of the array.
+
+    Returns:
+    None. Prints the sorted array.
+    '''
     for i in range(1,n):
         temp=arr[i]
-        j=i 
+        j=i
         while j>0 and arr[j-1]>temp:
-            arr[j]=arr[j-1] 
+            arr[j]=arr[j-1]
             j-=1
-        arr[j]=temp 
-    print(*arr,sep=" ")
+        arr[j]=temp
+		#Print the Sorted array
+    print("Sorted Array:", *arr,sep=" ")
 
-if __name__=="__main__":
-    n = int(input("Enter the size of the array: "))
-    arr = list(map(int, input("Enter the elements of the array separated by space: ").split()))
-    VSDInsertionSort(arr,n)
+def main():
+    '''
+    Main function to take user input and call the Insertion Sort function.
+    '''
+    try:
+        n = int(input("Enter the size of the array: "))
+        if n <= 0:
+            print("Invalid size. Please enter a positive integer.")
+            return
+
+        arr = list(map(int, input("Enter the elements of the array separated by space: ").split()))
+
+        if len(arr) != n:
+            print("Number of elements entered does not match the specified size.")
+            return
+
+        VSDInsertionSort(arr, n)
+
+    except ValueError:
+        print("Invalid input. Please enter valid integers.")
+
+if __name__ == "__main__":
+    # Running the main function
+    main()
 ```
 
 Explanation:
 
-1.  Begin a loop iterating through each element in the array, starting from the second element (index 1) and ending at the last element (index n-1).
-2.  Store the value of the current element being evaluated in a temporary variable called temp.
-3.  Set up a pointer j to keep track of the current position in the array.(index)
-4.  Start a while loop that continues as long as j is greater than 0 and the previous element (arr[j-1]) is greater than the value stored in temp.
-5.  Shift the element at position j-1 to the position j.
-6.  Decrement the value of j by 1 to continue comparing with the previous elements.
+1. Begin a loop iterating through each element in the array, starting from the second element (index 1) and ending at the last element (index n-1).
+2. Store the value of the current element being evaluated in a temporary variable called temp.
+3. Set up a pointer j to keep track of the current position in the array.(index)
+4. Start a while loop that continues as long as j is greater than 0 and the previous element (arr[j-1]) is greater than the value stored in temp.
+5. Shift the element at position j-1 to the position j.
+6. Decrement the value of j by 1 to continue comparing with the previous elements.
 7. Place the value stored in temp at the position j, effectively inserting the value in its correct place.
-8.  Print the sorted array, separated by spaces.
+8. Print the sorted array, separated by spaces.
+
+Test Cases:
+
+### Example 1:
+
+**Input:**
+
+Enter the size of the array: 5
+
+Enter the elements of the array seperated by space: 4 2 7 1 9
+
+**Output:**
+
+Sorted Array: 1 2 4 7 9
+
+### Error Cases:
+
+### Example 2:
+
+**Input :**
+
+Enter the size of the array: -2
+
+**Output:** 
+
+Invalid size. Please enter a positive integer.
+
+### Example 3:
+
+**Input:**
+
+Enter the size of the array : d
+
+**Output:**
+
+Invalid input. Please enter valid integers
+
+### Example 4:
+
+**Input :** 
+
+Enter the size of the array : 3
+
+Enter the elements of the array seperated by space: 60 48
+
+**Output:**
+
+Number of elements entered does not match the specified size.
 
 # C++ code for Insertion Sort:
 
 ---
 
-```cpp
-/*Copyrights to venkys.io
-For more information, visite https://venkys.io"/
+```
+/* Copyrights to venkys.io
+For more information, visit https://venkys.io */
 
-C++ program to sort a given array in order using Insertion sort algorithm.*/
+// C++ program to sort a given array in order using Insertion sort algorithm.
 
-// Stable : Yes
-// Inplace : Yes
-// Adaptive : Yes
-
+// Stable: Yes
+// Inplace: Yes
+// Adaptive: Yes
 // Space complexity: O(1)
-
-//Time Complexity:O(n^2) in the worst-case scenario, and O(n) in the best-case scenario.
+// Time Complexity: O(n^2) in the worst-case scenario, and O(n) in the best-case scenario.
 
 #include<iostream>
 // Include the input/output stream header file
 
 using namespace std;
 // Define the standard namespace for input/output operations
-void VSDInsertionSort(int arr[],int n)
-{
-    for(int i=1;i<n;i++)
-		{
-        int temp=arr[i];
-        int j=i;
-        while(j>0 && arr[j-1]>temp){
-            arr[j]=arr[j-1];
-            j--;
+
+// Function to perform Insertion Sort on an array
+void VSDInsertionSort(int arr[], int n) {
+	// Iterate through each element of the array
+    for (int i = 1; i < n; i++) {
+        int temp = arr[i]; // Store the current element to be inserted
+        int j = i;
+        
+		// Move elements greater than temp to the right until a smaller or equal element is found,
+		// or until the beginning of the array is reached.
+        while (j > 0 && arr[j - 1] > temp) {
+            arr[j] = arr[j - 1]; // Shift the current element to the right, creating space for temp.
+            j--;// Move to the previous position in the array to compare and potentially shift again.
         }
-        arr[j]=temp;
-// Place the value stored in temp at the position j, effectively inserting the value in its correct place
+        arr[j] = temp; // Insert the stored element at its correct position
     }
-    for(int i=0;i<n;i++){
-        cout<<arr[i]<<" ";
+    
+    // Print the sorted array
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
     }
-    cout<<endl;
-// Move to the next line after printing all elements
+    cout << endl;
+    // Move to the next line after printing all elements
 }
 
-int main(){
+int main() {
     int n;
 
     cout << "Enter the size of the array: ";
-    cin >> n;
+    if (!(cin >> n)) {
+        // Check if the input for array size is not an integer
+        cout << "Error: Please enter a valid integer for the array size." << endl;
+        return 1;
+        // Return 1 to indicate an error
+    }
+
+    if (n <= 0) {
+        // Check for non-positive array size
+        cout << "Error: Array size must be a positive integer." << endl;
+        return 1;
+        // Return 1 to indicate an error
+    }
 
     int arr[n];
 
     cout << "Enter the elements of the array: ";
     for (int i = 0; i < n; i++) {
-        cin >> arr[i];
+        if (!(cin >> arr[i])) {
+            // Check if the input for array elements is not an integer
+            cout << "Error: Please enter valid integers for array elements." << endl;
+            return 1;
+            // Return 1 to indicate an error
+        }
     }
 
     VSDInsertionSort(arr, n);
-// Call the VSDInsertionSort function to sort the array
+    // Call the VSDInsertionSort function to sort the array
     return 0;
-// Return 0 to indicate successful execution of the program
+    // Return 0 to indicate successful execution of the program
 }
 ```
 
@@ -213,15 +311,34 @@ The "VSDInsertionSort" function sorts the elements of the array using the insert
 
 The "main" function initializes an array, calls the "VSDInsertionSort" function to sort the array, and returns 0 to signify successful completion of the program.
 
+## Sample Test Cases
+
+**Test Case 1: Basic Input**
+Enter the size of the array: 5
+Enter the elements of the array: 4 2 7 1 5
+Sorted Array: 1 2 4 5 7
+
+**Test Case 2: Empty Array**
+Enter the size of the array: 0
+Error: Array size must be a positive integer.
+
+**Test Case 3: Non-Integer Array Size Input**
+Enter the size of the array: abc
+Error: Please enter a valid integer for the array size.
+
+**Test Case 4: Non-Integer Array Element Input**
+Enter the size of the array: 3
+Enter the elements of the array: 1 xyz 3
+Error: Please enter valid integers for array elements.
+
 # Java code for insertion sort:
 
 ---
 
-```java
-/*Copyrights to venkys.io
-For more information, visite https://venkys.io"/
-
-Java program to sort a given array in order using Insertion sort algorithm.*/
+```
+/* Copyrights to venkys.io
+For more information, visit https://venkys.io */
+//Java program to sort a given array in order using Insertion sort algorithm.*/
 
 // Stable : Yes
 // Inplace : Yes
@@ -231,24 +348,30 @@ Java program to sort a given array in order using Insertion sort algorithm.*/
 
 //Time Complexity:O(n^2) in the worst-case scenario, and O(n) in the best-case scenario.
 
-import java.util.Scanner;//Importing scanner class from import.util. package for user input
-public class insertionsort{
+import java.util.InputMismatchException; // Importing InputMismatchException class for handling input errors
+import java.util.Scanner; // Importing scanner class from java.util package for user input
 
-    //Function to perform Insertion Sort on the given array
+public class InsertionSort {
+
+    // Function to perform Insertion Sort on the given array
     public static void insertionSort(int[] array) {
         int n = array.length;
+        // Traverse through each element of the array
         for (int i = 1; i < n; ++i) {
-            int key = array[i]; //key-> temporary variable,stores value of the current element being compared
+            int key = array[i];// Store the current element to be inserted
             int j = i - 1;
+            // Move elements greater than key to the right until a smaller or equal element is found,
+            // or until the beginning of the array is reached.
             while (j >= 0 && array[j] > key) {
-                array[j + 1] = array[j];
-                j = j - 1;
+                array[j + 1] = array[j]; // Shift the current element to the right, creating space for key.
+                j = j - 1;// Move to the previous position in the array to compare and potentially shift again.
             }
-            array[j + 1] = key;
-        }
+            array[j + 1] = key; // Insert the stored element at its correct position
     }
+        }
+    
 
-    //Function to print the elements of the array
+    // Function to print the elements of the array
     public static void printArray(int[] array) {
         int n = array.length;
         for (int i = 0; i < n; ++i)
@@ -259,20 +382,58 @@ public class insertionsort{
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-	//Input the size of the array
-	System.out.print("Enter the size of the array: ");
-        int n = scanner.nextInt();
-	int[] array = new int[n];
+        try {
+            // Input the size of the array
+            Integer n = null;
+            // Keep prompting the user until a valid positive integer is entered for the array size
+            while (n == null || n <= 0) {
+                System.out.print("Enter the size of the array: ");
+                try {
+                    // Attempt to read an integer from the user input
+                    n = scanner.nextInt();
+                    // Check if the entered size is not positive
+                    if (n <= 0) {
+                        System.out.println("Invalid size. Please enter a positive integer.");
+                    }
+                } catch (InputMismatchException e) {
+                    // Handle the case where a non-integer value is entered
+                    System.out.println("Invalid input. Please enter a valid integer.");
+                    scanner.nextLine(); // Clear the buffer to prevent an infinite loop
+                }
+            }
+            // Create an array to store the elements of the array.
+            int[] array = new int[n];
 
-	//Input the elements of the array
-        System.out.println("Enter the elements of the array:");
-        for (int i = 0; i < n; i++) {
-            array[i] = scanner.nextInt();
+            // Prompt the user to enter the elements of the array.
+            System.out.println("Enter the elements of the array:");
+            // Iterate through each element of the array and input values from the user.
+            for (int i = 0; i < n; i++) {
+                // Use a loop to handle invalid input until a valid integer is entered.
+                while (true) {
+                    if (scanner.hasNextInt()) {
+                        // If the entered value is an integer, assign it to the array.
+                        array[i] = scanner.nextInt();
+                        break; // Exit the loop as a valid integer is obtained.
+                    } else {
+                        // Display an error message for invalid input and clear the buffer.
+                        System.out.println("Invalid input. Please enter valid integers.");
+                        scanner.nextLine(); // Clear the buffer to avoid an infinite loop.
+                    }
+                }
+            }
+
+            // Perform Insertion Sort
+            insertionSort(array);
+
+            // Print the sorted array
+            System.out.println("Sorted Array:");
+            printArray(array);
+        } finally {
+            // Close the scanner to avoid resource leak
+            if (scanner != null) {
+                scanner.close();
+            }
         }
-	//Perform Insertion Sort
-        insertionSort(array);
-	//Print the sorted array
-        printArray(array);
     }
 }
 ```
@@ -283,3 +444,29 @@ public class insertionsort{
     - The "printArray" method is responsible for printing the elements of an array to the console.
 3. Main Method:
     - The "main" method initializes an array of integers, calls the "insertionSort" method to sort the array, and then prints the sorted array using the "printArray" method.
+    
+    ## Test Cases:
+    
+    - **Test Case 1:**
+    Enter the size of the array: 5
+    Enter the elements of the array:
+    4 2 7 1 9
+    Sorted Array:
+    1 2 4 7 9
+    - **Test Case 2:**
+    Enter the size of the array: 3
+    Enter the elements of the array:
+    100 0 -50
+    Sorted Array:
+    -50 0 100
+    - **Error Case 1:**
+    Enter the size of the array: -2
+    Invalid size. Please enter a positive integer.
+    - **Error Case 2:**
+    Enter the size of the array: 4
+    Enter the elements of the array:
+    a b c d
+        
+        Invalid input. Please enter valid integers.
+        
+    
