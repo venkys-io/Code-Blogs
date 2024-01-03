@@ -152,3 +152,35 @@ The task of removing vowels from a string can be applied to various real-world s
 3. Data Security: In certain encryption algorithms or data obfuscation techniques, removing vowels from a string could be one step in the process of securing sensitive information.
 4. User Input Validation: In software development, removing vowels from a user's input can be used as a form of input validation or data sanitization to ensure that certain strings meet specific criteria.
 5. Language Learning Tools: In language learning or educational applications, removing vowels from a string could be part of exercises designed to help learners recognize and process consonants in words.
+
+
+TEST CASE -1 : 
+
+INPUT : 
+
+"Hello, World!"
+
+OUTPUT :
+
+"Hll, Wrld!"
+
+TEST CASE-2 : 
+
+INPUT : 
+
+"AEIOUaeiou"
+
+OUTPUT:
+
+""
+
+TEST CASE-3 :
+
+INPUT :
+
+"The quick brown fox jumps over the lazy dog."
+
+OUTPUT :
+
+"Th qck brwn fx jmps vr th lzy dg."
+
