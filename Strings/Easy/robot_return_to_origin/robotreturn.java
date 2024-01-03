@@ -39,3 +39,17 @@ public class robotreturn {
         return x == 0 && y == 0;
     }
 }
+
+
+//Test case 1
+//Enter the directions: ruld
+//true
+
+//Test case 2
+//Enter the directions: rrdludl
+//false
+
+//Test case 3
+//Enter the directions: rulde
+//Wrong input
+//false
