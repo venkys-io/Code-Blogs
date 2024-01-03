@@ -1,43 +1,53 @@
-// Java program to find longest common prefix of
-// given array of words.
-import java.util.*;
+import java.util.Arrays;
+import java.util.Scanner;
 
-public class GFG
-{
-public String longestCommonPrefix(String[] a)
-{
-int size = a.length;
+public class LongestCommonPrefix {
 
-	/* if size is 0, return empty string */
-	if (size == 0)
-		return "";
+    public static String longestCommonPrefix(String[] strings) {
+        if (strings == null || strings.length == 0) {
+            return "";
+        }
 
-	if (size == 1)
-		return a[0];
+        // Sort the array to get the lexicographically smallest and largest strings
+        Arrays.sort(strings);
 
-	/* sort the array of strings */
-	Arrays.sort(a);
+        // Compare the first and last strings in the sorted array
+        String firstString = strings[0];
+        String lastString = strings[strings.length - 1];
 
-	/* find the minimum length from first and last string */
-	int end = Math.min(a[0].length(), a[size-1].length());
+        StringBuilder prefix = new StringBuilder();
+        int minLength = Math.min(firstString.length(), lastString.length());
 
-	/* find the common prefix between the first and
-	last string */
-	int i = 0;
-	while (i < end && a[0].charAt(i) == a[size-1].charAt(i) )
-		i++;
+        for (int i = 0; i < minLength; i++) {
+            if (firstString.charAt(i) == lastString.charAt(i)) {
+                prefix.append(firstString.charAt(i));
+            } else {
+                break;
+            }
+        }
 
-	String pre = a[0].substring(0, i);
-	return pre;
-}
+        return prefix.toString();
+    }
 
-/* Driver Function to test other function */
-public static void main(String[] args)
-{
-	GFG gfg = new GFG();
-	String[] input = {"geeksforgeeks", "geeks", "geek", "geezer"};
-	System.out.println( "The longest Common Prefix is : " +
-							gfg.longestCommonPrefix(input));
-}
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
+        System.out.print("Enter the number of strings: ");
+        int numStrings = scanner.nextInt();
+        scanner.nextLine(); // Consume the newline character
+
+        String[] inputStrings = new String[numStrings];
+        for (int i = 0; i < numStrings; i++) {
+            System.out.print("Enter string " + (i + 1) + ": ");
+            inputStrings[i] = scanner.nextLine();
+        }
+
+        String result = longestCommonPrefix(inputStrings);
+
+        if (!result.isEmpty()) {
+            System.out.println("Longest common prefix: " + result);
+        } else {
+            System.out.println("No common prefix.");
+        }
+    }
 }
