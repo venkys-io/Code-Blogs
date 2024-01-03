@@ -26,81 +26,50 @@ One of the fundamental tasks in graph theory is Dijkstra Algorithm.
 
 Dijkstra’s algorithm is a graph algorithm that finds you the shortest path between a single source node and all other nodes in a graph . It is a greedy algorithm , that it makes the locally optimal choice at each step in order to reach the globally optimal solution.
 
-Code : 
+CODE: 
 
-import sys
+import heapq
 
-class Graph()
+def dijkstra(graph, start):
+    # Initialize distances and visited nodes
+    distances = {node: float('infinity') for node in graph}
+    distances[start] = 0
+    priority_queue = [(0, start)]
 
-def __init__(self, vertices):
-	self.V = vertices
-	self.graph = [[0 for column in range(vertices)]
-				for row in range(vertices)]
+    while priority_queue:
+        current_distance, current_node = heapq.heappop(priority_queue)
 
-def printSolution(self, dist):
-	print("Vertex \\tDistance from Source")
-	for node in range(self.V):
-		print(node, "\\t", dist[node])
+        if current_distance > distances[current_node]:
+            continue
 
-# A utility function to find the vertex with
-# minimum distance value, from the set of vertices
-# not yet included in shortest path tree
-def minDistance(self, dist, sptSet):
+        for neighbor, weight in graph[current_node].items():
+            distance = current_distance + weight
 
-	# Initialize minimum distance for next node
-	min = sys.maxsize
+            if distance < distances[neighbor]:
+                distances[neighbor] = distance
+                heapq.heappush(priority_queue, (distance, neighbor))
 
-	# Search not nearest vertex not in the
-	# shortest path tree
-	for u in range(self.V):
-		if dist[u] < min and sptSet[u] == False:
-			min = dist[u]
-			min_index = u
+    return distances
 
-	return min_index
+# User-defined graph input
+graph = {
+    'A': {'B': 1, 'C': 4},
+    'B': {'A': 1, 'C': 2, 'D': 5},
+    'C': {'A': 4, 'B': 2, 'D': 1},
+    'D': {'B': 5, 'C': 1}
+}
 
-# Function that implements Dijkstra's single source
-# shortest path algorithm for a graph represented
-# using adjacency matrix representation
-def dijkstra(self, src):
+start_node = input("Enter the starting node: ").upper()
 
-	dist = [sys.maxsize] * self.V
-	dist[src] = 0
-	sptSet = [False] * self.V
+# Check if the starting node is in the graph
+if start_node not in graph:
+    print("Invalid starting node.")
+else:
+    result = dijkstra(graph, start_node)
+    print("Shortest distances from node {}:".format(start_node))
+    for node, distance in result.items():
+        print("To {}: {}".format(node, distance))
 
-	for cout in range(self.V):
-
-		# Pick the minimum distance vertex from
-		# the set of vertices not yet processed.
-		# x is always equal to src in first iteration
-		x = self.minDistance(dist, sptSet)
-
-		# Put the minimum distance vertex in the
-		# shortest path tree
-		sptSet[x] = True
-
-		# Update dist value of the adjacent vertices
-		# of the picked vertex only if the current
-		# distance is greater than new distance and
-		# the vertex in not in the shortest path tree
-		for y in range(self.V):
-			if self.graph[x][y] > 0 and sptSet[y] == False and \\
-					dist[y] > dist[x] + self.graph[x][y]:
-				dist[y] = dist[x] + self.graph[x][y]
-
-	self.printSolution(dist)
-if **name** == "**main**":
-g = Graph(9)
-g.graph = [[0, 4, 0, 0, 0, 0, 0, 8, 0],
-[4, 0, 8, 0, 0, 0, 0, 11, 0],
-[0, 8, 0, 7, 0, 4, 0, 0, 2],
-[0, 0, 7, 0, 9, 14, 0, 0, 0],
-[0, 0, 0, 9, 0, 10, 0, 0, 0],
-[0, 0, 4, 14, 10, 0, 2, 0, 0],
-[0, 0, 0, 0, 0, 2, 0, 1, 6],
-[8, 11, 0, 0, 0, 0, 1, 0, 7],
-[0, 0, 2, 0, 0, 0, 6, 7, 0]
-]g.dijkstra(0)
 
 Code Explanation :
 
@@ -123,3 +92,68 @@ O(E * logV), Where E is the number of edges and V is the number of vertices.
 The time complexity of the given code/algorithm looks O(V^2) as there are two nested while loops. If we take a closer look, we can observe that the statements in inner loop are executed O(V+E) times (similar to BFS). The inner loop has decreaseKey() operation which takes O(LogV) time. So overall time complexity is O(E+V)*O(LogV) which is O((E+V)*LogV) = O(ELogV) Note that the above code uses Binary Heap for Priority Queue implementation. Time complexity can be reduced to O(E + VLogV) using Fibonacci Heap. The reason is, Fibonacci Heap takes O(1) time for decrease-key operation while Binary Heap takes O(Logn) time.
 
  space complexity is  O(V).
+
+
+
+
+TEST CASE - 1: 
+
+ A --2-- B
+|     / |
+3    1  4
+| /     |
+C --5-- D
+
+INPUT:
+
+Start Node: A
+End Node: D
+
+OUTPUT : 
+
+Shortest Path: A -> B -> D
+Shortest Distance: 6
+
+
+TEST CASE -2 : 
+
+
+A --3-- B --1-- C
+|          /  |
+2         4   5
+|        /    |
+D --7-- E --6-- F
+
+INPUT:
+
+Start Node: A
+End Node: F
+
+OUTPUT:
+
+Shortest Path: A -> B -> C -> F
+Shortest Distance: 10
+
+
+TEST CASE -3 : 
+
+A --1-- B --3-- C
+|          /  |
+4         2   5
+|        /    |
+D --6-- E --7-- F
+
+INPUT:
+
+Start Node: A
+End Node: F
+
+OUTPUT:
+
+Shortest Path: A -> B -> C -> F
+Shortest Distance: 9
+
+
+
+
+ 
