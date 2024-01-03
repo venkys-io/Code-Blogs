@@ -1,8 +1,10 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Scanner;
 
-// Class representing a max heap with CRUD operations
-class MaxHeapCRUD {
+// MaxHeapCRUD class representing a max heap with CRUD operations
+public class MaxHeapCRUD {
     private List<Integer> heap;
 
     // Constructor initializes an empty list for the heap
@@ -57,31 +59,22 @@ class MaxHeapCRUD {
 
     // Return the maximum element in the heap (root of the heap)
     public int getMax() {
-        if (heap.size() == 0) {
+        if (heap.isEmpty()) {
             throw new RuntimeException("Heap is empty");
         }
         return heap.get(0);
     }
 
-    // Update the value, percolate up, and max heapify to maintain the heap property
-    public void update(int oldVal, int newVal) {
-        int index = heap.indexOf(oldVal);
-        if (index != -1) {
-            heap.set(index, newVal);
-            percolateUp(index);
-            maxHeapify(index);
-        } else {
-            System.out.println("Value not in heap");
+    // Delete the element at the specified index from the heap
+    public void delete(int index) {
+        if (index < 0 || index >= heap.size()) {
+            throw new RuntimeException("Invalid index");
         }
-    }
-
-    // Replace the root with the last element, pop the last element, and max heapify
-    public void deleteMax() {
-        if (heap.size() == 0) {
-            throw new RuntimeException("Heap is empty");
-        }
-        heap.set(0, heap.remove(heap.size() - 1));
-        maxHeapify(0);
+        // Swap the element with the last element
+        heap.set(index, heap.get(heap.size() - 1));
+        heap.remove(heap.size() - 1);
+        // Max heapify to maintain the heap property
+        maxHeapify(index);
     }
 
     // Print all values in the heap
@@ -96,26 +89,56 @@ class MaxHeapCRUD {
     public static void main(String[] args) {
         MaxHeapCRUD heap = new MaxHeapCRUD();
 
-        heap.insert(12);
-        heap.insert(10);
-        heap.insert(52);
-        heap.insert(100);
-        heap.insert(50);
+        // Insert, delete, fetch, and print elements into/from the heap using user input
+        try (Scanner scanner = new Scanner(System.in)) {
+            while (true) {
+                System.out.println("1. Insert element");
+                System.out.println("2. Get max element");
+                System.out.println("3. Delete element at index");
+                System.out.println("4. Print heap");
+                System.out.println("5. Exit");
+                System.out.print("Enter your choice: ");
 
-        System.out.print("All values in heap: ");
-        heap.printHeap();
-
-        System.out.println("Max Value: " + heap.getMax());
-
-        heap.update(12, 5);
-
-        System.out.println("Max Value after update: " + heap.getMax());
-
-        heap.deleteMax();
-
-        System.out.println("Max Value after deletion: " + heap.getMax());
-
-        System.out.print("All values in heap: ");
-        heap.printHeap();
+                try {
+                    int choice = scanner.nextInt();
+                    switch (choice) {
+                        case 1:
+                            System.out.print("Enter an integer to insert into the heap: ");
+                            heap.insert(scanner.nextInt());
+                            break;
+                        case 2:
+                            try {
+                                System.out.println("Max Value: " + heap.getMax());
+                            } catch (RuntimeException e) {
+                                System.err.println(e.getMessage());
+                            }
+                            break;
+                        case 3:
+                            System.out.print("Enter the index to delete: ");
+                            int deleteIndex = scanner.nextInt();
+                            try {
+                                heap.delete(deleteIndex);
+                                System.out.println("Element at index " + deleteIndex + " deleted");
+                            } catch (RuntimeException e) {
+                                System.err.println(e.getMessage());
+                            }
+                            break;
+                        case 4:
+                            System.out.print("All values in heap: ");
+                            heap.printHeap();
+                            break;
+                        case 5:
+                            System.out.println("Exiting...");
+                            System.exit(0);
+                        default:
+                            System.out.println("Invalid choice. Please enter a number between 1 and 5.");
+                    }
+                } catch (InputMismatchException e) {
+                    System.err.println("Invalid input. Please enter a number.");
+                    // Clear the scanner buffer to avoid an infinite loop on invalid input
+                    scanner.next();
+                }
+            }
+        }
     }
 }
