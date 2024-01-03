@@ -32,13 +32,40 @@ If there are no remaining "right" parentheses, it means a complete valid combina
 The "generate" function continues to call itself recursively until all valid combinations have been identified. The output of the "generate_parentheses" function is a list containing all the valid combinations of balanced parentheses for the given input "n".
 
 Code in C++ :
-#include #include using namespace std;
 
-void generate(string s, int left, int right, vector& result) { if (left == 0 && right == 0) { result.push_back(s); return; } if (left > 0) { generate(s + '(', left - 1, right, result); } if (right > left) { generate(s + ')', left, right - 1, result); } }
+#include <iostream>
+#include <vector>
+#include <string>
 
-vector generateParenthesis(int n) { vector result; generate("", n, n, result); return result; }
+void backtrack(std::vector<std::string>& result, std::string& current, int left, int right, int n) {
+    if (current.length() == 2 * n) {
+        result.push_back(current);
+        return;
+    }
 
-int main() { int n = 3; // Number of pairs of parentheses vector parentheses = generateParenthesis(n); for (const auto& p : parentheses) { cout << p << endl; } return 0; }
+    if (left < n) {
+        current.push_back('(');
+        backtrack(result, current, left + 1, right, n);
+        current.pop_back();
+    }
+
+    if (right < left) {
+        current.push_back(')');
+        backtrack(result, current, left, right + 1, n);
+        current.pop_back();
+    }
+}
+
+std::vector<std::string> generateParenthesis(int n) {
+    std::vector<std::string> result;
+    std::string current;
+    backtrack(result, current, 0, 0, n);
+    return result;
+}
+
+int main() {
+    int n;
+    std::cout << "Enter the number of pairs of parenthese
 
 Code in Java :
 
