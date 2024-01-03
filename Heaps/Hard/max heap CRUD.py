@@ -69,24 +69,39 @@ def main():
     heap = MaxHeap()
 
     # Insert elements into heap
-    heap.insert(12)
-    heap.insert(10)
-    heap.insert(-10)
-    heap.insert(100)
+    try:
+        while True:
+            value = int(input("Enter an integer to insert into the heap (enter a non-integer to stop): "))
+            heap.insert(value)
+            heap.print_heap()
+    except ValueError:
+        pass  # Continue to the next step when a non-integer is entered
 
     # Print all values in heap
+    print("Heap after insertion:")
     heap.print_heap()
 
     # Get max value in heap
     print("Max Value:", heap.get_max())
 
     # Update value in heap
-    heap.update(12, 5)
-    print("Max Value after update:", heap.get_max())
+    try:
+        old_value = int(input("Enter the value to update: "))
+        new_value = int(input("Enter the new value: "))
+        heap.update(old_value, new_value)
+        print("Max Value after update:", heap.get_max())
+    except ValueError:
+        print("Invalid input. Please enter integers.")
 
     # Delete max value from heap
-    heap.delete_max()
-    print("Max Value after deletion:", heap.get_max())
+    try:
+        heap.delete_max()
+        print("Max Value after deletion:", heap.get_max())
+    except Exception as e:
+        print(e)
 
     # Print all values in heap after deletion
     heap.print_heap()
+
+if __name__ == "__main__":
+    main()
