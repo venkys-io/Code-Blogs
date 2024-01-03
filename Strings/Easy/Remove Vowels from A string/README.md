@@ -75,50 +75,28 @@ if __name__ == "__main__":
 
 ---
 
-# 
+#include <iostream>
+#include <string>
 
-```cpp
-
-#include <bits/stdc++.h>
-using namespace std;
-
-bool VSD_check_vowel(char ch){
-    switch(ch) {
-     case 'a':
-     case 'e':
-     case 'i':
-     case 'o':
-     case 'u':
-     case 'A':
-     case 'E':
-     case 'I':
-     case 'O':
-     case 'U': {
-        return true;
-    break;
-   }
-        default :
-    return false;
-    }
-}
-
-string VSD_remove_vowel(string str)
-{
-    int VSD=0;
-    while(VSD < str.length()){
-        if(VSD_check_vowel(str[VSD])){
-            str = str.replace(VSD,1,"");
+std::string removeVowels(const std::string& inputString) {
+    std::string result;
+    for (char ch : inputString) {
+        if (tolower(ch) != 'a' && tolower(ch) != 'e' && tolower(ch) != 'i' && tolower(ch) != 'o' && tolower(ch) != 'u') {
+            result += ch;
         }
-        VSD++;
     }
-    return str;
-    
+    return result;
 }
 
 int main() {
-    
-    string str="vsdevelopers";    
-    cout<<"String after removing vovels: "<<VSD_remove_vowel(str)<<endl;
+    std::string inputString;
+    std::cout << "Enter a string: ";
+    std::getline(std::cin, inputString);
+
+    std::string result = removeVowels(inputString);
+
+    std::cout << "String after removing vowels: " << result << std::endl;
+
     return 0;
 }
 ```
