@@ -14,7 +14,7 @@ The Shell Sort algorithm is relatively simple and easy to understand. However, i
 
 ---
 
-Comparison-based sorting algorithms rely on comparing elements of an array to determine their order. They work by repeatedly iterating through the array and swapping adjacent elements that have the wrong order. There are several comparison-based sorting algorithms, some of the most common ones include : Bubble sort, Quicksort, Mergesort, Selection sort, Insertion sort and Radix Sort 
+Comparison-based sorting algorithms rely on comparing elements of an array to determine their order. They work by repeatedly iterating through the array and swapping adjacent elements that have the wrong order. There are several comparison-based sorting algorithms, some of the most common ones include : Bubble sort, Quicksort, Mergesort, Selection sort, Insertion sort and Radix Sort
 
 In-place comparison based sorting, on the other hand, is a type of sorting algorithm that does not use additional memory to sort the array. In contrast with in-place comparison based sorting, sorting algorithms like Radix sort may use additional memory to sort the array.
 
@@ -31,6 +31,8 @@ Knuth Formula, on the other hand, is an approach to determine the shell size at 
 The knuth formula is:
 
 ```
+
+Explain
 gap_size = n/2
 
 for j = 0 to log_n(k) - 1
@@ -48,13 +50,13 @@ size = size of the array
 
 Consider an array with input elements array[]={8, 12, 4, 25, 9, 6, 2, 20}
 
-First we need to initally use a large gap and then repeatedly reduce the gap until it become 1. 
+First we need to initally use a large gap and then repeatedly reduce the gap until it become 1.
 
 The final pass in sorting is done by implementing insertion sort algorithm.
 
 In the above example the array has 8 elements.
 
-So initial gap(h) is n/2 and then n/4  and then n/8 and so on.
+So initial gap(h) is n/2 and then n/4 and then n/8 and so on.
 
 ### Step by Step Internal Execution:
 
@@ -62,18 +64,18 @@ Initial array: {8, 12, 4 25, 9, 6, 2, 20}
 
 - **First Pass(h= n/2=4)**
     - Compare elements that are h position apart and then swap them if necessary
-    - {**8**, 12, 4 25, **9**, 6, 2, 20} here 8 and 9 are compared. Since they are in order there is no swapping
-    - {8, **12,** 4 25, 9, **6,** 2, 20}: 12 and 6 are compared and swapped
-    - {8, 12, **4** 25, 9, 6, **2**, 20}: 4 and 2 are compared and swapped
-    - {8, 12, 4 **25**, 9, 6, 2, **20**}: 25 and 20 are compared and swapped.
+    - {**8**, 12, 4 25, **9**, 6, 2, 20} here 8 and 9 are compared. Since they are in order there is no swapping
+    - {8, **12,** 4 25, 9, **6,** 2, 20}: 12 and 6 are compared and swapped
+    - {8, 12, **4** 25, 9, 6, **2**, 20}: 4 and 2 are compared and swapped
+    - {8, 12, 4 **25**, 9, 6, 2, **20**}: 25 and 20 are compared and swapped.
     - After swapping the array would be {8, 6, 2, 20, 9, 12, 4, 25}
 - **Second Pass(h=n/4=2)**
     - Compare elements that are h position apart and then swap them if necessary.
-    - {**8,** 6, **2**, 20, **9**, 12, **4**, 25}
-    - Compare 8 and 2 and swap them. The array would be {**2**, 6, **8**, 20, **9**, 12, **4**, 25}
+    - {**8,** 6, **2**, 20, **9**, 12, **4**, 25}
+    - Compare 8 and 2 and swap them. The array would be {**2**, 6, **8**, 20, **9**, 12, **4**, 25}
     - Compare 6 and 20 next. No swapping required.
     - Compare and swap 8 and 9. No swapping required.
-    - Compare and swap 20 and 12. The array would be {**2**, 6, **8**, 12, **9**, 20, **4**, 25}
+    - Compare and swap 20 and 12. The array would be {**2**, 6, **8**, 12, **9**, 20, **4**, 25}
     - Compare and swap 9 and 4 followed by 20 and 25.
     - The Resulting array would be {2, 6, 8, 12, 4, 20, 9, 25}
 - **Third Pass (h=n/8=1)**
@@ -81,8 +83,6 @@ Initial array: {8, 12, 4 25, 9, 6, 2, 20}
     - Perform insertion sort on entire array with a gap 1.
     - After this step the array is fully sorted :{ 2, 4, 6, 8, 9, 12, 20, 25}
 - Final Sorted Array : { 2, 4, 6, 8, 9, 12, 20, 25}
-    
-    
 
 # Advantages of Shell Sort:
 
@@ -131,7 +131,7 @@ The Shell sort algorithm can be used in a range of real-world applications, incl
 6. Sorting the database of company information - It can be used to sort information of companies like their products, services etc.
 7. Sorting strings of characters - It can be used to sort strings of characters, such as passwords, to make it easier to manage a password book.
 8. Shell sort is used in Linux Kernel because it does not use a call stack.( A call stack is a specialized data structure that stores information about active subroutines or functions in a program. )
-9. Shell sort is used in bzip2 compressor to avoid problems that could come when sorting algorithms exceed a language’s recursion depth. 
+9. Shell sort is used in bzip2 compressor to avoid problems that could come when sorting algorithms exceed a language’s recursion depth.
 
 # Optimizing Shell Sort:
 
@@ -158,7 +158,7 @@ The space complexity of the VSDShellSort algorithm is O(1) because it sorts the 
 
 ---
 
-```python
+```
 '''Copyrights to venkys.io
 For more information, visite https://venkys.io"/
 
@@ -173,152 +173,209 @@ Python program to sort a given array in order using Shell sort algorithm.'''
 #Time Complexity:O(n^2) in the worst-case scenario, and O(n log n) in the average case scenario.
 
 def VSDShellSort(arr,n):
-    shellsize=8
-    while(shellsize>=1):
+    shellsize=8  # Initialize the initial gap size for Shell Sort
+    while(shellsize>=1):# Continue the loop until the gap size becomes 1
         i=shellsize
-        k=0 
-        while(i<n and k<shellsize):
-            key=arr[i]
-            j=i-shellsize
+        k=0
+        while(i<n and k<shellsize): # Iterate through the array with the current gap size
+            key=arr[i] # Store the current element as the key
+            j=i-shellsize  # Start comparing with the element 'shellsize' positions before the current element
             while j>=0:
                 if(arr[j]>key):
-                    arr[j+shellsize]=arr[j]
+                    arr[j+shellsize]=arr[j] # Shift elements greater than the key to the right
                 else:
                     break
                 j-=shellsize
-            arr[j+shellsize]=key
+            arr[j+shellsize]=key # Insert the key at its correct position in the sorted sequence
             if(i+shellsize)>=n:
                 k+=1
-                i=k+shellsize
+                i=k+shellsize # Move to the next group of elements for comparison
             else:
                 i+=shellsize
-        shellsize=shellsize//2
-    print(*arr,sep=" ")
+        shellsize=shellsize//2 # Reduce the gap size by half in each iteration
+    print(*arr,sep=" ")  # Print the sorted array
 
-if __name__=="__main__":
-   n = int(input("Enter the number of elements: "))
-   arr = list(map(int, input("Enter the elements").split()))
-   VSDShellSort(arr, n)
+def main():
+    try:
+        # Input the number of elements
+        n = int(input("Enter the number of elements: "))
+        # Check if the entered number of elements is not a positive integer
+        if n <= 0:
+            raise ValueError("Number of elements should be a positive integer.")
+
+        # Input the elements of the array and convert them to integers
+        arr = list(map(int, input("Enter the elements separated by space: ").split()))
+
+        # Check if the number of elements entered matches the specified count
+        if len(arr) != n:
+            raise ValueError("Number of elements entered doesn't match the specified count.")
+
+        # Call the VSDShellSort function to sort the array
+        VSDShellSort(arr, n)
+
+    except ValueError as e:
+        # Handle the case where an error occurs (e.g., non-integer input)
+        print(f"Error: {e}")
+
+# Check if the script is executed as the main program
+if __name__ == "__main__":
+    main()
 ```
 
-Note: The choice of gap sequence affects its adaptability, and in this case, it uses a fixed gap sequence (**`shellsize=8`** and then halves the gap in each iteration).
+Note: The choice of gap sequence affects its adaptability, and in this case, it uses a fixed gap sequence (**`shellsize=8`** and then halves the gap in each iteration).
 
-1. We initialize an shell size with a value
-(shellsize=8)
-2. We run a while loop while the value of shellsize is greater than 1. This loop iterates n times.
-while(shellsize>=1):
-3. initialize two variables i and k, starting at their initial values.
-        i=shellsize
-        k=0 
-4. Run another while loop while i is less than n and k is less than shellsize.
-while(i<n and k<shellsize):
-5. Initialize a variable key and assign the value at the current position in the array to it.
-    key=arr[i]
-6.  We run another while loop while j is greater than or equal to 0. This loop iterates (n - i) times.
-    while j>=0:
-7. We check if the value at position j in the array is greater than the key.
-        if(arr[j]>key):
-8.  If it is, we assign the value at position j + shellsize to the variable next\\_j.
-            next\\_j=arr[j+shellsize]
-9.   We then align the value at position (j + next\\_j) to position j using another while loop, which iterates (shellsize - 1) times.
-            while(next\\_j>=j+1):
-                arr[j]=next\\_j-1
-                next\\_j=j+shellsize
-                j+=shellsize
-10.  Once we have iterated the while loop, we exit the inner while loop by using the break statement. This happens if the value at position j is not greater than the key.
-11.   Finally, we assign the value at position j + shellsize to the variable key and increment the value of j.
-    arr[j+shellsize]=key
-    j+=1
-12.  If the value of i is equal to n, we increment the value of k and set the value of i to k + shellsize.
-    if(i+shellsize)>=n
+1. We initialize an shell size with a value (shellsize=8)
+2. We run a while loop while the value of shellsize is greater than 1. This loop iterates n times. while(shellsize>=1):
+3. initialize two variables i and k, starting at their initial values. i=shellsize k=0
+4. Run another while loop while i is less than n and k is less than shellsize. while(i<n and k<shellsize):
+5. Initialize a variable key and assign the value at the current position in the array to it. key=arr[i]
+6. We run another while loop while j is greater than or equal to 0. This loop iterates (n - i) times. while j>=0:
+7. We check if the value at position j in the array is greater than the key. if(arr[j]>key):
+8. If it is, we assign the value at position j + shellsize to the variable next\_j. next\_j=arr[j+shellsize]
+9. We then align the value at position (j + next\_j) to position j using another while loop, which iterates (shellsize - 1) times. while(next\_j>=j+1): arr[j]=next\_j-1 next\_j=j+shellsize j+=shellsize
+10. Once we have iterated the while loop, we exit the inner while loop by using the break statement. This happens if the value at position j is not greater than the key.
+11. Finally, we assign the value at position j + shellsize to the variable key and increment the value of j. arr[j+shellsize]=key j+=1
+12. If the value of i is equal to n, we increment the value of k and set the value of i to k + shellsize. if(i+shellsize)>=n
+
+## Sample Test Cases:
+
+- **Valid Input Case:**
+Enter the number of elements: 5
+Enter the elements separated by space: 12 4 6 8 1
+1 4 6 8 12
+- **Invalid Number of Elements Case:**
+Enter the number of elements: -3
+Error: Number of elements should be a positive integer.
+- **Mismatched Element Count Case:**
+Enter the number of elements: 4
+Enter the elements separated by space: 2 4 6
+Error: Number of elements entered doesn't match the specified count.
+- **Non-Integer Element Case:**
+Enter the number of elements: 3
+Enter the elements separated by space: 7 a 2
+Error: invalid literal for int() with base 10: 'a'
 
 # C++ code for Shell Sort:
 
 ---
 
-```cpp
+```
 /*Copyrights to venkys.io
-For more information, visite https://venkys.io"/
+For more information, visit https://venkys.io"/
 
 C++ program to sort a given array in order using Shell sort algorithm. */
-// Stable : No
-// Inplace : Yes
-// Adaptive : Yes
+
+// Stable: No
+// Inplace: Yes
+// Adaptive: Yes
 
 // Space complexity: O(1) - sorts in place
 
-//Time Complexity: O(n^2) in the worst-case scenario, and O(n log n) in the average case scenario.
+// Time Complexity: O(n^2) in the worst-case scenario, and O(n log n) in the average case scenario.
 
-#include<iostream>  
-#include<vector> //container to hold elements
-#include<string> //String representation for input
-#include<sstream> //To convert string input into integer
-using namespace std; // Namespace identifies the code is part of the standard library
+#include<iostream>
+#include<vector> // Container to hold elements
+#include<string> // String representation for input
+#include<sstream> // To convert string input into integer
+using namespace std; // Namespace identifies the code as part of the standard library
 
-void shellSort(int arr[],int n){
-    int shellsize=8;
-    // Iterate through decreasing gap sizes until gap is 1
-    while(shellsize>=1){
-        for(int i=shellsize,k=0;i<n&&k<shellsize;){
-            int key=arr[i];
-            int j=i-shellsize;
+// Function to perform Shell Sort on the given array
+void shellSort(int arr[], int n) {
+    int shellsize = 8;
+
+    // Iterate through decreasing gap sizes until the gap is 1
+    while (shellsize >= 1) {
+        for (int i = shellsize, k = 0; i < n && k < shellsize;) {
+            int key = arr[i];
+            int j = i - shellsize;
+
             // Compare and shift elements to make room for the key
-            for(;j>=0;j-=shellsize){
-                if(arr[j]>key){
-                    arr[j+shellsize]=arr[j];
-                }
-                else{
+            for (; j >= 0; j -= shellsize) {
+                if (arr[j] > key) {
+                    arr[j + shellsize] = arr[j];
+                } else {
                     break;
                 }
             }
+
             // Insert the key at the correct position in the sorted sequence
-            arr[j+shellsize]=key;
+            arr[j + shellsize] = key;
 
             // Update indices for the next iteration
-            if(i+shellsize>=n){
-                k+=1;
-                i=k+shellsize;
-            }
-            else{
-                i+=shellsize;
+            if (i + shellsize >= n) {
+                k += 1;
+                i = k + shellsize;
+            } else {
+                i += shellsize;
             }
         }
-       // Reduce the gap size for the next iteration
-        shellsize=shellsize/2;
-    }
-    // Print the sorted array
-    for(int i=0;i<n;i++){
-        cout<<arr[i]<<" ";
-    }
-    cout<<endl;
 
+        // Reduce the gap size for the next iteration
+        shellsize = shellsize / 2;
+    }
+
+    // Print the sorted array
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
 }
 
-int main(){
-		string input;
+int main() {
+    string input;
+
+    // Prompt the user to enter the elements separated by space
     cout << "Enter the elements separated by space: ";
+
+    // Read the entire line of input
     getline(cin, input);
-    
+
+    // If the input is empty, print an error message and exit
+    if (input.empty()) {
+        cout << "Error: Empty input. Please provide elements to sort." << endl;
+        return 1; // Return 1 to indicate an error
+    }
+
+    // Parse the input string and convert it into an array of integers
     stringstream ss(input);
     vector<int> elements;
     int num;
+
+    // Continue parsing until the end of the stringstream
     while (ss >> num) {
         elements.push_back(num);
     }
-    
+
+    // If the parsed elements vector is empty, print an error message and exit
+    if (elements.empty()) {
+        cout << "Error: No valid integers found in the input. Please provide valid elements." << endl;
+        return 1; // Return 1 to indicate an error
+    }
+
     int n = elements.size();
+
+    // If the array size is less than or equal to 0, print an error message and exit
+    if (n <= 0) {
+        cout << "Error: Invalid array size. Please enter a positive integer for the array size." << endl;
+        return 1; // Return 1 to indicate an error
+    }
+
     int arr[n];
+
+    // Copy elements from the vector to the array
     for (int i = 0; i < n; i++) {
         arr[i] = elements[i];
     }
-    shellSort(arr,n);
 
-    return 0;
+    // Call the shellSort function to sort the array
+    shellSort(arr, n);
+
+    return 0; // Return 0 to indicate successful execution of the program
 }
 ```
 
 - The provided Shell Sort implementation is not guaranteed to be stable. Stability in sorting algorithms means that the relative order of equal elements is preserved, and Shell Sort does not explicitly handle this requirement.
-- The **`shellSort`** function implements the Shell Sort algorithm. It starts with a gap size of 8 and iteratively reduces the gap until it becomes 1.
+- The **`shellSort`** function implements the Shell Sort algorithm. It starts with a gap size of 8 and iteratively reduces the gap until it becomes 1.
 - The outer loop controls the gap size, and the inner loops perform insertion sort within each subset defined by the current gap.
 - The sorted array is printed after the sorting process.
 
@@ -326,92 +383,140 @@ int main(){
 
 ---
 
-```java
-        /*Copyrights to venkys.io*/
-/*For more programs visit venkys.io */
-/*Java program for Shell sort*/
-// Stable : No
-// Inplace : Yes
-// Adaptive : Yes
+```
+/* Copyrights to venkys.io */
+/* For more programs, visit venkys.io */
+/* Java program for Shell sort */
 
-// Space complexity: O(1) 
+// Stable: No
+// Inplace: Yes
+// Adaptive: Yes
 
-//Time Complexity:  O(n^2) in the worst-case scenario, and O(n log n) in the average case scenario.
+// Space complexity: O(1)
 
-import java.util.Scanner; //Importing Scanner class from java.util package for user input
-import java.util.ArrayList; //Importing ArrayList class from java.util package to use dynamic arrays
+// Time Complexity: O(n^2) in the worst-case scenario, and O(n log n) in the average case scenario.
 
-public class shellsort 
-    {
-        static int n;//size of array
-        static int arr[];//array of numbers to be sorted
+import java.util.Scanner; // Importing Scanner class from java.util package for user input
+
+public class ShellSort {
+    static int n; // Size of the array
+    static int[] arr; // Array of numbers to be sorted
+
+    // Function to perform shell sort
+    public static void shellSort() {
+        int shellSize = 8; // Initial shell size
+        
+        // Continue the sorting process until the shell size becomes 0
+        while (shellSize >= 1) {
+            // Iterate through the array with the current shell size
+            for (int i = shellSize, k = 0; i < n && k < shellSize;) {
+                int key = arr[i];// Store the current element to be inserted
+                int j = i - shellSize; 
+                
+                // Move elements greater than key to the right until a smaller or equal element is found,
+                // or until the beginning of the subarray is reached.
+                for (; j >= 0; j -= shellSize) {
+                    if (arr[j] > key) {
+                        arr[j + shellSize] = arr[j];// Shift the current element to the right
+                    } else {
+                        break; // Stop shifting if a smaller or equal element is found
+                    }
+                }
+                arr[j + shellSize] = key;// Insert the stored element at its correct position
+                
+                // Move to the next position in the array considering the shell size
+                if (i + shellSize >= n) {
+                    k += 1;
+                    i = k + shellSize;
+                } else {
+                    i += shellSize;
+                }
+            }
             
-        //Function to perform shell sort
-        public static void VSDSort() 
-            {
-                int shellsize=8;//Initial shell size
-		            while(shellsize>=1)
-                	{
-        			for(int i=shellsize,k=0;i<n&&k<shellsize;){
-        				int key=arr[i];
-					  int j=i-shellsize;
-					for(;j>=0;j-=shellsize){
-						if(arr[j]>key){
-							arr[j+shellsize]=arr[j];
-						}
-						else{
-							break;
-						}
-					}
-					arr[j+shellsize]=key;
-					if(i+shellsize>=n){
-						k+=1;
-						i=k+shellsize;
-					}
-					else{
-						i+=shellsize;
-					}
-				}
-				shellsize=shellsize/2;
-			}
-	    }
+            // Reduce the shell size for the next iteration
+            shellSize = shellSize / 2;
+        }
+    }
 
-	
-	//Function to print output
-	public static void VSDprintOutput() {
-		System.out.println("The sorted order is:");
-		for(int i=0;i<arr.length;i++) {
-			System.out.print(arr[i] +" ");
-				
-			}
-			System.out.println();
-		}
+    // Function to print output
+    public static void printOutput() {
+        System.out.println("The sorted order is:");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
 
-	public static void main(String args[])
-        	{
-        	    Scanner scanner = new Scanner(System.in);
+    public static void main(String args[]) {
+        // Create a Scanner object to read user input from the console.
+        Scanner scanner = new Scanner(System.in);
 
-		    //Input the elements seperated by space
-                    System.out.print("Enter the elements separated by space: ");
-                    String input = scanner.nextLine();
-                    String[] elements = input.split(" ");
-                    n = elements.length;
-                    arr = new int[n];
-                    for (int i = 0; i < n; i++) {
-                          arr[i] = Integer.parseInt(elements[i]);
-                     }
-                   scanner.close();
+        try {
+            // Input the elements separated by space
+            System.out.print("Enter the elements separated by space: ");
+            // Read the entire line as input.
+            String input = scanner.nextLine();
 
-		//Perform Shell Sort
-        	VSDSort();
+            // Check for null or empty input
+            if (input == null || input.trim().isEmpty()) {
+                System.out.println("Error: Empty input. Please enter valid elements.");
+                return; // Exit the program to handle the error.
+            }
 
-		//Print the sorted array
-        	VSDprintOutput();
-	}
-}  		
+            // Split the input string into an array of string elements based on space.
+            String[] elements = input.split(" ");
+            n = elements.length;// Set the size of the array based on the number of elements.
+            arr = new int[n];// Initialize the array to store the parsed integers.
 
+            // Parse input elements to integers
+            for (int i = 0; i < n; i++) {
+                try {
+                    // Parse each element as an integer and assign it to the array.
+                    arr[i] = Integer.parseInt(elements[i]);
+                } catch (NumberFormatException e) {
+                    // Handle the case where an element is not a valid integer.
+                    System.out.println("Error: Invalid input. Please enter valid integers.");
+                    return;// Exit the program to handle the error.
+                }
+            }
+
+            // Call the shellSort function to perform the sorting.
+            shellSort();
+
+            // Call the printOutput function to display the sorted array.
+            printOutput();
+        } finally {
+            // Close the scanner to avoid resource leaks
+            if (scanner != null) {
+                scanner.close();
+            }
+        }
+    }
+}
 ```
 
-- The **`VSDSort`** function implements the Shell Sort algorithm in Java. It starts with a gap size of 8 and iteratively reduces the gap until it becomes 1.
+- The **`VSDSort`** function implements the Shell Sort algorithm in Java. It starts with a gap size of 8 and iteratively reduces the gap until it becomes 1.
 - The outer loop controls the gap size, and the inner loops perform insertion sort within each subset defined by the current gap.
-- The sorted array is printed after the sorting process using the **`VSDprintOutput`** function.
+- The sorted array is printed after the sorting process using the **`VSDprintOutput`** function.
+
+Sample Test Case 1:
+Enter the elements separated by space: 5 2 9 1 5 6
+The sorted order is:
+1 2 5 5 6 9
+
+Sample Test Case 2:
+Enter the elements separated by space: 10 5 3 8 2 7 9
+The sorted order is:
+2 3 5 7 8 9 10
+
+Sample Test Case 3 (Empty Input):
+Enter the elements separated by space:
+Error: Empty input. Please enter valid elements.
+
+Sample Test Case 4 (Invalid Input - Non-Integer Element):
+Enter the elements separated by space: 1 2 3 a 5
+Error: Invalid input. Please enter valid integers.
+
+Sample Test Case 5 (Invalid Input - Empty Element):
+Enter the elements separated by space: 1 2 3  5
+Error: Invalid input. Please enter valid integers.
