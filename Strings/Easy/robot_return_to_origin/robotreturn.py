@@ -27,3 +27,16 @@ z = z.upper()  # Convert input to uppercase for case-insensitivity
 # Call the function and print the result
 print(robot_return_to_origin(z))
 #returns True if the robot returns to the origin else returns False
+
+#Test case 1
+#Enter the directions: ruld
+#true
+
+#Test case 2
+#Enter the directions: rrdludl
+#false
+
+#Test case 3
+#Enter the directions: rulde
+#Wrong input
+#false
