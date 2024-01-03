@@ -107,64 +107,58 @@ int main() {
 
 ## Java Code :
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
+import java.util.Scanner;
 
-public class RecurringDecimalConverter {public static String fractionToRecurringDecimal(int numerator, int denominator) {
-    if (numerator == 0) {
-        return "0";
-    }
+public class LongestCommonPrefix {
 
-    StringBuilder result = new StringBuilder();
-
-    // Handle the sign
-    if ((numerator < 0) ^ (denominator < 0)) {
-        result.append("-");
-    }
-
-    // Convert both numerator and denominator to positive
-    long numeratorAbs = Math.abs((long) numerator);
-    long denominatorAbs = Math.abs((long) denominator);
-
-    // Calculate the integral part
-    result.append(numeratorAbs / denominatorAbs);
-    long remainder = numeratorAbs % denominatorAbs;
-
-    if (remainder == 0) {
-        return result.toString();
-    }
-
-    result.append(".");
-
-    // Use a map to store the position of each remainder
-    Map<Long, Integer> remainderPositions = new HashMap<>();
-
-    while (remainder != 0) {
-        if (remainderPositions.containsKey(remainder)) {
-            // The remainder repeats, so add parentheses and break the loop
-            result.insert(remainderPositions.get(remainder), "(");
-            result.append(")");
-            break;
+    public static String longestCommonPrefix(String[] strings) {
+        if (strings == null || strings.length == 0) {
+            return "";
         }
 
-        // Store the current remainder position in the result
-        remainderPositions.put(remainder, result.length());
+        // Sort the array to get the lexicographically smallest and largest strings
+        Arrays.sort(strings);
 
-        remainder *= 10;
-        result.append(remainder / denominatorAbs);
-        remainder %= denominatorAbs;
+        // Compare the first and last strings in the sorted array
+        String firstString = strings[0];
+        String lastString = strings[strings.length - 1];
+
+        StringBuilder prefix = new StringBuilder();
+        int minLength = Math.min(firstString.length(), lastString.length());
+
+        for (int i = 0; i < minLength; i++) {
+            if (firstString.charAt(i) == lastString.charAt(i)) {
+                prefix.append(firstString.charAt(i));
+            } else {
+                break;
+            }
+        }
+
+        return prefix.toString();
     }
 
-    return result.toString();
-}
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-public static void main(String[] args) {
-    int numerator = 1;
-    int denominator = 3;
-    String result = fractionToRecurringDecimal(numerator, denominator);
-    System.out.println(numerator + "/" + denominator + " = " + result);
-}
+        System.out.print("Enter the number of strings: ");
+        int numStrings = scanner.nextInt();
+        scanner.nextLine(); // Consume the newline character
 
+        String[] inputStrings = new String[numStrings];
+        for (int i = 0; i < numStrings; i++) {
+            System.out.print("Enter string " + (i + 1) + ": ");
+            inputStrings[i] = scanner.nextLine();
+        }
+
+        String result = longestCommonPrefix(inputStrings);
+
+        if (!result.isEmpty()) {
+            System.out.println("Longest common prefix: " + result);
+        } else {
+            System.out.println("No common prefix.");
+        }
+    }
 }
 
 ## Time complexity :
