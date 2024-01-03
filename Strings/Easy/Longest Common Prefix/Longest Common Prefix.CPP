@@ -1,46 +1,55 @@
-// C++ program to find longest common prefix
-// of given array of words.
-#include<iostream>
-#include<algorithm>
+#include <iostream>
+#include <vector>
+#include <algorithm>
 
-using namespace std;
+std::string longestCommonPrefix(const std::vector<std::string>& strings) {
+    if (strings.empty()) {
+        return "";
+    }
 
-// Function to find the longest common prefix
-string longestCommonPrefix(string ar[], int n)
-{
+    // Sort the strings to get the lexicographically smallest and largest strings
+    std::vector<std::string> sortedStrings = strings;
+    std::sort(sortedStrings.begin(), sortedStrings.end());
 
-// If size is 0, return empty string
-if (n == 0)
-	return "";
+    // Compare the first and last strings in the sorted list
+    std::string prefix = "";
+    const std::string& firstString = sortedStrings.front();
+    const std::string& lastString = sortedStrings.back();
 
-//If size is 1 then just return that character
-if (n == 1)
-return ar[0];
+    for (size_t i = 0; i < firstString.length(); ++i) {
+        if (firstString[i] == lastString[i]) {
+            prefix += firstString[i];
+        } else {
+            break;
+        }
+    }
 
-// Sort the given array
-sort(ar, ar + n);
-
-// Find the minimum length from
-// first and last string
-int en = min(ar[0].size(),
-			ar[n - 1].size());
-
-// Now the common prefix in first and
-// last string is the longest common prefix
-string first = ar[0], last = ar[n - 1];
-int i = 0;
-while (i < en && first[i] == last[i])
-	i++;
-
-string pre = first.substr(0, i);
-return pre;
+    return prefix;
 }
-int main()
-{
-string ar[] = {"geeksforgeeks", "geeks",
-"geek", "geezer"};
-int n = sizeof(ar) / sizeof(ar[0]);
-cout << "The longest common prefix is: "
-<< longestCommonPrefix(ar, n);
-return 0;
+
+int main() {
+    int numStrings;
+    std::cout << "Enter the number of strings: ";
+    std::cin >> numStrings;
+
+    std::vector<std::string> inputStrings;
+    inputStrings.reserve(numStrings);
+
+    // Taking user input for a vector of strings
+    for (int i = 0; i < numStrings; ++i) {
+        std::string inputString;
+        std::cout << "Enter string " << i + 1 << ": ";
+        std::cin >> inputString;
+        inputStrings.push_back(inputString);
+    }
+
+    std::string result = longestCommonPrefix(inputStrings);
+
+    if (!result.empty()) {
+        std::cout << "Longest common prefix: " << result << std::endl;
+    } else {
+        std::cout << "No common prefix." << std::endl;
+    }
+
+    return 0;
 }
