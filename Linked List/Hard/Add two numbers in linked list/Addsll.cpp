@@ -1,9 +1,7 @@
 /*Copyrights to venkys.io
 For more information, visite https://venkys.io"/
 
-C++ program to add two numbers in a linked list*/
-
-// Stable : Yes
+C++ program to add two numbers in a linked list*/// Stable : Yes
 // Inplace : Yes
 // Adaptive : Yes
 
@@ -12,17 +10,19 @@ C++ program to add two numbers in a linked list*/
 
 //Time Complexity:O(max(N, M)), where N and M are the lengths of the input linked lists.
 
-#include <iostream>
-#include <vector>
+#include <iostream> // It is a standard C++ header file that includes declarations for the standard input/output stream objects like cout, cin, etc.
+#include <vector> // Includes the Standard Template Library (STL) vector header for dynamic arrays.
 #include <limits>  // Include the header for numeric_limits
 
-using namespace std;
+using namespace std; // Using the standard namespace for simplifying code
 
+// Node class representing a node in a linked list
 class Node {
 public:
     int data;
-    Node* next = NULL;
+    Node* next = NULL; // Pointer to the next node in the linked list, initially set to NULL
 
+	// Constructor to initialize a node with the given value
     Node(int val) {
         data = val;
     }
@@ -30,15 +30,17 @@ public:
 
 //Function to print the linked list in reverse without arrows
 void printReverse(Node* head){
+	// Base case: If the current node is NULL (end of the list), return
     if (head==NULL){
         return;
     }
+    // Recursive call: Move to the next node in the list
     printReverse(head->next);
+    // Print the data of the current node
     cout << head->data << "";
 }
 
-/*
-// Function to print the linked list
+/*// Function to print the linked list
 void print(Node* head) {
     Node* temp = head;
     while (temp != NULL) {
@@ -56,8 +58,11 @@ Node* buildSingleNode(int val) {
 
 // Function to add two numbers represented as linked lists
 Node* addTwoNumbers(Node* l1, Node* l2) {
+	// Create a temporary node to serve as the dummy head of the result linked list
     Node* temp = new Node(0);
+    // Pointer to the head of the result linked list
     Node* head = temp;
+     // Variable to store the carry during addition
     int c = 0;
 
     // Loop until there are elements in either l1 or l2, or there is a carry
@@ -77,6 +82,7 @@ Node* addTwoNumbers(Node* l1, Node* l2) {
         c = c / 10;
         temp = temp->next;
     }
+    // Return the result linked list starting from the second node (as the first node is the dummy head)
     return head->next;
 }
 
@@ -100,7 +106,7 @@ int main() {
     cout << "Sum of the two numbers: ";
     printReverse(ans);
     cout << endl;
-    
+
     // Cleanup: Release memory
     delete l1;
     delete l2;
