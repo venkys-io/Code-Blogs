@@ -15,47 +15,36 @@ A fraction can be converted to a recurring decimal by dividing the numerator and
 
 ## Python code :
 
-def fraction_to_recurring_decimal(numerator, denominator):
-if numerator == 0:
-return "0"result = ""
 
-# Handle the sign
-if (numerator < 0) ^ (denominator < 0):
-    result += "-"
+def longest_common_prefix(strings):
+    if not strings:
+        return ""
 
-# Convert both numerator and denominator to positive
-numerator, denominator = abs(numerator), abs(denominator)
+    # Sort the list to get the lexicographically smallest and largest strings
+    strings.sort()
 
-# Calculate the integral part
-result += str(numerator // denominator)
-remainder = numerator % denominator
+    # Compare the first and last strings in the sorted list
+    prefix = ""
+    for char1, char2 in zip(strings[0], strings[-1]):
+        if char1 == char2:
+            prefix += char1
+        else:
+            break
 
-if remainder == 0:
-    return result
+    return prefix
 
-result += "."
+if __name__ == "__main__":
+    # Taking user input for a list of strings
+    num_strings = int(input("Enter the number of strings: "))
+    input_strings = [input(f"Enter string {i + 1}: ") for i in range(num_strings)]
 
-# Use a dictionary to store the position of each remainder
-remainder_positions = {}
+    result = longest_common_prefix(input_strings)
 
-while remainder != 0:
-    if remainder in remainder_positions:
-        # The remainder repeats, so add parentheses and break the loop
-        result = result[:remainder_positions[remainder]] + "(" + result[remainder_positions[remainder]:] + ")"
-        break
+    if result:
+        print("Longest common prefix:", result)
+    else:
+        print("No common prefix.")
 
-    # Store the current remainder position in the result
-    remainder_positions[remainder] = len(result)
-
-    remainder *= 10
-    result += str(remainder // denominator)
-    remainder %= denominator
-
-return result
-numerator = int(input())
-denominator = int(input())
-result = fraction_to_recurring_decimal(numerator, denominator)
-print(f"{numerator}/{denominator} = {result}")
 
 ## C++ code :
 
