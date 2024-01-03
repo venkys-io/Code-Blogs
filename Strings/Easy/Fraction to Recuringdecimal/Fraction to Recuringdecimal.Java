@@ -1,59 +1,44 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
-public class RecurringDecimalConverter {public static String fractionToRecurringDecimal(int numerator, int denominator) {
-    if (numerator == 0) {
-        return "0";
-    }
+public class FractionToDecimal {
 
-    StringBuilder result = new StringBuilder();
-
-    // Handle the sign
-    if ((numerator < 0) ^ (denominator < 0)) {
-        result.append("-");
-    }
-
-    // Convert both numerator and denominator to positive
-    long numeratorAbs = Math.abs((long) numerator);
-    long denominatorAbs = Math.abs((long) denominator);
-
-    // Calculate the integral part
-    result.append(numeratorAbs / denominatorAbs);
-    long remainder = numeratorAbs % denominatorAbs;
-
-    if (remainder == 0) {
-        return result.toString();
-    }
-
-    result.append(".");
-
-    // Use a map to store the position of each remainder
-    Map<Long, Integer> remainderPositions = new HashMap<>();
-
-    while (remainder != 0) {
-        if (remainderPositions.containsKey(remainder)) {
-            // The remainder repeats, so add parentheses and break the loop
-            result.insert(remainderPositions.get(remainder), "(");
-            result.append(")");
-            break;
+    public static String fractionToDecimal(int numerator, int denominator) {
+        if (numerator == 0) {
+            return "0";
         }
 
-        // Store the current remainder position in the result
-        remainderPositions.put(remainder, result.length());
+        StringBuilder result = new StringBuilder();
 
-        remainder *= 10;
-        result.append(remainder / denominatorAbs);
-        remainder %= denominatorAbs;
-    }
+        // Handle the sign
+        if ((numerator < 0) ^ (denominator < 0)) {
+            result.append("-");
+        }
 
-    return result.toString();
-}
+        // Take the absolute values
+        long num = Math.abs((long) numerator);
+        long den = Math.abs((long) denominator);
 
-public static void main(String[] args) {
-    int numerator = 1;
-    int denominator = 3;
-    String result = fractionToRecurringDecimal(numerator, denominator);
-    System.out.println(numerator + "/" + denominator + " = " + result);
-}
+        // Add the integer part
+        result.append(num / den);
+        long remainder = num % den;
 
-}
+        if (remainder == 0) {
+            return result.toString();
+        }
+
+        result.append(".");
+
+        Map<Long, Integer> seenRemainders = new HashMap<>();
+
+        while (remainder != 0) {
+            if (seenRemainders.containsKey(remainder)) {
+                // Recurring part found
+                int index = seenRemainders.get(remainder);
+                result.insert(index, "(");
+                result.append(")");
+                break;
+            }
+
+           
