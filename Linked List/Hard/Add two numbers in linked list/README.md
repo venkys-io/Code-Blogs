@@ -7,15 +7,15 @@ A singly linked list is a fundamental data structure in computer science used to
 Key aspects of a singly linked list are:
 
 1. **Node Structure:**
-    - Each node in a singly linked list contains two fields: **`data`** to store the actual value or payload, and **`next`** to store the reference (link) to the next node in the sequence.
+    - Each node in a singly linked list contains two fields: **`data`** to store the actual value or payload, and **`next`** to store the reference (link) to the next node in the sequence.
 2. **Head:**
     - The first node in the linked list is called the head. It serves as the starting point for traversing the list.
 3. **Traversal:**
-    - To traverse a singly linked list, you start at the head and follow the **`next`** references until you reach the end of the list (where **`next`** is null).
+    - To traverse a singly linked list, you start at the head and follow the **`next`** references until you reach the end of the list (where **`next`** is null).
 4. **Dynamic Size:**
     - Unlike arrays, linked lists can dynamically grow or shrink in size. Nodes can be easily added or removed from anywhere in the list.
 5. **Insertion and Deletion:**
-    - Inserting a new node involves updating the **`next`** reference of an existing node to point to the new node. Similarly, deleting a node involves updating the **`next`** reference of the preceding node to bypass the node being removed.
+    - Inserting a new node involves updating the **`next`** reference of an existing node to point to the new node. Similarly, deleting a node involves updating the **`next`** reference of the preceding node to bypass the node being removed.
 6. **Random Access:**
     - Unlike arrays, singly linked lists do not support direct access to elements by index. To access an element, you need to traverse the list from the head.
 7. **Memory Efficiency:**
@@ -27,7 +27,7 @@ Key aspects of a singly linked list are:
 
 ---
 
-Example to illustrate how to add two numbers represented as single linked lists. 
+Example to illustrate how to add two numbers represented as single linked lists.
 
 ### Example:
 
@@ -35,9 +35,9 @@ Note: Each node in the linked list contains a digit of the number, and the linke
 
 Suppose we want to add the numbers:
 
-Number 1: (2 → 4 → 3)   (represents 342)
+Number 1: (2 → 4 → 3) (represents 342)
 
-Number 2: (5 → 6 → 4)   (represents 465)
+Number 2: (5 → 6 → 4) (represents 465)
 
 ### Execution:
 
@@ -55,6 +55,8 @@ Number 2: (5 → 6 → 4)   (represents 465)
     - At each step, add the corresponding digits along with any carry from the previous step.
         
         ```
+        
+        Explain
         Iteration 1:
           - Digits: 2 + 5 = 7 (no carry)
           - Result: 7 -> None
@@ -85,21 +87,21 @@ Adding two numbers in a single linked list involves iterating through both lists
 - **Initialize a Dummy Head:**
     - Create a dummy head node to simplify the addition process. This dummy head is not part of the final result but helps in handling edge cases at the head of the resulting linked list.
 - **Initialize Pointers:**
-    - Initialize pointers for the current node in the result, as well as pointers for the current nodes in the two input linked lists (`l1` and `l2`).
+    - Initialize pointers for the current node in the result, as well as pointers for the current nodes in the two input linked lists (`l1` and `l2`).
 
 ### 2. Iterative Addition:
 
 - **Iterate Through the Linked Lists:**
-    - Use a loop to iterate through both linked lists (`l1` and `l2`) until both lists and any carry are exhausted.
+    - Use a loop to iterate through both linked lists (`l1` and `l2`) until both lists and any carry are exhausted.
 - **Extract Digits:**
-    - Extract the values of the current nodes in both linked lists (`x` from `l1` and `y` from `l2`). If a node is `None`, consider the value as 0.
+    - Extract the values of the current nodes in both linked lists (`x` from `l1` and `y` from `l2`). If a node is `None`, consider the value as 0.
 - **Perform Addition:**
     - Add the values of the current nodes along with any carry from the previous step.
     - Calculate the sum (`total_sum`) and the carry for the next iteration.
 - **Create Result Node:**
     - Create a new node with the digit of the current sum and append it to the result linked list.
 - **Move to the Next Nodes:**
-    - Move the pointers to the next nodes in both linked lists (`l1` and `l2`).
+    - Move the pointers to the next nodes in both linked lists (`l1` and `l2`).
 
 ### 3. Finalization:
 
@@ -110,13 +112,11 @@ Adding two numbers in a single linked list involves iterating through both lists
 
 Conclusion:
 
-The working principle involves a systematic traversal of the linked lists, digit-wise addition, and careful consideration of carry at each step. The dummy head simplifies the addition process, and the result is a new linked list representing the sum of the two input numbers. The provided Python code blog encapsulates this working principle in the `add_two_numbers` function.
+The working principle involves a systematic traversal of the linked lists, digit-wise addition, and careful consideration of carry at each step. The dummy head simplifies the addition process, and the result is a new linked list representing the sum of the two input numbers. The provided Python code blog encapsulates this working principle in the `add_two_numbers` function.
 
 # Advantages of Addition in Single Linked List:
 
 ---
-
- 
 
 ### Advantages of Addition in Single Linked List:
 
@@ -137,7 +137,7 @@ The working principle involves a systematic traversal of the linked lists, digit
 8. **Simplified Algorithm Design:**
     - Algorithms for addition or other operations on single linked lists can be simplified due to the sequential nature of the structure. There's no need to worry about shifting elements or resizing memory blocks, as is often the case with arrays.
 9. **Ease of Rearrangement:**
-    - Rearranging elements in a single linked list is relatively straightforward. It involves updating the `next` references, allowing for efficient reordering of elements without the need to move large chunks of memory.
+    - Rearranging elements in a single linked list is relatively straightforward. It involves updating the `next` references, allowing for efficient reordering of elements without the need to move large chunks of memory.
 10. **Adaptability to Changing Requirements:**
     - Single linked lists are well-suited for scenarios where the data structure requirements may change frequently. They provide adaptability to dynamic data sets and can accommodate modifications without significant overhead.
 
@@ -172,7 +172,7 @@ In summary, the advantages of performing addition in a single linked list lie in
 
 ---
 
-The addition of two numbers in a single linked list can be encountered in various real-world scenarios. 
+The addition of two numbers in a single linked list can be encountered in various real-world scenarios.
 
 1. **Arbitrary Precision Arithmetic:**
     - In cryptography, numerical calculations, or any scenario where precision matters, addition of large numbers might be performed using linked lists. This is especially true when the numbers are too large to be stored in standard data types like integers.
@@ -197,7 +197,7 @@ The addition of two numbers in a single linked list can be encountered in variou
 
 # Code in Python:
 
-```python
+```
 '''Copyrights to venkys.io
 For more information, visite https://venkys.io"/
 
@@ -211,21 +211,25 @@ Python program to add two numbers in a linked list'''
 
 #Time Complexity: O(max(N,M)), where N and M are the lengths of input linked lists.
 
+# Constructor method for the Node class
 class Node:
     def __init__(self,data):
-        self.data=data
-        self.next=None 
-    
+        self.data=data # Store the provided data in the 'data' attribute of the node
+        self.next=None  # Initialize the 'next' attribute to None, as this node is not yet connected to another node.
+
 def printLLReverse(head):
     #Function to print linked list in reverse order
     stack=[]
+    # Traverse the linked list and push each node's data onto the stack
     while head:
         stack.append(head.data)
         head=head.next
+    # Pop each element from the stack and print it in reverse order
     while stack:
         print(stack.pop(),end="")
+    # Print a newline to separate the reversed data from the rest of the output
     print()
-    
+
 '''def printLL(head):
 #Function to print the linked list
     while head:
@@ -236,18 +240,20 @@ def printLLReverse(head):
 def buildLL(arr):
     #Function to build a linked list from an array
     temp=Node(0)
-    head=temp 
+    head=temp
     for i in arr:
+        # Create a new node with the current array element
         temp.next=Node(i)
-        temp=temp.next 
-    return head.next 
+        # Move the temporary pointer to the newly created node
+        temp=temp.next
+    return head.next
 
 def addTwoNumbers(l1,l2):
 #Function to add two numbers represented as linked lists
     temp=Node(0)
     head=temp
     c=0
-    # loop until there are elements in either l1,;2 or there is carry. 
+    # loop until there are elements in either l1,;2 or there is carry.
     while l1 or l2 or c:
         # add corresponding digits from l1,l2 along with carry
         if l1:
@@ -262,39 +268,46 @@ def addTwoNumbers(l1,l2):
         temp=temp.next
     return head.next
 
-print("Enter first number:", end=" ")
-num1=input()
-l1=buildLL([int(x) for x in num1.split()])
-print("Enter Second number:",end=" ")
-num2=input()
-l2=buildLL([int(x) for x in num2.split()])
-print("Sum of two numbers: ", end=" ")
-ans=addTwoNumbers(l1,l2)
-printLLReverse(ans)
+def main():
+    # Prompt the user to enter the first number
+    print("Enter first number:", end=" ")
+    num1 = input()
+    l1 = buildLL([int(x) for x in num1.split()])
+    
+     # Prompt the user to enter the second number
+    print("Enter Second number:", end=" ")
+    num2 = input()
+    l2 = buildLL([int(x) for x in num2.split()])
+    
+    # Print the reverse of the linked list representing the sum (result)
+    print("Sum of two numbers: ", end=" ")
+    ans = addTwoNumbers(l1, l2)
+    printLLReverse(ans)
+
+if __name__ == "__main__":
+    main()
 ```
 
-1. The **`Node`** class is defined to create nodes for the linked list. Each node has a **`data`** attribute representing a digit and a **`next`** attribute pointing to the next node in the list.
-2. The **`printLLReverse`** function is defined to print the linked list. It takes the head of the linked list as an argument and traverses the list in reverse order, printing each node's data.
-3. The **`buildLL`** function is defined to build a linked list from an input array. It creates a dummy node, iterates through the array, and appends nodes with array elements as data to the linked list.
-4. The **`addTwoNumbers`** function takes two linked lists representing two numbers and returns a new linked list representing their sum. It uses a temporary dummy node (**`head`**) to build the result linked list.
-5. Inside the **`addTwoNumbers`** function:
-    - A temporary node **`temp`** is initialized as the head of the result linked list.
-    - A variable **`c`** is initialized to 0, representing the carry.
-    - A while loop runs until there are elements in either of the input linked lists (**`l1`** or **`l2`**) or there is a carry (**`c`**).
-    - Inside the loop, the code adds the corresponding digits from **`l1`** and **`l2`**, along with the carry, and updates **`c`** and the result digit in the new linked list.
+1. The **`Node`** class is defined to create nodes for the linked list. Each node has a **`data`** attribute representing a digit and a **`next`** attribute pointing to the next node in the list.
+2. The **`printLLReverse`** function is defined to print the linked list. It takes the head of the linked list as an argument and traverses the list in reverse order, printing each node's data.
+3. The **`buildLL`** function is defined to build a linked list from an input array. It creates a dummy node, iterates through the array, and appends nodes with array elements as data to the linked list.
+4. The **`addTwoNumbers`** function takes two linked lists representing two numbers and returns a new linked list representing their sum. It uses a temporary dummy node (**`head`**) to build the result linked list.
+5. Inside the **`addTwoNumbers`** function:
+    - A temporary node **`temp`** is initialized as the head of the result linked list.
+    - A variable **`c`** is initialized to 0, representing the carry.
+    - A while loop runs until there are elements in either of the input linked lists (**`l1`** or **`l2`**) or there is a carry (**`c`**).
+    - Inside the loop, the code adds the corresponding digits from **`l1`** and **`l2`**, along with the carry, and updates **`c`** and the result digit in the new linked list.
     - The carry is updated as the floor division of the sum by 10.
     - The new digit is appended to the result linked list.
     - Move to the next node in the result linked list.
 
 # Code in C++:
 
-```cpp
+```
 /*Copyrights to venkys.io
 For more information, visite https://venkys.io"/
 
-C++ program to add two numbers in a linked list*/
-
-// Stable : Yes
+C++ program to add two numbers in a linked list*/// Stable : Yes
 // Inplace : Yes
 // Adaptive : Yes
 
@@ -303,17 +316,19 @@ C++ program to add two numbers in a linked list*/
 
 //Time Complexity:O(max(N, M)), where N and M are the lengths of the input linked lists.
 
-#include <iostream>
+#include <iostream> // It is a standard C++ header file that includes declarations for the standard input/output stream objects like cout, cin, etc.
 #include <vector> // Includes the Standard Template Library (STL) vector header for dynamic arrays.
 #include <limits>  // Include the header for numeric_limits
 
-using namespace std;
+using namespace std; // Using the standard namespace for simplifying code
 
+// Node class representing a node in a linked list
 class Node {
 public:
     int data;
-    Node* next = NULL;
+    Node* next = NULL; // Pointer to the next node in the linked list, initially set to NULL
 
+	// Constructor to initialize a node with the given value
     Node(int val) {
         data = val;
     }
@@ -321,15 +336,17 @@ public:
 
 //Function to print the linked list in reverse without arrows
 void printReverse(Node* head){
+	// Base case: If the current node is NULL (end of the list), return
     if (head==NULL){
         return;
     }
+    // Recursive call: Move to the next node in the list
     printReverse(head->next);
+    // Print the data of the current node
     cout << head->data << "";
 }
 
-/*
-// Function to print the linked list
+/*// Function to print the linked list
 void print(Node* head) {
     Node* temp = head;
     while (temp != NULL) {
@@ -347,8 +364,11 @@ Node* buildSingleNode(int val) {
 
 // Function to add two numbers represented as linked lists
 Node* addTwoNumbers(Node* l1, Node* l2) {
+	// Create a temporary node to serve as the dummy head of the result linked list
     Node* temp = new Node(0);
+    // Pointer to the head of the result linked list
     Node* head = temp;
+     // Variable to store the carry during addition
     int c = 0;
 
     // Loop until there are elements in either l1 or l2, or there is a carry
@@ -368,6 +388,7 @@ Node* addTwoNumbers(Node* l1, Node* l2) {
         c = c / 10;
         temp = temp->next;
     }
+    // Return the result linked list starting from the second node (as the first node is the dummy head)
     return head->next;
 }
 
@@ -391,7 +412,7 @@ int main() {
     cout << "Sum of the two numbers: ";
     printReverse(ans);
     cout << endl;
-    
+
     // Cleanup: Release memory
     delete l1;
     delete l2;
@@ -403,9 +424,9 @@ int main() {
 
 # Code in Java:
 
-```java
+```
 /*Copyrights to venkys.io
-For more information, visite https://venkys.io"/
+For more information, visit https://venkys.io"/
 
 Java program to add two numbers in a linked list*/
 
@@ -432,13 +453,15 @@ class Node{
 }
 
 public class Linkedlistsum{
-
-	// Function to print the linked list in reverse order 
+    // Function to print the linked list in reverse order 
 	static void printReverse(Node head) {
+	// Base case: If the current node is null, return
         if (head == null) {
             return;
         }
+        // Recursive call: Move to the next node and print it in reverse order
         printReverse(head.next);
+        // Print the data of the current node
         System.out.print(head.data);
     }
     
@@ -454,22 +477,25 @@ public class Linkedlistsum{
 
     // Function to build a linked list from an array
     static Node buildll(int[] arr){
-        Node temp=new Node(0);
-        Node head=temp;
+        Node temp=new Node(0); // Create a dummy node to serve as the head of the linked list
+        Node head=temp; // Store the reference to the head of the linked list
+       
         for(int i=0;i<arr.length;i++){
             temp.next=new Node(arr[i]); //Create a new node with array element and link it
             temp=temp.next; // Move the temporary pointer to newly created node
         }
-        return head.next;
+        return head.next; // Return the actual head of the linked list (skip the dummy node)
     }
 
     // Function to add two numbers represented as linked lists
     static Node addTwoNumbers(Node l1,Node l2){
         Node temp=new Node(0); //Create a dummy node
-        Node head=temp;
+        Node head=temp; // Keep a reference to the head of the linked list
 
-        int c=0;
+        int c=0; // Initialize the carry to 0
+        // Continue adding digits until both input linked lists are processed, and there is no carry left
         while(l1!=null || l2!=null || c!=0){
+            // Add the current digits of l1, l2, and the carry
             if(l1!=null){
                 c+=l1.data;
                 l1=l1.next;
@@ -488,15 +514,16 @@ public class Linkedlistsum{
 
     public static void main(String[] args) {
 	// Input for the first number
+	System.out.print("Enter first number:");
 	Scanner scanner = new Scanner(System.in);
-       String[] input1 = scanner.nextLine().split(" ");
+        String[] input1 = scanner.nextLine().split(" ");
         int[] a1 = new int[input1.length];
         for (int i = 0; i < input1.length; i++) {
             a1[i] = Integer.parseInt(input1[i]);
         }
 
         // Input for the second number
-       
+        System.out.print("Enter second number:");
         String[] input2 = scanner.nextLine().split(" ");
         int[] a2 = new int[input2.length];
         for (int i = 0; i < input2.length; i++) {
@@ -508,6 +535,7 @@ public class Linkedlistsum{
         Node l2=buildll(a2);
 
         Node ans=addTwoNumbers(l1, l2);
+	System.out.print("Sum of two numbers:");
         printReverse(ans);
         System.out.println();
         // Close the scanner
@@ -515,3 +543,41 @@ public class Linkedlistsum{
     }
 }
 ```
+
+# Sample Test Cases:
+
+### Example 1:
+
+**Input:**
+
+Enter first number: 243
+
+Enter second number: 564
+
+**Output:** 
+
+Sum of two numbers: 807
+
+### Example 2:
+
+**Input:**
+
+Enter first number: 999
+
+Enter second number: 1
+
+**Output:** 
+
+Sum of two numbers: 1000
+
+### Example 3:
+
+**Input:**
+
+Enter first number: 005
+
+Enter second number: 005
+
+**Output:** 
+
+Sum of two numbers: 10
