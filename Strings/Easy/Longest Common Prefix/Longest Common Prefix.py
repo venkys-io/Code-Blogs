@@ -1,30 +1,29 @@
-def longestCommonPrefix(a):
-size = len(a)
 
-# if size is 0, return empty string
-if (size == 0):
-	return ""
+def longest_common_prefix(strings):
+    if not strings:
+        return ""
 
-if (size == 1):
-	return a[0]
+    # Sort the list to get the lexicographically smallest and largest strings
+    strings.sort()
 
-# sort the array of strings
-a.sort()
+    # Compare the first and last strings in the sorted list
+    prefix = ""
+    for char1, char2 in zip(strings[0], strings[-1]):
+        if char1 == char2:
+            prefix += char1
+        else:
+            break
 
-# find the minimum length from
-# first and last string
-end = min(len(a[0]), len(a[size - 1]))
+    return prefix
 
-# find the common prefix between
-# the first and last string
-i = 0
-while (i < end and
-	a[0][i] == a[size - 1][i]):
-	i += 1
+if __name__ == "__main__":
+    # Taking user input for a list of strings
+    num_strings = int(input("Enter the number of strings: "))
+    input_strings = [input(f"Enter string {i + 1}: ") for i in range(num_strings)]
 
-pre = a[0][0: i]
-return pre
-if name == "main":
-input = input()
-print("The longest Common Prefix is :" ,
-			longestCommonPrefix(input))
+    result = longest_common_prefix(input_strings)
+
+    if result:
+        print("Longest common prefix:", result)
+    else:
+        print("No common prefix.")
