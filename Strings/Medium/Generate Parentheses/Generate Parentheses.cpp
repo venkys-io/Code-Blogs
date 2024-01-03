@@ -1,31 +1,33 @@
 #include <iostream>
 #include <vector>
-using namespace std;
+#include <string>
 
-void generate(string s, int left, int right, vector<string>& result) {
-if (left == 0 && right == 0) {
-result.push_back(s);
-return;
-}
-if (left > 0) {
-generate(s + '(', left - 1, right, result);
-}
-if (right > left) {
-generate(s + ')', left, right - 1, result);
-}
+void backtrack(std::vector<std::string>& result, std::string& current, int left, int right, int n) {
+    if (current.length() == 2 * n) {
+        result.push_back(current);
+        return;
+    }
+
+    if (left < n) {
+        current.push_back('(');
+        backtrack(result, current, left + 1, right, n);
+        current.pop_back();
+    }
+
+    if (right < left) {
+        current.push_back(')');
+        backtrack(result, current, left, right + 1, n);
+        current.pop_back();
+    }
 }
 
-vector<string> generateParenthesis(int n) {
-vector<string> result;
-generate("", n, n, result);
-return result;
+std::vector<std::string> generateParenthesis(int n) {
+    std::vector<std::string> result;
+    std::string current;
+    backtrack(result, current, 0, 0, n);
+    return result;
 }
 
 int main() {
-int n = 3; // Number of pairs of parentheses
-vector<string> parentheses = generateParenthesis(n);
-for (const auto& p : parentheses) {
-cout << p << endl;
-}
-return 0;
-}
+    int n;
+    std::cout << "Enter the number of pairs of parenthese
