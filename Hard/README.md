@@ -15,15 +15,22 @@ Algorithms often involve a preprocessing phase to construct data structures that
 --> Step-by-Step Algorithm:
 
 (1) Create a trie data structure from the set of patterns (strings) you want to search for. Each node in the trie represents a character in the patterns.
+
 (2) Initialize a pointer to the root of the trie and another pointer to the current character in the text being searched.
+
 (3) Starting from the root of the trie, traverse it using the characters in the text.
                 Move the trie pointer down the trie based on the characters in the text.
+
 (4) At each step of the traversal, check if the current character in the text matches a character represented by a trie node.
                 If there is a match, continue traversing down the trie. If not, reset the trie pointer to the root.
+
 (5) When reaching the end of a pattern in the trie, mark that pattern as found in the text.
                 Continue the search for other patterns.
+
 (6) Move the text pointer to the next character and repeat the trie traversal.
+
 (7) Continue the process until the text pointer reaches the end of the text.
+
 (8) Collect the positions or indices in the text where each pattern was found.
 
 # Practical Applications:
