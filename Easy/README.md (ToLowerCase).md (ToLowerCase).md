@@ -90,9 +90,6 @@ public class ToLowerCase {
 
 ```
 
-### Output
-![Alt text](../Outputs/TLCJAVA.png)
-
 # Explanation:
 
     - The toLowerCase() method takes a string s as input and returns the string with all characters converted to lowercase.
