@@ -12,53 +12,56 @@ The detection of cycles in a graph involves identifying if there's a closed loop
  - Pop the current vertex from the current path stack, as we are backtracking.
 
 # Overview of Detecting Cycles in a Graph:
-  - Graph Representation:
+- Graph Representation:
       Graphs consist of vertices (nodes) and edges (connections between nodes).
       The detection of cycles typically applies to both directed and undirected graphs.
-  - Objective:
+- Objective:
       The primary goal is to identify whether a graph contains any cycles.
-  - Algorithms:
+- Algorithms:
       Various algorithms tackle this problem, including Depth-First Search (DFS), Breadth-First Search (BFS), and Union-Find (Disjoint Set).
       DFS explores the graph depth-wise, marking visited nodes and backtracking when necessary to find cycles.
       Union-Find maintains sets of connected components and tracks if adding an edge forms a cycle.
-  - Traversing and Marking:
+- Traversing and Marking:
       During traversal, algorithms mark visited nodes or use data structures to keep track of visited vertices.
       These methods detect when a vertex is revisited, indicating the existence of a cycle.
-  - Cycle Identification:
+- Cycle Identification:
       Detecting a cycle involves recognizing a closed loop, meaning traversal leads back to a previously visited vertex, forming a cycle.
-  - Complexities:
+- Complexities:
       The time complexity for cycle detection algorithms varies:
       DFS and BFS generally have a complexity of O(V + E), where V represents vertices and E represents edges.
       Union-Find often performs with a similar time complexity.
-  - Applications:
+- Applications:
       Crucial in various domains like network analysis, project scheduling, software engineering, and resource allocation.
       Helps identify and prevent circular dependencies or loops that might cause issues in systems.
-  - Importance:
+- Importance:
       Plays a critical role in understanding the structure of graphs and preventing unintended or problematic connections.
       Facilitates error detection, loop avoidance, and efficient resource allocation.
 
 
 # Algorithm:
+(1) Create data structures to track visited nodes and parent nodes during the traversal. This can be done using arrays, sets, or dictionaries.
 
-        (1) Create data structures to track visited nodes and parent nodes during the traversal. This can be done using arrays, sets, or dictionaries.
-        (2) Start a DFS traversal from any unvisited node in the graph.
-            During the traversal, mark each visited node and keep track of the parent node that led to the current node.
-        (3) During the DFS traversal, if you encounter an already visited node that is not the parent of the current node, you have detected a back edge.
-        (4) The presence of a back edge indicates the existence of a cycle in the graph.
-        (5) Once a back edge is detected, backtrack from the current node to the node where the back edge was found.
-            The nodes encountered during the backtracking form the cycle.
-        (6) Extract and store the cycle found during the backtracking process. The cycle is now decrypted from the graph.
-        (7) If there are unvisited nodes in the graph, repeat the DFS traversal starting from an unvisited node to identify and decrypt additional cycles.
+(2) Start a DFS traversal from any unvisited node in the graph. During the traversal, mark each visited node and keep track of the parent node that led to the current node.
+
+(3) During the DFS traversal, if you encounter an already visited node that is not the parent of the current node, you have detected a back edge.
+
+(4) The presence of a back edge indicates the existence of a cycle in the graph.
+
+(5) Once a back edge is detected, backtrack from the current node to the node where the back edge was found. The nodes encountered during the backtracking form the cycle.
+ 
+(6) Extract and store the cycle found during the backtracking process. The cycle is now decrypted from the graph.
+
+(7) If there are unvisited nodes in the graph, repeat the DFS traversal starting from an unvisited node to identify and decrypt additional cycles.
 
 # Advantages :
-        Simple Implementation
-        Memory Efficiency
-        Flexibility
+Simple Implementation
+Memory Efficiency
+Flexibility
 
 # Drawbacks : 
-        Limited to Undirected Graphs
-        May Detect One Cycle
-        Performance for Dense Graphs
+Limited to Undirected Graphs
+May Detect One Cycle
+Performance for Dense Graphs
 
 ####   PYTHON Code   ####
 ```python
@@ -119,13 +122,12 @@ if __name__ == "__main__":
 
 # Clear Explnanation
   Let's break down the code:
-
-   - Graph Class:
+  - Graph Class:
      - __init__ Method: Initializes the graph with a given number of vertices. The graph is represented as an adjacency list (self.graph) where each vertex is a key in the dictionary, and its value is an empty list representing edges.
      - add_edge Method: Adds an undirected edge between two vertices u and v to the graph. It performs a null safety check and appends the vertices to each other's adjacency lists.
      - is_cyclic_util Method: A utility method used by is_cyclic. Performs Depth-First Search (DFS) recursively to detect cycles within the graph. It marks nodes as visited and checks for cycles using a recursive approach.
      - is_cyclic Method: Initializes a visited array, performs DFS traversal on each unvisited node, and calls the utility method is_cyclic_util to check for cycles. Returns True if a cycle is found; otherwise, returns False.
-   - main Function:
+  - main Function:
      - Takes User Input: Asks for the number of vertices and edges in the graph through standard input.
      - Creates Graph: Initializes a Graph object with the specified number of vertices.
      - Adds Edges: Takes input for edges and adds them to the graph using the add_edge method.
@@ -200,7 +202,7 @@ public class Main {
 
 
 # Java Code Explanation:
- - Main Class:
+  - Main Class:
     - dfs Method: A Depth-First Search function that checks for cycles in the graph. It recursively traverses the graph and marks visited nodes. If a node is already visited and it's not the parent (back edge), it indicates a cycle.
     - isCycle Method: Checks if there's any cycle in the provided graph by iterating through all nodes and calling the dfs method for unvisited nodes.
     - main Method: The entry point of the program. It prompts the user to input the number of vertices and edges. Then, it takes input for edge connections and constructs an adjacency list representing the graph. Finally, it invokes isCycle to determine if a cycle exists and prints the result.
@@ -302,31 +304,31 @@ int main() {
   - Assumptions
     - Assumes the input format is correct (vertices, edges, edge connections) and that the vertices are 0-indexed.
 # Key Points:
-   - The code represents the graph using a vector of vectors (std::vector<std::vector<int>>).
-   - dfs() performs DFS traversal and cycle detection in the graph.
-   - isCycle() initiates DFS from unvisited nodes and returns true if any cycle is found.
-   - The main() method demonstrates the usage by creating a sample graph and checking for cycles.
-   - This C++ code utilizes a DFS-based approach to identify cycles in an undirected graph. It employs an adjacency list to represent the graph structure and detects cycles by traversing the graph using DFS.
+- The code represents the graph using a vector of vectors (std::vector<std::vector<int>>).
+- dfs() performs DFS traversal and cycle detection in the graph.
+- isCycle() initiates DFS from unvisited nodes and returns true if any cycle is found.
+- The main() method demonstrates the usage by creating a sample graph and checking for cycles.
+- This C++ code utilizes a DFS-based approach to identify cycles in an undirected graph. It employs an adjacency list to represent the graph structure and detects cycles by traversing the graph using DFS.
 
 
 # Time Complexities of Detecting Cycle in a Graph 
-   - Worst Case : O(V + E)
-   - Best Case : O(1)
-   - Average Case : O(V + E)
+- Worst Case : O(V + E)
+- Best Case : O(1)
+- Average Case : O(V + E)
    The time complexity of cycle detection algorithms varies based on the approach used. For DFS-based cycle detection in a graph with 'V' vertices and 'E' edges, the complexity is typically O(V + E). Union-Find-based algorithms often have a similar time complexity.
 
 # Uses : 
-        Graph Theory
-        Compiler Design
-        Network Routing
-        Data Validation
-        Circuit Design
+Graph Theory
+Compiler Design
+Network Routing
+Data Validation
+Circuit Design
 
 # Real-time applications:
-    - Software Engineering: Detecting cycles in dependency graphs helps manage software modules or libraries with interdependent relationships.
-    - Networking: Identifying cycles in network topologies assists in avoiding routing loops in communication networks.
-    - Resource Allocation: Graphs representing resource allocation can avoid circular allocations through cycle detection.
+- Software Engineering: Detecting cycles in dependency graphs helps manage software modules or libraries with interdependent relationships.
+- Networking: Identifying cycles in network topologies assists in avoiding routing loops in communication networks.
+- Resource Allocation: Graphs representing resource allocation can avoid circular allocations through cycle detection.
 # Summary:
-    - Cycle detection in a graph involves identifying closed loops or cycles formed by traversing through vertices and edges.
-    - Various algorithms like DFS or Union-Find are used to detect cycles efficiently.
-    - It's crucial in various domains, especially in scenarios where avoiding circular dependencies or loops is essential, like project scheduling, software engineering, or network management.
+- Cycle detection in a graph involves identifying closed loops or cycles formed by traversing through vertices and edges.
+- Various algorithms like DFS or Union-Find are used to detect cycles efficiently.
+- It's crucial in various domains, especially in scenarios where avoiding circular dependencies or loops is essential, like project scheduling, software engineering, or network management.
