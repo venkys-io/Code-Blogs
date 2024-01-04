@@ -14,39 +14,41 @@ Algorithms often involve a preprocessing phase to construct data structures that
 
 --> Step-by-Step Algorithm:
 
-        (1) Create a trie data structure from the set of patterns (strings) you want to search for. Each node in the trie represents a character in the patterns.
-        (2) Initialize a pointer to the root of the trie and another pointer to the current character in the text being searched.
-        (3) Starting from the root of the trie, traverse it using the characters in the text.
+(1) Create a trie data structure from the set of patterns (strings) you want to search for. Each node in the trie represents a character in the patterns.
+(2) Initialize a pointer to the root of the trie and another pointer to the current character in the text being searched.
+(3) Starting from the root of the trie, traverse it using the characters in the text.
                 Move the trie pointer down the trie based on the characters in the text.
-        (4) At each step of the traversal, check if the current character in the text matches a character represented by a trie node.
+(4) At each step of the traversal, check if the current character in the text matches a character represented by a trie node.
                 If there is a match, continue traversing down the trie. If not, reset the trie pointer to the root.
-        (5) When reaching the end of a pattern in the trie, mark that pattern as found in the text.
+(5) When reaching the end of a pattern in the trie, mark that pattern as found in the text.
                 Continue the search for other patterns.
-        (6) Move the text pointer to the next character and repeat the trie traversal.
-        (7) Continue the process until the text pointer reaches the end of the text.
-        (8) Collect the positions or indices in the text where each pattern was found.
+(6) Move the text pointer to the next character and repeat the trie traversal.
+(7) Continue the process until the text pointer reaches the end of the text.
+(8) Collect the positions or indices in the text where each pattern was found.
 
 # Practical Applications:
-       - Text Processing:
-        Search Engines: Identifying multiple keywords in search queries.
-        Document Analysis: Detecting phrases, terms, or patterns within texts or documents.
-      - Bioinformatics:
-        Genomic Analysis: Locating DNA sequences, identifying gene patterns, and comparing genetic information.
-       - Data Mining:
-        Log Analysis: Searching for multiple keywords in logs for error detection or pattern recognition.
-        Information Retrieval: Efficiently finding relevant data in large datasets or databases.
+- Text Processing:
+        - Search Engines: Identifying multiple keywords in search queries.
+        - Document Analysis: Detecting phrases, terms, or patterns within texts or documents.
+- Bioinformatics:
+        - Genomic Analysis: Locating DNA sequences, identifying gene patterns, and comparing genetic information.
+- Data Mining:
+        - Log Analysis: Searching for multiple keywords in logs for error detection or pattern recognition.
+        - Information Retrieval: Efficiently finding relevant data in large datasets or databases.
 
 # Algorithmic Variations:
-        Boyer-Moore Algorithm: Efficient for searching multiple fixed strings.
-        Aho-Corasick Algorithm: Particularly useful for searching multiple patterns in a text simultaneously.
-        Rabin-Karp Algorithm: Utilizes hashing for pattern matching.
+- Boyer-Moore Algorithm: Efficient for searching multiple fixed strings.
+- Aho-Corasick Algorithm: Particularly useful for searching multiple patterns in a text simultaneously.
+- Rabin-Karp Algorithm: Utilizes hashing for pattern matching.
 
 # Exploration:
-        Multistring search algorithms aim to efficiently locate multiple patterns within a text or a set of texts. Different algorithms and data structures, such as trie structures, suffix trees, and hashing techniques, are utilized to optimize the search process.
+
+Multistring search algorithms aim to efficiently locate multiple patterns within a text or a set of texts. Different algorithms and data structures, such as trie structures, suffix trees, and hashing techniques, are utilized to optimize the search process.
 
 
 # Time complexities:
-        The time complexity of multistring search algorithms varies based on the chosen technique. Some algorithms offer sublinear or linear time complexities, while others might operate in O(n * m) time, where n is the length of the text and m is the total length of the patterns.
+
+The time complexity of multistring search algorithms varies based on the chosen technique. Some algorithms offer sublinear or linear time complexities, while others might operate in O(n * m) time, where n is the length of the text and m is the total length of the patterns.
 
 #    PYTHON Code    
 
@@ -251,18 +253,18 @@ public class MultiStringSearch {
 
 
 # Advantages of Multistring Search:
-       -  Efficiency: Designed to handle multiple patterns concurrently, optimizing search times even when dealing with numerous patterns or large texts.
-       -  Flexibility: Works with various text lengths and patterns, accommodating both fixed and variable-length strings.
-       -  Optimized Processing: Enables quicker retrieval of patterns by employing specialized data structures and algorithms.
+-  Efficiency: Designed to handle multiple patterns concurrently, optimizing search times even when dealing with numerous patterns or large texts.
+-  Flexibility: Works with various text lengths and patterns, accommodating both fixed and variable-length strings.
+-  Optimized Processing: Enables quicker retrieval of patterns by employing specialized data structures and algorithms.
 
 ## Drawbacks : 
-        Memory Overhead
-        Complexity
-        Not Always Optimal
+Memory Overhead
+Complexity
+Not Always Optimal
 
 ## Uses : 
-        Spell Checking
-        Code Editors
-        Text Processing
-        Network Security
-        DNA Sequencing
+Spell Checking
+Code Editors
+Text Processing
+Network Security
+DNA Sequencing
