@@ -15,25 +15,25 @@ Linear search is like looking for a specific thing in a room by checking each it
         (9) If you found your item, you know where it is (the index in the array). If you checked everything and didn't find it, you know it's not there.
 
 # Advantages of linear search
-        - Simplicity
-        - Applicability
-        - Ease of Implementation
-        - Memory Efficiency
-        - Optimal for Small Lists
+- Simplicity
+- Applicability
+- Ease of Implementation
+- Memory Efficiency
+- Optimal for Small Lists
 
 # Drawbacks of Linear Search:
-        - Linear search has a time complexity of O(N), 
-        - which in turn makes it slow for large datasets.
-        - Not suitable for large arrays.
+- Linear search has a time complexity of O(N), 
+- which in turn makes it slow for large datasets.
+- Not suitable for large arrays.
 
 # use Linear Search :
-        - When we are dealing with a small dataset.
-        - When you are searching for a dataset stored in contiguous memory.
-        - Debugging and Verification
-        - User Interface (UI) Elements
-        - data Valdation
-        - Sequential File Search
-         Online search Engines 
+- When we are dealing with a small dataset.
+- When you are searching for a dataset stored in contiguous memory.
+- Debugging and Verification
+- User Interface (UI) Elements
+- data Valdation
+- Sequential File Search
+- Online search Engines 
 
 
 # Overview of Linear Search Algorithm
@@ -224,13 +224,13 @@ int main() {
 
 
 # Real-world Applications
-    - Database Operations:
-        Linear search can be used in databases for basic search operations on unsorted datasets.
+- Database Operations:
+          Linear search can be used in databases for basic search operations on unsorted datasets.
         Finding Elements in Lists or Arrays:
         It's applicable in scenarios where finding a specific element in a collection of data is required.
-    - Simple Search Operations:
+- Simple Search Operations:
         Linear search can be applied in various programming scenarios where a basic search operation is needed and the dataset isn't too large.
-    - Handling Small Lists or Arrays:
+- Handling Small Lists or Arrays:
         It's efficient for small lists or arrays where the overhead of implementing complex search algorithms might not be justified.
         Linear search, although straightforward, serves as a fundamental algorithmic concept and is often used as a starting point for understanding more complex searching algorithms.
 
