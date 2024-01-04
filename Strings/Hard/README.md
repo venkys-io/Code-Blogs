@@ -720,3 +720,41 @@ The space complexity is determined by the memoization table, which stores result
     - Configuration files for software applications may use wildcard matching to define rules or settings based on patterns, making it easier to configure complex systems.
 10. **Regular Expressions and Pattern Matching Libraries:**
     - Wildcard matching principles are commonly used in regular expressions and pattern matching libraries, providing a powerful and flexible way to search, filter, or manipulate strings in programming.
+
+
+
+TEST CASE--1 :
+
+INPUT :
+
+print(isMatch("abcd", "a*d")) 
+
+OUTPUT :
+ True
+
+# Explanation: The pattern 'a*d' matches the string 'abcd' because '*' can represent any sequence of characters.
+
+TEST CASE--2 :
+
+INPUT :
+
+print(isMatch("abcde", "a?c*e"))  
+
+OUTPUT :
+
+True
+
+# Explanation: The pattern 'a?c*e' matches the string 'abcde' because '?' can represent any single character, and '*' can represent any sequence of characters.
+
+TEST CASE-3 :
+
+INPUT :
+
+print(isMatch("xyz", "x*y*z"))
+
+ OUTPUT :
+ 
+ True
+
+# Explanation: The pattern 'x*y*z' matches the string 'xyz' because '*' can represent any sequence of characters.
+
