@@ -314,20 +314,17 @@ TreeNode* buildBST(const vector<int>& values, size_t& index) {
 }
 ```
 ## Step-by-Step Explanation
-- **Node Definition:**
+- `Node Definition:`
 Define a TreeNode class to represent a node in the binary tree.
 
-- **Class Initialization:**
+- `Class Initialization:`
 Create a class (KthLargestInBST) to encapsulate the logic for finding the Kth largest element.
 
-- **Method for Kth Largest:**
+- `Method for Kth Largest:`
 Implement a method (kthLargest in Java and Python, and kthLargest in C++) that takes the root of the tree and the value of K as parameters. It initializes a count and calls an inorderTraversal method.
 
-- **In-Order Traversal:**
+- `In-Order Traversal:`
 Implement the inorderTraversal method that performs a reverse in-order traversal. It starts from the right, decrements the count, and stores the value when the count reaches 0. It then moves to the left.
-
-- **Example Usage:**
-Create an example binary search tree and use the KthLargestInBST class to find the Kth largest element.
 
 ## Time and Space Complexity Analysis
 * **Time Complexity:**
@@ -339,13 +336,13 @@ The space complexity is `O(H)`, where H is the height of the tree, due to the re
 ## Real-World Applications
 Efficiently finding the Kth largest element in a BST has real-world applications in various domains:
 
-- **Databases:** In databases, indexing and searching for specific data are common tasks. Efficiently finding the Kth largest value can be useful for optimizing database queries and report generation.
+- `Databases:` In databases, indexing and searching for specific data are common tasks. Efficiently finding the Kth largest value can be useful for optimizing database queries and report generation.
 
-- **Statistics:** Data analysis often involves finding the top K values in a dataset. This algorithm can be applied to efficiently compute percentiles and other statistical measures.
-- **Financial Analysis:** In financial markets,
+- `Statistics:` Data analysis often involves finding the top K values in a dataset. This algorithm can be applied to efficiently compute percentiles and other statistical measures.
+- `Financial Analysis:` In financial markets,
 finding the Kth largest stock price or asset value is essential for various investment strategies and risk assessment.
 
-- **Medicine:** In medical research, analyzing patient data might require identifying the Kth largest value, such as the highest recorded temperature or blood pressure, to monitor health trends.
+- `Medicine:` In medical research, analyzing patient data might require identifying the Kth largest value, such as the highest recorded temperature or blood pressure, to monitor health trends.
 
 
 The ability to efficiently find the Kth largest element in a BST is a valuable tool in these and many other fields where data analysis and decision-making rely on ordered data.
