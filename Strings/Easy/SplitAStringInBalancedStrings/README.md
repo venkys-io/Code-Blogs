@@ -46,8 +46,10 @@ def balancedStringSplit(string: str) -> int:
 
 
 def main():
+    # Take input from the user
+    input_str = input("Enter the string: ")
+    
     # Example usage
-    input_str = "RLRRRLLRLL"
     result = balancedStringSplit(input_str)
     print(result)
 
@@ -55,16 +57,17 @@ def main():
 if __name__ == "__main__":
     main()
 
+
 ```
 ### Java
 
 ```java
 /* Copyrights to venkys.io
 For more information, visit https://venkys.io */
+// Space complexity: O(N)
+// Time complexity: O(1)
 
-//Space complexity: O(N)
-//Time complexity: O(1)
-
+import java.util.Scanner;
 public class Main {
 
     // Function to count the maximum number of balanced string segments
@@ -89,19 +92,25 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        // Take input from the user
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the string: ");
+        String s = scanner.nextLine();
+
         // Example usage
-        String s = "RLRRLLRLRL";
         System.out.println(balanceStringSplit(s));
     }
 }
+
 ```
 ### CPP
 ```cpp
 /* Copyrights to venkys.io
-For more information, visit https://venkys.io */
+For more information, visit https://venkys.io
+# Space complexity: O(N)
+# Time complexity: O(1)
+*/
 
-//Space complexity: O(N)
-//Time complexity: O(1)
 #include <iostream>
 using namespace std;
 
@@ -129,15 +138,16 @@ int balancedStringSplit(string s) {
 }
 
 int main() {
-    // Example usage
-    string s = "RLRRLLRLRL";
+    // Take input from the user
+    cout << "Enter the string: ";
+    string s;
+    cin >> s;
 
     // Call the function and print the result
     cout << balancedStringSplit(s) << endl;
 
     return 0;
 }
-
 
 ```
 ## Step-by-Step Explanation(Common for Python, Java and CPP)
