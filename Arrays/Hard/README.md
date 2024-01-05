@@ -12,6 +12,9 @@ The Four Number Sum Problem involves finding all unique quadruplets within an ar
 # For more programs, visit venkys.io
 # Python program for FourNumberSum
 
+#Time Complexity : O(n^k-1)
+#Space Complexity : O(n^k-1)+O(k)
+
 def twosum(arr, target):
     """
     Helper function for finding pairs that sum up to the target.
@@ -83,6 +86,9 @@ In the provided example within the `__main__` block, an array [1, 2, 3, 4, 5, 6,
 // Copyrights to venkys.io
 // For more programs visit venkys.io 
 // Java program for FourNumberSum
+
+//Time Complexity : O(n^k-1)
+//Space Complexity : O(n^k-1)+O(k)
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -178,6 +184,9 @@ In the provided example within the `main` function, an array [1, 0, -1, 0, -2, 2
 // For more programs visit venkys.io 
 // CPP program for FourNumberSum
 
+//Time Complexity : O(n^k-1)
+//Space Complexity : O(n^k-1)+O(k)
+
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -262,14 +271,14 @@ In the 'main' function, a sample vector [1, 0, -1, 0, -2, 2] and a target sum of
 The time and space complexity of the provided Python program for the Four Number Sum problem can be analyzed as follows:
 
 ### Time Complexity:
-The time complexity of the program primarily depends on the `ksum` function, which recursively breaks down the problem. Let \(n\) be the length of the input array 'arr.' The main loop iterates through the array, and for each element, a recursive call is made to find \((k-1)\)-sum. In the worst case, the function explores all possible combinations of \(k\) elements, leading to a time complexity of \(O(n^k)\). The recursive calls within the loop contribute to the overall time complexity.
+The time complexity of the program primarily depends on the `ksum` function, which recursively breaks down the problem. Let \(n\) be the length of the input array 'arr.' The main loop iterates through the array, and for each element, a recursive call is made to find \((k-1)\)-sum. In the worst case, the function explores all possible combinations of \(k\) elements, leading to a time complexity of \(O(n^k-1)\). The recursive calls within the loop contribute to the overall time complexity.
 
 ### Space Complexity:
-The space complexity is determined by the auxiliary space used during the recursion and the storage of the results. In each recursive call, a new list is created to store the current combination. The depth of the recursion is \(k\), so the maximum stack space required is \(O(k)\). Additionally, the 'res' list accumulates the final result, and in the worst case, it can store \(O(n^k)\) combinations. Therefore, the space complexity is \(O(k) + O(n^k)\).
+The space complexity is determined by the auxiliary space used during the recursion and the storage of the results. In each recursive call, a new list is created to store the current combination. The depth of the recursion is \(k\), so the maximum stack space required is \(O(k)\). Additionally, the 'res' list accumulates the final result, and in the worst case, it can store \(O(n^k-1)\) combinations. Therefore, the space complexity is \(O(k) + O(n^k-1)\).
 
 ### Summary:
-- Time Complexity: \(O(n^k)\)
-- Space Complexity: \(O(k) + O(n^k)\)
+- Time Complexity: \(O(n^k-1)\)
+- Space Complexity: \(O(k) + O(n^k-1)\)
 ## Real-World Applications
 1. **Finance and Investment Strategies:**
    - In finance, particularly portfolio optimization and risk management, the Four Number Sum problem can be applied to identify combinations of financial assets that collectively meet certain criteria. For instance, investors may look for groups of stocks whose values sum up to a target, representing a balanced and diversified investment.
