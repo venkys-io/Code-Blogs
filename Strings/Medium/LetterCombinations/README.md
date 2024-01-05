@@ -66,14 +66,17 @@ def letterCombinations(digits):
     return res
 
 def main():
-    # Example usage
-    digits = "23"
-    result = letterCombinations(digits)
-    print(result)
+    # Take input from the user
+    digits = input("Enter the digits: ")
+    # Include null safety
+    if digits and digits.isdigit():
+        result = letterCombinations(digits)
+        print(result)
+    else:
+        print("Invalid input. Please enter a valid string of digits.")
 
 if __name__ == "__main__":
     main()
-
 
 ```
 
@@ -110,14 +113,16 @@ if __name__ == "__main__":
 ### Java
 
 ```java
-
 /* Copyrights to venkys.io
 For more information, visit https://venkys.io */
 
-//Space complexity: O(k^n)
-//Time complexity:  O(k^n)
+// Space complexity: O(k^n)
+// Time complexity:  O(k^n)
+
+
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
     // Static initialization of a HashMap to map digits to corresponding letters
@@ -141,36 +146,52 @@ public class Main {
             res.add(string);
             return;
         } else {
-            // Iterate over each character corresponding to the current digit
-            for (char ch : letters.get(digits.charAt(index)).toCharArray()) {
-                // Recursively call the utility function with the next index and the updated string
-                util(index + 1, string + ch, digits, res);
+            // Check if the current index is within bounds of the digits string
+            if (index < digits.length()) {
+                // Iterate over each character corresponding to the current digit
+                for (char ch : letters.get(digits.charAt(index)).toCharArray()) {
+                    // Recursively call the utility function with the next index and the updated string
+                    util(index + 1, string + ch, digits, res);
+                }
             }
         }
     }
 
     // Main function to initiate the process
     static String letterCombinations(String digits) {
-        // Check if the input string is empty
-        if (digits.length() == 0)
+        // Check if the input string is null or empty
+        if (digits == null || digits.isEmpty()) {
             return "[]";
+        }
 
         // Initialize an ArrayList to store the result
         ArrayList<String> res = new ArrayList<>();
-        
+
         // Start the recursion with index 0 and an empty string
         util(0, "", digits, res);
-        
+
+        // Check if the result list is empty
+        if (res.isEmpty()) {
+            return "[]";
+        }
+
         // Return the final list of letter combinations
         return res.toString();
     }
 
     // Main method for testing
     public static void main(String[] args) {
-        String digits = "23";
+        // Take input from the user
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the digits: ");
+        String digits = scanner.nextLine();
+
+        // Example usage
         System.out.println(letterCombinations(digits));
     }
 }
+
+
 ```
 ## Step-by-Step Explanation
 
@@ -205,13 +226,17 @@ public class Main {
 ### CPP
 
 ```cpp
-
 /* Copyrights to venkys.io
 For more information, visit https://venkys.io */
 
 //Space complexity: O(k^n)
 //Time complexity:  O(k^n)
+
+#include <iostream>
+using namespace std;
 #include<bits/stdc++.h>
+#include <vector>
+#include <map>
 
 // Utility function to generate letter combinations recursively
 void util(int index, std::string string, std::string digits, std::vector<std::string>& res, std::map<char, std::string> map) {
@@ -220,10 +245,13 @@ void util(int index, std::string string, std::string digits, std::vector<std::st
         res.push_back(string);
         return;
     } else {
-        // Iterate over each character corresponding to the current digit
-        for (char ch : map[digits[index]]) {
-            // Recursively call the utility function with the next index and the updated string
-            util(index + 1, string + ch, digits, res, map);
+        // Check if the current index is within bounds of the digits string
+        if (index < digits.length()) {
+            // Iterate over each character corresponding to the current digit
+            for (char ch : map[digits[index]]) {
+                // Recursively call the utility function with the next index and the updated string
+                util(index + 1, string + ch, digits, res, map);
+            }
         }
     }
 }
@@ -233,7 +261,7 @@ std::vector<std::string> letterCombinations(std::string digits) {
     std::vector<std::string> ans;
     
     // Check if the input string is empty
-    if (digits.length() == 0) 
+    if (digits.empty()) 
         return ans;
 
     // Mapping of digits to corresponding sets of letters
@@ -257,7 +285,17 @@ std::vector<std::string> letterCombinations(std::string digits) {
 
 // Main function for testing
 int main() {
-    std::string digits = "23";
+    // Take input from the user
+    std::string digits;
+    std::cout << "Enter the digits: ";
+    std::cin >> digits;
+
+    // Check if the input is valid
+    if (std::cin.fail()) {
+        std::cerr << "Invalid input. Please enter a valid string of digits." << std::endl;
+        return 1;
+    }
+
     std::vector<std::string> ans = letterCombinations(digits);
     
     // Print the generated letter combinations
