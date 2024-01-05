@@ -46,19 +46,25 @@ For more information, visit https://venkys.io */
 //Time complexity: O(n^2)
 
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class LongestSubstringWithK {
 
     public static int longestSubstring(String s, int k) {
+        // Check if the input string is null or empty
+        if (s == null || s.isEmpty()) {
+            return 0;
+        }
+
         // Counter to track the frequency of characters in the input string
         HashMap<Character, Integer> counter = new HashMap<>();
-        
+
         // Find the maximum number of distinct characters in the string
         int maxDistinctChars = countDistinctChars(s);
-        
+
         // Length of the input string
         int n = s.length();
-        
+
         // Variable to store the final result
         int ans = 0;
 
@@ -66,14 +72,14 @@ public class LongestSubstringWithK {
         for (int num = 1; num <= maxDistinctChars; num++) {
             // Counter for characters within the current window
             HashMap<Character, Integer> charCount = new HashMap<>();
-            
+
             // Left pointer for window contraction
             int left = 0;
 
             // Iterate over the string with the right pointer
             for (int right = 0; right < n; right++) {
                 char currentChar = s.charAt(right);
-                
+
                 // Update the count of the current character in the window
                 charCount.put(currentChar, charCount.getOrDefault(currentChar, 0) + 1);
 
@@ -81,12 +87,12 @@ public class LongestSubstringWithK {
                 while (charCount.size() > num) {
                     char leftChar = s.charAt(left);
                     charCount.put(leftChar, charCount.get(leftChar) - 1);
-                    
+
                     // Remove the character if its count becomes 0
                     if (charCount.get(leftChar) == 0) {
                         charCount.remove(leftChar);
                     }
-                    
+
                     // Move the left pointer to shrink the window
                     left++;
                 }
@@ -107,20 +113,26 @@ public class LongestSubstringWithK {
     private static int countDistinctChars(String s) {
         // Counter to track the frequency of characters
         HashMap<Character, Integer> counter = new HashMap<>();
-        
+
         // Iterate over the string and count distinct characters
         for (char c : s.toCharArray()) {
             counter.put(c, counter.getOrDefault(c, 0) + 1);
         }
-        
+
         // Return the number of distinct characters
         return counter.size();
     }
 
     // Main method for testing the function
     public static void main(String[] args) {
-        String string = "ababbc";
-        int k = 2;
+        // Take input from the user
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the string: ");
+        String string = scanner.nextLine();
+
+        System.out.print("Enter the value of k: ");
+        int k = scanner.nextInt();
+
         // Print the result of the longestSubstring function
         System.out.println(longestSubstring(string, k));
     }
@@ -139,6 +151,10 @@ public class LongestSubstringWithK {
 from collections import Counter, defaultdict
 
 def longestSubstring(string, k):
+    # Check if the input string is not empty
+    if not string:
+        return 0
+
     # Count the occurrences of each character in the string
     char_count = Counter(string)
     # Determine the maximum number of unique characters
@@ -170,19 +186,23 @@ def longestSubstring(string, k):
     return ans
 
 def main():
-    # Example usage
-    input_str = "ababbc"
-    k_value = 2
+    # Take input from the user
+    input_str = input("Enter the string: ")
+    k_value = int(input("Enter the value of k: "))
+    
+    # Call the function and print the result
     result = longestSubstring(input_str, k_value)
     print(result)
 
 if __name__ == "__main__":
     main()
 
+
 ```
 
 ### CPP
 ```cpp
+
 /* Copyrights to venkys.io
 For more information, visit https://venkys.io */
 
@@ -191,10 +211,14 @@ For more information, visit https://venkys.io */
 
 #include <iostream>
 #include <unordered_map>
-
 using namespace std;
 
 int longestSubstring(string str, int k) {
+    // Check if the input string is not empty
+    if (str.empty()) {
+        return 0;
+    }
+
     // Initialize a counter to track the frequency of characters in the input string
     unordered_map<char, int> freq;
     for (char c : str) {
@@ -260,8 +284,14 @@ int longestSubstring(string str, int k) {
 }
 
 int main() {
-    string str = "ababbc";
-    int k = 2;
+    // Take input from the user
+    string str;
+    cout << "Enter the string: ";
+    cin >> str;
+
+    int k;
+    cout << "Enter the value of k: ";
+    cin >> k;
 
     // Print the result of the longestSubstring function
     cout << longestSubstring(str, k) << endl;
