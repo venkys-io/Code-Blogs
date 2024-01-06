@@ -65,8 +65,12 @@ class QuickSortMultiThreading:
     # QuickSort method
     def __call__(self):
     
-        # Base case
-        if self.start >= self.end:
+        # Base case for null safety
+        if self.start is None or self.end is None or self.arr is None:
+            return
+        
+        # Ensure indices are within the valid range
+        if self.start >= self.end or self.start < 0 or self.end >= len(self.arr):
             return
         
         # Find partition
@@ -83,18 +87,22 @@ class QuickSortMultiThreading:
                 future.result()
 
 if __name__ == '__main__':
-    # Read the size of the array from STDIN
-    n = int(input())
-
-    # Read the elements of the array from STDIN
-    arr = [int(x) for x in input().split()]
-
-    # Perform multi-threaded quicksort
-    QuickSortMultiThreading(0, n - 1, arr)
-
-    # Print sorted elements
-    for i in range(n):
-        print(arr[i], end=' ')
+    try:
+        # Read the size of the array from STDIN
+        n = int(input())
+        
+        # Read the elements of the array from STDIN
+        arr = [int(x) for x in input().split()]
+        
+        # Perform multi-threaded quicksort
+        QuickSortMultiThreading(0, n - 1, arr)
+        
+        # Print sorted elements
+        for i in range(n):
+            print(arr[i], end=' ')
+            
+    except ValueError:
+        print("Invalid input. Please enter a valid integer for the size of the array.")
 
 ```
 ### step-by-step explanation
@@ -104,17 +112,12 @@ The base case checks if the start index is greater than or equal to the end inde
 
 ## Java
 ```java
-//Copyrights to venkys.io
-//For more programs, visit venkys.io
-//Java program for Multi-threaded quick sort
+// Copyrights to venkys.io
+// For more programs, visit venkys.io
+// Java program for Multi-threaded quick sort
 
-//Time Complexity: O(N*log N) 
-//Space Complexity: O(N)
-
-import java.io.*;
-import java.util.Random;
-import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.RecursiveTask;
+// Time Complexity: O(N*log N) 
+// Space Complexity: O(N)
 
 import java.io.*;
 import java.util.Random;
@@ -180,8 +183,12 @@ public class QuickSortMultiThreading extends RecursiveTask<Integer> {
 
     @Override
     protected Integer compute() {
-        // Base case
-        if (start >= end)
+        // Base case for null safety
+        if (start >= end || arr == null || arr.length == 0)
+            return null;
+
+        // Ensure indices are within the valid range
+        if (start < 0 || end >= arr.length)
             return null;
 
         // Find partition
@@ -209,6 +216,12 @@ public class QuickSortMultiThreading extends RecursiveTask<Integer> {
         // Read the size of the array from STDIN
         int n = scanner.nextInt();
 
+        // Handle the case for an empty or single-element array
+        if (n <= 0) {
+            System.out.println("Array is empty or contains only one element.");
+            return;
+        }
+
         int[] arr = new int[n];
 
         // Read the elements of the array from STDIN
@@ -230,6 +243,7 @@ public class QuickSortMultiThreading extends RecursiveTask<Integer> {
         scanner.close();
     }
 }
+
 ```
 ### step-by-step explanation
 The provided Java program implements the QuickSort algorithm using multi-threading with the ForkJoinPool and RecursiveTask in the java.util.concurrent package. The QuickSortMultiThreading class extends RecursiveTask<Integer>, representing a task that returns an Integer result upon completion. The partition method is responsible for selecting a random pivot element and partitioning the array around it. The main QuickSort logic is implemented in the compute() method, where the array is divided into two subproblems, and each subproblem is handled by a separate instance of the QuickSortMultiThreading class.
@@ -240,12 +254,12 @@ In the main method, an array is initialized, and the ForkJoinPool is used to sta
 
 ## cpp
 ```cpp
-//Copyrights to venkys.io
-//For more programs, visit venkys.io
-//cpp program for Multi-threaded quick sort
+// Copyrights to venkys.io
+// For more programs, visit venkys.io
+// C++ program for Multi-threaded quick sort
 
-//Time Complexity: O(N*log N) 
-//Space Complexity: O(N)
+// Time Complexity: O(N*log N)
+// Space Complexity: O(N)
 
 #include <iostream>
 #include <vector>
@@ -269,8 +283,8 @@ public:
         // Decide random pivot
         int pivoted = rand() % (j - i + 1) + i;
 
-        // Swap the pivoted with end
-        // element of array
+        // Swap the pivoted with the end
+        // element of the array
         int t = arr[j];
         arr[j] = arr[pivoted];
         arr[pivoted] = t;
@@ -303,9 +317,9 @@ public:
 
     // Function to implement
     // QuickSort method
-    void operator() () {
-        // Base case
-        if (start_ >= end_) {
+    void operator()() {
+        // Base case for null safety
+        if (start_ >= end_ || arr_.empty()) {
             return;
         }
 
@@ -316,14 +330,14 @@ public:
         QuickSortMultiThreading left(start_, p - 1, arr_);
         QuickSortMultiThreading right(p + 1, end_, arr_);
 
-        // Left subproblem as separate thread
-        #pragma omp parallel sections
+        // Left subproblem as a separate thread
+#pragma omp parallel sections
         {
-            #pragma omp section
+#pragma omp section
             {
                 left();
             }
-            #pragma omp section
+#pragma omp section
             {
                 right();
             }
@@ -338,9 +352,15 @@ private:
 
 int main() {
     int n;
-    
+
     // Read the size of the array from STDIN
     cin >> n;
+
+    // Handle the case for an empty or single-element array
+    if (n <= 0) {
+        cout << "Array is empty or contains only one element." << endl;
+        return 0;
+    }
 
     vector<int> arr(n);
 
