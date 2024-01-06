@@ -12,8 +12,12 @@ The Longest Palindromic Substring problem involves finding the longest contiguou
 #Copyrights to venkys.io
 #For more programs visit venkys.io 
 #Python program for LongestPalindromicSubstring
-def expandFromCenter(string, left, right):
-    global maxlength
+
+# Time Complexity - O(n^2)
+# Space Complexity - O(1)
+
+def expand_from_center(string, left, right):
+    global max_length
     global start
     
     # Keep expanding while the characters at left and right indices are equal
@@ -22,38 +26,42 @@ def expandFromCenter(string, left, right):
         right += 1
     
     # Update the maximum length and start index if a longer palindrome is found
-    if maxlength < right - left - 1:
-        maxlength = right - left - 1
+    if max_length < right - left - 1:
+        max_length = right - left - 1
         start = left + 1
 
-# Initialize global variables maxlength and start
-global maxlength 
-maxlength = 0
+# Initialize global variables max_length and start
+global max_length 
+max_length = 0
 
 global start
 start = 0
 
-def longestPalindrome(string):
-    global maxlength
+def longest_palindrome(string):
+    global max_length
     global start
     
     # Iterate through each character in the string
     for i in range(len(string)):
         # Find the length of palindrome when the center is a single character
-        expandFromCenter(string, i, i)
+        expand_from_center(string, i, i)
         
         # Find the length of palindrome when the center is between two characters
-        expandFromCenter(string, i, i + 1)
+        expand_from_center(string, i, i + 1)
     
-    # Return the longest palindrome substring using start and maxlength
-    return string[start:start + maxlength]
+    # Return the longest palindrome substring using start and max_length
+    return string[start:start + max_length]
 
 if __name__ == "__main__":
-    # Example usage
-    string = "badab"
-    
-    # Print the longest palindrome in the given string
-    print(longestPalindrome(string))
+    # Read the input string from STDIN
+    string = input()
+
+    # Check for null safety
+    if not string:
+        print("Input string is empty.")
+    else:
+        # Print the longest palindrome in the given string
+        print(longest_palindrome(string))
 
 ```
 ### Step-by-Step Explanation
@@ -66,9 +74,15 @@ The `longestPalindrome` function iterates through each character in the input st
 In the example usage section, the code demonstrates finding the longest palindrome in the string "badab" and prints the result. The provided implementation has a time complexity of O(n^2), where n is the length of the input string, as each expansion process takes linear time. This efficient algorithm allows for the identification of palindromic substrings within a given string.
 ### Java
 ```java
-#Copyrights to venkys.io
-#For more programs visit venkys.io 
-#Java program for LongestPalindromicSubstring
+// Copyrights to venkys.io
+// For more programs visit venkys.io
+// Java program for LongestPalindromicSubstring
+
+// Time Complexity - O(n^2)
+// Space Complexity- O(1)
+
+import java.util.Scanner;
+
 public class Main {
 
     // Function to find the longest palindrome in the given string
@@ -115,11 +129,22 @@ public class Main {
 
     // Main method for testing
     public static void main(String[] args) {
-        // Example usage
-        String s = "badab";
-        
-        // Print the longest palindrome in the given string
-        System.out.println(longestPalindrome(s));
+        // Create a Scanner object to read input from STDIN
+        Scanner scanner = new Scanner(System.in);
+
+        // Read the input string from STDIN
+        String s = scanner.nextLine();
+
+        // Check for null safety
+        if (s.isEmpty()) {
+            System.out.println("Input string is empty.");
+        } else {
+            // Print the longest palindrome in the given string
+            System.out.println(longestPalindrome(s));
+        }
+
+        // Close the Scanner object
+        scanner.close();
     }
 }
 
@@ -132,9 +157,14 @@ Within the main loop of `longestPalindrome`, the lengths `len1` and `len2` are c
 After the iteration, the function returns the substring of the input string that corresponds to the longest palindrome, using the updated `start` and `end` indices. In the example usage section, the code demonstrates finding the longest palindrome in the string "badab" and prints the result. The time complexity of the algorithm is O(n^2), where n is the length of the input string, as each expansion process takes linear time. The provided implementation efficiently identifies palindromic substrings within the given string.
 ### CPP
 ```cpp
-#Copyrights to venkys.io
-#For more programs visit venkys.io 
-#cpp program for LongestPalindromicSubstring
+// Copyrights to venkys.io
+// For more programs visit venkys.io 
+// cpp program for LongestPalindromicSubstring
+
+// Time Complexity - O(n^2)
+// Space Complexity- O(1)
+
+
 #include<bits/stdc++.h>
 using namespace std;
 
