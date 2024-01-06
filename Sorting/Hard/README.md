@@ -12,81 +12,90 @@ The provided Python code implements a multithreaded version of the QuickSort alg
 # Copyrights to venkys.io
 # For more programs, visit venkys.io
 # Python program for Multi-threaded quick sort
+
+# Time Complexity: O(N*log N) 
+# Space Complexity: O(N)
+
 import random
 from concurrent.futures import ThreadPoolExecutor
 
 class QuickSortMultiThreading:
-	def __init__(self, start, end, arr):
-		self.start = start
-		self.end = end
-		self.arr = arr
+    def __init__(self, start, end, arr):
+        self.start = start
+        self.end = end
+        self.arr = arr
 
-	# Finding random pivoted and partition
-	def partition(self, start, end, arr):
-		i = start
-		j = end
-		
-		# Decide random pivot
-		pivoted = random.randint(i, j)
-		
-		# Swap the pivoted with end
-		# element of array
-		t = arr[j]
-		arr[j] = arr[pivoted]
-		arr[pivoted] = t
-		j -= 1
-		
-		# Start partitioning
-		while i <= j:
-			if arr[i] <= arr[end]:
-				i += 1
-				continue
-			if arr[j] >= arr[end]:
-				j -= 1
-				continue
-			t = arr[j]
-			arr[j] = arr[i]
-			arr[i] = t
-			j -= 1
-			i += 1
-			
-		# Swap pivoted to its
-		# correct position
-		t = arr[j + 1]
-		arr[j + 1] = arr[end]
-		arr[end] = t
-		return j + 1
+    # Finding random pivoted and partition
+    def partition(self, start, end, arr):
+        i = start
+        j = end
+        
+        # Decide random pivot
+        pivoted = random.randint(i, j)
+        
+        # Swap the pivoted with end
+        # element of array
+        t = arr[j]
+        arr[j] = arr[pivoted]
+        arr[pivoted] = t
+        j -= 1
+        
+        # Start partitioning
+        while i <= j:
+            if arr[i] <= arr[end]:
+                i += 1
+                continue
+            if arr[j] >= arr[end]:
+                j -= 1
+                continue
+            t = arr[j]
+            arr[j] = arr[i]
+            arr[i] = t
+            j -= 1
+            i += 1
+            
+        # Swap pivoted to its
+        # correct position
+        t = arr[j + 1]
+        arr[j + 1] = arr[end]
+        arr[end] = t
+        return j + 1
 
-	# Function to implement
-	# QuickSort method
-	def __call__(self):
-	
-		# Base case
-		if self.start >= self.end:
-			return
-		
-		# Find partition
-		p = self.partition(self.start, self.end, self.arr)
-		
-		# Divide array
-		left = QuickSortMultiThreading(self.start, p - 1, self.arr)
-		right = QuickSortMultiThreading(p + 1, self.end, self.arr)
-		
-		# Left subproblem as separate thread
-		with ThreadPoolExecutor(max_workers=2) as executor:
-			futures = [executor.submit(left), executor.submit(right)]
-			for future in futures:
-				future.result()
+    # Function to implement
+    # QuickSort method
+    def __call__(self):
+    
+        # Base case
+        if self.start >= self.end:
+            return
+        
+        # Find partition
+        p = self.partition(self.start, self.end, self.arr)
+        
+        # Divide array
+        left = QuickSortMultiThreading(self.start, p - 1, self.arr)
+        right = QuickSortMultiThreading(p + 1, self.end, self.arr)
+        
+        # Left subproblem as a separate thread
+        with ThreadPoolExecutor(max_workers=2) as executor:
+            futures = [executor.submit(left), executor.submit(right)]
+            for future in futures:
+                future.result()
 
-# Driver Code
 if __name__ == '__main__':
-	n = 9
-	arr = [54, 33, 45, 95, 27, 12, 32, 72, 32]
-	QuickSortMultiThreading(0, n - 1, arr)()
-	for i in range(n):
-		
-		# Print shorted elements
-		print(arr[i], end=' ')
+    # Read the size of the array from STDIN
+    n = int(input())
+
+    # Read the elements of the array from STDIN
+    arr = [int(x) for x in input().split()]
+
+    # Perform multi-threaded quicksort
+    QuickSortMultiThreading(0, n - 1, arr)
+
+    # Print sorted elements
+    for i in range(n):
+        print(arr[i], end=' ')
+
 ```
 ### step-by-step explanation
 The provided Python program implements the QuickSort algorithm using multi-threading for parallel execution. The QuickSortMultiThreading class is designed to take a range of indices within an array and perform the sorting operation concurrently on the specified range. The partition method is responsible for selecting a random pivot element and partitioning the array around it. The main QuickSort logic is implemented in the __call__ method, where the array is divided into two subproblems, and each subproblem is handled by a separate thread using the ThreadPoolExecutor from the concurrent.futures module.
@@ -98,115 +107,129 @@ The base case checks if the start index is greater than or equal to the end inde
 //Copyrights to venkys.io
 //For more programs, visit venkys.io
 //Java program for Multi-threaded quick sort
+
+//Time Complexity: O(N*log N) 
+//Space Complexity: O(N)
+
 import java.io.*;
 import java.util.Random;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 
-public class QuickSortMutliThreading
-	extends RecursiveTask<Integer> {
+import java.io.*;
+import java.util.Random;
+import java.util.Scanner;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.RecursiveTask;
 
-	int start, end;
-	int[] arr;
+public class QuickSortMultiThreading extends RecursiveTask<Integer> {
 
-	/*
-	* Finding random pivoted and partition
-	*/
-	private int partition(int start, int end,int[] arr)
-	{
+    private int start, end;
+    private int[] arr;
 
-		int i = start, j = end;
-		// Decide random pivot
-		int pivoted = new Random().nextInt(j - i)+ i;
-		// Swap the pivoted with end
-		// element of array;
-		int t = arr[j];
-		arr[j] = arr[pivote];
-		arr[pivote] = t;
-		j--;
+    /*
+    * Finding random pivoted and partition
+    */
+    private int partition(int start, int end, int[] arr) {
+        int i = start, j = end;
 
-		// Start partitioning
-		while (i <= j) {
+        // Decide random pivot
+        int pivoted = new Random().nextInt(j - i) + i;
 
-			if (arr[i] <= arr[end]) {
-				i++;
-				continue;
-			}
+        // Swap the pivoted with end
+        // element of array;
+        int t = arr[j];
+        arr[j] = arr[pivoted];
+        arr[pivoted] = t;
+        j--;
 
-			if (arr[j] >= arr[end]) {
-				j--;
-				continue;
-			}
+        // Start partitioning
+        while (i <= j) {
+            if (arr[i] <= arr[end]) {
+                i++;
+                continue;
+            }
 
-			t = arr[j];
-			arr[j] = arr[i];
-			arr[i] = t;
-			j--;
-			i++;
-		}
+            if (arr[j] >= arr[end]) {
+                j--;
+                continue;
+            }
 
-		// Swap pivoted to its
-		// correct position
-		t = arr[j + 1];
-		arr[j + 1] = arr[end];
-		arr[end] = t;
-		return j + 1;
-	}
+            t = arr[j];
+            arr[j] = arr[i];
+            arr[i] = t;
+            j--;
+            i++;
+        }
 
-	// Function to implement
-	// QuickSort method
-	public QuickSortMutliThreading(int start,int end,int[] arr)
-	{
-		this.arr = arr;
-		this.start = start;
-		this.end = end;
-	}
+        // Swap pivoted to its
+        // correct position
+        t = arr[j + 1];
+        arr[j + 1] = arr[end];
+        arr[end] = t;
+        return j + 1;
+    }
 
-	@Override
-	protected Integer compute()
-	{
-		// Base case
-		if (start >= end)
-			return null;
+    // Function to implement
+    // QuickSort method
+    public QuickSortMultiThreading(int start, int end, int[] arr) {
+        this.arr = arr;
+        this.start = start;
+        this.end = end;
+    }
 
-		// Find partition
-		int p = partition(start, end, arr);
+    @Override
+    protected Integer compute() {
+        // Base case
+        if (start >= end)
+            return null;
 
-		// Divide array
-		QuickSortMutliThreading left= new QuickSortMutliThreading( start, p - 1, arr);
-		QuickSortMutliThreading right  new QuickSortMutliThreading(p + 1, end, arr);
+        // Find partition
+        int p = partition(start, end, arr);
 
-		// Left subproblem as separate thread
-		left.fork();
-		right.compute();
+        // Divide array
+        QuickSortMultiThreading left = new QuickSortMultiThreading(start, p - 1, arr);
+        QuickSortMultiThreading right = new QuickSortMultiThreading(p + 1, end, arr);
 
-		// Wait until left thread complete
-		left.join();
+        // Left subproblem as a separate thread
+        left.fork();
+        right.compute();
 
-		// We don't want anything as return
-		return null;
-	}
+        // Wait until the left thread completes
+        left.join();
 
-	// Driver Code
-	public static void main(String args[])
-	{
-		int n = 9;
-		int[] arr = {54, 33, 45, 95, 27, 12, 32, 72, 32};
+        // We don't want anything as return
+        return null;
+    }
 
-		// Forkjoin ThreadPool to keep
-		// thread creation as per resources
-		ForkJoinPool pool = ForkJoinPool.commonPool();
+    // Driver Code
+    public static void main(String args[]) {
+        Scanner scanner = new Scanner(System.in);
 
-		// Start the first thread in fork
-		// join pool for range 0, n-1
-		pool.invoke(new QuickSortMutliThreading(0, n - 1, arr));
+        // Read the size of the array from STDIN
+        int n = scanner.nextInt();
 
-		// Print shorted elements
-		for (int i = 0; i < n; i++)
-			System.out.print(arr[i] + " ");
-	}
+        int[] arr = new int[n];
+
+        // Read the elements of the array from STDIN
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+
+        // ForkJoin ThreadPool to keep
+        // thread creation as per resources
+        ForkJoinPool pool = ForkJoinPool.commonPool();
+
+        // Start the first thread in fork
+        // join pool for range 0, n-1
+        pool.invoke(new QuickSortMultiThreading(0, n - 1, arr));
+
+        // Print sorted elements
+        for (int i = 0; i < n; i++)
+            System.out.print(arr[i] + " ");       
+        scanner.close();
+    }
 }
-
 ```
 ### step-by-step explanation
 The provided Java program implements the QuickSort algorithm using multi-threading with the ForkJoinPool and RecursiveTask in the java.util.concurrent package. The QuickSortMultiThreading class extends RecursiveTask<Integer>, representing a task that returns an Integer result upon completion. The partition method is responsible for selecting a random pivot element and partitioning the array around it. The main QuickSort logic is implemented in the compute() method, where the array is divided into two subproblems, and each subproblem is handled by a separate instance of the QuickSortMultiThreading class.
@@ -220,6 +243,10 @@ In the main method, an array is initialized, and the ForkJoinPool is used to sta
 //Copyrights to venkys.io
 //For more programs, visit venkys.io
 //cpp program for Multi-threaded quick sort
+
+//Time Complexity: O(N*log N) 
+//Space Complexity: O(N)
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -231,97 +258,109 @@ using namespace std;
 
 class QuickSortMultiThreading {
 public:
-	QuickSortMultiThreading(int start, int end, vector<int>& arr) 
-		: start_(start), end_(end), arr_(arr) {}
-	
-	// Finding random pivoted and partition
-	int partition(int start, int end, vector<int>& arr) {
-		int i = start;
-		int j = end;
+    QuickSortMultiThreading(int start, int end, vector<int>& arr)
+        : start_(start), end_(end), arr_(arr) {}
 
-		// Decide random pivot
-		int pivoted = rand() % (j - i + 1) + i;
+    // Finding random pivoted and partition
+    int partition(int start, int end, vector<int>& arr) {
+        int i = start;
+        int j = end;
 
-		// Swap the pivoted with end
-		// element of array
-		int t = arr[j];
-		arr[j] = arr[pivoted];
-		arr[pivoted] = t;
-		j--;
+        // Decide random pivot
+        int pivoted = rand() % (j - i + 1) + i;
 
-		// Start partitioning
-		while (i <= j) {
-			if (arr[i] <= arr[end]) {
-				i++;
-				continue;
-			}
-			if (arr[j] >= arr[end]) {
-				j--;
-				continue;
-			}
-			t = arr[j];
-			arr[j] = arr[i];
-			arr[i] = t;
-			j--;
-			i++;
-		}
+        // Swap the pivoted with end
+        // element of array
+        int t = arr[j];
+        arr[j] = arr[pivoted];
+        arr[pivoted] = t;
+        j--;
 
-		// Swap pivoted to its
-		// correct position
-		t = arr[j + 1];
-		arr[j + 1] = arr[end];
-		arr[end] = t;
-		return j + 1;
-	}
+        // Start partitioning
+        while (i <= j) {
+            if (arr[i] <= arr[end]) {
+                i++;
+                continue;
+            }
+            if (arr[j] >= arr[end]) {
+                j--;
+                continue;
+            }
+            t = arr[j];
+            arr[j] = arr[i];
+            arr[i] = t;
+            j--;
+            i++;
+        }
 
-	// Function to implement
-	// QuickSort method
-	void operator() () {
-		// Base case
-		if (start_ >= end_) {
-			return;
-		}
+        // Swap pivoted to its
+        // correct position
+        t = arr[j + 1];
+        arr[j + 1] = arr[end];
+        arr[end] = t;
+        return j + 1;
+    }
 
-		// Find partition
-		int p = partition(start_, end_, arr_);
+    // Function to implement
+    // QuickSort method
+    void operator() () {
+        // Base case
+        if (start_ >= end_) {
+            return;
+        }
 
-		// Divide array
-		QuickSortMultiThreading left(start_, p - 1, arr_);
-		QuickSortMultiThreading right(p + 1, end_, arr_);
+        // Find partition
+        int p = partition(start_, end_, arr_);
 
-		// Left subproblem as separate thread
-		#pragma omp parallel sections
-		{
-			#pragma omp section
-			{
-				left();
-			}
-			#pragma omp section
-			{
-				right();
-			}
-		}
-	}
+        // Divide array
+        QuickSortMultiThreading left(start_, p - 1, arr_);
+        QuickSortMultiThreading right(p + 1, end_, arr_);
+
+        // Left subproblem as separate thread
+        #pragma omp parallel sections
+        {
+            #pragma omp section
+            {
+                left();
+            }
+            #pragma omp section
+            {
+                right();
+            }
+        }
+    }
 
 private:
-	int start_;
-	int end_;
-	vector<int>& arr_;
+    int start_;
+    int end_;
+    vector<int>& arr_;
 };
 
 int main() {
-	int n = 9;
-	vector<int> arr = {54, 33, 45, 95, 27, 12, 32, 72, 32};
-	srand(time(NULL));
-	QuickSortMultiThreading(0, n - 1, arr)();
-	for (int i = 0; i < n; i++) {
+    int n;
+    
+    // Read the size of the array from STDIN
+    cin >> n;
 
-		// Print sorted elements
-		cout << arr[i] << " ";
-	}
-	cout << endl;
-	return 0;
+    vector<int> arr(n);
+
+    // Read the elements of the array from STDIN
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    srand(time(NULL));
+    QuickSortMultiThreading(0, n - 1, arr)();
+
+    // Print sorted elements
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
 }
+
 
 ```
 ### step-by-step explanation
