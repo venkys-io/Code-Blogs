@@ -9,7 +9,7 @@ The Four Number Sum Problem involves finding all unique quadruplets within an ar
 ### Python
 ```python
 # Copyrights to venkys.io
-# For more programs, visit venkys.io
+# For more programs visit venkys.io 
 # Python program for FourNumberSum
 
 #Time Complexity : O(n^k-1)
@@ -68,11 +68,22 @@ def ksum(arr, target, k):
     return res
 
 if __name__ == "__main__":
-    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    # Read the array from STDIN
+    arr = list(map(int, input().split()))
+    
+    # Read the target sum from STDIN
+    target = int(input())
+    
+    # Read the value of k from STDIN
+    k = int(input())
+    
     arr.sort()
-    target = 10
-    print(ksum(arr, target, 4))
-
+    
+    # Call the ksum function with the input values
+    result = ksum(arr, target, k)
+    
+    # Print the result
+    print(result)
 ```
 ### Step-by-Step Explanation
 The provided Python program addresses the Four Number Sum problem, aiming to find all unique sets of four integers within a sorted array that add up to a specified target sum. The code consists of two functions: `twosum` and `ksum`. The `twosum` function serves as a helper to identify pairs in the array that sum up to a given target. It utilizes two pointers, 'low' and 'high,' which traverse the array inwards. The function efficiently skips duplicate elements and adjusts pointers based on the calculated current sum.
@@ -88,10 +99,12 @@ In the provided example within the `__main__` block, an array [1, 2, 3, 4, 5, 6,
 // Java program for FourNumberSum
 
 //Time Complexity : O(n^k-1)
-//Space Complexity : O(n^k-1)+O(k)
+//Space Complexity : O(n^k-1)+O(k)\
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     static List<List<Integer>> fourSum(int[] arr, int target) {
@@ -152,12 +165,15 @@ public class Main {
         return res;
     }
 
-    public static void main (String[] args) {
-        int arr[] = {1, 0, -1, 0, -2, 2}; 
-        int target = 0;
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        // Read the array elements from STDIN
+        String[] arrString = scanner.nextLine().split(" ");
+        int[] arr = Arrays.stream(arrString).mapToInt(Integer::parseInt).toArray();
 
+        // Read the target sum from STDIN
+        int target = scanner.nextInt();
         List<List<Integer>> ls = fourSum(arr, target); 
-
         // Print the result
         for(int i = 0; i < ls.size(); i++) {
             for(int j = 0; j < ls.get(i).size(); j++) {
@@ -165,6 +181,8 @@ public class Main {
             }
             System.out.println(); 
         }
+
+        scanner.close();
     }
 }
 ```
@@ -249,16 +267,28 @@ vector<vector<int>> fourSum(vector<int>& num, int target) {
 
 int main()
 {
-    vector<int> v{1,0,-1,0,-2,2};
-    int target=0;
-    vector<vector<int>> sum=fourSum(v,target);
-    cout<<"The unique quadruplets are"<<endl;
+    // Read the array elements from STDIN
+    vector<int> v;
+    int num;
+    while (cin >> num) {
+        v.push_back(num);
+    }
+
+    // Read the target sum from STDIN
+    int target;
+    cin >> target;
+
+    // Find and print the unique quadruplets
+    vector<vector<int>> sum = fourSum(v, target);
     for (int i = 0; i < sum.size(); i++) {
         for (int j = 0; j < sum[i].size(); j++)
             cout << sum[i][j] << " ";
         cout << endl;
     }
+
+    return 0;
 }
+
 ```
 ### Step-by-Step Explanation
 This C++ program addresses the Four Number Sum problem, aiming to find all unique quadruplets within a given vector 'num' that add up to a specified target. The 'fourSum' function employs a systematic approach, starting with sorting the input vector in ascending order, a critical step for efficient solutions. The program then utilizes nested loops to iterate through the vector, considering each element as a potential starting point for the quadruplet. It reduces the problem to finding a 3-sum by subtracting the current element from the target.
