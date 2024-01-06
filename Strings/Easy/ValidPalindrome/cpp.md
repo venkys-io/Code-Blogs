@@ -8,35 +8,37 @@ In the Valid Palindrome problem, the task is to create an algorithm or function 
 The Valid Palindrome problem entails designing a solution to determine whether a given string is a valid palindrome, considering only alphanumeric characters and ignoring differences in case. The task involves evaluating whether the string reads the same forward and backward after removing non-alphanumeric characters. This problem is a classic exercise in string manipulation and often requires an efficient algorithm to address various edge cases. The solution involves traversing the string from both ends, comparing corresponding characters, and adjusting for case differences and non-alphanumeric characters. The Valid Palindrome problem is frequently encountered in algorithmic interviews and serves as an essential challenge for honing skills in string processing and logical reasoning.
 ## Code
 ```cpp
+
 //Copyrights to venkys.io
 //For more programs visit venkys.io 
 //CPP program for ValidPalindrome
-#include<bits/stdc++.h>
+
+//Time Complexity : O(n)
+//Space Complexity : O(1)
+
+#include <iostream>
+#include <string>
 
 using namespace std;
 
 // Function to check if a given string is a palindrome
-bool isPalindrome(string s){
+bool isPalindrome(string s) {
     string rev = "";
 
     // Iterate through each character in the string
-    for(char ch : s){
-        // Check if the character is a lowercase letter (ASCII values 97 to 122)
-        if(ch >= 97 && ch <= 122)
-            rev += ch;
-        // Check if the character is an uppercase letter (ASCII values 65 to 90)
-        else if(ch >= 65 && ch <= 90)
-            // Convert the uppercase letter to lowercase and add it to the 'rev' string
-            rev += ch + 32;
+    for (char ch : s) {
+        // Check if the character is an alphabet letter
+        if (isalpha(ch))
+            rev += tolower(ch); // Convert the character to lowercase and add it to the 'rev' string
     }
 
     // Initialize two pointers for comparing characters from both ends of the 'rev' string
     int i = 0, j = rev.length() - 1;
 
     // Iterate until the pointers meet in the middle
-    while(i < j){
+    while (i < j) {
         // Compare characters at the current positions, and move the pointers accordingly
-        if(rev[i++] != rev[j--]) return false;
+        if (rev[i++] != rev[j--]) return false;
     }
 
     // If the loop completes without finding any mismatches, the string is a palindrome
@@ -44,18 +46,19 @@ bool isPalindrome(string s){
 }
 
 // Main function
-int main(){
-    // Example string
-    string s = "A man, a plan, a canal: Panama";
-
+int main() {
+    // Read the input string from STDIN
+    string s;
+    getline(cin, s);
     // Check if the string is a palindrome using the isPalindrome function
-    if(isPalindrome(s))
+    if (isPalindrome(s))
         cout << "It is a palindrome";
     else
         cout << "It is not a palindrome";
 
     return 0;
 }
+
 
 ```
 
