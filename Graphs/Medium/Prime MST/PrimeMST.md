@@ -207,13 +207,13 @@ The code provided demonstrates the implementation of Prim's algorithm to find th
     
     **Code:**
     
-      ```cpp
-      /* Copyrights to venkys.io
-    For more information, visit https://venkys.io */
-    // Python program for performing Breadth First Search
+```cpp
+/* Copyrights to venkys.io
+For more information, visit https://venkys.io */
+// Python program for performing Breadth First Search
    
-    // Space complexity: O(V^2)
-    // Time complexity: O(V^2 + E)
+// Space complexity: O(V^2)
+// Time complexity: O(V^2 + E)
     
     #include<bits/stdc++.h>
 // Function to implement Prim's algorithm for Minimum Spanning Tree
@@ -276,59 +276,59 @@ int main() {
 
     return 0;
 }
-    ```
+```
     
-    **Step-by-step Explaination:**
+**Step-by-step Explaination:**
     
-    The code provided implements Prim's algorithm to find the minimum spanning tree of a given graph. Here is a breakdown of the code structure:
+The code provided implements Prim's algorithm to find the minimum spanning tree of a given graph. Here is a breakdown of the code structure:
     
-    1. The **prims** function takes two parameters: **graph**, a 2D array representing the weighted graph, and **n**, the number of vertices in the graph.
-    2. It initializes an array **visited** of size **n** to keep track of visited vertices and sets all elements to **false**.
-    3. It initializes **edge_count** and **cost** variables to keep track of the number of edges and the total cost of the minimum spanning tree, respectively.
-    4. It marks the first vertex as visited by setting **visited[0]** to **true**.
-    5. The algorithm continues until **edge_count** reaches **n-1**, which is the number of edges in a minimum spanning tree.
-    6. Inside the while loop, the algorithm finds the minimum weight edge that connects a visited vertex to an unvisited vertex.
-    7. It updates the **mini**, **x**, and **y** variables with the minimum weight, the visited vertex, and the unvisited vertex, respectively.
-    8. It prints the edge pair and its weight.
-    9. It adds the weight of the edge to the **cost** variable.
-    10. It marks the unvisited vertex as visited and increments **edge_count**.
-    11. Finally, it prints the total cost of the minimum spanning tree.
+1. The **prims** function takes two parameters: **graph**, a 2D array representing the weighted graph, and **n**, the number of vertices in the graph.
+2. It initializes an array **visited** of size **n** to keep track of visited vertices and sets all elements to **false**.
+3. It initializes **edge_count** and **cost** variables to keep track of the number of edges and the total cost of the minimum spanning tree, respectively.
+4. It marks the first vertex as visited by setting **visited[0]** to **true**.
+5. The algorithm continues until **edge_count** reaches **n-1**, which is the number of edges in a minimum spanning tree.
+6. Inside the while loop, the algorithm finds the minimum weight edge that connects a visited vertex to an unvisited vertex.
+7. It updates the **mini**, **x**, and **y** variables with the minimum weight, the visited vertex, and the unvisited vertex, respectively.
+8. It prints the edge pair and its weight.
+9. It adds the weight of the edge to the **cost** variabl
+10. It marks the unvisited vertex as visited and increments **edge_count**.
+11. Finally, it prints the total cost of the minimum spanning tree.
     
-    The **main** function initializes a 2D array **graph** representing the weighted graph and calls the **prims** function to find the minimum spanning tree.
+The **main** function initializes a 2D array **graph** representing the weighted graph and calls the **prims** function to find the minimum spanning tree.
     
 
-    ## Time and Space Complexity Analysis of Prime MST
-    The time and space complexity of the Prime MST implementation can be analyzed as follows:
+## Time and Space Complexity Analysis of Prime MST
+The time and space complexity of the Prime MST implementation can be analyzed as follows:
 
-    ## Time Complexity Analysis
+## Time Complexity Analysis
     
-    The time complexity of the Prim's algorithm for finding the minimum spanning tree is influenced by the number of vertices and edges in the graph. Let's assume there are V vertices and E edges in the graph.
+The time complexity of the Prim's algorithm for finding the minimum spanning tree is influenced by the number of vertices and edges in the graph. Let's assume there are V vertices and E edges in the graph.
     
-    - The outer while loop runs for V-1 iterations, as the minimum spanning tree will have V-1 edges.
-    - Inside the while loop, we iterate through all the vertices to find the minimum weight edge. This takes O(V) time.
-    - In the worst case scenario, we need to iterate through all the edges to find the minimum weight edge. This takes O(E) time.
+- The outer while loop runs for V-1 iterations, as the minimum spanning tree will have V-1 edges.
+- Inside the while loop, we iterate through all the vertices to find the minimum weight edge. This takes O(V) time.
+- In the worst case scenario, we need to iterate through all the edges to find the minimum weight edge. This takes O(E) time.
     
-    Therefore, the overall time complexity of the Prim's algorithm is O(V^2 + E). However, using a priority queue or a min-heap data structure to efficiently find the minimum weight edge can reduce the time complexity to O((V + E) log V).
+Therefore, the overall time complexity of the Prim's algorithm is O(V^2 + E). However, using a priority queue or a min-heap data structure to efficiently find the minimum weight edge can reduce the time complexity to O((V + E) log V).
     
-    ## Space Complexity Analysis
+## Space Complexity Analysis
     
-    The space complexity of the Prim's algorithm depends on the data structures used to store the graph and track the visited vertices. Assuming an adjacency matrix representation of the graph, the space complexity is O(V^2) to store the graph.
+The space complexity of the Prim's algorithm depends on the data structures used to store the graph and track the visited vertices. Assuming an adjacency matrix representation of the graph, the space complexity is O(V^2) to store the graph.
     
-    Additionally, we need an array of size V to track the visited vertices, which contributes O(V) space complexity.
+Additionally, we need an array of size V to track the visited vertices, which contributes O(V) space complexity.
     
-    Therefore, the overall space complexity of the Prim's algorithm is O(V^2).
+Therefore, the overall space complexity of the Prim's algorithm is O(V^2).
     
-    Note: The provided code includes time and space complexity analysis for various algorithms, but the specific analysis for Prim's algorithm is not mentioned.
+Note: The provided code includes time and space complexity analysis for various algorithms, but the specific analysis for Prim's algorithm is not mentioned.
     
-    ## Real World Applications of Prim's MST
+## Real World Applications of Prim's MST
     
-    Prim's algorithm for finding the minimum spanning tree (MST) has several real-world applications. Some of them include:
+Prim's algorithm for finding the minimum spanning tree (MST) has several real-world applications. Some of them include:
     
-    1. Network Design: Prim's algorithm is used in network design to find the minimum cost spanning tree for connecting nodes in a network. This is useful in designing efficient and cost-effective communication networks.
-    2. Transportation Networks: Prim's MST algorithm can be applied to design transportation networks, such as roads or railways, to connect various locations. The algorithm helps in determining the minimum cost routes and optimizing the overall transportation system.
-    3. Power Distribution Networks: Prim's algorithm is used in the design and planning of power distribution networks. By finding the minimum cost spanning tree, it helps in minimizing the length of power transmission lines and reducing energy losses.
-    4. Image Segmentation: Prim's MST algorithm is used in image processing and computer vision applications, specifically in image segmentation. By treating pixels as nodes and their connectivity as edges, the algorithm can identify regions of similar intensity or color in an image.
-    5. Cluster Analysis: Prim's MST algorithm can be applied in cluster analysis to identify cohesive groups or clusters of data points. It helps in partitioning data based on proximity or similarity and is used in various fields like data mining, pattern recognition, and machine learning.
-    6. Spanning Tree Protocols: In computer networks, spanning tree protocols are used to prevent loops and ensure efficient data transmission. Prim's MST algorithm is employed in these protocols to construct the network topology and determine the forwarding paths.
+1. Network Design: Prim's algorithm is used in network design to find the minimum cost spanning tree for connecting nodes in a network. This is useful in designing efficient and cost-effective communication networks.
+2. Transportation Networks: Prim's MST algorithm can be applied to design transportation networks, such as roads or railways, to connect various locations. The algorithm helps in determining the minimum cost routes and optimizing the overall transportation system.
+3. Power Distribution Networks: Prim's algorithm is used in the design and planning of power distribution networks. By finding the minimum cost spanning tree, it helps in minimizing the length of power transmission lines and reducing energy losses.
+4. Image Segmentation: Prim's MST algorithm is used in image processing and computer vision applications, specifically in image segmentation. By treating pixels as nodes and their connectivity as edges, the algorithm can identify regions of similar intensity or color in an image.
+5. Cluster Analysis: Prim's MST algorithm can be applied in cluster analysis to identify cohesive groups or clusters of data points. It helps in partitioning data based on proximity or similarity and is used in various fields like data mining, pattern recognition, and machine learning.
+6. Spanning Tree Protocols: In computer networks, spanning tree protocols are used to prevent loops and ensure efficient data transmission. Prim's MST algorithm is employed in these protocols to construct the network topology and determine the forwarding paths.
     
-    These are just a few examples of how Prim's MST algorithm finds applications in different domains. The algorithm's ability to find the minimum cost spanning tree makes it valuable in optimizing various systems and solving optimization problems in real-world scenarios.
+These are just a few examples of how Prim's MST algorithm finds applications in different domains. The algorithm's ability to find the minimum cost spanning tree makes it valuable in optimizing various systems and solving optimization problems in real-world scenarios.
