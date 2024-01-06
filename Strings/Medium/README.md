@@ -164,14 +164,15 @@ After the iteration, the function returns the substring of the input string that
 // Time Complexity - O(n^2)
 // Space Complexity- O(1)
 
+#include <iostream>
+#include <string>
 
-#include<bits/stdc++.h>
 using namespace std;
 
 // Function to expand around the center and find the length of the palindrome
-int expandFromCenter(std::string& string, int left, int right) {
+int expand_from_center(string& s, int left, int right) {
     // Keep expanding while the characters at left and right indices are equal
-    while (left > -1 && right < string.length() && string[left] == string[right]) {
+    while (left > -1 && right < s.length() && s[left] == s[right]) {
         left--;
         right++;
     }
@@ -180,19 +181,19 @@ int expandFromCenter(std::string& string, int left, int right) {
 }
 
 // Function to find the longest palindrome in a given string
-string longestPalindrome(std::string& string) {
+string longest_palindrome(string& s) {
     // Initialize start and end indices for the longest palindrome found
     int start = 0, end = 0;
 
     // Iterate through each character in the string
-    for (int i = 0; i < string.length(); i++) {
+    for (int i = 0; i < s.length(); i++) {
         // Find the length of palindrome when the center is a single character
-        int len1 = expandFromCenter(string, i, i);
+        int len1 = expand_from_center(s, i, i);
         // Find the length of palindrome when the center is between two characters
-        int len2 = expandFromCenter(string, i, i + 1);
+        int len2 = expand_from_center(s, i, i + 1);
 
         // Find the maximum length between len1 and len2
-        int len = std::max(len1, len2);
+        int len = max(len1, len2);
 
         // If the current palindrome is longer than the previous one, update start and end indices
         if (len > end - start) {
@@ -202,15 +203,16 @@ string longestPalindrome(std::string& string) {
     }
     
     // Return the longest palindrome substring
-    return string.substr(start, end + 1);
+    return s.substr(start, end + 1);
 }
 
 int main() {
-    // Example usage
-    string str = "badab";
+    // Read the input string from STDIN
+    string str;
+    getline(cin, str);
     
     // Print the longest palindrome in the given string
-    cout << longestPalindrome(str);
+    cout << longest_palindrome(str);
     
     return 0;
 }
