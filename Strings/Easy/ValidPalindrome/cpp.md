@@ -23,6 +23,10 @@ using namespace std;
 
 // Function to check if a given string is a palindrome
 bool isPalindrome(string s) {
+    if (s.empty()) {
+        // If the string is empty, consider it not a palindrome
+        return false;
+    }
     string rev = "";
 
     // Iterate through each character in the string
