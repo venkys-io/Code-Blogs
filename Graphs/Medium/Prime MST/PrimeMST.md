@@ -207,61 +207,76 @@ The code provided demonstrates the implementation of Prim's algorithm to find th
     
     **Code:**
     
-    ```cpp
-    /* Copyrights to venkys.io
-    For more information, visit https://venkys.io */
-    // Python program for performing Breadth First Search
+  ```cpp
+/* Copyrights to venkys.io
+For more information, visit https://venkys.io */
+// Python program for performing Breadth First Search
    
-    // Space complexity: O(V^2)
-    // Time complexity: O(V^2 + E)
+// Space complexity: O(V^2)
+// Time complexity: O(V^2 + E)
     
-    #include<bits/stdc++.h>
-    
-    // Function to implement Prim's algorithm for Minimum Spanning Tree
-    void prims(int graph[][5],int n){
-        bool visited[n]{false}; // Array to keep track of visited vertices
-        int edge_count=0; // Variable to keep track of the number of edges in the MST
-        int cost=0; // Variable to store the total cost of the MST
-        visited[0]=true; // Mark the first vertex as visited
-    
-        while(edge_count<n-1){
-            int mini=INT_MAX; // Variable to store the minimum weight of an edge
-            int x=0; // Variable to store the first vertex of the edge with minimum weight
-            int y=0; // Variable to store the second vertex of the edge with minimum weight
-            for(int i=0;i<n;i++){
-                if(visited[i]){
-                    for(int j=0;j<n;j++){
-                        if(!visited[j] && graph[i][j]!=0){
-                            if(mini > graph[i][j]){
-                                mini = graph[i][j];
-                                x=i;
-                                y=j;
-                            }
+#include<bits/stdc++.h>
+// Function to implement Prim's algorithm for Minimum Spanning Tree
+void prims(int** graph, int n) {
+    bool* visited = new bool[n]{false}; // Array to keep track of visited vertices
+    int edge_count = 0; // Variable to keep track of the number of edges in the MST
+    int cost = 0; // Variable to store the total cost of the MST
+    visited[0] = true; // Mark the first vertex as visited
+
+    while (edge_count < n - 1) {
+        int mini = INT_MAX; // Variable to store the minimum weight of an edge
+        int x = 0; // Variable to store the first vertex of the edge with minimum weight
+        int y = 0; // Variable to store the second vertex of the edge with minimum weight
+        for (int i = 0; i < n; i++) {
+            if (visited[i]) {
+                for (int j = 0; j < n; j++) {
+                    if (!visited[j] && graph[i][j] != 0) {
+                        if (mini > graph[i][j]) {
+                            mini = graph[i][j];
+                            x = i;
+                            y = j;
                         }
                     }
                 }
             }
-            std::cout<<"edge pair is "<<x<<" "<<y<<" "<<"weight is "<<graph[x][y]<<std::endl; // Print the edge pair and its weight
-            cost+=graph[x][y]; // Add the weight of the edge to the total cost
-            visited[y]=true; // Mark the second vertex of the edge as visited
-            edge_count+=1; // Increment the edge count
         }
-        std::cout<<"The total cost of Prim's MST is "<<cost; // Print the total cost of the MST
+        std::cout << "Edge pair is " << x << " " << y << " " << "Weight is " << graph[x][y] << std::endl; // Print the edge pair and its weight
+        cost += graph[x][y]; // Add the weight of the edge to the total cost
+        visited[y] = true; // Mark the second vertex of the edge as visited
+        edge_count += 1; // Increment the edge count
     }
-    
-    // Main function
-    int main(){
-        int v=5; // Number of vertices in the graph
-        int graph[5][5] = { { 0, 2, 0, 6, 0 },
-                        { 2, 0, 3, 8, 5 },
-                        { 0, 3, 0, 0, 7 },
-                        { 6, 8, 0, 0, 9 },
-                        { 0, 5, 7, 9, 0 } 
-                    };
-        prims(graph,v); // Call the prims function to find the MST
-        return 0;
+    std::cout << "The total cost of Prim's MST is " << cost; // Print the total cost of the MST
+}
+
+// Main function
+int main() {
+    int v;
+    std::cout << "Enter the number of vertices: ";
+    std::cin >> v;
+
+    int** graph = new int*[v];
+    for (int i = 0; i < v; i++) {
+        graph[i] = new int[v];
     }
-    ```
+
+    std::cout << "Enter the adjacency matrix of the graph:" << std::endl;
+    for (int i = 0; i < v; i++) {
+        for (int j = 0; j < v; j++) {
+            std::cin >> graph[i][j];
+        }
+    }
+
+    prims(graph, v); // Call the prims function to find the MST
+
+    // Free allocated memory
+    for (int i = 0; i < v; i++) {
+        delete[] graph[i];
+    }
+    delete[] graph;
+
+    return 0;
+}
+```
     
     **Step-by-step Explaination:**
     
