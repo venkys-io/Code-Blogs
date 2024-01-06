@@ -7,10 +7,15 @@ In the Valid Palindrome problem, the task is to create an algorithm or function 
 ## Overview
 The Valid Palindrome problem entails designing a solution to determine whether a given string is a valid palindrome, considering only alphanumeric characters and ignoring differences in case. The task involves evaluating whether the string reads the same forward and backward after removing non-alphanumeric characters. This problem is a classic exercise in string manipulation and often requires an efficient algorithm to address various edge cases. The solution involves traversing the string from both ends, comparing corresponding characters, and adjusting for case differences and non-alphanumeric characters. The Valid Palindrome problem is frequently encountered in algorithmic interviews and serves as an essential challenge for honing skills in string processing and logical reasoning.
 ## Code
-```cpp
+```java
 //Copyrights to venkys.io
 //For more programs visit venkys.io 
 //Java program for ValidPalindrome
+
+//Time Complexity : O(n)
+//Space Complexity : O(1)
+
+import java.util.Scanner;
 public class Main {
 
     // Function to check if a given string is a palindrome
@@ -43,16 +48,23 @@ public class Main {
 
     // Main function
     public static void main(String[] args) {
-        // Example string
-        String s = "A man, a plan, a canal: Panama";
+        // Create a Scanner object to read input from STDIN
+        Scanner scanner = new Scanner(System.in);
+
+        // Read the input string from STDIN
+        String s = scanner.nextLine();
 
         // Check if the string is a palindrome using the isPalindrome function
         if (isPalindrome(s))
             System.out.println("It is a palindrome");
         else
             System.out.println("It is not a palindrome");
+
+        // Close the Scanner object
+        scanner.close();
     }
 }
+
 ```
 
 ## Step-by-Step Explanation
