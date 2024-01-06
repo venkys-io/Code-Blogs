@@ -207,15 +207,15 @@ The code provided demonstrates the implementation of Prim's algorithm to find th
     
     **Code:**
     
-  ```cpp
-/* Copyrights to venkys.io
-For more information, visit https://venkys.io */
-// Python program for performing Breadth First Search
+      ```cpp
+      /* Copyrights to venkys.io
+    For more information, visit https://venkys.io */
+    // Python program for performing Breadth First Search
    
-// Space complexity: O(V^2)
-// Time complexity: O(V^2 + E)
+    // Space complexity: O(V^2)
+    // Time complexity: O(V^2 + E)
     
-#include<bits/stdc++.h>
+    #include<bits/stdc++.h>
 // Function to implement Prim's algorithm for Minimum Spanning Tree
 void prims(int** graph, int n) {
     bool* visited = new bool[n]{false}; // Array to keep track of visited vertices
@@ -276,7 +276,7 @@ int main() {
 
     return 0;
 }
-```
+    ```
     
     **Step-by-step Explaination:**
     
