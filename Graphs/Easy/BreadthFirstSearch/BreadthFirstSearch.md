@@ -201,49 +201,64 @@ class Graph{
     public:
         int size;
         vector<vector<int>> graph;
-				//create a graph
+        
+        // Create a graph
         Graph(int v){
             size=v;
             graph.resize(v);
         }
-				//add edges to graph
-        void addEdge(int v,int child){
+        
+        // Add edges to graph
+        void addEdge(int v, int child){
             graph[v].push_back(child);
         }
-				//BFS algorithm
+        
+        // BFS algorithm
         void bfs(int start){
             queue<int> q;
-            vector<bool> visited(size,false);
+            vector<bool> visited(size, false);
             q.push(start);
-            visited[start]=true;
-            while(!q.empty()){    
-                        
+            visited[start] = true;
+            while (!q.empty()){    
                start = q.front();
                q.pop();
-               cout<<start<<" ";
-                for(auto it:graph[start]){
-                    
+               cout << start << " ";
+                for(auto it : graph[start]){
                     if(!visited[it]){
-                        visited[it]=true;
+                        visited[it] = true;
                         q.push(it);
                     }
                 }
-
             }
-
         }
 
 };
-// driver code
+
+// Driver code
 int main(){
-    Graph g(4);
-    g.addEdge(0,1); // Add an edge from vertex 0 to vertex 1
-    g.addEdge(0,2); // Add an edge from vertex 0 to vertex 2
-    g.addEdge(1,2); // Add an edge from vertex 1 to vertex 2
-    g.addEdge(2,0); // Add an edge from vertex 2 to vertex 0
-    g.addEdge(2,3); // Add an edge from vertex 2 to vertex 3
-    g.addEdge(3,3); // Add an edge from vertex 3 to vertex 3
-    g.bfs(2); // Perform Breadth First Search starting from vertex 2
+    int vertices, edges;
+    cout << "Enter the number of vertices: ";
+    cin >> vertices;
+
+    Graph g(vertices);
+
+    cout << "Enter the number of edges: ";
+    cin >> edges;
+
+    cout << "Enter edges (format: source destination):" << endl;
+    for (int i = 0; i < edges; ++i){
+        int source, destination;
+        cin >> source >> destination;
+        g.addEdge(source, destination);
+    }
+
+    int startVertex;
+    cout << "Enter the starting vertex for BFS: ";
+    cin >> startVertex;
+
+    cout << "BFS starting from vertex " << startVertex << ": ";
+    g.bfs(startVertex);
+
     return 0;
 }
 ```
