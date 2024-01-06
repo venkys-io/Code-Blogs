@@ -8,7 +8,14 @@ In the Valid Palindrome problem, the task is to create an algorithm or function 
 The Valid Palindrome problem entails designing a solution to determine whether a given string is a valid palindrome, considering only alphanumeric characters and ignoring differences in case. The task involves evaluating whether the string reads the same forward and backward after removing non-alphanumeric characters. This problem is a classic exercise in string manipulation and often requires an efficient algorithm to address various edge cases. The solution involves traversing the string from both ends, comparing corresponding characters, and adjusting for case differences and non-alphanumeric characters. The Valid Palindrome problem is frequently encountered in algorithmic interviews and serves as an essential challenge for honing skills in string processing and logical reasoning.
 ## Code
 ```python
-def ispalindrome(string):
+# Copyrights to venkys.io
+# For more programs visit venkys.io 
+# Python program for ValidPalindrome
+
+# Time Complexity : O(n)
+# Space Complexity : O(1)
+
+def is_palindrome(string):
     rev = ""
     for char in string:
         if char.isalpha():
@@ -22,9 +29,19 @@ def ispalindrome(string):
         high -= 1
     return True
 
-s = "A man, a plan, a canal: Panama"
-a = ispalindrome(s)
-print(a)
+def main():
+    # Read the input string from STDIN
+    s = input(
+    # Check if the string is a palindrome using the is_palindrome function
+    result = is_palindrome(s)
+    # Print the result
+    if result:
+        print("It is a palindrome")
+    else:
+        print("It is not a palindrome")
+if __name__ == "__main__":
+    main()
+
 ```
 
 ## Step-by-Step Explanation
