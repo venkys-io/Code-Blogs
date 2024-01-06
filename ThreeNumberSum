@@ -51,8 +51,8 @@ Arrays can have more than one dimension. For example, a 2D array is like a table
 # Twopointer Approach
 
 def VSDthreesum(n,arr,target):
-    ans=[]
-    arr.sort()
+    ans=[]#the variable ans is initialized as an empty list.
+    arr.sort()#input array ‘arr’ is sorted in ascending order using the sort() method.  
     for i in range(n-2):
         if (i==0 or (i>0 and arr[i]!=arr[i-1])):
             low=i+1
@@ -76,11 +76,11 @@ def VSDthreesum(n,arr,target):
     else:
         print("No triplets")
 
-if __name__=="__main__":
-    n=10
-    arr=[1,2,3,4,5,6,7,8,9,10]
-    target=9
-    VSDthreesum(n,arr,target
+if __name__=="__main__":#the function ‘VSDthreesum’ takes three parameters: n (length of the array), arr (the array of integers), and target (the target sum).
+    n=int(input("Enter the n value:"))
+    arr=int(input("Enter the array elements:"))
+    target=int(input("Enter the target:"))
+    VSDthreesum(n,arr,target)
 ```
 
 ## Explanation
@@ -119,167 +119,154 @@ Let’s dive into the step-by-step process of ThreeNumberSum.
 // For more programs visit venkys.io 
 // Java program for ThreeNumberSum
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
-public class Main{
-    static ArrayList < ArrayList < Integer >> threeSum(int[] arr,int target){
-        Arrays.sort(arr);
-        ArrayList < ArrayList < Integer >> res = new ArrayList<>();
-        for(int i=0;i<arr.length-2;i++){
-            if(i==0 || (i>0 && arr[i] != arr[i-1] )){
-                int low=i+1,high=arr.length-1,sum=target-arr[i];
-                while(low<high){
-                    if(arr[low]+arr[high]==sum){
-                        ArrayList<Integer> temp = new ArrayList<>();
-                        temp.add(arr[i]);
-                        temp.add(arr[low]);
-                        temp.add(arr[high]);
-                        res.add(temp);
-                        
-                        while(low<high && arr[low] == arr[low+1])low++;
-                        while(low<high && arr[high]==arr[high-1])high--;
+public class TripletSum {//the function tripletsum is defined.
+    public static void findTriplets(int[] nums, int target) {
+        // Sort the array for easier triplet identification
+        Arrays.sort(nums);
 
-                        low++;
-                        high--;
-                    }
-                    else if (arr[low]+arr[high]<sum)low++;
-                    else high--;
+        // Loop through the array to find triplets
+        for (int i = 0; i < nums.length - 2; i++) {
+            int left = i + 1;
+            int right = nums.length - 1;
+
+            while (left < right) {
+                int currentSum = nums[i] + nums[left] + nums[right];
+
+                if (currentSum == target) {
+                    System.out.println("Triplet found: " + nums[i] + ", " + nums[left] + ", " + nums[right]);
+                    left++;
+                    right--;
+                } else if (currentSum < target) {
+                    left++;
+                } else {
+                    right--;
                 }
             }
         }
-        return res;
     }
-    public static void main(String[] args) {
-        int arr[]={-1,0,1,2,-1,-4};
-        ArrayList < ArrayList < Integer >> ans;
-        int target=0;
-        ans = threeSum(arr,target);
-        System.out.println("The triplets are :");
-        for (int i = 0; i < ans.size(); i++) {
-            for (int j = 0; j < ans.get(i).size(); j++) {
-                System.out.print(ans.get(i).get(j) + " ");
-            }
-            System.out.println();
+
+    public static void main(String[] args) {//The **main** method initializes a **Scanner** object to take user input.
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the size of the array: ");//The size of the array is given.
+        int size = scanner.nextInt();
+
+        int[] nums = new int[size];
+        System.out.println("Enter the elements of the array:");//The elements to be entered into array.
+        for (int i = 0; i < size; i++) {
+            nums[i] = scanner.nextInt();
         }
 
+        System.out.print("Enter the target sum: ");//The target is to be entered.
+        int targetSum = scanner.nextInt();
+
+        System.out.println("Triplets with sum " + targetSum + ":");//It prints the triplet with the sum.
+        findTriplets(nums, targetSum);
+
+        // Close the scanner to avoid resource leak
+        scanner.close();
     }
 }
 ```
 
 ## Explanation
 
-1. **Sort the Array:**
-    - The input array arr is sorted using ‘Arrays.sort(arr)’ in ascending order.
-2. **threeSum Function:**
+1. **Import Statements:**
     
-    The function threesum takes the array and the target sum as parameters and returns an ArrayList of ArrayLists.
+    These import statements include the necessary Java classes for working with arrays (**`Arrays`**) and user input (**`Scanner`**).
     
-3. **Loop Over the Array:**
+2. **Class Declaration:**
     
-    The loop runs from 0 to (arr.lenght - 2) to ensure enough elements for a triplet.
+    It defines a class named **`TripletSum`**.
     
-4. **Skip Duplicates:**
-    - Duplicates are skipped to avoid duplicate triplets.
-5. **Initialize Two Pointers (low and high):**
-    - The pointers low and high are initialized to explore the array from the next element (i + 1) and the last element, respectively.
-6. **Calculate the Target Sum (sum = target - arr[i]):**
-    - The variable sum is set to the target sum minus the current element.
-7. **Two-Pointer Technique (while(low<high):):**
-    - Use a while loop to iterate through the array with two pointers, low and high, moving towards each other.
-8. **Check Triplet Sum:**
-    - If the sum of the triplet equals the target sum, add the triplet to the result.
-9. **Skip Duplicates and Move Pointers (low++ and high- -):**
-    - Adjust the pointers to explore more solutions while avoiding duplicates.
-10. **Main Block (main method):**
-    - The main block initializes an array arr and a target sum target, then calls the threesum function with these parameters.
-11. **Print Result:**
-    - The resultant triplets are printed in the main method.
+3. **findTriplets Method:**
+    
+    This method takes an array of integers (**`nums`**) and a target sum (**`target`**) as parameters. It sorts the array in ascending order, which is a crucial step for efficiently finding triplets.
+    
+    This is the main logic of finding triplets. The outer loop (**`for`** loop) iterates through the array, and for each element at index **`i`**, it sets two pointers (**`left`** and **`right`**) initially pointing to the next and last elements, respectively.
+    
+    Inside the **`while`** loop, it calculates the current sum using elements at indices **`i`**, **`left`**, and **`right`**. If the current sum equals the target, it prints the triplet and increments **`left`** while decrementing **`right`**. If the current sum is less than the target, it increments **`left`**; otherwise, it decrements **`right`**.
+    
+4. **main Method:**
+    
+    The **`main`** method initializes a **`Scanner`** object to take user input.
+    
+    It prompts the user to enter the size of the array and then initializes an array **`nums`** with user-provided elements.
+    
+    It prompts the user to enter the target sum, prints a message indicating the target sum, and then calls the **`findTriplets`** method to find and print triplets with the given target sum. Finally, it closes the **`Scanner`** to avoid resource leaks.
     
 
 ```cpp
 // Copyrights to venkys.io
 // For more programs visit venkys.io 
 // CPP program for ThreeNumberSum
+#include <iostream>
+#include <algorithm>
+//creating function 
+void findThreeNumberSum(int nums[], int size, int target) {
+    // Sort the array for easier triplet identification
+    std::sort(nums, nums + size);
 
-#include<iostream>
-#include<bits/stdc++.h>
-using namespace std;
+    // Loop through the array to find triplets
+    for (int i = 0; i < size - 2; i++) {
+        int left = i + 1;
+        int right = size - 1;
 
- vector<vector<int>> threeSum(vector<int>& arr,int target) {
-        vector<vector<int>> res; 
-        
-        sort(arr.begin(), arr.end()); 
+        while (left < right) {
+            int currentSum = nums[i] + nums[left] + nums[right];
 
-        for (int i = 0; i < (int)(arr.size())-2; i++) {
-            
-            if (i == 0 || (i > 0 && arr[i] != arr[i-1])) {
-                
-                int low = i+1, high = (int)(arr.size())-1, sum = target - arr[i];
-                
-                while (low < high) {
-                    if (arr[low] + arr[high] == sum) {
-                        
-                        vector<int> temp; 
-                        temp.push_back(arr[i]); 
-                        temp.push_back(arr[low]); 
-                        temp.push_back(arr[high]); 
-                        res.push_back(temp);
-                        
-                        while (low < high && arr[low] == arr[low+1]) low++;
-                        while (low < high && arr[high] == arr[high-1]) high--;
-                        
-                        low++; high--;
-                    } 
-                    else if (arr[low] + arr[high] < sum) low++;
-                    else high--;
-               }
+            if (currentSum == target) {
+                std::cout << "Triplet found: " << nums[i] << ", " << nums[left] << ", " << nums[right] << std::endl;
+                left++;
+                right--;
+            } else if (currentSum < target) {
+                left++;
+            } else {
+                right--;
             }
         }
-        return res;
     }
-int main() {
-  vector < int > arr{-1,0,1,2,-1,-4};
-  int target=0;
-  vector < vector < int >> ans;
-  ans = threeSum(arr,target);
-  cout << "The triplets are : "<< endl;
-  for (int i = 0; i < ans.size(); i++) {
-    for (int j = 0; j < ans[i].size(); j++) {
-      cout << ans[i][j] <<" ";
-    }
-    cout << endl;
-  }
-  return 0;
 }
+//the user is prompted to input the size of the array, followed by the array elements.
+int main() {
+    int size;
+    std::cout << "Enter the size of the array: ";//Need to provide or give the array size
+    std::cin >> size;
+
+    int nums[size];
+    std::cout << "Enter the elements of the array:" << std::endl;//the elements that are pushed into the array
+    for (int i = 0; i < size; i++) {
+        std::cin >> nums[i];
+    }
+
+    int targetSum;
+    std::cout << "Enter the target sum: ";//the value or the sum we need
+    std::cin >> targetSum;
+
+    std::cout << "ThreeNumbers with sum " << targetSum << ":" << std::endl;
+    findThreeNumberSum(nums, size, targetSum);
+
+    return 0;
+}
+
 ```
 
 ## Explanation
 
-1. **Include Necessary Headers:**
-    - The program includes the necessary headers, including <iostream> and <bits/stdc++.h>.
-2. **threeSum Function:**
-    - The threesum function takes a vector arr and an integer target as parameters and returns a vector of vectors.
-3. **Sort the Array:**
-    - The input vector arr is sorted in ascending order using sort(arr.begin() , arr.end()).
-4. **Loop Over the Array:**
-    - The loop runs from 0 to ((int)(array(size)) - 2) to ensure enough elements for a triplet.
-5. **Skip Duplicates:**
-    - Duplicates are skipped to avoid duplicate triplets.
-6. **Initialize Two Pointers (low and high):**
-    - The pointers low and high are initialized to explore the vector from the next element (i + 1) and the last element, respectively.
-7. **Calculate the Target Sum (sum= target - arr[i]):**
-    - The variable sum is set to the target sum minus the current element.
-8. **Two-Pointer Technique (while(low<high):):**
-    - Use a while loop to iterate through the vector with two pointers, low and high, moving towards each other.
-9. **Check Triplet Sum:**
-    - If the sum of the triplet equals the target sum, add the triplet to the result.
-10. **Skip Duplicates and Move Pointers (low++ and high- -):**
-    - Adjust the pointers to explore more solutions while avoiding duplicates.
-11. **Main Block (main function):**
-    - The main block initializes a vector arr and a target sum target, then calls the threesum function with these parameters.
-12. **Print Result:**
-    - The resultant triplets are printed in the main function.
+#include <iostream>#include <algorithm>
+
+These lines include necessary C++ libraries for input/output (iostream) and algorithms (algorithm), specifically the sort function that will be used later.
+
+This function findThreeNumberSum takes three parameters: an array of integers (nums), the size of the array (size), and the target sum (target). It sorts the array in ascending order using **`std::sort`**. Then, it uses a nested loop to iterate through the array and find triplets whose sum equals the target.
+
+The outer loop (**`for (int i = 0; i < size - 2; i++)`**) iterates through the array up to the third-to-last element. This is because the algorithm checks triplets, and the last two elements will be covered in the nested loop.
+
+The inner **`while`** loop employs two pointers (**`left`** and **`right`**) to iterate towards each other. It calculates the current sum of the triplet at indices **`i`**, **`left`**, and **`right`**. If the sum equals the target, it prints the triplet and increments **`left`** and decrements **`right`**. If the sum is less than the target, it increments **`left`**; otherwise, it decrements **`right`**.
+
+In the **`main`** function, the user is prompted to input the size of the array, followed by the array elements. Then, the user is asked to input the target sum. Finally, the **`findThreeNumberSum`** function is called with the provided array and target sum, and the triplets are printed.
 
 ## Time Complexities and Space Complexities
 
@@ -309,7 +296,6 @@ The dominant factor in the time complexity is typically the sorting step. Let *n
 
 ## Real World Applications
 
-The ThreeNumberSum algorithm can be used in various real-world applications. For example, it can be applied in the field of finance to find three numbers in an array that add up to a specific target value, which can help identify investment opportunities or analyze market trends. Additionally, this algorithm can be used in data analysis to find combinations of three variables tha
-t satisfy certain conditions, aiding in the discovery of patterns or correlations.
+The ThreeNumberSum algorithm can be used in various real-world applications. For example, it can be applied in the field of finance to find three numbers in an array that add up to a specific target value, which can help identify investment opportunities or analyze market trends. Additionally, this algorithm can be used in data analysis to find combinations of three variables that satisfy certain conditions, aiding in the discovery of patterns or correlations.
 
 The ThreeNumberSum algorithm can also be used in the field of computational biology to identify gene networks or protein interactions. By finding three genes or proteins that interact with each other, researchers can gain insights into the underlying mechanisms of diseases or biological processes. Furthermore, this algorithm can be applied in social network analysis to identify groups of three individuals with strong connections, which can help in understanding social dynamics and influence patterns. Overall, the ThreeNumberSum algorithm has versatile applications across different domains.
