@@ -44,27 +44,33 @@ For more information, visit https://venkys.io */
 # program to traverse the graph using BFS
 # Function takes graph as a input parameters
 
+from collections import defaultdict
+
 def BFS(graph):
-    queue=[] # Is used to implement the BFS logic
-    visted=[] # Is used to store visited vertices
+    queue = []  # Is used to implement the BFS logic
+    visited = []  # Is used to store visited vertices
     first = list(graph.keys())[0]
     queue.append(first)
     while queue:
         for vertex in graph[queue[0]]:
-            if vertex not in visted and vertex not in queue:
+            if vertex not in visited and vertex not in queue:
                 queue.append(vertex)
-        visted.append(queue.pop(0))
-    return visted
-    
+        visited.append(queue.pop(0))
+    return visited
 
 # Test drive code:
-graph={
-    0:[1,2],
-    1:[2],
-    2:[0,3],
-    3:[3]
-}
-print("The BFS traversal of the graph is :",BFS(graph))
+graph = defaultdict(list)
+
+vertices = int(input("Enter the number of vertices: "))
+edges = int(input("Enter the number of edges: "))
+
+print("Enter edges (format: source destination):")
+for _ in range(edges):
+    source, destination = map(int, input().split())
+    graph[source].append(destination)
+
+print("The BFS traversal of the graph is:", BFS(graph))
+
 ```
 
 **step by step explaination**
