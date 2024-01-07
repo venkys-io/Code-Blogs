@@ -18,34 +18,33 @@ For more information, visit https://venkys.io */
 
 // Space complexity: O(E + V)
 // Time complexity: O(E log E)
-
 import java.util.*;
 
+// Graph class represents a graph with weighted edges using an adjacency list
 class Graph {
-    // Example of adjacency list
-    // Map<String, List<Pair<String, Integer>>> adjacencyList = new HashMap<>();
-    // Initialize adjacency list in the constructor
-
     Map<String, List<Pair<String, Integer>>> adjacencyList;
 
+    // Constructor to initialize the graph with an adjacency list
     public Graph(Map<String, List<Pair<String, Integer>>> adjacencyList) {
         this.adjacencyList = adjacencyList;
     }
 
-    // Method to get neighbors of a node
+    // Method to get neighbors of a given node
     public List<Pair<String, Integer>> getNeighbors(String v) {
         return adjacencyList.get(v);
     }
 
     // Heuristic function with equal values for all nodes
     public int h(String n) {
+        // Heuristic values for each node
         Map<String, Integer> H = new HashMap<>();
         H.put("A", 1);
         H.put("B", 1);
         H.put("C", 1);
         H.put("D", 1);
 
-        return H.get(n);
+        // Return the heuristic value for the given node, defaulting to 0 if not found
+        return H.getOrDefault(n, 0);
     }
 
     // A* algorithm to find the shortest path from startNode to stopNode
@@ -61,16 +60,18 @@ class Graph {
 
         openList.add(startNode);
 
+        // A* algorithm loop
         while (!openList.isEmpty()) {
             String n = null;
 
             // Find a node with the lowest value of f() - evaluation function
             for (String v : openList) {
-                if (n == null || g.get(v) + h(v) < g.get(n) + h(n)) {
+                if (n == null || g.getOrDefault(v, Integer.MAX_VALUE) + h(v) < g.getOrDefault(n, Integer.MAX_VALUE) + h(n)) {
                     n = v;
                 }
             }
 
+            // If no node is found, the path does not exist
             if (n == null) {
                 System.out.println("Path does not exist!");
                 return null;
@@ -92,7 +93,7 @@ class Graph {
                 return reconstPath;
             }
 
-            // For all neighbors of the current node
+            // Explore neighbors of the current node
             for (Pair<String, Integer> neighbor : getNeighbors(n)) {
                 String m = neighbor.getKey();
                 int weight = neighbor.getValue();
@@ -101,11 +102,11 @@ class Graph {
                 if (!openList.contains(m) && !closedList.contains(m)) {
                     openList.add(m);
                     parents.put(m, n);
-                    g.put(m, g.get(n) + weight);
+                    g.put(m, g.getOrDefault(n, 0) + weight);
                 } else {
                     // Check if it's quicker to first visit n, then m
-                    if (g.get(m) > g.get(n) + weight) {
-                        g.put(m, g.get(n) + weight);
+                    if (g.getOrDefault(m, Integer.MAX_VALUE) > g.getOrDefault(n, Integer.MAX_VALUE) + weight) {
+                        g.put(m, g.getOrDefault(n, 0) + weight);
                         parents.put(m, n);
 
                         if (closedList.contains(m)) {
@@ -126,6 +127,12 @@ class Graph {
     }
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Get start and stop nodes from user input
+        String startNode = scanner.next();
+        String stopNode = scanner.next();
+
         // Example adjacency list
         Map<String, List<Pair<String, Integer>>> adjacencyList = new HashMap<>();
         List<Pair<String, Integer>> neighborsA = Arrays.asList(new Pair<>("B", 1), new Pair<>("C", 3), new Pair<>("D", 7));
@@ -136,8 +143,11 @@ class Graph {
         adjacencyList.put("B", neighborsB);
         adjacencyList.put("C", neighborsC);
 
+        // Create a graph instance
         Graph graph1 = new Graph(adjacencyList);
-        graph1.aStarAlgorithm("A", "D");
+
+        // Run A* algorithm to find the shortest path
+        graph1.aStarAlgorithm(startNode, stopNode);
     }
 }
 
@@ -146,15 +156,18 @@ class Pair<K, V> {
     private final K key;
     private final V value;
 
+    // Constructor to create a Pair
     public Pair(K key, V value) {
         this.key = key;
         this.value = value;
     }
 
+    // Getter method for the key
     public K getKey() {
         return key;
     }
 
+    // Getter method for the value
     public V getValue() {
         return value;
     }
@@ -169,49 +182,42 @@ class Pair<K, V> {
 
 # Space complexity: O(E + V)
 # Time complexity:  O(E log E)
-
 from collections import deque
 
 class Graph:
-    # example of adjacency list (or rather map)
-    # adjacency_list = {
-    # 'A': [('B', 1), ('C', 3), ('D', 7)],
-    # 'B': [('D', 5)],
-    # 'C': [('D', 12)]
-    # }
+    # Class representing a graph with an A* algorithm implementation
 
     def __init__(self, adjacency_list):
+        # Constructor to initialize the graph with an adjacency list
         self.adjacency_list = adjacency_list
 
     def get_neighbors(self, v):
+        # Method to get neighbors of a given node
         return self.adjacency_list[v]
 
-    # heuristic function with equal values for all nodes
     def h(self, n):
+        # Heuristic function with equal values for all nodes
         H = {
             'A': 1,
             'B': 1,
             'C': 1,
             'D': 1
         }
-
         return H[n]
 
     def a_star_algorithm(self, start_node, stop_node):
-        # open_list is a list of nodes which have been visited, but who's neighbors
-        # haven't all been inspected, starts off with the start node
-        # closed_list is a list of nodes which have been visited
-        # and who's neighbors have been inspected
+        # A* algorithm to find the shortest path from start_node to stop_node
+
+        # open_list is a set of nodes that have been visited but whose neighbors haven't all been inspected; starts with the start node
+        # closed_list is a set of nodes that have been visited, and whose neighbors have been inspected
         open_list = set([start_node])
         closed_list = set([])
 
-        # g contains current distances from start_node to all other nodes
-        # the default value (if it's not found in the map) is +infinity
+        # g contains current distances from start_node to all other nodes; the default value (if not found in the map) is +infinity
         g = {}
-
         g[start_node] = 0
 
-        # parents contains an adjacency map of all nodes
+        # parents contain an adjacency map of all nodes
         parents = {}
         parents[start_node] = start_node
 
@@ -220,15 +226,14 @@ class Graph:
 
             # find a node with the lowest value of f() - evaluation function
             for v in open_list:
-                if n == None or g[v] + self.h(v) < g[n] + self.h(n):
+                if n is None or g[v] + self.h(v) < g[n] + self.h(n):
                     n = v
 
-            if n == None:
+            if n is None:
                 print('Path does not exist!')
                 return None
 
-            # if the current node is the stop_node
-            # then we begin reconstructin the path from it to the start_node
+            # if the current node is the stop_node, then reconstruct the path from it to the start_node
             if n == stop_node:
                 reconst_path = []
 
@@ -246,7 +251,7 @@ class Graph:
             # for all neighbors of the current node do
             for (m, weight) in self.get_neighbors(n):
                 # if the current node isn't in both open_list and closed_list
-                # add it to open_list and note n as it's parent
+                # add it to open_list and note n as its parent
                 if m not in open_list and m not in closed_list:
                     open_list.add(m)
                     parents[m] = n
@@ -264,8 +269,8 @@ class Graph:
                             closed_list.remove(m)
                             open_list.add(m)
 
-            # remove n from the open_list, and add it to closed_list
-            # because all of his neighbors were inspected
+            # remove n from the open_list and add it to closed_list
+            # because all of its neighbors were inspected
             open_list.remove(n)
             closed_list.add(n)
 
@@ -273,13 +278,24 @@ class Graph:
         return None
 
 def main():
+    # Main function to run the A* algorithm on a graph
+
+    # Example adjacency list
     adjacency_list = {
         'A': [('B', 1), ('C', 3), ('D', 7)],
         'B': [('D', 5)],
         'C': [('D', 12)]
     }
+
+    # Create a graph instance
     graph1 = Graph(adjacency_list)
-    graph1.a_star_algorithm('A', 'D')
+
+    # Prompt user to input start and stop nodes
+    start_node = str(input())
+    stop_node = str(input())
+
+    # Run the A* algorithm
+    graph1.a_star_algorithm(start_node, stop_node)
 
 if __name__ == "__main__":
     main()
@@ -305,7 +321,7 @@ using namespace std;
 
 class Graph {
 public:
-    // Constructor
+    // Constructor to initialize the graph with an adjacency list
     Graph(unordered_map<char, vector<pair<char, int>>> adjacency_list) : adjacency_list(adjacency_list) {}
 
     // Get neighbors for a node
@@ -408,17 +424,27 @@ private:
 };
 
 int main() {
+    // Example adjacency list
     unordered_map<char, vector<pair<char, int>>> adjacency_list = {
         {'A', {{'B', 1}, {'C', 3}, {'D', 7}}},
         {'B', {{'D', 5}}},
         {'C', {{'D', 12}}}
     };
 
+    // Create a graph instance
     Graph graph1(adjacency_list);
-    graph1.a_star_algorithm('A', 'D');
+
+    // Prompt user to input start and stop nodes
+    char start_node, stop_node;
+    cin >> start_node;
+    cin >> stop_node;
+
+    // Run the A* algorithm
+    graph1.a_star_algorithm(start_node, stop_node);
 
     return 0;
 }
+
 
 ```
 
