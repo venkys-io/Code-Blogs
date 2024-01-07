@@ -47,7 +47,7 @@ def balancedStringSplit(string: str) -> int:
 
 def main():
     # Take input from the user
-    input_str = input("Enter the string: ")
+    input_str = input()
     
     # Example usage
     result = balancedStringSplit(input_str)
@@ -94,7 +94,6 @@ public class Main {
     public static void main(String[] args) {
         // Take input from the user
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter the string: ");
         String s = scanner.nextLine();
 
         // Example usage
@@ -139,7 +138,6 @@ int balancedStringSplit(string s) {
 
 int main() {
     // Take input from the user
-    cout << "Enter the string: ";
     string s;
     cin >> s;
 
