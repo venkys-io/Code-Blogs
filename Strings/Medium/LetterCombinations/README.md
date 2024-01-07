@@ -66,8 +66,8 @@ def letterCombinations(digits):
     return res
 
 def main():
-    # Take input from the user
-    digits = input("Enter the digits: ")
+    # Take input digits from the user
+    digits = input()
     # Include null safety
     if digits and digits.isdigit():
         result = letterCombinations(digits)
@@ -183,7 +183,6 @@ public class Main {
     public static void main(String[] args) {
         // Take input from the user
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter the digits: ");
         String digits = scanner.nextLine();
 
         // Example usage
@@ -287,7 +286,6 @@ std::vector<std::string> letterCombinations(std::string digits) {
 int main() {
     // Take input from the user
     std::string digits;
-    std::cout << "Enter the digits: ";
     std::cin >> digits;
 
     // Check if the input is valid
