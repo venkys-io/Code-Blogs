@@ -125,12 +125,9 @@ public class LongestSubstringWithK {
 
     // Main method for testing the function
     public static void main(String[] args) {
-        // Take input from the user
+        // Take input string and k from the user
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter the string: ");
         String string = scanner.nextLine();
-
-        System.out.print("Enter the value of k: ");
         int k = scanner.nextInt();
 
         // Print the result of the longestSubstring function
@@ -187,8 +184,8 @@ def longestSubstring(string, k):
 
 def main():
     # Take input from the user
-    input_str = input("Enter the string: ")
-    k_value = int(input("Enter the value of k: "))
+    input_str = input()
+    k_value = int(input())
     
     # Call the function and print the result
     result = longestSubstring(input_str, k_value)
@@ -284,13 +281,11 @@ int longestSubstring(string str, int k) {
 }
 
 int main() {
-    // Take input from the user
+    // Take input string and k from the user
     string str;
-    cout << "Enter the string: ";
     cin >> str;
 
     int k;
-    cout << "Enter the value of k: ";
     cin >> k;
 
     // Print the result of the longestSubstring function
