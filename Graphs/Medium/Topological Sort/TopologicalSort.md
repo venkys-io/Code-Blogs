@@ -19,35 +19,36 @@ By applying topological sort, we can effectively manage dependencies and ensure 
 **Code:**
 
 ```python
-def util(v,graph,visited,stack):
-    visited[v]=True 
+def util(v, graph, visited, stack):
+    visited[v] = True 
     for i in graph[v]:
-        if visited[i]==False:
-            util(i,graph,visited,stack)
-    stack.append(v) # Add the current vertex to the stack after visiting all its adjacent vertices
+        if not visited[i]:
+            util(i, graph, visited, stack)
+    stack.append(v)
 
-def topologicalsort(graph):
-    visited=[False]*len(graph)
-    stack=[]
+def topological_sort(graph):
+    visited = [False] * len(graph)
+    stack = []
 
     for i in range(len(graph)):
-        if visited[i]==False:
-            util(i,graph,visited,stack)
+        if not visited[i]:
+            util(i, graph, visited, stack)
 
     print(stack[::-1])
 
-if __name__=="__main__":
+if __name__ == "__main__":
+    graph = {}
 
-    graph={
-        0:[],
-        1:[],
-        2:[3],
-        3:[1],
-        4:[0,1],
-        5:[0,2]
-    }
-    
-    topologicalsort(graph)
+    print("Enter the number of vertices: ")
+    vertices = int(input())
+
+    for i in range(vertices):
+        print(f"Enter the neighbors of vertex {i} separated by space (or press Enter for no neighbors):")
+        neighbors = list(map(int, input().split()))
+        graph[i] = neighbors
+
+    topological_sort(graph)
+
 ```
 
 **Step-by-Step Explanation**
@@ -69,8 +70,9 @@ By executing the **topologicalsort(graph)** function on the given graph, the out
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
+import java.util.Scanner;
 
-public class Main {
+public class tsort {
     // Comment: This method performs a depth-first search traversal of the graph starting from vertex v.
     public static void util(int v, List<List<Integer>> graph, boolean[] visited, Stack<Integer> stack) {
         visited[v] = true;
@@ -99,16 +101,28 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of vertices: ");
+        int vertices = scanner.nextInt();
+
         List<List<Integer>> graph = new ArrayList<>();
-        graph.add(new ArrayList<>());
-        graph.add(new ArrayList<>());
-        graph.add(new ArrayList<>(List.of(3)));
-        graph.add(new ArrayList<>(List.of(1)));
-        graph.add(new ArrayList<>(List.of(0, 1)));
-        graph.add(new ArrayList<>(List.of(0, 2)));
+        for (int i = 0; i < vertices; i++) {
+            System.out.print("Enter neighbors of vertex " + i + " separated by space (or press Enter for no neighbors): ");
+            List<Integer> neighbors = new ArrayList<>();
+            String[] input = scanner.nextLine().split("\\s+");
+            for (String neighbor : input) {
+                neighbors.add(Integer.parseInt(neighbor));
+            }
+            graph.add(neighbors);
+        }
+
         topologicalsort(graph);
+
+        scanner.close();
     }
 }
+
 
 
 ```
@@ -160,17 +174,30 @@ void topologicalsort(vector<vector<int>>& graph) {
 }
 
 int main() {
-    vector<vector<int>> graph = {
-        {},
-        {},
-        {3},
-        {1},
-        {0, 1},
-        {0, 2}
-    };
+    int vertices;
+    cout << "Enter the number of vertices: ";
+    cin >> vertices;
+
+    vector<vector<int>> graph(vertices);
+
+    for (int i = 0; i < vertices; i++) {
+        int num_neighbors;
+        cout << "Enter the number of neighbors for vertex " << i << ": ";
+        cin >> num_neighbors;
+
+        graph[i].resize(num_neighbors);
+
+        cout << "Enter neighbors for vertex " << i << ": ";
+        for (int j = 0; j < num_neighbors; j++) {
+            cin >> graph[i][j];
+        }
+    }
+
     topologicalsort(graph);
+
     return 0;
 }
+
 
 
 ```
