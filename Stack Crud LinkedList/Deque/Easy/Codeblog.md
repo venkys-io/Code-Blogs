@@ -11,63 +11,80 @@ In a Stack CRUD LinkedList, the stack operations are implemented using a LinkedL
 ## Code
 
 ```python
-/*copyrights to venkys.io
-For more information visit https://venkys.io*/
-// python program to perform Stack CRUD operations on linkedlist
-// Stable:No
-// Inplace: Yes
-// Adaptive:No
-// Space complexity: O(n)
-// Time complexity:O(1)
-#creation of empty linked list
+#copyrights to venkys.io
+#python program to perform Stack CRUD operations on linkedlist
+#Stable:No
+#Inplace: Yes
+#Adaptive:No
+#Space complexity: O(n)
+#Time complexity:O(1)
 class Node:
-    def __init__(self,data):
-        self.data=data 
-        self.next=None 
-#Stack operations 
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
 class StackLL:
     def __init__(self):
-        self.top=None 
+        self.top = None
 
-    # isempty operation on stack
     def isempty(self):
-        return not self.top 
-    # push operation to add element on the top of the stack
-    def push(self,data):
+        #Check if the stack is empty.#
+        return not self.top
+
+    def push(self, data):
+        #Push a new element onto the stack.
         if not self.top:
-            self.top=Node(data)
+            self.top = Node(data)
         else:
-            temp=Node(data)
-            temp.next=self.top
-            self.top=temp 
-    # pop operation to delete the top elements of the stack
+            temp = Node(data)
+            temp.next = self.top
+            self.top = temp
+
     def pop(self):
+        #Pop the top element from the stack and return its value.
         if self.top:
-            x=self.top.data 
-            self.top=self.top.next 
+            x = self.top.data
+            self.top = self.top.next
             return x
-    # traversing the stack
+        else:
+            print("Stack is empty. Cannot pop.")
+
     def traverse(self):
-        head=self.top
+        #Traverse and print the elements in the stack.
+        head = self.top
         while head:
-            print(head.data,end=" ")
-            head=head.next 
+            print(head.data, end=" ")
+            head = head.next
         print()
-    
-#providing the inputs to the stack
-stack=StackLL()
-stack.push(10)
-stack.push(20)
-stack.push(30)
-stack.traverse()
-stack.push(40)
-stack.push(50)
-stack.push(60)
-stack.traverse()
-stack.pop()
-stack.pop()
-stack.pop()
-stack.traverse()
+# Create an instance of StackLL
+stack = StackLL()
+while True:
+    print("\nSelect stack operation:")
+    print("1. Push")
+    print("2. Pop")
+    print("3. Display")
+    print("4. Exit")
+
+    choice = input("Enter choice (1/2/3/4): ")
+
+    if choice == '1':
+        data = input("Enter data to push onto the stack: ")
+        stack.push(data)
+        print(f"{data} pushed onto the stack.")
+    elif choice == '2':
+        popped_element = stack.pop()
+        if popped_element is not None:
+            print(f"Popped element: {popped_element}")
+    elif choice == '3':
+        print("Stack elements:")
+        stack.traverse()
+    elif choice == '4':
+        print("Exiting the program.")
+        break
+    else:
+        print("Invalid choice. Please enter a valid option.")
+
+
 ```
 
 ## Step-by-Step Explanation
@@ -78,20 +95,45 @@ stack.traverse()
 4. The `push` function is used to add a new node to the stack. If the stack is empty, the new node becomes `top`. If the stack is not empty, the new node is added to the beginning of the LinkedList and becomes `top`.
 5. The `pop` function is used to remove a node from the stack. If the stack is not empty, the node pointed to by `top` is removed and `top` becomes the next node.
 6. The `traverse` function is used to print all the elements in the stack from `top` to bottom.
-7. Finally, we create an instance of `StackLL` and perform a sequence of `push`, `traverse`, and `pop` operations to demonstrate how the stack works.
+7. Finally, we create an instance of `StackLL` and perform a sequence of `push`, `traverse`, and `pop` operations to demonstrate how the stack works based on the user choice using while loop.
+
+## Test Case 1: Empty Stack (null)
+- Input:
+Choose option 4 (Display) when the stack is empty.
+- Expected Output:
+The program should print "Stack is empty" as there are no elements in the stack.
+## Test Case 2: Push and Pop Operations (true)
+- Input:
+Choose option 1 (Push) and enter the value 42.
+Choose option 1 (Push) and enter the value 17.
+Choose option 2 (Pop) to remove the top element.
+Choose option 4 (Display) to show the elements.
+- Expected Output:
+The program should print:
+arduino
+Copy code
+42 pushed onto the stack.
+17 pushed onto the stack.
+17 popped from the stack.
+42->
+## Test Case 3: Top Operation on Empty Stack (false)
+- Input:
+Choose option 3 (Top) when the stack is empty.
+- Expected Output:
+The program should print "Stack is empty. Cannot get top." since there are no elements in the stack, and it cannot retrieve the top element.
 
 ## Code
 
 ```java
-/* Copy rights to venkys.io
-For more information visit https://venkys.io*/
+// Copy rights to venkys.io
 // Java program to perform Stack CRUD operations on linkedlist
 // Stable:No
 // Inplace: Yes
 // Adaptive:No
 // Space complexity: O(n)
 // Time complexity:O(1)
-// cration of linked list and initialising a empty node to store data
+import java.util.Scanner;
+
 class Node {
     int data;
     Node next;
@@ -100,56 +142,97 @@ class Node {
         this.data = data;
     }
 }
-// creating a class stack to perform stack operations
+
 class Stack {
     Node top;
-    // push operations helps in adding elements stack linkedlist
+
+    // Push operation: Add a new node with the specified data to the top of the stack.
     void push(int data) {
         if (top == null) {
+            // If the stack is empty, create the first node.
             top = new Node(data);
-            return;
+        } else {
+            // If the stack is not empty, create a new node and update the top.
+            Node temp = new Node(data);
+            temp.next = top;
+            top = temp;
         }
-        Node temp = new Node(data);
-        temp.next = top;
-        top = temp;
-
     }
-    // pop operations is used in deleting top element from the stack
+
+    // Pop operation: Remove the top node from the stack.
     void pop() {
-        if (top == null)
-            return;
-        top = top.next;
-    }
-    // peek operation is used to return the top most element of the stack
-    void peek() {
-        if (top == null)
-            return;
-        System.out.println(top.data);
+        if (top != null) {
+            // If the stack is not empty, update the top to the next node.
+            top = top.next;
+        }
     }
 
-    void print() {
-        Node temp = top;
-        while (temp != null){
-            System.out.print(temp.data + " ");
-            temp=temp.next;
+    // Peek operation: Print the data of the top node without removing it.
+    void peek() {
+        if (top != null) {
+            // If the stack is not empty, print the data of the top node.
+            System.out.println("Peek: " + top.data);
         }
-        System.out.println();
+    }
+
+    // Recursive print method: Print all elements in the stack from top to bottom.
+    void printRecursive(Node temp) {
+        if (temp != null) {
+            printRecursive(temp.next);
+            System.out.print(temp.data + " ");
+        }
+    }
+
+    // Print operation: Print all the elements in the stack from top to bottom.
+    void print() {
+        if (top != null) {
+            System.out.print("Stack elements: ");
+            // Call the recursive print method to print elements.
+            printRecursive(top);
+            System.out.println();
+        }
     }
 }
-// input data to the stack 
-class Main {
-    public static void main(String[] args) {
-        Stack s = new Stack();
-        s.push(10);
-        s.push(20);
-        s.peek();
-        s.print();
-        s.pop();
-        s.push(30);
-        s.push(40);
-        s.peek();
-        s.print();
 
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Stack stack = new Stack();
+
+        while (true) {
+            System.out.println("\nChoose an operation:");
+            System.out.println("1. Push");
+            System.out.println("2. Pop");
+            System.out.println("3. Peek");
+            System.out.println("4. Print");
+            System.out.println("5. Exit");
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.println("Enter the value to push:");
+                    int pushValue = scanner.nextInt();
+                    stack.push(pushValue);
+                    break;
+                case 2:
+                    stack.pop();
+                    break;
+                case 3:
+                    stack.peek();
+                    break;
+                case 4:
+                    stack.print();
+                    break;
+                case 5:
+                    System.out.println("Exiting the program.");
+                    scanner.close();
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
     }
 }
 
@@ -163,81 +246,135 @@ class Main {
 4. The `pop` method is used to remove the top node from the stack. If the stack is not empty, we simply update `top` to point to the next node.
 5. The `peek` method is used to view the data of the top node without removing it from the stack. If the stack is not empty, we print the data of the `top` node.
 6. The `print` method is used to print all the data in the stack from top to bottom.
-7. Finally, in the `main` method, we create a new `Stack` object and demonstrate the `push`, `peek`, `print`, and `pop` operations.
+7. Finally, in the `main` method, we create a new `Stack` object and demonstrate the `push`, `peek`, `print`, and `pop` operations are performed based on user choice using while loop.
+## Test Case 1: Empty Stack (null)
+- Input:
+Choose option 4 (Display) when the stack is empty.
+- Expected Output:
+The program should print "Stack is empty" as there are no elements in the stack.
+## Test Case 2: Push and Pop Operations (true)
+- Input:
+Choose option 1 (Push) and enter the value 42.
+Choose option 1 (Push) and enter the value 17.
+Choose option 2 (Pop) to remove the top element.
+Choose option 4 (Display) to show the elements.
+- Expected Output:
+The program should print:
+arduino
+Copy code
+42 pushed onto the stack.
+17 pushed onto the stack.
+17 popped from the stack.
+42->
+## Test Case 3: Top Operation on Empty Stack (false)
+- Input:
+Choose option 3 (Top) when the stack is empty.
+- Expected Output:
+The program should print "Stack is empty. Cannot get top." since there are no elements in the stack, and it cannot retrieve the top element.
+
 
 ## Code
 ```cpp
-/* Copy rights to venkys.io
-For more information visit https://venkys.io*/
-// CPP program to perform Stack CRUD operations on linkedlist
-// Stable:No
-// Inplace: Yes
-// Adaptive:No
-// Space complexity: O(n)
-// Time complexity:O(1)
+/* Copy rights to venkys.io */
+/* CPP program to perform Stack CRUD operations on linkedlist*/
+/* Stable:No */
+/* Inplace: Yes*/
+/* Adaptive:No*/
+/* Space complexity: O(n)*/
+/* Time complexity:O(1) */
 #include <iostream>
 using namespace std;
-/* creating class node for creating linkedlist */
-class VSDnode{
-	
-	public:
-	int data;
-	VSDnode* next;
-	
-	VSDnode(int val){
-		data=val;
-		next=NULL;
-}
 
+class VSDnode {
+public:
+    int data;
+    VSDnode* next;
+
+    VSDnode(int val) {
+        data = val;
+        next = NULL;
+    }
 };
-/* push opeartion helps to add new elements to the stack crud linkedlist */
-void VSDpush(VSDnode* &head,int val){
-	VSDnode* n= new VSDnode(val);
-	n->next=head;
-	head=n;
-}
-/* pop opeartion helps to delete elements from the stack crud linkedlist */
-void VSDpop(VSDnode* &head){
-	if(head==NULL){
-		cout<<"stack is empty can't pop"<<endl;
-	}
-	else{
-		head=head->next;
-	}
-}
-void VSDtop(VSDnode* &head){
-	cout<<"The top of the stack is : "<<head->data<<endl;
+
+/* Function to push a new element onto the stack*/
+void VSDpush(VSDnode* &head, int val) {
+    VSDnode* n = new VSDnode(val);
+    n->next = head;
+    head = n;
 }
 
-void VSDdisplay(VSDnode* head){
-	
-	VSDnode* temp=head;
-	while(temp!=NULL){
-		cout<<temp->data<<"->";
-		temp=temp->next;
-	}
-	cout<<"NULL"<<endl;
+/* Function to pop the top element from the stack */
+void VSDpop(VSDnode* &head) {
+    if (head == NULL) {
+        cout << "Stack is empty. Cannot pop." << endl;
+    } else {
+        head = head->next;
+    }
 }
-/* all the opeartions output are diaplayed here which are performed on stack crud linkedlist */
+
+/* Function to get the top element of the stack */
+void VSDtop(VSDnode* &head) {
+    if (head != NULL) {
+        cout << "The top of the stack is: " << head->data << endl;
+    } else {
+        cout << "Stack is empty. Cannot get top." << endl;
+    }
+}
+
+/* Function to display the elements of the stack */
+void VSDdisplay(VSDnode* head) {
+    VSDnode* temp = head;
+    while (temp != NULL) {
+        cout << temp->data << "->";
+        temp = temp->next;
+    }
+    cout << "NULL" << endl;
+}
+
 int main() {
-	cout<<"-----empty stack created-----"<<endl;
-	VSDnode* head=NULL;
-	cout<<"-----pop operation------"<<endl;
-	VSDpop(head);
-	cout<<"-----push operation------"<<endl;
-	VSDpush(head,1);
-	cout<<"-----push operation------"<<endl;
-	VSDpush(head,2);
-	cout<<"-----top operation------"<<endl;
-	VSDtop(head);
-	cout<<"-----display operation------"<<endl;
-	VSDdisplay(head);
-	cout<<"-----pop operation------"<<endl;
-	VSDpop(head);
-	cout<<"-----display operation------"<<endl;
-	VSDdisplay(head);
+    VSDnode* head = NULL;
+
+    while (true) {
+        cout << "\nStack Operations:" << endl;
+        cout << "1. Push" << endl;
+        cout << "2. Pop" << endl;
+        cout << "3. Top" << endl;
+        cout << "4. Display" << endl;
+        cout << "5. Quit" << endl;
+
+        int choice;
+        cout << "Enter your choice (1/2/3/4/5): ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1: {
+                int val;
+                cout << "Enter the value to push onto the stack: ";
+                cin >> val;
+                VSDpush(head, val);
+                cout << val << " pushed onto the stack." << endl;
+                break;
+            }
+            case 2:
+                VSDpop(head);
+                break;
+            case 3:
+                VSDtop(head);
+                break;
+            case 4:
+                VSDdisplay(head);
+                break;
+            case 5:
+                cout << "Quitting the program." << endl;
+                return 0;
+            default:
+                cout << "Invalid choice. Please enter 1, 2, 3, 4, or 5." << endl;
+        }
+    }
+
     return 0;
 }
+
 ```
 ## Step-by-Step Explanation 
 
@@ -246,7 +383,32 @@ int main() {
 3. The `VSDpop` function removes the top node from the stack. If the stack is not empty, it simply sets the `next` node of the current top node as the new top of the stack.
 4. The `VSDtop` function displays the value of the top node of the stack.
 5. The `VSDdisplay` function traverses the stack from top to bottom and prints all the nodes.
-6. Finally, in the `main` function, a new stack is created and the `VSDpush`, `VSDpop`, `VSDtop`, and `VSDdisplay` operations are demonstrated.
+6. Finally, in the `main` function, a new stack is created and the `VSDpush`, `VSDpop`, `VSDtop`, and `VSDdisplay` operations are demonstrated using switch case based on users choice.
+## Test Case 1: Empty Stack (null)
+- Input:
+Choose option 4 (Display) when the stack is empty.
+- Expected Output:
+The program should print "Stack is empty" as there are no elements in the stack.
+## Test Case 2: Push and Pop Operations (true)
+- Input:
+Choose option 1 (Push) and enter the value 42.
+Choose option 1 (Push) and enter the value 17.
+Choose option 2 (Pop) to remove the top element.
+Choose option 4 (Display) to show the elements.
+- Expected Output:
+The program should print:
+arduino
+Copy code
+42 pushed onto the stack.
+17 pushed onto the stack.
+17 popped from the stack.
+42->
+## Test Case 3: Top Operation on Empty Stack (false)
+- Input:
+Choose option 3 (Top) when the stack is empty.
+- Expected Output:
+The program should print "Stack is empty. Cannot get top." since there are no elements in the stack, and it cannot retrieve the top element.
+
 
 ## Time and Space Complexity Analysis
 
