@@ -10,7 +10,7 @@ MaxHeapSort has a time complexity of O(n log n), making it suitable for sorting 
 
 MaxHeapSort is a sorting algorithm that operates on a data structure called a max heap. It is known for its efficiency in sorting elements in ascending order. The algorithm repeatedly extracts the largest element from the max heap and places it at the end of the sorted array. This process continues until all elements are sorted. MaxHeapSort has a time complexity of O(n log n), making it a suitable choice for sorting large datasets. It is widely used in various applications that require sorting.
 
-**Code:**
+**Code(Python):**
 
 ```python
 
@@ -122,11 +122,20 @@ def printarray(array):
         print(i,end=" ")
     print()
 
-if __name__=="__main__":
-    arr=[5,2, 9, 12, 54, 31, 65, 31, 45, 65]
+if __name__ == "__main__":
+    # Taking input for the array from the user
+    input_str = input("Enter the array elements separated by space: ")
+    arr = list(map(int, input_str.split()))
+
+    print("Original array:")
+    printarray(arr)
+
+    # Sorting using max heap
     print("Sorted array using maxheapsort:")
     VSDMaxheapsort(arr)
     printarray(arr)
+
+    # Sorting using min heap
     print("Sorted array using minheapsort:")
     VSDMinheapsort(arr)
     printarray(arr)
@@ -151,7 +160,7 @@ The code provided demonstrates the implementation of the MaxHeapSort algorithm i
 
 This is a basic overview of how the MaxHeapSort algorithm works. The provided code demonstrates the implementation and usage of the algorithm in Python.
 
-**Code:**
+**Code(Java):**
 
 ```java
 
@@ -160,197 +169,218 @@ For more information, visit https://venkys.io */
 
 // Space complexity: O(log n)
 // Time complexity: O(n log n)
-public class VSDMaxHeapSort {
-	//Class to hold the structure of node in a tree
-		public static class Node{
-			int data;//Holds the value of node
-			Node left;//Holds the left pointer of node
-			Node right;//Holds the right pointer of node
-			//Default constructor
-			Node(int data)
-		    {
-		        this.data =data;
-		        this.left = this.right = null;
-		    }
-		}
-		//Root node
-		public static Node root=null;
-		//Variable to hold count of left nodes
-		public static int leftcount=0;
-		//Variable to hold count of right nodes
-		public static int rightcount=0;
-		//Variable to Maintain count of nodes in heap for appropriate deletion
-		public static int deletecount=0;
-		//Varaible to hold the appropriate child node for deletion
-		public static Node deletenode=null;
-		//Variable to hold the parent of child to be deleted
-		public static Node parent=null;
-		//Method to Build Heap along with maintanence of complete binary tree
-	public static Node VSDbuildHeap(Node root,Node newNode)
-	{
-		if(root==null)root=newNode;//Null check
-		else if(root.left!=null&&root.right!=null)//Checking whether both left and right children are present for the root
-			{
-				leftcount=VSDsubtreeCount(root.left);//Getting left nodes count from the left of current root
-				rightcount=VSDsubtreeCount(root.right);//Getting right nodes count from the right of current root
-				
-				int height=VSDfindHeight(root);//Getting height of tree
-				//Checking for the correct position to insert
-				if(leftcount<(VSDexpectedCount(height)/2)) {
-					VSDbuildHeap(root.left,newNode);
-				}
-				else if(leftcount==rightcount)
-					VSDbuildHeap(root.left,newNode);
-				else
-					VSDbuildHeap(root.right,newNode);
-			}
-		else if(root.left==null)
-			{
-			root.left=newNode;
-			
-			}
-		else if(root.right==null)
-			{
-			root.right=newNode;
-			
-			}
-		
-		
-		return root;
-	}
-	//Function to maintain max heap properties
-		public static Node VSDHeapify(Node current) {
-			if(current.left!=null)
-				current.left=VSDHeapify(current.left);
-			if(current.right!=null)
-				current.right=VSDHeapify(current.right);
-			if(current.left!=null&&current.left.data>current.data)
-			{
-				int temp=current.left.data;
-				current.left.data=current.data;
-				current.data=temp;
-				
-			
-			}
-		 if(current.right!=null&&current.right.data>current.data) {
-			int temp=current.right.data;
-			current.right.data=current.data;
-			current.data=temp;
-		}
-			return current;
-		}
+import java.util.Scanner;
 
-	
-	//Function to return the expected node count for given height
-	public static int VSDexpectedCount(int h) {
-		int count=0;
-		while(h>=0) {
-			count+=Math.pow(2,h);
-			h--;
-		}
-		return count;
-	}
-	//Function to return the node count for given subtree
-	public static int VSDsubtreeCount(Node current) {
-				int leftheight=0;//variable to hold height of left subtree
-				int rightheight=0;//variable to hold height of right sub tree
-				//Traversing to the left subtree to find max height
-					if(current.left!=null)
-						{
-						leftheight=VSDsubtreeCount(current.left);
-						}
-					//Traversing to the right subtree to find max height
-					if(current.right!=null) {
-						rightheight=VSDsubtreeCount(current.right);
-					}
-					//selecting maximum height and adding 1 for root's height
-					int count=rightheight+leftheight+1;
-					 return count;
-		}
-	//Function to return the height of tree
-	public static int VSDfindHeight(Node current) {
-		if (current == null)
-            return -1;
-        else
+public class maxsort {
+    // Class to hold the structure of a node in a tree
+    public static class Node {
+        int data; // Holds the value of the node
+        Node left; // Holds the left pointer of the node
+        Node right; // Holds the right pointer of the node
+
+        // Default constructor
+        Node(int data) {
+            this.data = data;
+            this.left = this.right = null;
+        }
+    }
+
+    // Root node
+    public static Node root = null;
+
+    // Variable to hold the count of left nodes
+    public static int leftcount = 0;
+
+    // Variable to hold the count of right nodes
+    public static int rightcount = 0;
+
+    // Variable to maintain the count of nodes in the heap for appropriate deletion
+    public static int deletecount = 0;
+
+    // Variable to hold the appropriate child node for deletion
+    public static Node deletenode = null;
+
+    // Variable to hold the parent of the child to be deleted
+    public static Node parent = null;
+
+    // Method to Build Heap along with maintenance of a complete binary tree
+    public static Node VSDbuildHeap(Node root, Node newNode) {
+        if (root == null)
+            root = newNode; // Null check
+        else if (root.left != null && root.right != null) // Checking whether both left and right children are present
+                                                            // for the root
         {
+            leftcount = VSDsubtreeCount(root.left); // Getting left nodes count from the left of the current root
+            rightcount = VSDsubtreeCount(root.right); // Getting right nodes count from the right of the current root
+
+            int height = VSDfindHeight(root); // Getting the height of the tree
+            // Checking for the correct position to insert
+            if (leftcount < (VSDexpectedCount(height) / 2)) {
+                VSDbuildHeap(root.left, newNode);
+            } else if (leftcount == rightcount)
+                VSDbuildHeap(root.left, newNode);
+            else
+                VSDbuildHeap(root.right, newNode);
+        } else if (root.left == null) {
+            root.left = newNode;
+
+        } else if (root.right == null) {
+            root.right = newNode;
+
+        }
+
+        return root;
+    }
+
+    // Function to maintain max heap properties
+    public static Node VSDHeapify(Node current) {
+        if (current.left != null)
+            current.left = VSDHeapify(current.left);
+        if (current.right != null)
+            current.right = VSDHeapify(current.right);
+        if (current.left != null && current.left.data > current.data) {
+            int temp = current.left.data;
+            current.left.data = current.data;
+            current.data = temp;
+
+        }
+        if (current.right != null && current.right.data > current.data) {
+            int temp = current.right.data;
+            current.right.data = current.data;
+            current.data = temp;
+        }
+        return current;
+    }
+
+    // Function to return the expected node count for a given height
+    public static int VSDexpectedCount(int h) {
+        int count = 0;
+        while (h >= 0) {
+            count += Math.pow(2, h);
+            h--;
+        }
+        return count;
+    }
+
+    // Function to return the node count for a given subtree
+    public static int VSDsubtreeCount(Node current) {
+        int leftheight = 0; // variable to hold the height of the left subtree
+        int rightheight = 0; // variable to hold the height of the right subtree
+        // Traversing to the left subtree to find the max height
+        if (current.left != null) {
+            leftheight = VSDsubtreeCount(current.left);
+        }
+        // Traversing to the right subtree to find the max height
+        if (current.right != null) {
+            rightheight = VSDsubtreeCount(current.right);
+        }
+        // Selecting the maximum height and adding 1 for root's height
+        int count = rightheight + leftheight + 1;
+        return count;
+    }
+
+    // Function to return the height of the tree
+    public static int VSDfindHeight(Node current) {
+        if (current == null)
+            return -1;
+        else {
             int lh = VSDfindHeight(current.left);
             int rh = VSDfindHeight(current.right);
-  
+
             if (lh > rh)
                 return (lh + 1);
-             else
+            else
                 return (rh + 1);
         }
-	}
-//Function to display elements in max heap using inorder traversal
-public static void VSDinorder(Node root) {
-	if(root.left!=null)VSDinorder(root.left);
-	 System.out.println(root.data);
-	if(root.right!=null)VSDinorder(root.right);
-	}
-/*Function to choose the most recently inserted element based on count*/
-public static void VSDchooseNode(Node current,int level,int size) {
-	if(current==null) {
-		return;
-	}
-	if(level==0) {
-		deletecount++;
-		if(deletecount==size/2) {
-			parent=current;
-		}
-		if(deletecount==size) {
-			deletenode=current;
-			return;
-		}
-	}
-	else if(level>0)
-	{
-		
-		VSDchooseNode(current.left,level-1,size);
-		VSDchooseNode(current.right,level-1,size);
-	}
-	
+    }
+
+    // Function to display elements in max heap using inorder traversal
+    public static void VSDinorder(Node root) {
+        if (root.left != null)
+            VSDinorder(root.left);
+        System.out.println(root.data);
+        if (root.right != null)
+            VSDinorder(root.right);
+    }
+
+    /* Function to choose the most recently inserted element based on count */
+    public static void VSDchooseNode(Node current, int level, int size) {
+        if (current == null) {
+            return;
+        }
+        if (level == 0) {
+            deletecount++;
+            if (deletecount == size / 2) {
+                parent = current;
+            }
+            if (deletecount == size) {
+                deletenode = current;
+                return;
+            }
+        } else if (level > 0) {
+
+            VSDchooseNode(current.left, level - 1, size);
+            VSDchooseNode(current.right, level - 1, size);
+        }
+
+    }
+
+    // Function to delete the root node from the heap
+    public static Node VSDdeleteNode(Node root, int height, int size) {
+        // Obtain the correct child node to replace with the root
+        for (int i = 0; i <= height; i++) {
+            VSDchooseNode(root, i, size);
+        }
+        int temp = root.data;
+        root.data = deletenode.data;
+        deletenode.data = temp;
+        // Deleting the node
+        if (parent.right != null)
+            parent.right = null;
+        else
+            parent.left = null;
+        // calling heapify to maintain max heap properties
+        root = VSDHeapify(root);
+        return root;
+    }
+
+    public static void main(String args[]) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the number of elements in the heap:");
+        int size = scanner.nextInt();
+
+        int[] arr = new int[size];
+        System.out.println("Enter the elements separated by space:");
+        for (int i = 0; i < size; i++) {
+            arr[i] = scanner.nextInt();
+        }
+
+        Node n;
+        root = null;
+        for (int i = 0; i < arr.length; i++) {
+            n = new Node(arr[i]);
+            root = VSDbuildHeap(root, n);
+            root = VSDHeapify(root); // Calling function to maintain max heap properties
+        }
+
+        System.out.println("Insertion");
+        VSDinorder(root);
+
+        System.out.println("The descending order is:");
+        while (size > 1) {
+            deletecount = 0;
+            System.out.println(root.data);
+            int height = VSDfindHeight(root);
+            root = VSDdeleteNode(root, height, size);
+            size--;
+        }
+        System.out.println(root.data);
+
+        scanner.close();
+    }
 }
-//Function to delete the root node from the heap
-public static Node VSDdeleteNode(Node root,int height,int size) {
-	//Obtain correct child node to replace with root
-	for(int i=0;i<=height;i++) {
-		VSDchooseNode(root,i,size);
-	}
-	int temp=root.data;
-	root.data=deletenode.data;
-	deletenode.data=temp;
-	//Deleting the node
-	if(parent.right!=null)parent.right=null;
-	else parent.left=null;
-	//calling heapify to maintain max heap properties
-	root=VSDHeapify(root);
-	return root;
-}
-public static void main(String args[]) {
-	int[] arr=new int[]{10,11,13,6,25,17,12,5,4};
-	Node n;
-	root=null;
-	for(int i=0;i<arr.length;i++) {
-		n=new Node(arr[i]);
-		root=VSDbuildHeap(root,n);
-		root=VSDHeapify(root);//Calling function to maintain max heap properties
-	}
-	System.out.println("Insertion");
-	VSDinorder(root);
-	int size=arr.length;//Variable to hold the number of elements in heap
-	System.out.println("The decending order is:");
-	while(size>1) {
-		deletecount=0;
-		System.out.println(root.data);
-		int height=VSDfindHeight(root);
-		root=VSDdeleteNode(root,height,size);
-		size--;
-	}
-	System.out.println(root.data);
-	
-}
-}
+
 ```
 
 **step-by-step Explaination:**
@@ -367,7 +397,7 @@ public static void main(String args[]) {
 10. The `VSDdeleteNode` method deletes the root node from the heap and replaces it with the appropriate child node.
 11. The `main` method creates an array of integers, builds the max heap, and then performs the heap sort by deleting the root node iteratively.
 
-**Code:**
+**Code(CPP):**
 
 ```cpp
 
@@ -380,78 +410,94 @@ For more information, visit https://venkys.io */
 #include<iostream>
 using namespace std;
 
-void swap(int arr[],int i,int j){
-    int temp=arr[i];
-    arr[i]=arr[j];
-    arr[j]=temp;
-}
-void printarray(int arr[],int n){
-    for(int i=0;i<n;i++){
-        cout<<arr[i]<<" ";
-    }
-    cout<<endl;
+void swap(int arr[], int i, int j) {
+    int temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
 }
 
-void VSDmaxheapify(int arr[],int n,int i){
-    int large=i;
-    int leftchild=(2*i)+1;
-    int rightchild=(2*i)+2;
-
-    if(leftchild<n && arr[i]<arr[leftchild])
-        large=leftchild;
-    if(rightchild<n && arr[large]<arr[rightchild])
-        large=rightchild;
-    if(large!=i){
-        swap(arr,i,large);
-        VSDmaxheapify(arr,n,large);
+void printarray(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
     }
+    cout << endl;
 }
 
-void VSDminheapify(int arr[],int n,int i){
-    int small=i;
-    int leftchild=(2*i)+1;
-    int rightchild=(2*i)+2;
+void VSDmaxheapify(int arr[], int n, int i) {
+    int large = i;
+    int leftchild = (2 * i) + 1;
+    int rightchild = (2 * i) + 2;
 
-    if(leftchild<n && arr[i]>arr[leftchild]){
-        small=leftchild;
-    }
-    if(rightchild<n && arr[small]>arr[rightchild]){
-        small=rightchild;
-    }
-    if(small!=i){
-        swap(arr,small,i);
-        VSDminheapify(arr,n,small);
+    if (leftchild < n && arr[i] < arr[leftchild])
+        large = leftchild;
+    if (rightchild < n && arr[large] < arr[rightchild])
+        large = rightchild;
+    if (large != i) {
+        swap(arr, i, large);
+        VSDmaxheapify(arr, n, large);
     }
 }
 
-void VSDMaxheapsort(int arr[],int n){
-    for(int i=(n/2)-1;i>=0;i--){
-        VSDmaxheapify(arr,n,i);
+void VSDminheapify(int arr[], int n, int i) {
+    int small = i;
+    int leftchild = (2 * i) + 1;
+    int rightchild = (2 * i) + 2;
+
+    if (leftchild < n && arr[i] > arr[leftchild]) {
+        small = leftchild;
     }
-    for(int i=n-1;i>0;i--){
-        swap(arr,i,0);
-        VSDmaxheapify(arr,i,0);
+    if (rightchild < n && arr[small] > arr[rightchild]) {
+        small = rightchild;
+    }
+    if (small != i) {
+        swap(arr, small, i);
+        VSDminheapify(arr, n, small);
     }
 }
-void VSDMinheapsort(int arr[],int n){
-    for(int i=(n/2)-1;i>=0;i--){
-        VSDminheapify(arr,n,i);
+
+void VSDMaxheapsort(int arr[], int n) {
+    for (int i = (n / 2) - 1; i >= 0; i--) {
+        VSDmaxheapify(arr, n, i);
     }
-    for(int i=n-1;i>0;i--){
-        swap(arr,i,0);
-        VSDminheapify(arr,i,0);
+    for (int i = n - 1; i > 0; i--) {
+        swap(arr, i, 0);
+        VSDmaxheapify(arr, i, 0);
+    }
+}
+
+void VSDMinheapsort(int arr[], int n) {
+    for (int i = (n / 2) - 1; i >= 0; i--) {
+        VSDminheapify(arr, n, i);
+    }
+    for (int i = n - 1; i > 0; i--) {
+        swap(arr, i, 0);
+        VSDminheapify(arr, i, 0);
+    }
+}
+
+int main() {
+    int n;
+
+    cout << "Enter the number of elements: ";
+    cin >> n;
+
+    int arr[n];
+    cout << "Enter the elements separated by space: ";
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
     }
 
-}
-int main(){
-    int arr[]={5,2, 9, 12, 54, 31, 65, 31, 45, 65};
-    int n=sizeof(arr)/sizeof(arr[0]);
-    VSDMaxheapsort(arr,n);
-    printarray(arr,n);
-    VSDMinheapsort(arr,n);
-    printarray(arr,n);
+    VSDMaxheapsort(arr, n);
+    cout << "Sorted array using max heap sort: ";
+    printarray(arr, n);
+
+    VSDMinheapsort(arr, n);
+    cout << "Sorted array using min heap sort: ";
+    printarray(arr, n);
+
     return 0;
 }
+
 ```
 
 **step-by-step Explaination:**
