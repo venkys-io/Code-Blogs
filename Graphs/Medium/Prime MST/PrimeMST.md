@@ -215,7 +215,9 @@ For more information, visit https://venkys.io */
 // Space complexity: O(V^2)
 // Time complexity: O(V^2 + E)
     
-    #include<bits/stdc++.h>
+#include<bits/stdc++.h>
+
+using namespace std;
 // Function to implement Prim's algorithm for Minimum Spanning Tree
 void prims(int** graph, int n) {
     bool* visited = new bool[n]{false}; // Array to keep track of visited vertices
@@ -240,29 +242,29 @@ void prims(int** graph, int n) {
                 }
             }
         }
-        std::cout << "Edge pair is " << x << " " << y << " " << "Weight is " << graph[x][y] << std::endl; // Print the edge pair and its weight
+        cout << "Edge pair is " << x << " " << y << " " << "Weight is " << graph[x][y] << endl; // Print the edge pair and its weight
         cost += graph[x][y]; // Add the weight of the edge to the total cost
         visited[y] = true; // Mark the second vertex of the edge as visited
         edge_count += 1; // Increment the edge count
     }
-    std::cout << "The total cost of Prim's MST is " << cost; // Print the total cost of the MST
+    cout << "The total cost of Prim's MST is " << cost; // Print the total cost of the MST
 }
 
 // Main function
 int main() {
     int v;
-    std::cout << "Enter the number of vertices: ";
-    std::cin >> v;
+    cout << "Enter the number of vertices: ";
+    cin >> v;
 
     int** graph = new int*[v];
     for (int i = 0; i < v; i++) {
         graph[i] = new int[v];
     }
 
-    std::cout << "Enter the adjacency matrix of the graph:" << std::endl;
+    cout << "Enter the adjacency matrix of the graph:" << endl;
     for (int i = 0; i < v; i++) {
         for (int j = 0; j < v; j++) {
-            std::cin >> graph[i][j];
+            cin >> graph[i][j];
         }
     }
 
