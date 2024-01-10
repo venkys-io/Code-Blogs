@@ -66,22 +66,30 @@ def ksum(arr, target, k):
                 # Append the current element to the solution
                 res.append([arr[i]] + s)
     return res
-
 if __name__ == "__main__":
     # Read the array from STDIN
-    arr = list(map(int, input().split()))
-    
-    # Read the target sum from STDIN
-    target = int(input())
-    
-    # Read the value of k from STDIN
-    k = int(input())
-    
+    arr_input = input()
+    target_input = input()
+    k_input = input()
+
+    # Check if inputs are provided
+    if not arr_input or not target_input or not k_input:
+        print("Please provide valid inputs.")
+        exit()
+
+    try:
+        # Convert inputs to the required types
+        arr = list(map(int, arr_input.split()))
+        target = int(target_input)
+        k = int(k_input)
+    except ValueError:
+        print("Invalid input. Please enter valid numbers.")
+        exit()
+
     arr.sort()
-    
     # Call the ksum function with the input values
     result = ksum(arr, target, k)
-    
+
     # Print the result
     print(result)
 ```
@@ -94,13 +102,6 @@ In the provided example within the `__main__` block, an array [1, 2, 3, 4, 5, 6,
 
 ### Java
 ```java
-// Copyrights to venkys.io
-// For more programs visit venkys.io 
-// Java program for FourNumberSum
-
-//Time Complexity : O(n^k-1)
-//Space Complexity : O(n^k-1)+O(k)\
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -108,78 +109,102 @@ import java.util.Scanner;
 
 public class Main {
     static List<List<Integer>> fourSum(int[] arr, int target) {
-        ArrayList<List<Integer>> res = new ArrayList<List<Integer>>();
-        
-        if (arr == null || arr.length == 0)
+        ArrayList<List<Integer>> res = new ArrayList<>();
+
+        if (arr == null || arr.length == 0) {
+            System.out.println("Input array is empty or null. Returning empty result.");
             return res;
-        
+        }
+
         int n = arr.length;
-    
+
         // Sort the input array in ascending order
-        Arrays.sort(arr); 
-    
+        Arrays.sort(arr);
+
         for (int i = 0; i < n; i++) {
-        
             // Reduce the problem to finding a 3-sum
             int target_3 = target - arr[i];
-        
+
             for (int j = i + 1; j < n; j++) {
-            
                 // Reduce the problem to finding a 2-sum
                 int target_2 = target_3 - arr[j];
-            
+
                 int front = j + 1;
                 int back = n - 1;
-            
-                while(front < back) {
-                
+
+                while (front < back) {
                     int two_sum = arr[front] + arr[back];
-                
+
                     if (two_sum < target_2) front++;
-                
                     else if (two_sum > target_2) back--;
-                
                     else {
                         // Found a valid quadruplet, add to the result
-                        List<Integer> quad = new ArrayList<>(); 
+                        List<Integer> quad = new ArrayList<>();
                         quad.add(arr[i]);
                         quad.add(arr[j]);
                         quad.add(arr[front]);
                         quad.add(arr[back]);
                         res.add(quad);
-                    
+
                         // Move pointers to avoid duplicates
                         while (front < back && arr[front] == quad.get(2)) ++front;
                         while (front < back && arr[back] == quad.get(3)) --back;
                     }
                 }
-                
+
                 // Move pointer to avoid duplicates
-                while(j + 1 < n && arr[j + 1] == arr[j]) ++j;
+                while (j + 1 < n && arr[j + 1] == arr[j]) ++j;
             }
-        
+
             // Move pointer to avoid duplicates
             while (i + 1 < n && arr[i + 1] == arr[i]) ++i;
         }
-    
+
         return res;
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
         // Read the array elements from STDIN
-        String[] arrString = scanner.nextLine().split(" ");
-        int[] arr = Arrays.stream(arrString).mapToInt(Integer::parseInt).toArray();
+        String[] arrString = scanner.nextLine().split("");
+
+        // Check if the input array is empty
+        if (arrString.length == 0) {
+            System.out.println("Input array is empty. Exiting program.");
+            scanner.close();
+            return;
+        }
+
+        int[] arr = new int[arrString.length];
+        try {
+            for (int i = 0; i < arrString.length; i++) {
+                arr[i] = Integer.parseInt(arrString[i]);
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Please enter valid integers. Exiting program.");
+            scanner.close();
+            return;
+        }
 
         // Read the target sum from STDIN
-        int target = scanner.nextInt();
-        List<List<Integer>> ls = fourSum(arr, target); 
+        int target;
+        try {
+            target = scanner.nextInt();
+        } catch (Exception e) {
+            System.out.println("Invalid input for target sum. Exiting program.");
+            scanner.close();
+            return;
+        }
+
+        List<List<Integer>> result = fourSum(arr, target);
+
         // Print the result
-        for(int i = 0; i < ls.size(); i++) {
-            for(int j = 0; j < ls.get(i).size(); j++) {
-                System.out.print(ls.get(i).get(j) + " "); 
+        for (List<Integer> quad : result) {
+            for (int num : quad) {
+                System.out.print(num + " ");
             }
-            System.out.println(); 
+            System.out.println();
         }
 
         scanner.close();
@@ -198,31 +223,26 @@ In the provided example within the `main` function, an array [1, 0, -1, 0, -2, 2
 
 ### CPP
 ```cpp
-// Copyrights to venkys.io
-// For more programs visit venkys.io 
-// CPP program for FourNumberSum
+#include <iostream>
+#include <vector>
+#include <algorithm>
 
-//Time Complexity : O(n^k-1)
-//Space Complexity : O(n^k-1)+O(k)
+std::vector<std::vector<int>> fourSum(std::vector<int>& num, int target) {
+    std::vector<std::vector<int>> res;
 
-#include<bits/stdc++.h>
-using namespace std;
-
-vector<vector<int>> fourSum(vector<int>& num, int target) {
-    vector<vector<int>> res;
-    
-    if (num.empty())
+    if (num.empty()) {
+        std::cout << "Input vector is empty. Returning empty result." << std::endl;
         return res;
-    int n = num.size(); 
-    sort(num.begin(), num.end());
+    }
+
+    int n = num.size();
+    std::sort(num.begin(), num.end());
 
     for (int i = 0; i < n; i++) {
-
         // Reduce the problem to finding a 3-sum
         int target_3 = target - num[i];
 
         for (int j = i + 1; j < n; j++) {
-
             // Reduce the problem to finding a 2-sum
             int target_2 = target_3 - num[j];
 
@@ -230,16 +250,13 @@ vector<vector<int>> fourSum(vector<int>& num, int target) {
             int back = n - 1;
 
             while (front < back) {
-
                 int two_sum = num[front] + num[back];
 
                 if (two_sum < target_2) front++;
-
                 else if (two_sum > target_2) back--;
-
                 else {
                     // Found a valid quadruplet, add to the result
-                    vector<int> quadruplet(4, 0);
+                    std::vector<int> quadruplet(4, 0);
                     quadruplet[0] = num[i];
                     quadruplet[1] = num[j];
                     quadruplet[2] = num[front];
@@ -265,30 +282,35 @@ vector<vector<int>> fourSum(vector<int>& num, int target) {
     return res;
 }
 
-int main()
-{
+int main() {
     // Read the array elements from STDIN
-    vector<int> v;
+    std::vector<int> v;
     int num;
-    while (cin >> num) {
+    while (std::cin >> num) {
         v.push_back(num);
+    }
+
+    // Check if the input vector is empty
+    if (v.empty()) {
+        std::cout << "Input vector is empty. Exiting program." << std::endl;
+        return 0;
     }
 
     // Read the target sum from STDIN
     int target;
-    cin >> target;
+    std::cin >> target;
 
     // Find and print the unique quadruplets
-    vector<vector<int>> sum = fourSum(v, target);
+    std::vector<std::vector<int>> sum = fourSum(v, target);
+    std::cout << "Result:" << std::endl;
     for (int i = 0; i < sum.size(); i++) {
         for (int j = 0; j < sum[i].size(); j++)
-            cout << sum[i][j] << " ";
-        cout << endl;
+            std::cout << sum[i][j] << " ";
+        std::cout << std::endl;
     }
 
     return 0;
 }
-
 ```
 ### Step-by-Step Explanation
 This C++ program addresses the Four Number Sum problem, aiming to find all unique quadruplets within a given vector 'num' that add up to a specified target. The 'fourSum' function employs a systematic approach, starting with sorting the input vector in ascending order, a critical step for efficient solutions. The program then utilizes nested loops to iterate through the vector, considering each element as a potential starting point for the quadruplet. It reduces the problem to finding a 3-sum by subtracting the current element from the target.
