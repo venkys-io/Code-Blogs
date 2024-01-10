@@ -157,63 +157,92 @@ Within the main loop of `longestPalindrome`, the lengths `len1` and `len2` are c
 After the iteration, the function returns the substring of the input string that corresponds to the longest palindrome, using the updated `start` and `end` indices. In the example usage section, the code demonstrates finding the longest palindrome in the string "badab" and prints the result. The time complexity of the algorithm is O(n^2), where n is the length of the input string, as each expansion process takes linear time. The provided implementation efficiently identifies palindromic substrings within the given string.
 ### CPP
 ```cpp
-// Copyrights to venkys.io
-// For more programs visit venkys.io 
-// cpp program for LongestPalindromicSubstring
-
-// Time Complexity - O(n^2)
-// Space Complexity- O(1)
-
 #include <iostream>
-#include <string>
+#include <vector>
+#include <algorithm>
 
-using namespace std;
+std::vector<std::vector<int>> fourSum(std::vector<int>& num, int target) {
+    std::vector<std::vector<int>> res;
 
-// Function to expand around the center and find the length of the palindrome
-int expand_from_center(string& s, int left, int right) {
-    // Keep expanding while the characters at left and right indices are equal
-    while (left > -1 && right < s.length() && s[left] == s[right]) {
-        left--;
-        right++;
+    if (num.empty()) {
+        std::cout << "Input vector is empty. Returning empty result." << std::endl;
+        return res;
     }
-    // Return the length of the palindrome found
-    return right - left - 1;
-}
 
-// Function to find the longest palindrome in a given string
-string longest_palindrome(string& s) {
-    // Initialize start and end indices for the longest palindrome found
-    int start = 0, end = 0;
+    int n = num.size();
+    std::sort(num.begin(), num.end());
 
-    // Iterate through each character in the string
-    for (int i = 0; i < s.length(); i++) {
-        // Find the length of palindrome when the center is a single character
-        int len1 = expand_from_center(s, i, i);
-        // Find the length of palindrome when the center is between two characters
-        int len2 = expand_from_center(s, i, i + 1);
+    for (int i = 0; i < n; i++) {
+        // Reduce the problem to finding a 3-sum
+        int target_3 = target - num[i];
 
-        // Find the maximum length between len1 and len2
-        int len = max(len1, len2);
+        for (int j = i + 1; j < n; j++) {
+            // Reduce the problem to finding a 2-sum
+            int target_2 = target_3 - num[j];
 
-        // If the current palindrome is longer than the previous one, update start and end indices
-        if (len > end - start) {
-            start = i - (len - 1) / 2;
-            end = i + len / 2;
+            int front = j + 1;
+            int back = n - 1;
+
+            while (front < back) {
+                int two_sum = num[front] + num[back];
+
+                if (two_sum < target_2) front++;
+                else if (two_sum > target_2) back--;
+                else {
+                    // Found a valid quadruplet, add to the result
+                    std::vector<int> quadruplet(4, 0);
+                    quadruplet[0] = num[i];
+                    quadruplet[1] = num[j];
+                    quadruplet[2] = num[front];
+                    quadruplet[3] = num[back];
+                    res.push_back(quadruplet);
+
+                    // Processing the duplicates of number 3
+                    while (front < back && num[front] == quadruplet[2]) ++front;
+
+                    // Processing the duplicates of number 4
+                    while (front < back && num[back] == quadruplet[3]) --back;
+                }
+            }
+
+            // Processing the duplicates of number 2
+            while (j + 1 < n && num[j + 1] == num[j]) ++j;
         }
+
+        // Processing the duplicates of number 1
+        while (i + 1 < n && num[i + 1] == num[i]) ++i;
     }
-    
-    // Return the longest palindrome substring
-    return s.substr(start, end + 1);
+
+    return res;
 }
 
 int main() {
-    // Read the input string from STDIN
-    string str;
-    getline(cin, str);
-    
-    // Print the longest palindrome in the given string
-    cout << longest_palindrome(str);
-    
+    // Read the array elements from STDIN
+    std::vector<int> v;
+    int num;
+    while (std::cin >> num) {
+        v.push_back(num);
+    }
+
+    // Check if the input vector is empty
+    if (v.empty()) {
+        std::cout << "Input vector is empty. Exiting program." << std::endl;
+        return 0;
+    }
+
+    // Read the target sum from STDIN
+    int target;
+    std::cin >> target;
+
+    // Find and print the unique quadruplets
+    std::vector<std::vector<int>> sum = fourSum(v, target);
+    std::cout << "Result:" << std::endl;
+    for (int i = 0; i < sum.size(); i++) {
+        for (int j = 0; j < sum[i].size(); j++)
+            std::cout << sum[i][j] << " ";
+        std::cout << std::endl;
+    }
+
     return 0;
 }
 
