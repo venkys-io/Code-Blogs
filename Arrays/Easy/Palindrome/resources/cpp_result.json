@@ -1,0 +1,17 @@
+[
+  {
+    "input": "racecar",
+    "output": true,
+    "result": true
+  },
+  {
+    "input": "A man, a plan, a canal, Panama",
+    "output": true,
+    "result": true
+  },
+  {
+    "input": "hello",
+    "output": false,
+    "result": true
+  }
+]
