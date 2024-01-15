@@ -212,15 +212,21 @@ Let us see the step-by-step process of solving the anagram finder using the Hash
 // space Complexity:
 
 #include<iostream>
-#include<bits/stdc++.h>
+#include<map>
 using namespace std;
 
 int main(){
-  // Initialize the first string
-  string s1="hello"; 
-  // Initialize the second string
-  string s2="olleh";
-  
+
+  string s1, s2;
+
+  // Get input for the first string
+  cout << "Enter the first string: ";
+  cin >> s1;
+
+  // Get input for the second string
+  cout << "Enter the second string: ";
+  cin >> s2;
+
   // Check if the lengths of both strings are different
   if(s1.size()!=s2.size()){
     // If different, print "Not Anagram"
@@ -274,6 +280,71 @@ solving anagrams using a hash table or hash map is an efficient approach. An ana
 * The program then iterates through the second string and decrements the frequency of each character found in the map. If the characters are not found in the map, the program prints "Not Anagrams" and exits.
 * After decrementing frequencies for both strings, The program checks if any frequencies remain non-zero. If so, it prints "Not Anagrams" and exits.
 * If all characters match, the program prints "Anagrams"
+
+## Test Cases
+
+### Test Case 1: Basic Anagrams**
+
+* **Input:**
+  * String 1: "listen"
+  * String 2: "silent"
+* **Expected Output:** "listen and silent are Anagrams"
+* **Explanation:** This test case includes two basic strings that are anagrams of each other. The algorithm should correctly identify them as anagrams.
+
+### Test Case 2: Anagrams with Different Cases
+
+* **Input:**
+  * String 1: "Tea"
+  * String 2: "Eat"
+* **Expected Output:** "Tea and Eat are Anagrams"
+* **Explanation:** Anagrams may have different cases, and the algorithm should correctly handle this scenario.
+
+### Test Case 3: Anagrams with Punctuation
+
+* **Input:**
+  * String 1: "debit card"
+  * String 2: "bad credit"
+* **Expected Output:** "debit card and bad credit are Anagrams"
+* **Explanation:** This test case includes anagrams with spaces and different punctuation. The algorithm should ignore spaces and punctuation and correctly identify them as anagrams.
+
+### Test Case 4: Non-Anagrams with Different Lengths
+
+* **Input:**
+  * String 1: "hello"
+  * String 2: "world"
+* **Expected Output:** "hello and world are not Anagrams"
+* **Explanation:** Strings with different lengths cannot be anagrams. The algorithm should correctly identify them as not being anagrams.
+
+### Test Case 5: Anagrams with Repeated Characters
+
+* **Input:**
+  * String 1: "moon"
+  * String 2: "mono"
+* **Expected Output:** "moon and mono are Anagrams"
+* **Explanation:** Anagrams can have repeated characters, and the algorithm should handle this case correctly.
+
+### Test Case 6: Empty Strings
+
+* **Input:**
+  * String 1: ""
+  * String 2: ""
+* **Expected Output:** " and  are Anagrams"
+* **Explanation:** Both strings are empty, and according to the algorithm, empty strings are considered anagrams.
+
+### Test Case 7: Large Strings
+
+* **Input:**
+  * String 1: "supercalifragilisticexpialidocious"
+  * String 2: "dociousaliexpilisticfragicalirupes"
+* **Expected Output:** "supercalifragilisticexpialidocious and dociousaliexpilisticfragicalirupes are Anagrams"
+* **Explanation:** This test case includes large strings that are anagrams. The algorithm should efficiently handle large inputs and correctly identify them as anagrams.
+
+**Additional Considerations:**
+
+* Edge cases: Test cases with special characters, digits, non-alphabetic characters, or edge conditions to ensure the algorithm's robustness.
+* Performance testing: Evaluate the algorithm's performance with large input strings to ensure it executes within acceptable time limits.
+
+Running these test cases against the Anagram Finder using the Hash Table algorithm will help verify its accuracy in handling anagrams, special characters, cases, and different lengths of input strings.
 
 ## Time and Space Complexity Analysis
 

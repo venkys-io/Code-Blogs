@@ -24,41 +24,43 @@ Lastly, the result is the maximum achievable profit based on the greedy selectio
 # Python program for Fractional Knapsack
 
 # Function to calculate P/W ratio
-def VSDcalculatepwratio(n, m, p, w):
+def VSDcalculatepwratio(n, p, w):
     # Create a 2D array to store profit, weight, and profit-to-weight ratio
     ratioarray = [[0 for i in range(3)] for i in range(n)]
-    
+
     # Calculate and populate the array
     for i in range(n):
         # Profit
         ratioarray[i][0] = p[i]
         # Weight
-        ratioarray[i][1] = w[i]  
+        ratioarray[i][1] = w[i]
         # Profit-to-Weight ratio
-        ratioarray[i][2] = p[i] / w[i]  
+        ratioarray[i][2] = p[i] / w[i]
 
     # Return the array sorted in descending order based on profit-to-weight ratio
     return sorted(ratioarray, reverse=True, key=lambda x: x[2])
 
+
 # Function to find maximum profit possible
 def VSDknapsack(sortedarray, n, m):
     i = result = 0
-    
+
     # Iterate until the knapsack is full
-    while m > 0:
+    while m > 0 and i < n:
         if m - sortedarray[i][1] >= 0:
             # Add the entire item to the knapsack
-            result += sortedarray[i][0] 
+            result += sortedarray[i][0]
             # Reduce knapsack capacity
-            m = m - sortedarray[i][1] 
+            m = m - sortedarray[i][1]
         else:
             # Add a fraction of the item to fill the remaining capacity
             result += sortedarray[i][2] * m
             # Knapsack is full
-            m = 0  
+            m = 0
         i += 1
     # Return the maximum profit as a formatted string
     return "{:.2f}".format(result)
+
 
 # Function to print array
 def VSDprint(sortedarray, n):
@@ -76,20 +78,28 @@ def VSDprint(sortedarray, n):
         print(sortedarray[i][2], end="  ")
     print("\n")
 
+
 # Main Function
 if __name__ == "__main__":
-    n = 7
-    capacity = 15
-    profits = [5, 10, 15, 7, 8, 9, 4]
-    weights = [1, 3, 5, 4, 1, 3, 2]
-    
+    n = int(input("Enter the number of items: "))
+    profits = []
+    weights = []
+
+    for i in range(n):
+        profit = int(input(f"Enter profit for item {i + 1}: "))
+        weight = int(input(f"Enter weight for item {i + 1}: "))
+        profits.append(profit)
+        weights.append(weight)
+
+    capacity = int(input("Enter the knapsack capacity: "))
+
     # Calculate and sort the array based on profit-to-weight ratio
-    arr = VSDcalculatepwratio(n, capacity, profits, weights)
-    
+    arr = VSDcalculatepwratio(n, profits, weights)
+
     # Find and print the maximum profit
     result = VSDknapsack(arr, n, capacity)
     VSDprint(arr, n)
-    print("maximum profit is :", result)
+    print("Maximum profit is:", result)
 
 ```
 
@@ -185,11 +195,12 @@ public class Main {
 ```c++
 // Copyrights to venkys.io
 // For more programs visit venkys.io 
-// CPP program for FractionalKnapsack
+// Java program for FractionalKnapsack
 
-#include<bits/stdc++.h>
-
-using namespace std;
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <iomanip>
 
 // Struct to represent items in the knapsack
 struct Node
@@ -197,27 +208,33 @@ struct Node
     int profit;
     int weight;
     float ratio;
-    
+
     // Overloading < operator for sorting based on profit-to-weight ratio
-    bool operator < (const Node& n1) const {
+    bool operator<(const Node &n1) const
+    {
         return n1.ratio < ratio;
-    };
+    }
 };
 
 // Function to perform fractional knapsack
-float knapsack(vector<Node> arr, int n, int m) {
+float knapsack(std::vector<Node> arr, int n, int m)
+{
     // Initialize variables for loop control and the final result
     int i = 0, result = 0;
 
     // Continue the loop until the knapsack is full (m > 0)
-    while (m > 0) {
+    while (m > 0)
+    {
         // If the entire item can be added to the knapsack
-        if (m - arr[i].weight >= 0) {
+        if (m - arr[i].weight >= 0)
+        {
             // Add the entire profit of the item to the result
             result += arr[i].profit;
             // Reduce the knapsack capacity by the weight of the added item
             m = m - arr[i].weight;
-        } else {
+        }
+        else
+        {
             // If only a fraction of the item can be added to fill the remaining capacity
             // Add a fraction of the profit to the result
             result += arr[i].ratio * m;
@@ -231,33 +248,41 @@ float knapsack(vector<Node> arr, int n, int m) {
     // Return the final result, which represents the maximum profit
     return result;
 }
-int main() {
-    // Initialize variables for the number of items, knapsack capacity, profits, and weights
-    int n = 7;
-    int capacity = 15;
-    int profits[] = {5, 10, 15, 7, 8, 9, 4};
-    int weights[] = {1, 3, 5, 4, 1, 3, 2};
-    
-    // Create a vector to store Node objects representing items in the knapsack
-    vector<Node> arr;
 
-    // Populate the vector with Node objects created from profit, weight, and ratio
-    for (int i = 0; i < n; i++) {
+int main()
+{
+    // Initialize variables for the number of items, knapsack capacity, profits, and weights
+    int n;
+    std::cout << "Enter the number of items: ";
+    std::cin >> n;
+
+    std::vector<Node> arr;
+
+    for (int i = 0; i < n; i++)
+    {
         Node node;
-        node.profit = profits[i];
-        node.weight = weights[i];
-        node.ratio = (float)profits[i] / weights[i];
+        std::cout << "Enter profit for item " << i + 1 << ": ";
+        std::cin >> node.profit;
+
+        std::cout << "Enter weight for item " << i + 1 << ": ";
+        std::cin >> node.weight;
+
+        node.ratio = static_cast<float>(node.profit) / node.weight;
         arr.push_back(node);
     }
 
+    int capacity;
+    std::cout << "Enter the knapsack capacity: ";
+    std::cin >> capacity;
+
     // Sort the vector based on profit-to-weight ratio using the overloaded < operator
-    sort(arr.begin(), arr.end());
+    std::sort(arr.begin(), arr.end());
 
     // Call the knapsack function to find the maximum profit
     float result = knapsack(arr, n, capacity);
 
     // Print the maximum profit to the console
-    printf("The Maximum profit is %.2f", result);
+    std::cout << "The Maximum profit is " << std::fixed << std::setprecision(2) << result << std::endl;
 
     return 0;
 }
@@ -267,4 +292,101 @@ int main() {
 
 * All three implementations have a time complexity O(n logn), where 'n' is the number of items in the knapsack problem. The dominant factor in time complexity is the sorting of items based on their profit-to-weight ratio.
 
-* The space complexity is O(n), the space complexity is mainly determined by the storage of items.
+* The space complexity is O(n), and the space complexity is mainly determined by the storage of items.
+
+## Real-world applications
+
+1. **Financial Portfolio Optimization:**
+
+    * In investment management, Fractional Knapsack optimally allocates funds across diverse assets, considering varying risks and returns, to maximize overall portfolio value within investment constraints.
+
+2. **Inventory Management:**
+
+    * Businesses use Fractional Knapsack to select the most profitable subset of products, balancing factors like shelf life and profit margins, for efficient inventory management and increased profitability.
+
+3. **Project Scheduling:**
+
+    * Fractional Knapsack aids in project management by optimizing task selection based on duration and benefits, ensuring efficient resource utilization and timely project completion.
+
+4. **Data Compression:**
+
+    * In data science, Fractional Knapsack optimizes the selection of features or components for data representation, striking a balance between compression and information retention, especially in bandwidth-limited scenarios.
+
+5. **Cutting Stock Problem in Manufacturing:**
+
+    * Industries optimize raw material cutting using Fractional Knapsacks, minimizing waste and maximizing profit by selecting the most efficient combination of cuts to fulfill orders.
+
+6. **Wireless Communication Networks:**
+
+    * Fractional Knapsack is applied in wireless networks to optimize the transmission of data packets, ensuring the most valuable information is sent within the constraints of available bandwidth for efficient communication.
+
+### Test Cases for Fractional Knapsack
+
+### Test Case 1: Basic Test Case
+
+* **Number of Items:** 5
+* **Knapsack Capacity:** 10
+* **Profits:** 10, 15, 7, 8, 9
+* **Weights:** 2, 3, 5, 7, 1
+* **Expected Output:** Maximum profit is 45.67 (or any equivalent value)
+
+**Explanation:** This test case represents a basic scenario with a set of items, each having a profit and weight. The knapsack's capacity is limited, and the goal is to maximize the total profit while considering the weight constraints. The algorithm should select items with the highest value-to-weight ratio to maximize the overall profit within the knapsack capacity.
+
+### Test Case 2: All Items Fit Perfectly
+
+* **Number of Items:** 4
+* **Knapsack Capacity:** 20
+* **Profits:** 12, 18, 25, 30
+* **Weights:** 6, 4, 8, 10
+* **Expected Output:** Maximum profit is 85.00 (or any equivalent value)
+
+**Explanation:** In this scenario, all the available items can be accommodated within the knapsack's capacity without exceeding it. The algorithm should select all items to maximize the total profit without any fraction being added.
+
+### Test Case 3: Fractional Selection
+
+* **Number of Items:** 6
+* **Knapsack Capacity:** 50
+* **Profits:** 20, 30, 10, 15, 8, 5
+* **Weights:** 10, 5, 8, 12, 6, 3
+* **Expected Output:** Maximum profit is 105.00 (or any equivalent value)
+
+**Explanation:** This test case involves a mix of items with varying profit-to-weight ratios. The knapsack has ample capacity to accommodate some items partially. The algorithm should intelligently select items, either fully or fractionally, to maximize the overall profit within the knapsack's capacity.
+
+### Test Case 4: One Item Only
+
+* **Number of Items:** 1
+* **Knapsack Capacity:** 5
+* **Profits:** 12
+* **Weights:** 8
+* **Expected Output:** Maximum profit is 7.50 (or any equivalent value)
+
+**Explanation:** This test focuses on a scenario where there's only one item available, and its weight exceeds the knapsack's capacity. The algorithm should select a fraction of the item to maximize the profit within the capacity constraint.
+
+### Test Case 5: No Capacity
+
+* **Number of Items:** 3
+* **Knapsack Capacity:** 0
+* **Profits:** 15, 10, 5
+* **Weights:** 2, 3, 5
+* **Expected Output:** Maximum profit is 0.00
+
+**Explanation:** In this situation, the knapsack's capacity is zero, indicating that no items can be added. The algorithm should output a maximum profit of 0, as no items can be selected.
+
+### Test Case 6: Large Number of Items
+
+* **Number of Items:** 10,000
+* **Knapsack Capacity:** 1000
+* **Profits:** random values
+* **Weights:** random values
+* **Expected Output:** Maximum profit based on the generated random values
+
+**Explanation:** This test involves a large number of items and a capacity constraint. Random profit and weight values are generated for this test case to check the algorithm's performance with a significant amount of data.
+
+**Additional Considerations:**
+
+* Test cases with edge conditions like a very small or very large knapsack capacity evaluate how the algorithm handles extreme constraints.
+* Test cases where the items are already sorted or reverse-sorted based on their profit-to-weight ratio to validate the algorithm's robustness.
+* Cases with negative profits or weights confirm that the algorithm handles such scenarios gracefully.
+* Performance testing with larger inputs to evaluate the execution time of the algorithm.
+
+Running these test cases against the Fractional Knapsack algorithm will help ensure its correctness and efficiency in finding the optimal solution for various scenarios.

@@ -167,12 +167,6 @@ public class Main {
 
 ```
 
-The output of the above test case
-
-```output
-    3 is found in the matrix
-```
-
 ## C++ Code
 
 ```cpp
@@ -184,7 +178,7 @@ The output of the above test case
 // space complexity:O(1)
 
 #include<iostream>
-#include<bits/stdc++.h>
+#include<vector>
 
 using namespace std;
 
@@ -218,29 +212,139 @@ bool searchMatrix(vector<vector<int>> &matrix, int target) {
     return false;
 }
 
+// Function to take matrix input from the user
+vector<vector<int>> inputMatrix(int rows, int cols) {
+    vector<vector<int>> matrix(rows, vector<int>(cols, 0));
+    cout << "Enter the elements of the matrix:" << endl;
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            cin >> matrix[i][j];
+        }
+    }
+    return matrix;
+}
+
 // Main method
 int main() {
-    // Matrix
-    vector<vector<int>> matrix = {
-        {1, 3, 5, 7},
-        {10, 11, 16, 20},
-        {23, 30, 34, 60}
-    };
-    // Target integer
-    int target = 3;
+    // Get the number of rows and columns in the matrix from the user
+    int rows, cols;
+    cout << "Enter the number of rows in the matrix: ";
+    cin >> rows;
+    cout << "Enter the number of columns in the matrix: ";
+    cin >> cols;
+
+    // Matrix input
+    vector<vector<int>> matrix = inputMatrix(rows, cols);
+
+    // Target input
+    int target;
+    cout << "Enter the target integer: ";
+    cin >> target;
 
     // Check if the target is found in the matrix using the searchMatrix function
     if (searchMatrix(matrix, target)) cout << target << " is found in the matrix";
     else cout << target << " is not found in the matrix";
+
     return 0;
 }
+
+
 ```
 
-The output of the above test case
+## Test Cases
 
-```output
-3 is found in the matrix
-```
+### Test Case 1: Basic Search
+
+* **Matrix:**
+
+    ```matrix
+    1 3 5 7
+    10 11 16 20
+    23 30 34 60
+    ```
+
+ **Target:** 3
+ **Expected Output:** "3 is found in the matrix"
+ **Explanation:** This test case involves a simple matrix where the target element (3) exists. The algorithm should correctly identify and output that the target is found in the matrix.
+
+## Test Case 2: Target Not Present
+
+* **Matrix:**
+
+    ```matrix
+    
+      1 3 5 7
+      10 11 16 20
+      23 30 34 60
+
+    ```
+
+  **Target:** 13
+  **Expected Output:** "13 is not found in the matrix"
+ **Explanation:** In this scenario, the target element (13) is not present in the matrix. The algorithm should correctly output that the target is not found.
+
+### Test Case 3: Single Element Matrix
+
+* **Matrix:**
+
+    ```matrix
+      5
+    ```
+
+  **Target:** 5
+  **Expected Output:** "5 is found in the matrix"
+  **Explanation:** This test involves a matrix with a single element. The target is equal to the only element in the matrix. The algorithm should identify and output that the target is found.
+
+### Test Case 4: Larger Matrix, Target Present
+
+* **Matrix:**
+  
+    ```matrix
+    
+      2, 4, 6, 8, 10
+      12 14 16 18 20
+      22 24 26 28 30
+      32 34 36 38 40
+    
+    ```
+
+**Target:** 22
+**Expected Output:** "22 is found in the matrix"
+**Explanation:** This test involves a larger matrix where the target element (22) exists. The algorithm should efficiently identify and output that the target is found.
+
+### Test Case 5: Larger Matrix, Target Not Present
+
+* **Matrix:**
+
+  ```matri
+    
+      2 4 6 8 10
+      [12 14 16, 18, 20],
+      [22, 24, 26, 28, 30],
+      [32, 34, 36, 38, 40]
+    
+  ```
+
+  **Target:** 25
+  **Expected Output:** "25 is not found in the matrix"
+  **Explanation:** In this scenario, the target element (25) is not present in the matrix. The algorithm should correctly output that the target is not found.
+
+### Test Case 6: Empty Matrix
+
+* **Matrix:**
+  `[]` (Empty matrix)
+ **Target:** 7
+ **Expected Output:** "7 is not found in the matrix"
+ **Explanation:** This test involves an empty matrix. The algorithm should output that the target is not found as there are no elements in the matrix.
+
+## Additional Considerations
+
+* Test cases involving edge conditions, such as the smallest possible matrix or the largest possible matrix, to ensure the algorithm handles boundary cases correctly.
+
+* Performance testing with larger matrices to evaluate the efficiency of the algorithm.
+* Test cases with negative numbers, duplicates, or matrices are sorted in descending order to validate the algorithm's flexibility and accuracy.
+
+Running these test cases against the searching algorithm for a sorted matrix will help ensure its correctness and effectiveness in finding target elements within different types of matrices.
 
 ## Time and Space Complexity Analysis
 

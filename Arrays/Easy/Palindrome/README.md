@@ -41,28 +41,22 @@ The loop iterates over the first half of the string, comparing characters from t
 # function return wether the input string is palindrome or not
 # It takes a string as a parameter
 def string_palindrome(string):
-    cleared_string=''.join(char for char in string if char.isalnum())
+    cleared_string=''.join(char.lower() for char in string if char.isalnum())
     # length variable stores the length of string  
     length=len(cleared_string)
     # loop iterates half of the length of string 
     for i in range(len(cleared_string)//2):
         # Check if the character at index i is not equal to its corresponding character from the end
         if cleared_string[i]!=cleared_string[length-(i+1)]:
-            print(string,"is not a palindrome string")
+            print(f'"{original_string}" is not a palindrome string')
             break
     else:
         # If the loop completes without breaking, it's a palindrome
-        print(string,"is a palindrome string")
+        print(f'"{original_string}" is a palindrome string')
 
 #test drive code:
-string="radar! radar"
+string = input("Enter a string:")
 string_palindrome(string)
-```
-
-The output of the above test case
-
-```output
-    radar! radar is Palindrome
 ```
 
 ## Java Code
@@ -76,45 +70,45 @@ The output of the above test case
 // time complexity:O(n)
 // space complexity:O(1)
 
+import java.util.Scanner;
 
 public class Main {
-    //Function to take user input
-    //Function to compute reverse of given string and return boolean value by matching it against.
-    //original string
-    public static boolean VSDispalindrome(String s) {
+    // Function to compute reverse of given string and return boolean value by matching it against the original string
+    public static boolean isPalindrome(String s) {
         // Remove non-alphanumeric characters
         String cleanedString = s.replaceAll("[^a-zA-Z0-9]", "");
-        // Declaring an empty string to store the reversed version
-        String rev="";
+        // Declare an empty string to store the reversed version
+        String rev = "";
         // Loop to iterate through the characters of the string in reverse order
-        for(int i=cleanedString.length()-1;i>=0;i--) {
-            // Concatenating each character to the reversed string
-            rev+=cleanedString.charAt(i);
+        for (int i = cleanedString.length() - 1; i >= 0; i--) {
+            // Concatenate each character to the reversed string
+            rev += cleanedString.charAt(i);
         }
-        // Checking if the reversed string is equal to the original string
-        if (rev.equals(cleanedString)) {
-            // If equal, the string is a palindrome
-            return true;
-        }
-        else {
-            // If not equal, the string is not a palindrome
-            return false;
-        }
+        // Check if the reversed string is equal to the original string
+        return rev.equals(cleanedString);
     }
+
     public static void main(String args[]) {
-        String s="level!";
+        // Scanner to take user input
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        // Read user input
+        String s = scanner.nextLine();
+
         // Calling the palindrome-checking method and storing the result in a boolean variable
-        boolean b=VSDispalindrome(s);
-        if(b)System.out.println(s+ " is Palindrome");
-        else System.out.println(s+ " is not a Palindrome");
+        boolean isPal = isPalindrome(s);
+
+        if (isPal) {
+            System.out.println("\"" + s + "\" is a Palindrome");
+        } else {
+            System.out.println("\"" + s + "\" is not a Palindrome");
+        }
+
+        // Close the scanner
+        scanner.close();
     }
 }
-```
-
-The output of the above test case
-
-```output
-    level! is Palindrome
 ```
 
 let us see the step-by-step process of solving palindrome in **JAVA**.
@@ -142,21 +136,21 @@ In the main method, a test case is set up with a string (s) containing both alph
 // space complexity:O(1)
 
 #include <iostream>
-#include <cctype>  // Include the header file for isalnum function
+#include <cctype>
 using namespace std;
 
-bool checkPalindrom(string str){
-    // Get the length of the string
-    int len=str.size();
-    // Initialize two pointers, i and j, pointing to the beginning and end of the string
-    int i=0,j=len-1;
-    // Iterate through the string from both ends towards the center
+// Function to check if a string is a palindrome
+bool checkPalindrome(string str) {
+    int len = str.size();
+    int i = 0, j = len - 1;
+
     while (i < j) {
         // Ignore non-alphanumeric characters
         // Ignore non-alphanumeric characters from the beginning of the string
         while (i < len && !isalnum(str[i])) {
             i++;
         }
+
         // Ignore non-alphanumeric characters from the end of the string
         while (j >= 0 && !isalnum(str[j])) {
             j--;
@@ -164,8 +158,10 @@ bool checkPalindrom(string str){
 
         // If characters at positions i and j are not equal, the string is not a palindrome
         if (i < j) {
-            if ((str[i]) != (str[j]))
+            // Compare characters case-insensitively
+            if (tolower(str[i]) != tolower(str[j])) {
                 return false;
+            }
             // Move the pointers towards the center
             i++;
             j--;
@@ -176,20 +172,22 @@ bool checkPalindrom(string str){
 }
 
 int main() {
-    // Test string
-    string str="level";
+
+    string str;
+
+    // Get input from the user
+    cout << "Enter a string: ";
+    getline(cin, str);
+
     // Check if the string is a palindrome using the checkPalindrome function
-    if(checkPalindrom(str))cout<<str<<" is a palindrom";
-    else cout<<str<<" is not a palindrome";
-    // Return 0 to indicate successful program execution
+    if (checkPalindrome(str)) {
+        cout << "\"" << str << "\" is a palindrome."<< endl;
+    } else {
+        cout << "\"" << str << "\" is not a palindrome." << endl;
+    }
+
     return 0;
 }
-```
-
-The output of the above test case
-
-```output
-    level is Palindrome
 ```
 
 let us see the step-by-step process of solving palindrome in **C++**.
@@ -211,6 +209,58 @@ let us see the step-by-step process of solving palindrome in **C++**.
 * The space complexity is constant (O(1)) for Java, C++, and Python.
 
 These palindrome-checking algorithms are designed to be efficient, with both time and space complexities that do not significantly increase with the size of the input string. They are suitable for checking palindromes across various input lengths without a substantial impact on performance.
+
+## Test Cases for Palindrome Checking Algorithm
+
+### Test Case 1: Basic Palindrome String
+
+**Input:** radar
+**Expected Output:** "radar" is a palindrome string
+**Explanation:** This is a basic test case with a simple palindrome string. It reads the same forward and backward, so the algorithm should correctly identify it as a palindrome.
+
+### Test Case 2: Palindrome String with Punctuation and Spaces
+
+**Input:** A man, a plan, a canal, Panama!
+**Expected Output:** "A man, a plan, a canal, Panama!" is a palindrome string
+**Explanation:** This test case contains punctuation, spaces, and mixed cases. The algorithm should ignore these and correctly identify it as a palindrome.
+
+### Test Case 3: Non-Palindrome String
+
+**Input:** Hello world
+**Expected Output:** "Hello world" is not a palindrome string
+**Explanation:** This test case is a regular string that is not a palindrome. The algorithm should correctly identify it as not being a palindrome.
+
+### Test Case 4: Empty String
+
+**Input:** 
+**Expected Output:** "" is a palindrome string
+**Explanation:** An empty string is considered a palindrome because there are no characters to violate the palindrome property.
+
+### Test Case 5: Single Character String
+
+**Input:** x
+**Expected Output:** "x" is a palindrome string
+**Explanation:** A single character string is considered a palindrome as it reads the same forward and backward.
+
+### Test Case 6: String with Non-Alphanumeric Characters Only
+
+**Input:** !@#$%^&*()_+
+**Expected Output:** "!@#$%^&*()_+" is a palindrome string
+**Explanation:** A string containing only non-alphanumeric characters is considered a palindrome as they are ignored by the algorithm.
+
+### Te**st Case 7: Long Palindrome String
+
+**Input:** Able was I, ere I saw Elba. A man, a plan, a canal, Panama! Was it a car or a cat I saw?
+**Expected Output:** "Able was I, ere I saw Elba. A man, a plan, a canal, Panama! Was it a car or a cat I saw?" is a palindrome string
+**Explanation:** This test case includes a longer string with various punctuation and spaces. It should correctly identify it as a palindrome.
+
+**Additional Considerations:**
+
+Edge cases: Test cases with very large strings, edge characters, or edge conditions to ensure the algorithm's efficiency and correctness.
+
+Performance testing: Measure the algorithm's performance on large inputs to ensure it executes within acceptable time limits.
+
+By running these test cases against the palindrome checking algorithm, you can validate its accuracy, handling of special characters, empty strings, and different lengths of input strings, ensuring its robustness across various scenarios.
 
 ## Real-world Applications
 
