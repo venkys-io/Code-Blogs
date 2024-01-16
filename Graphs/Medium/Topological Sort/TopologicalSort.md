@@ -218,24 +218,24 @@ int main() {
 
 
 ## Test Cases
-### Test Case 1(Empty graph):
+### Test Case 1(Null Graph):
 #### sample input:
 1. Enter the number of vertices: 0
 
 #### sample output:
 1. []
 
-### Test Case 2(Connected Graph):
+### Test Case 2(Valid Directed Acyclic Graph):
 #### sample input:
 1. Enter the number of vertices:4
 2. Enter the neighbors of vertex 0 separated by space (or press Enter for no neighbors):1
 3. Enter the neighbors of vertex 1 separated by space (or press Enter for no neighbors):2
 4. Enter the neighbors of vertex 2 separated by space (or press Enter for no neighbors):3
 5. Enter the neighbors of vertex 3 separated by space (or press Enter for no neighbors):4
-#### sample output(Disconnected Graph):
+#### sample output:
 1. [0, 1, 2, 3]
 
-### Test Case 3:
+### Test Case 3(Graph with cycle):
 #### sample input:
 1. Enter the number of vertices:3
 2. Enter the neighbors of vertex 0 separated by space (or press Enter for no neighbors):1
