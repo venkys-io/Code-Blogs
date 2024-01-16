@@ -126,47 +126,6 @@ stack.display()
 ```
 
 
-## Test Cases
-### Test Case 1(Empty Stack):
-#### sample input:
-1. size=5
-#### sample output:
-1. #Test is_underflown on an empty stack
-- Expected Output: THE STACK IS UNDER-FLOWN
-
-2. #Test is_overflown on an empty stack
-- Expected Output: THE STACK IS NOT OVER-FLOWN
-
-### Test Case 2(Non-Empty stack):
-#### sample input:
-1. size=3
-2. push 10
-3. push 20
-4. push 30
-#### sample output(pop from an empty stack):
-1. #Test is_underflown on a non-empty stack
-- Expected Output: THE STACK IS UNDER-FLOWN
-
-2. #Test is_overflown on an empty stack
-- Expected Output: THE STACK IS NOT OVER-FLOWN
-
-### Test Case 3:
-#### sample input:
-1. size=4
-#### sample output:
-1. #Test pop on an empty stack
-- Expected Output: STACK AS UNDER-FLOWN
-
-2. #Test is_overflown on an empty stack
-- Expected Output: THE STACK IS NOT OVER-FLOWN
-
-### Explanation of Testcases:
-
-- In the first case, the stack is initialized but not populated with any elements. Both is_underflown and is_overflown should indicate that the stack is underflown (empty) and not overflown.
-- In the second case, elements are pushed onto the stack, making it non-empty. Both is_underflown and is_overflown should indicate that the stack is not underflown and not overflown.
--  In the third case, an attempt is made to pop from an empty stack. The pop method should indicate that the stack is underflown, and is_overflown should indicate that the stack is not overflown.
-
-
 **Step-by-Step Explaination**
 
 The code provided implements a stack class in Python. Let's break down the code structure:
@@ -464,6 +423,49 @@ Here is a step-by-step explanation of the code:
 15. The **print()** function is called again to display the updated elements of the stack.
 
 Finally, the program ends with a return statement.
+
+
+
+## Test Cases
+### Test Case 1(Empty Stack):
+#### sample input:
+1. size=5
+#### sample output:
+1. #Test is_underflown on an empty stack
+- Expected Output: THE STACK IS UNDER-FLOWN
+
+2. #Test is_overflown on an empty stack
+- Expected Output: THE STACK IS NOT OVER-FLOWN
+
+### Test Case 2(Non-Empty stack):
+#### sample input:
+1. size=3
+2. push 10
+3. push 20
+4. push 30
+#### sample output(pop from an empty stack):
+1. #Test is_underflown on a non-empty stack
+- Expected Output: THE STACK IS UNDER-FLOWN
+
+2. #Test is_overflown on an empty stack
+- Expected Output: THE STACK IS NOT OVER-FLOWN
+
+### Test Case 3:
+#### sample input:
+1. size=4
+#### sample output:
+1. #Test pop on an empty stack
+- Expected Output: STACK AS UNDER-FLOWN
+
+2. #Test is_overflown on an empty stack
+- Expected Output: THE STACK IS NOT OVER-FLOWN
+
+### Explanation of Testcases:
+
+- In the first case, the stack is initialized but not populated with any elements. Both is_underflown and is_overflown should indicate that the stack is underflown (empty) and not overflown.
+- In the second case, elements are pushed onto the stack, making it non-empty. Both is_underflown and is_overflown should indicate that the stack is not underflown and not overflown.
+-  In the third case, an attempt is made to pop from an empty stack. The pop method should indicate that the stack is underflown, and is_overflown should indicate that the stack is not overflown.
+
 
 
 ## Time and Space Complexity Analysis
