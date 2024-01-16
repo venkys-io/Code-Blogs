@@ -298,6 +298,41 @@ The code provided implements Prim's algorithm to find the minimum spanning tree 
 The **main** function initializes a 2D array **graph** representing the weighted graph and calls the **prims** function to find the minimum spanning tree.
     
 
+## Test Cases
+### Test Case 1(Empty graph):
+#### sample input:
+1. Enter the number of vertices: 0
+
+#### sample output:
+1. The total cost of Prim's MST is 0
+
+### Test Case 2(Connected Graph):
+#### sample input:
+1. Enter the number of vertices: 4
+- 0 1 3 0
+- 1 0 2 4
+- 3 2 0 5
+- 0 4 5 0
+#### sample output(Disconnected Graph):
+1. Edge pair is (0, 1) with weight 1
+2. Edge pair is (1, 2) with weight 2
+3. Edge pair is (0, 3) with weight 3
+4. The total cost of Prim's MST is 6
+
+### Test Case 3:
+#### sample input:
+1. Enter the number of vertices: 3
+- 0 1 0
+- 1 0 0
+- 0 0 0
+#### sample output:
+1. The total cost of Prim's MST is 0
+
+### Explanation of Testcases:
+-  In first case, the graph is empty (0 vertices). The algorithm should gracefully handle this and output that the total cost of the MST is 0.
+-  In second case, this is a connected graph with four vertices. The algorithm should find and print the Minimum Spanning Tree (MST) edges and their weights.
+-  In third case, this graph is disconnected, and the algorithm may not find a meaningful MST. In this case, the output may indicate that the total cost of the MST is 0, as it may not be possible to connect all vertices.
+
 ## Time and Space Complexity Analysis of Prime MST
 The time and space complexity of the Prime MST implementation can be analyzed as follows:
 
