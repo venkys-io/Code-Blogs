@@ -217,6 +217,41 @@ int main() {
 - main function: This is the entry point of the program. It initializes a sample directed graph represented by an adjacency list and calls the topologicalsort function.
 
 
+## Test Cases
+### Test Case 1(Empty graph):
+#### sample input:
+1. Enter the number of vertices: 0
+
+#### sample output:
+1. []
+
+### Test Case 2(Connected Graph):
+#### sample input:
+1. Enter the number of vertices:4
+2. Enter the neighbors of vertex 0 separated by space (or press Enter for no neighbors):1
+3. Enter the neighbors of vertex 1 separated by space (or press Enter for no neighbors):2
+4. Enter the neighbors of vertex 2 separated by space (or press Enter for no neighbors):3
+5. Enter the neighbors of vertex 3 separated by space (or press Enter for no neighbors):4
+#### sample output(Disconnected Graph):
+1. [0, 1, 2, 3]
+
+### Test Case 3:
+#### sample input:
+1. Enter the number of vertices:3
+2. Enter the neighbors of vertex 0 separated by space (or press Enter for no neighbors):1
+3. Enter the neighbors of vertex 1 separated by space (or press Enter for no neighbors):2
+4. Enter the neighbors of vertex 2 separated by space (or press Enter for no neighbors):0
+
+#### sample output:
+1. Cycle detected! Topological sort not possible
+
+
+### Explanation of Testcases:
+- In first test case, there are no vertices in the graph. Since there are no vertices, the output of the topological sort will be an empty list.
+- In second test case, the graph is a simple linear directed graph with vertices 0, 1, 2, and 3. There are no cycles, and the topological sort is [0, 1, 2, 3].
+- In third test case, the graph contains a cycle (0 -> 1 -> 2 -> 0), making it a cyclic graph. Topological sorting is not possible for graphs with cycles, and the algorithm correctly detects this and outputs an error message.
+
+
 **Real world Applications of Topological Sort:**
 
 Topological sort has numerous real-world applications across different domains. Here are some notable applications:
