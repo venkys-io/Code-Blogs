@@ -295,6 +295,44 @@ The code provided consists of a `Graph` class that represents a graph and impl
     - `bfs` function: This function performs the BFS traversal of the graph starting from a given vertex.
 2. `main` function: This is the entry point of the program. It creates an instance of the `Graph` class, adds edges to the graph, and calls the `bfs` function to perform the BFS traversal starting from vertex 2.
 
+
+## Test Cases
+### Test Case 1(Empty graph):
+#### sample input:
+1. no.of vertices=0
+2. no.of vertices=0
+#### sample output:
+1. The BFS traversal of the graph is: []
+
+### Test Case 2(Connected Graph):
+#### sample input:
+1. no.of vertices=4
+2. no.of edges=3
+3. Enter edges (format: source destination):
+- 0 1
+- 1 2
+- 2 3
+#### sample output(Disconnected Graph):
+1. The BFS traversal of the graph is: [0, 1, 2, 3]
+
+### Test Case 3:
+#### sample input:
+1. no.of vertices=5
+2. no.of edges=3
+3. Enter edges (format: source destination):
+- 0 1
+- 2 3
+- 4 4
+#### sample output:
+1. The BFS traversal of the graph is: [0, 1, 2, 3, 4]
+
+### Explanation of Testcases:
+- In first case, the graph is empty, so the BFS traversal should result in an empty list of visited vertices.
+- In second case, the graph is a connected path, so the BFS traversal should visit all vertices in the order 0, 1, 2, 3.
+- In third case, the graph is disconnected, but the BFS traversal still visits all vertices in the order 0, 1, 2, 3, 4. The disconnected component (vertex 4) is also included in the traversal.
+
+
+
 **Time and Space Complexity Analysis:**
 
 The time and space complexity of Breadth-First Search (BFS) depends on the representation of the graph.
