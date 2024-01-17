@@ -316,6 +316,73 @@ int main() {
 - If the target is not found after the loop, return -1.
 - The main function demonstrates how to use the binary search function with a sample sorted array, its size, and a target value. It prints the index if the target is found and a message if it is not found.
 
+#Test cases
+# Assuming you have a Graph class with appropriate methods for BFS
+
+# Success Case: Standard BFS on a connected graph
+def success_case():
+    g = Graph()
+    g.add_edge(1, 2)
+    g.add_edge(1, 3)
+    g.add_edge(2, 4)
+    g.add_edge(2, 5)
+    g.add_edge(3, 6)
+    g.add_edge(3, 7)
+    result = g.breadth_first_search(1)
+    assert result == [1, 2, 3, 4, 5, 6, 7], "Failed for success_case"
+
+# Fail Case: BFS on a disconnected graph
+def fail_case():
+    g = Graph()
+    g.add_edge(1, 2)
+    g.add_edge(3, 4)
+    result = g.breadth_first_search(1)
+    assert result == [1, 2], "Failed for fail_case"
+
+# Null Case: BFS on an empty graph
+def null_case():
+    g = Graph()
+    result = g.breadth_first_search(1)
+    assert result == [], "Failed for null_case"
+
+# Hard Case: BFS on a graph with cycles
+def hard_case():
+    g = Graph()
+    g.add_edge(1, 2)
+    g.add_edge(2, 3)
+    g.add_edge(3, 1)
+    g.add_edge(2, 4)
+    g.add_edge(4, 5)
+    result = g.breadth_first_search(1)
+    assert result == [1, 2, 3, 4, 5], "Failed for hard_case"
+
+# Execute the test cases
+try:
+    success_case()
+    print("Success Case Passed")
+except AssertionError as e:
+    print(f"Error in Success Case: {e}")
+
+try:
+    fail_case()
+    print("Fail Case Passed")
+except AssertionError as e:
+    print(f"Error in Fail Case: {e}")
+
+try:
+    null_case()
+    print("Null Case Passed")
+except AssertionError as e:
+    print(f"Error in Null Case: {e}")
+
+try:
+    hard_case()
+    print("Hard Case Passed")
+except AssertionError as e:
+    print(f"Error in Hard Case: {e}")
+
+
+
 ## Time and Space complexity analysis
 
 To analyze the efficiency of an algorithm, we consider its time and space complexity. Time complexity refers to the time it takes for an algorithm to run, while space complexity refers to the amount of memory or storage space required by an algorithm.
