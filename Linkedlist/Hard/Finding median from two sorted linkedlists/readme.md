@@ -359,6 +359,46 @@ int main() {
     - The finding median process uses three pointers (slow, fast, and prev), which requires O(1) extra space.
 3. **Overall Space Complexity:**
     - The overall space complexity is O(1) as it doesn't depend on the size of the input linked lists.
+      
+#Test cases to the above codes:
+# Test Case 1: Successful Merge and Median Calculation
+list1 = ListNode(1, ListNode(3, ListNode(5)))
+list2 = ListNode(2, ListNode(4, ListNode(6)))
+# Merged List: 1 -> 2 -> 3 -> 4 -> 5 -> 6
+# Median: (3 + 4) / 2 = 3.5
+# Expected output: Median: 3.5
+print("Test Case 1:", find_median_from_sorted_lists(list1, list2))
+
+# Test Case 2: Successful Merge and Median Calculation (Odd Number of Elements)
+list1 = ListNode(1, ListNode(3, ListNode(5)))
+list2 = ListNode(2, ListNode(4, ListNode(6, ListNode(8))))
+# Merged List: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 8
+# Median: 4
+# Expected output: Median: 4
+print("Test Case 2:", find_median_from_sorted_lists(list1, list2))
+
+# Test Case 3: Unsuccessful Merge (One of the lists is empty)
+list1 = ListNode(1, ListNode(3, ListNode(5)))
+list2 = None
+# Merged List: 1 -> 3 -> 5
+# Expected output: Median: 3
+print("Test Case 3:", find_median_from_sorted_lists(list1, list2))
+
+# Test Case 4: Unsuccessful Merge (Both lists are empty)
+list1 = None
+list2 = None
+# Merged List: None
+# Expected output: Median: None
+print("Test Case 4:", find_median_from_sorted_lists(list1, list2))
+
+# Test Case 5: Hard Test Case (Lists with negative values and duplicates)
+list1 = ListNode(-5, ListNode(-3, ListNode(-1)))
+list2 = ListNode(-4, ListNode(-2, ListNode(0, ListNode(2))))
+# Merged List: -5 -> -4 -> -3 -> -2 -> -1 -> 0 -> 2
+# Median: -3
+# Expected output: Median: -3
+print("Test Case 5:", find_median_from_sorted_lists(list1, list2))
+
 
 # Real world applications :
 
