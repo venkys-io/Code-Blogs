@@ -89,6 +89,53 @@ The function VSD preorder is a recursive implementation of the Preorder Traversa
 
 In summary, this Python code demonstrates the creation of a binary tree and the application of the preorder traversal algorithm to print the values of nodes in a specific order. The recursive nature of the traversal allows it to navigate through the tree efficiently.
 
+**Test Case 1: Null Tree**
+
+- Input:
+
+Enter the value for the root node: 1
+Enter the value for the left child of the root: 0
+Enter the value for the right child of the root: 0
+Enter the value for the left child of the left child: 0
+Enter the value for the right child of the left child: 0
+Enter the value for the left child of the right child: 0
+Enter the value for the right child of the right child: 0
+
+Explanation: In this case, a tree with only the root node is created. The output should be 1 as there are no left or right children.
+
+**Test Case 2: True Binary Tree**
+
+- Input:
+
+Enter the value for the root node: 1
+Enter the value for the left child of the root: 2
+Enter the value for the right child of the root: 3
+Enter the value for the left child of the left child: 4
+Enter the value for the right child of the left child: 5
+Enter the value for the left child of the right child: 6
+Enter the value for the right child of the right child: 7
+
+Explanation: This input creates a balanced binary tree. The output should be in the order
+
+ 1 2 4 5 3 6 7 representing the preorder traversal.
+
+**Test Case 3: False Binary Tree**
+
+- Input:
+
+Enter the value for the root node: 1
+Enter the value for the left child of the root: 2
+Enter the value for the right child of the root: 3
+Enter the value for the left child of the left child: 4
+Enter the value for the right child of the left child: 5
+Enter the value for the left child of the right child: 6
+Enter the value for the right child of the right child: 7
+Enter the value for the left child of the left child of the left child: 8
+
+Explanation: This input creates an unbalanced binary tree. The output should be in the order 
+
+1 2 4 5 3 6 7 8 representing the preorder traversal. This demonstrates that the code handles unbalanced trees as well.
+
 ```java
 //copyrights to venkys.io
 // for more programs visit venkys.io
@@ -187,6 +234,53 @@ The preorder method is called with the root of the tree (root) to perform preord
 
 The output represents the result of the preorder traversal, showing the values of each node in the specified order.
 
+**Test Case 1: Null Tree**
+
+- Input:
+
+Enter the value for the root node: 1
+Enter the value for the left child of the root: 0
+Enter the value for the right child of the root: 0
+Enter the value for the left child of the left child: 0
+Enter the value for the right child of the left child: 0
+Enter the value for the left child of the right child: 0
+Enter the value for the right child of the right child: 0
+
+Explanation: In this case, a tree with only the root node is created. The output should be **`1`** as there are no left or right children.
+
+**Test Case 2: True Binary Tree**
+
+- Input:
+
+Enter the value for the root node: 1
+Enter the value for the left child of the root: 2
+Enter the value for the right child of the root: 3
+Enter the value for the left child of the left child: 4
+Enter the value for the right child of the left child: 5
+Enter the value for the left child of the right child: 6
+Enter the value for the right child of the right child: 7
+
+Explanation: This input creates a balanced binary tree. The output should be in the order 
+
+1 2 4 5 3 6 7 representing the preorder traversal.
+
+**Test Case 3: False Binary Tree**
+
+- Input:
+
+Enter the value for the root node: 1
+Enter the value for the left child of the root: 2
+Enter the value for the right child of the root: 3
+Enter the value for the left child of the left child: 4
+Enter the value for the right child of the left child: 5
+Enter the value for the left child of the right child: 6
+Enter the value for the right child of the right child: 7
+Enter the value for the left child of the left child of the left child: 8
+
+Explanation: This input creates an unbalanced binary tree. The output should be in the order 
+
+1 2 4 5 3 6 7 8 representing the preorder traversal. This demonstrates that the code handles unbalanced trees as well.
+
 ```cpp
 // copyrights to venkys.io
 // for more programs visit venkys.io
@@ -270,6 +364,53 @@ int main() {
     return 0;
 }
 ```
+
+**Test Case 1: Null Tree**
+
+- Input:
+
+Enter the value for the root node: 1
+Enter the value for the left child of the root: 0
+Enter the value for the right child of the root: 0
+Enter the value for the left child of the left child: 0
+Enter the value for the right child of the left child: 0
+Enter the value for the left child of the right child: 0
+Enter the value for the right child of the right child: 0
+
+Explanation: In this case, a tree with only the root node is created. The output should be 1 as there are no left or right children.
+
+**Test Case 2: True Binary Tree**
+
+- Input:
+
+Enter the value for the root node: 1
+Enter the value for the left child of the root: 2
+Enter the value for the right child of the root: 3
+Enter the value for the left child of the left child: 4
+Enter the value for the right child of the left child: 5
+Enter the value for the left child of the right child: 6
+Enter the value for the right child of the right child: 7
+
+Explanation: This input creates a balanced binary tree. The output should be in the order
+
+ 1 2 4 5 3 6 7 representing the preorder traversal.
+
+**Test Case 3: False Binary Tree**
+
+- Input:
+
+Enter the value for the root node: 1
+Enter the value for the left child of the root: 2
+Enter the value for the right child of the root: 3
+Enter the value for the left child of the left child: 4
+Enter the value for the right child of the left child: 5
+Enter the value for the left child of the right child: 6
+Enter the value for the right child of the right child: 7
+Enter the value for the left child of the left child of the left child: 8
+
+Explanation:  This input creates an unbalanced binary tree. The output should be in the order 
+
+1 2 4 5 3 6 7 8 representing the preorder traversal. This demonstrates that the code handles unbalanced trees as well.
 
 ## STEP-BY-STEP EXPLAINATION
 
