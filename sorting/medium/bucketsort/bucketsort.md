@@ -221,13 +221,24 @@ void bucketSort(int arr[], int n) {
 
 int main() {
     // Step 6: Example usage in the main function
-    int arr[] = {5, 2, 9, 12, 54, 31, 65, 31, 45, 65};
-    int n = sizeof(arr) / sizeof(arr[0]);
+
+    // Step 6a: Read the size of the array from the user
+    int n;
+    cout << "Enter the size of the array: ";
+    cin >> n;
+
+    // Step 6b: Read the elements of the array from the user
+    int arr[n];
+    cout << "Enter the elements of the array: ";
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
 
     // Step 7: Apply Bucket Sort
     bucketSort(arr, n);
 
     // Step 8: Print the sorted array
+    cout << "Sorted array: ";
     for (int i = 0; i < n; i++) {
         cout << arr[i] << " ";
     }
@@ -235,7 +246,6 @@ int main() {
 
     return 0;
 }
-```
 
 ## Step-by-step explanation:
 
@@ -246,6 +256,24 @@ int main() {
 5. **Concatenation:** Concatenate the sorted buckets to obtain the final sorted array.
 6. **Example Usage:** In the main function, an example array is sorted using the bucketsort function.
 7. **Print Result:** Print the final sorted array.
+
+#Test cases
+Success Case:
+
+Input: 5 2 9 12 54 31 65 31 45 65
+Expected Output: 2 5 9 12 31 31 45 54 65 65
+Fail Case:
+
+Input: 65 54 45 31 31 12 9 5 2
+Expected Output: 2 5 9 12 31 31 45 54 65
+Hard Case (Empty Array):
+
+Input: ``
+Expected Output: (No output, as the array is empty)
+Null Case (Single Element):
+
+Input: 42
+Expected Output: 42
 
 # Time and Space complexity analysis:
 
