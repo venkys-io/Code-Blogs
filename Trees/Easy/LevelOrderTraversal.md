@@ -85,6 +85,39 @@ if __name__ == "__main__":
 
 This code essentially demonstrates a basic implementation of a level order traversal algorithm for a binary tree using a queue data structure.
 
+**Test Case 1: Null Tree**
+
+- Input:
+
+Enter the value for the root node: 1
+
+**Test Case 2: True Binary Tree**
+
+- Input:
+
+Enter the value for the root node: 1
+Enter the value for the left child of the root: 2
+Enter the value for the right child of the root: 3
+Enter the value for the left child of the left child: 4
+Enter the value for the right child of the left child: 5
+Enter the value for the left child of the right child: 6
+Enter the value for the right child of the right child: 7
+
+**Test Case 3: False Binary Tree**
+
+Input:
+
+Enter the value for the root node: 1
+Enter the value for the left child of the root: 2
+Enter the value for the right child of the root: 3
+Enter the value for the left child of the left child: 4
+Enter the value for the right child of the left child: 5
+Enter the value for the left child of the right child: 6
+Enter the value for the right child of the right child: 7
+Enter the value for the left child of the left child of the left child: 8
+
+Explanation: This input creates an unbalanced binary tree. The output should be in the order **`1,2,3,4,5,6,7,8`** representing the level order traversal. This demonstrates that the code handles unbalanced trees as well.
+
 ## Time and Space Complexity Analysis
 
 Let's analyze the time and space complexity of the provided level order traversal code:
@@ -167,6 +200,48 @@ public class Main {
     }
 }
 ```
+
+**Test Case 1: Null Tree**
+
+- Input:
+
+Enter the value for the root node: 1
+Enter values for left and right children of the root node (0 if no child):
+0 0
+
+**Test Case 2: True Binary Tree**
+
+- Input:
+
+Enter the value for the root node: 1
+Enter values for left and right children of the root node (0 if no child):
+2 3
+Enter values for left and right children of the left child:
+4 5
+Enter values for left and right children of the right child:
+6 7
+
+Explanation: This input creates a balanced binary tree. The output should be in the order
+
+ 1 2 3 4 5 6 7  representing the level order traversal.
+
+**Test Case 3: False Binary Tree**
+
+- Input:
+
+Enter the value for the root node: 1
+Enter values for left and right children of the root node (0 if no child):
+2 3
+Enter values for left and right children of the left child:
+4 5
+Enter values for left and right children of the right child:
+6 7
+Enter values for left and right children of the left child of the left child:
+8 0
+
+Explanation: This input creates an unbalanced binary tree. The output should be in the order 
+
+1 2 3 4 5 6 7 8 representing the level order traversal. This demonstrates that the code handles unbalanced trees as well
 
 ## Step-by-step Explanation
 
@@ -293,6 +368,53 @@ int main() {
 4) The program prints the data of each node in the binary tree in level-order.
 
 In summary, the C++ code is similar to the Java code you provided earlier. It defines a binary tree, implements a level-order traversal algorithm using a queue, creates a sample binary tree in the main function, and executes the level-order traversal on the tree. The output demonstrates the order in which the nodes are visited during the traversal.
+
+**Test Case 1: Null Tree**
+
+- Input:
+
+Enter the value for the root node: 1
+Enter the value for the left child of the root: 0
+Enter the value for the right child of the root: 0
+Enter the value for the left child of the left child: 0
+Enter the value for the right child of the left child: 0
+Enter the value for the left child of the right child: 0
+Enter the value for the right child of the right child: 0
+
+Explanation: In this case, a tree with only the root node is created. The output should be 1 as there are no left or right children.
+
+**Test Case 2: True Binary Tree**
+
+- Input:
+
+Enter the value for the root node: 1
+Enter the value for the left child of the root: 2
+Enter the value for the right child of the root: 3
+Enter the value for the left child of the left child: 4
+Enter the value for the right child of the left child: 5
+Enter the value for the left child of the right child: 6
+Enter the value for the right child of the right child: 7
+
+Explanation: This input creates a balanced binary tree. The output should be in the order 
+
+1 2 3 4 5 6 7 representing the level order traversal.
+
+**Test Case 3: False Binary Tree**
+
+- Input:
+
+Enter the value for the root node: 1
+Enter the value for the left child of the root: 2
+Enter the value for the right child of the root: 3
+Enter the value for the left child of the left child: 4
+Enter the value for the right child of the left child: 5
+Enter the value for the left child of the right child: 6
+Enter the value for the right child of the right child: 7
+Enter the value for the left child of the left child of the left child: 8
+
+Explanation: This input creates an unbalanced binary tree. The output should be in the order 
+
+1 2 3 4 5 6 7 8  representing the level order traversal. This demonstrates that the code handles unbalanced trees as well.
 
 ## Real-World Applications of level order traversal
 
