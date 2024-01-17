@@ -467,6 +467,19 @@ void delete_tail(VSDnode* &
     - **Insertion/Deletion at the end (with tail pointer):** O(1) - Constant time if a tail pointer is maintained.
 2. **Space Complexity:**
     - O(n) - Linear space for n elements since each element requires storage for data and a reference/pointer to the next node.
+  
+#Test cases
+Success Case:Input: Add elements 1, 2, 3 to the linked list. Update element 2 to 5. Delete element 1.
+Expected Output: 5 3
+Fail Case:Input: Add elements 1, 2, 3 to the linked list. Update element 4 to 5.
+Expected Output: No change in the linked list, and the display remains as 1 2 3.
+Hard Case (Empty List):Input: Attempt to delete an element from an empty list.
+Expected Output: No change in the linked list, and the display remains empty.
+Null Case (Nonexistent Element):Input: Add elements 1, 2, 3 to the linked list. Delete element 4.
+Expected Output: No change in the linked list, and the display remains as 1 2 3.
+You can run these test cases by creating a SinglyLinkedList object, performing the specified operations, and displaying the linked list after each operation. The expected output is based on the assumption that the linked list operations are correctly implemented.
+
+
 
 ## Real-world applications of singlylinkedlist:
 
