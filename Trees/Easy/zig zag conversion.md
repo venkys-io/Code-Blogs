@@ -98,6 +98,33 @@ So, the output of the Zig Zag conversion for the given input is:
 
 PINALSIGYAHPI
 
+**Test Case 1: Null String**
+
+- Input:
+
+Enter the string:
+Enter the number of rows: 3
+
+Explanation: In this case, an empty string is provided. The output should also be an empty string.
+
+**Test Case 2: True Zigzag Conversion**
+
+- Input:
+
+Enter the string: ZIGZAGCONVERSION
+Enter the number of rows: 4
+
+Explanation: The input string "ZIGZAGCONVERSION" is converted into a zigzag pattern with 4 rows. The expected output should be "ZIGCROGNAGZOVIN”.
+
+**Test Case 3: False Zigzag Conversion**
+
+- Input:
+
+Enter the string: HELLO
+Enter the number of rows: 2
+
+Explanation: The input string "HELLO" cannot form a zigzag pattern with only 2 rows. The output should be the same as the input string.
+
 ```java
 // copyrights to venkys.io
 // for more programs visit venkys.io
@@ -197,6 +224,31 @@ public class Main {
 10. **Main Method:**
 
   The main method demonstrates the usage of the convert function with an example input string PAYPALISHIRING and the number of rows set to 4.
+
+**Test Case 1: Null String**
+
+- Input:
+
+Enter the string:
+Enter the number of rows: 3
+
+**Test Case 2: True Zigzag Conversion**
+
+- Input:
+
+Enter the string: ZIGZAGCONVERSION
+Enter the number of rows: 4
+
+Explanation: The input string "ZIGZAGCONVERSION" is converted into a zigzag pattern with 4 rows. The expected output should be "ZIGCROGNAGZOVIN”.
+
+**Test Case 3: False Zigzag Conversion**
+
+- Input:
+
+Enter the string: HELLO
+Enter the number of rows: 2
+
+Explanation: The input string "HELLO" cannot form a zigzag pattern with only 2 rows. The output should be the same as the input string.
 
 ```cpp
 // copyrights to venkys.io
@@ -298,6 +350,33 @@ int main() {
 10. **main Function:**
     
     The main function demonstrates the usage of the convert function with an example input string "PAYPALISHIRING" and the number of rows set to 4.
+    
+    **Test Case 1: Null String**
+    
+    - Input:
+    
+    Enter the string:
+    Enter the number of rows: 3
+    
+    Explanation: In this case, an empty string is provided. The output should also be an empty string.
+    
+    **Test Case 2: True Zigzag Conversion**
+    
+    - Input:
+    
+    Enter the string: ZIGZAGCONVERSION
+    Enter the number of rows: 4
+    
+    Explanation: The input string "ZIGZAGCONVERSION" is converted into a zigzag pattern with 4 rows. The expected output should be "ZIGCROGNAGZOVIN".
+    
+    **Test Case 3: False Zigzag Conversion**
+    
+    - Input:
+    
+    Enter the string: HELLO
+    Enter the number of rows: 2
+    
+    Explanation: The input string "HELLO" cannot form a zigzag pattern with only 2 rows. The output should be the same as the input string.
     
     ## Time-Complexity
     
