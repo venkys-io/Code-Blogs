@@ -111,6 +111,33 @@ if __name__ == "__main__":
 6. The display_word_search  function takes a grid as input and prints it row by row, separating each letter with a space .The word_search function initializes a list of words and a grid size. It generates a word search puzzle using the generate_word_search  function, displays the puzzle using display_word_search , and prints the list of words to find.
 7. This block ensures that the word_search function is executed when the script is run as the main program.
 
+**Test Case 1: Null List of Words**
+
+- Input:
+
+Enter the words to include in the puzzle (separated by spaces):
+Enter the size of the puzzle grid: 5
+
+Explanation: In this case, an empty list of words is provided. The output should be an empty grid with random letters.
+
+**Test Case 2: True Word Search**
+
+- Input:
+
+Enter the words to include in the puzzle (separated by spaces): PYTHON CODE SEARCH
+Enter the size of the puzzle grid: 10
+
+Explanation: The input includes words "PYTHON," "CODE," and "SEARCH." The program should generate a word search grid containing these words in random directions.
+
+**Test Case 3: False Word Search**
+
+- Input:
+
+Enter the words to include in the puzzle (separated by spaces): HELLO WORLD
+Enter the size of the puzzle grid: 3
+
+Explanation: The grid size is too small to accommodate the words "HELLO" and "WORLD" in any direction. The output should be a grid with random letters.
+
 ```java
 //copyrights to venkys.io
 // for more programs visit venkys.io
@@ -211,6 +238,33 @@ These statements import necessary classes for handling arrays and generating ran
 2. **randomDirection Method**: Randomly selects a direction from the array of possible directions.
 3. **displayWordsearch Method**: Displays the generated word search grid.
 4. **main Method**: Initializes the list of words and grid size, generates the word search puzzle, displays it, and prints the list of words to find.
+
+**Test Case 1: Null List of Words**
+
+- Input:
+
+Enter the words to include in the puzzle (separated by spaces):
+Enter the size of the puzzle grid: 5
+
+Explanation: In this case, an empty list of words is provided. The output should be an empty grid with random letters.
+
+**Test Case 2: True Word Search**
+
+- Input:
+
+Enter the words to include in the puzzle (separated by spaces): JAVA CODE SEARCH
+Enter the size of the puzzle grid: 10
+
+Explanation: The input includes words "JAVA," "CODE," and "SEARCH." The program should generate a word search grid containing these words in random directions.
+
+**Test Case 3: False Word Search**
+
+- Input:
+
+Enter the words to include in the puzzle (separated by spaces): HELLO WORLD
+Enter the size of the puzzle grid: 3
+
+Explanation: The grid size is too small to accommodate the words "HELLO" and "WORLD" in any direction. The output should be a grid with random letters.
 
 ```cpp
 //copyrights to venkys.io
@@ -349,6 +403,33 @@ CSS
 JAVASCRIPT
 
 Note that each time you run the program, the output will be different as the words are placed randomly in the grid.
+
+**Test Case 1: Null List of Words**
+
+- Input:
+
+Enter the words to include in the puzzle (separated by spaces):
+Enter the size of the puzzle grid: 5
+
+Explanation: In this case, an empty list of words is provided. The output should be an empty grid with random letters.
+
+**Test Case 2: True Word Search**
+
+- Input:
+
+Enter the words to include in the puzzle (separated by spaces): C++ CODE SEARCH
+Enter the size of the puzzle grid: 8
+
+Explanation: The input includes words "C++," "CODE," and "SEARCH." The program should generate a word search grid containing these words in random directions
+
+**Test Case 3: False Word Search**
+
+- Input:
+
+Enter the words to include in the puzzle (separated by spaces): PROGRAMMING PUZZLE
+Enter the size of the puzzle grid: 4
+
+Explanation: The grid size is too small to accommodate the words "PROGRAMMING" and "PUZZLE" in any direction. The output should be a grid with random letters.
 
 ## TIME AND SPACE COMPLEXITY
 
