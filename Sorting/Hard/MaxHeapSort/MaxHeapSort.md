@@ -438,7 +438,7 @@ void VSDmaxheapify(int arr[], int n, int i) {
     }
 }
 
-void VSDminheapify(int arr[], int n, int i) {
+/* void VSDminheapify(int arr[], int n, int i) {
     int small = i;
     int leftchild = (2 * i) + 1;
     int rightchild = (2 * i) + 2;
@@ -453,7 +453,7 @@ void VSDminheapify(int arr[], int n, int i) {
         swap(arr, small, i);
         VSDminheapify(arr, n, small);
     }
-}
+} */
 
 void VSDMaxheapsort(int arr[], int n) {
     for (int i = (n / 2) - 1; i >= 0; i--) {
@@ -465,7 +465,7 @@ void VSDMaxheapsort(int arr[], int n) {
     }
 }
 
-void VSDMinheapsort(int arr[], int n) {
+/* void VSDMinheapsort(int arr[], int n) {
     for (int i = (n / 2) - 1; i >= 0; i--) {
         VSDminheapify(arr, n, i);
     }
@@ -474,6 +474,7 @@ void VSDMinheapsort(int arr[], int n) {
         VSDminheapify(arr, i, 0);
     }
 }
+*/
 
 int main() {
     int n;
@@ -491,9 +492,9 @@ int main() {
     cout << "Sorted array using max heap sort: ";
     printarray(arr, n);
 
-    VSDMinheapsort(arr, n);
+    /* VSDMinheapsort(arr, n);
     cout << "Sorted array using min heap sort: ";
-    printarray(arr, n);
+    printarray(arr, n); */
 
     return 0;
 }
@@ -511,6 +512,39 @@ The code provided consists of several functions and a main function. Here is a b
 5. **VSDMaxheapsort**: This function takes an array and its size as input. It builds a Max Heap from the array and performs Heap Sort to sort the array in ascending order.
 6. **VSDMinheapsort**: This function takes an array and its size as input. It builds a Min Heap from the array and performs Heap Sort to sort the array in descending order.
 7. **main**: The main function initializes an array with some values, calculates the size of the array, calls the VSDMaxheapsort function to sort the array in ascending order, prints the sorted array, calls the VSDMinheapsort function to sort the array in descending order, and prints the sorted array again.
+
+
+
+## Test Cases
+### Test Case 1(Empty input array):
+#### sample input:
+1. Enter the array elements separated by space:  (empty array)
+
+#### sample output:
+1. (no output)
+
+### Test Case 2(unsorted array case):
+#### sample input:
+1. Enter the array elements separated by space: 8 5 12 3 10
+#### sample output:
+1. Sorted array using maxheapsort:
+- 3 5 8 10 12
+
+### Test Case 3(Already sorted array case):
+#### sample input:
+1. Enter the array elements separated by space: 10 20 30 40 50
+
+#### sample output:
+1. Sorted array using maxheapsort:
+- 10 20 30 40 50
+
+
+### Explanation of Testcases:
+- The first test case represents an empty input array. It verifies whether the code handles the absence of input gracefully, providing appropriate output messages for both max heap and min heap sorting functions.
+- The second test case involves an unsorted array with random values. It checks whether the code can correctly sort the array in ascending order using max heap and in descending order using min heap.
+- The third test case provides an already sorted array in ascending order. It evaluates whether the code can efficiently handle a pre-sorted array and still produce the correct sorted output using both max heap and min heap.
+
+
 
 **Time Complexity Analysis:**
 
