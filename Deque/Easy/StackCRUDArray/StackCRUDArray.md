@@ -25,8 +25,8 @@ By using a stack CRUD array, data can be efficiently managed by easily adding or
 #### Python
 
 ```Python
-/* Copyrights to venkys.io
-For more information, visit https://venkys.io */
+# Copyrights to venkys.io
+# For more information, visit https://venkys.io
 
 # Python program for performing Stack CRUD Array operations
 # Stable: No

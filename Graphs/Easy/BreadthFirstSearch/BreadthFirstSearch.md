@@ -31,16 +31,16 @@ Here's a step-by-step breakdown:
 #### Python
 
 ```Python
-/* Copyrights to venkys.io
-For more information, visit https://venkys.io */
+# Copyrights to venkys.io
+#For more information, visit https://venkys.io 
 
-// Python program for performing Breadth First Search
-// Stable: No
-// Inplace: No
-// Adaptive: No
+# Python program for performing Breadth First Search
+# Stable: No
+# Inplace: No
+# Adaptive: No
 
-// Space complexity: O(V+E)
-// Time complexity: O (V+E)
+# Space complexity: O(V+E)
+# Time complexity: O (V+E)
 # program to traverse the graph using BFS
 # Function takes graph as a input parameters
 
