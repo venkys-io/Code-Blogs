@@ -21,7 +21,7 @@ def dijkstra(graph, start):
 
     return distances
 
-# User-defined graph input
+# Predefined graph
 graph = {
     'A': {'B': 1, 'C': 4},
     'B': {'A': 1, 'C': 2, 'D': 5},
@@ -29,7 +29,8 @@ graph = {
     'D': {'B': 5, 'C': 1}
 }
 
-start_node = input("Enter the starting node: ").upper()
+# Predefined starting node
+start_node = 'A'
 
 # Check if the starting node is in the graph
 if start_node not in graph:
