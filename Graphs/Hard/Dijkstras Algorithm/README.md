@@ -96,64 +96,50 @@ The time complexity of the given code/algorithm looks O(V^2) as there are two ne
 
 
 
-TEST CASE - 1: 
+TEST CASE-1 :
 
- A --2-- B
-|     / |
-3    1  4
-| /     |
-C --5-- D
 
-INPUT:
+graph = {
+    'A': {'B': 1, 'C': 4},
+    'B': {'A': 1, 'C': 2, 'D': 5},
+    'C': {'A': 4, 'B': 2, 'D': 1},
+    'D': {'B': 5, 'C': 1}
+}
 
-Start Node: A
-End Node: D
+
+start_node = 'A','B'
+
+OUTPUT : Invalid starting node
+
+
+TEST CASE-2 : 
+
+graph = {
+    'A': {'B': 1, 'C': 4},
+    'B': {'A': 1, 'C': 2, 'D': 5},
+    'C': {'A': 4, 'B': 2, 'D': 1},
+    'D': {'B': 5, 'C': 1}
+}
+
+start_node = 'B'
 
 OUTPUT : 
-
-Shortest Path: A -> B -> D
-Shortest Distance: 6
-
-
-TEST CASE -2 : 
-
-
-A --3-- B --1-- C
-|          /  |
-2         4   5
-|        /    |
-D --7-- E --6-- F
-
-INPUT:
-
-Start Node: A
-End Node: F
-
-OUTPUT:
-
-Shortest Path: A -> B -> C -> F
-Shortest Distance: 10
+Shortest distances from node B:
+To A: 2
+To B: 0
+To C: 2
+To D: 3
 
 
-TEST CASE -3 : 
+TEST CASE-3 :
 
-A --1-- B --3-- C
-|          /  |
-4         2   5
-|        /    |
-D --6-- E --7-- F
+graph = {
+    'A': {'B': 1, 'C': 4},
+    'B': {'A': 1, 'C': 2, 'D': 5},
+    'C': {'A': 4, 'B': 2, 'D': 1},
+    'D': {'B': 5, 'C': 1}
+}
 
-INPUT:
+start_node = 'E'
 
-Start Node: A
-End Node: F
-
-OUTPUT:
-
-Shortest Path: A -> B -> C -> F
-Shortest Distance: 9
-
-
-
-
- 
+OUTPUT : Invalid starting node
