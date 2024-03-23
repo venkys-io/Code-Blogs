@@ -39,15 +39,15 @@ def quicksort(arr,l,r):
 
 
 if __name__=="__main__":
-    n=7
-    arr=[2,24,12,96, 456, 899,34]
+    n = int(input())
+    arr=[int(i) for i in input().split()]
     quicksort(arr,0,len(arr)-1)
     print(*arr,sep=" ")
             
 ```
 ## code in Java
 ```
-
+import java.util.Scanner;
 public class Main {
 	
 	public static void VSDquicksort(int a[],int l,int r) {
@@ -88,8 +88,13 @@ public class Main {
 				System.out.println();
 			}
 public static void main(String args[]) {
-	int[] a={1, 2, 53, 12, 45, 11, 56};
-	int n=a.length;
+	Scanner scanner = new Scanner(System.in);
+	int n = scanner.nextInt();
+	int[] a = new int[n];
+	for (int i = 0; i < n; i++) {
+            System.out.print("Enter element " + (i + 1) + ": ");
+            a[i] = scanner.nextInt();
+        }
 	VSDquicksort(a,0,n-1);
 	VSDprintOutput(a);
 }
@@ -133,8 +138,12 @@ void quicksort(int arr[],int l,int r){
 
 
 int main(){
-    int n=7;
-    int arr[]={2,24,12,96, 456, 899,34};
+    int n;
+    cin >> n;
+    int arr[n];
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
     quicksort(arr,0,n-1);
     for(int i=0;i<n;i++){
         cout<<arr[i]<<" ";
@@ -200,3 +209,44 @@ Quicksort is used in telecommunications for tasks like call routing and managing
 - Flight Scheduling and Air Traffic Control:
 
 In the aviation industry, Quicksort can be utilized to sort and manage flight schedules efficiently. It helps in optimizing air traffic control systems and managing flight data.
+
+## Test Cases
+- The unsorted array is {4, 6, 2, 7, 1, 9, 3}
+Here's how the quicksort algorithm sorts the given array {4, 6, 2, 7, 1, 9, 3}:
+
+Choose a Pivot: Let's choose the last element, 3, as the pivot.
+
+Partitioning:
+Start with two pointers, i and j, initialized at the beginning and end of the array, respectively.
+Move i towards the right until we find an element greater than the pivot.
+Move j towards the left until we find an element less than the pivot.
+Swap the elements at positions i and j if i is less than j.
+Continue this process until i crosses j.
+Finally, place the pivot element (3) at its correct position such that all elements to its left are less than it, and all elements to its right are greater than it.
+After partitioning, the array may look like: {2, 1, 3, 7, 6, 9, 4}. The pivot element, 3, is now in its correct position.
+
+Recursively Apply Quicksort:
+Apply the quicksort algorithm recursively to the subarrays formed by partitioning.
+For the left subarray {2, 1}, choose the last element (1) as the pivot and partition it. It doesn't need any further partitioning as it's already sorted.
+For the right subarray {7, 6, 9, 4}, choose the last element (4) as the pivot and partition it. After partitioning, it may look like: {4, 6, 7, 9}.
+The final sorted array is {1, 2, 3, 4, 6, 7, 9}.
+
+- the unsorted array {8, 3, 5, 2, 9, 1, 7, 4}.
+Here's how the quicksort algorithm sorts the given array {8, 3, 5, 2, 9, 1, 7, 4}:
+
+Choose a Pivot: Let's choose the last element, 4, as the pivot.
+
+Partitioning:
+Start with two pointers, i and j, initialized to the beginning and end of the array, respectively.
+Move i towards the right until we find an element greater than the pivot.
+Move j towards the left until we find an element less than the pivot.
+Swap the elements at positions i and j if i is less than j.
+Continue this process until i crosses j.
+Finally, place the pivot element (4) at its correct position such that all elements to its left are less than it, and all elements to its right are greater than it.
+After partitioning, the array may look like: {3, 2, 1, 4, 9, 5, 7, 8}. The pivot element, 4, is now in its correct position.
+
+Recursively Apply Quicksort:
+Apply the quicksort algorithm recursively to the subarrays formed by partitioning.
+For the left subarray {3, 2, 1}, choose the last element (1) as the pivot and partition it. After partitioning, it remains the same as it's already sorted.
+For the right subarray {9, 5, 7, 8}, choose the last element (8) as the pivot and partition it. After partitioning, it may look like: {5, 7, 8, 9}.
+The final sorted array is {1, 2, 3, 4, 5, 7, 8, 9}.
