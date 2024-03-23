@@ -85,14 +85,14 @@ int main() {
     string columnName;
 
     // Input the column name from the user
-    cout << "Enter Excel column name: ";
+    // cout << "Enter Excel column name: ";
     cin >> columnName;
 
     // Convert the column name to a column number
     int columnNumber = excelColumnToNumber(columnName);
 
     // Output the result
-    cout << "Column number for " << columnName << " is: " << columnNumber << endl;
+    cout << columnNumber << endl;
 
     return 0;
 }
@@ -123,14 +123,14 @@ int main() {
     int columnNumber;
 
     // Input the column number from the user
-    cout << "Enter Excel column number: ";
+    // cout << "Enter Excel column number: ";
     cin >> columnNumber;
 
     // Convert the column number to a column name
     string columnName = excelNumberToColumn(columnNumber);
 
     // Output the result
-    cout << "Column name for " << columnNumber << " is: " << columnName << endl;
+    cout << columnName << endl;
 
     return 0;
 }
@@ -187,9 +187,9 @@ def excel_column_to_number(column):
     return result
 
 # Main Program
-column_name = input("Enter Excel column name: ")
+column_name = input()
 column_number = excel_column_to_number(column_name)
-print(f"Column number for {column_name} is: {column_number}")
+print(column_number)
 ```
 
 - **Below Program is from Column Number to Column Name-**
@@ -206,9 +206,9 @@ def excel_number_to_column(column_number):
     return result
 
 # Main Program
-column_number = int(input("Enter Excel column number: "))
+column_number = int(input())
 column_name = excel_number_to_column(column_number)
-print(f"Column name for {column_number} is: {column_name}")
+print(column_name)
 ```
 
 ## Step-By-Step Explanation:
@@ -260,14 +260,14 @@ public class ExcelColumnToNumber {
         Scanner scanner = new Scanner(System.in);
 
         // Input the column name from the user
-        System.out.print("Enter Excel column name: ");
+        // System.out.print("Enter Excel column name: ");
         String columnName = scanner.next();
 
         // Convert the column name to a column number
         int columnNumber = excelColumnToNumber(columnName);
 
         // Output the result
-        System.out.println("Column number for " + columnName + " is: " + columnNumber);
+        System.out.println(columnNumber);
     }
 }
 ```
@@ -293,14 +293,14 @@ public class ExcelNumberToColumn {
         Scanner scanner = new Scanner(System.in);
 
         // Input the column number from the user
-        System.out.print("Enter Excel column number: ");
+        // System.out.print("Enter Excel column number: ");
         int columnNumber = scanner.nextInt();
 
         // Convert the column number to a column name
         String columnName = excelNumberToColumn(columnNumber);
 
         // Output the result
-        System.out.println("Column name for " + columnNumber + " is: " + columnName);
+        System.out.println(columnName);
     }
 }
 ```
@@ -426,3 +426,53 @@ Excel column name and number conversions, as demonstrated in the provided progra
     - Custom reporting systems often involve specifying columns for data extraction or analysis. These conversions can be part of the mechanism to allow users to define and customize their reports.
 
 In essence, these conversions play a role in enhancing the flexibility, user-friendliness, and automation capabilities of applications dealing with tabular data, especially in contexts where Excel-like column references are used.
+
+## Test Cases
+- For Column Name to Column Number
+  Input: "AB"
+  Output: 28
+  
+  - The program converts the Excel column name "AB" to its corresponding numeric value.
+  - In the function excel_column_to_number:
+    - Each character contributes to the final result by its position in the alphabet.
+    - 'A' contributes 1, 'B' contributes 2, and so on.
+  - For the input "AB", the calculation is (1 * 26 + 2) = 28.
+  Therefore, the output is 28.
+
+  For Column Number to Column Name
+  Input: 28
+  Output: "AB"
+
+  - The program converts the Excel column number "28" to its corresponding column name.
+  - In the function excel_number_to_column:
+    - Characters are calculated from right to left.
+    - Each character is determined by the remainder of the column number divided by 26 (minus 1), representing its position in the alphabet.
+    - The character is prepended to the result string.
+    - The column number is updated by integer division by 26 (minus 1).
+  - For the input "28", the characters are calculated as follows: 'A' (1), 'B' (2).
+  Therefore, the output is "AB".
+
+- For Column Name to Column Number
+  Input: "ZY"
+  Output: 701
+
+  - The program converts the Excel column name "ZY" to its corresponding numeric value.
+  - In the function excel_column_to_number:
+    - Each character contributes to the final result by its position in the alphabet.
+    - 'Z' contributes 26, 'Y' contributes 25.
+  - For the input "ZY", the calculation is (26 * 26 + 25) = 701.
+  Therefore, the output is 701.
+
+  For Column Number to Column Name
+  Input: 701
+  Output: "ZY"
+
+  - The program converts the Excel column number "701" to its corresponding column name.
+  - In the function excel_number_to_column:
+    - Characters are calculated from right to left.
+    - Each character is determined by the remainder of the column number divided by 26 (minus 1), representing its position in the alphabet.
+    - The character is prepended to the result string.
+    - The column number is updated by integer division by 26 (minus 1).
+  - For the input "701", the characters are calculated as follows: 'Z' (25), 'Y' (24).
+  Therefore, the output is "ZY".
+  
