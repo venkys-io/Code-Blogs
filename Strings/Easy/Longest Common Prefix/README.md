@@ -35,13 +35,13 @@ def longest_common_prefix(strings):
 
 if __name__ == "__main__":
     # Taking user input for a list of strings
-    num_strings = int(input("Enter the number of strings: "))
-    input_strings = [input(f"Enter string {i + 1}: ") for i in range(num_strings)]
+    num_strings = int(input())
+    input_strings = [input() for i in range(num_strings)]
 
     result = longest_common_prefix(input_strings)
 
     if result:
-        print("Longest common prefix:", result)
+        print(result)
     else:
         print("No common prefix.")
 
@@ -79,7 +79,7 @@ std::string longestCommonPrefix(const std::vector<std::string>& strings) {
 
 int main() {
     int numStrings;
-    std::cout << "Enter the number of strings: ";
+    // std::cout << "Enter the number of strings: ";
     std::cin >> numStrings;
 
     std::vector<std::string> inputStrings;
@@ -88,7 +88,7 @@ int main() {
     // Taking user input for a vector of strings
     for (int i = 0; i < numStrings; ++i) {
         std::string inputString;
-        std::cout << "Enter string " << i + 1 << ": ";
+        // std::cout << "Enter string " << i + 1 << ": ";
         std::cin >> inputString;
         inputStrings.push_back(inputString);
     }
@@ -141,20 +141,19 @@ public class LongestCommonPrefix {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter the number of strings: ");
+        // System.out.print("Enter the number of strings: ");
         int numStrings = scanner.nextInt();
         scanner.nextLine(); // Consume the newline character
 
         String[] inputStrings = new String[numStrings];
         for (int i = 0; i < numStrings; i++) {
-            System.out.print("Enter string " + (i + 1) + ": ");
             inputStrings[i] = scanner.nextLine();
         }
 
         String result = longestCommonPrefix(inputStrings);
 
         if (!result.isEmpty()) {
-            System.out.println("Longest common prefix: " + result);
+            System.out.println(result);
         } else {
             System.out.println("No common prefix.");
         }
@@ -170,36 +169,54 @@ The time complexity of converting a fraction to a recurring decimal is O(log n) 
 The space complexity of converting a fraction to recurring decimal is O(1). This is because the conversion involves either storing a fixed size integer representation of the fraction or using a floating point representation that requires a fixed amount of memory, regardless of the size of the input fraction. If you meant to ask about the space complexity of storing recurring decimal to fraction conversion formulas, it would be O(klogk) where k is the precision of the recurring decimal.
 
 
+## Test Cases
+- INPUT :
+  ["flower", "flow", "flight"]
+  OUTPUT :
+  "fl"
 
-TEST CASE-1 :
+  For the input ["flower", "flow", "flight"], the output "fl" is obtained as follows:
 
-INPUT :
+  Sorting the list of strings: The list is sorted lexicographically to get ["flight", "flow", "flower"].
 
-["flower", "flow", "flight"]
+  Comparing the first and last strings: The function compares the first string ("flight") with the last string ("flower") character by character.
 
-OUTPUT :
+  At index 0, both "f" and "f" are the same
+  At index 1, both "l" and "l" are the same.
+  At index 2, "i" and "o" differ, so the loop breaks.
+  Returning the prefix: The function returns "fl".
 
-"fl"
+  Hence, the output "fl" represents the longest common prefix among the strings "flower", "flow", and "flight".
 
-TEST CASE-2 :
+- INPUT :
+  ["dog", "racecar", "car"]
+  OUTPUT :
+  ""
 
-INPUT :
+  For the input ["dog", "racecar", "car"], the output "" (an empty string) is obtained as follows:
 
-["dog", "racecar", "car"]
+  Sorting the list of strings: The list is sorted lexicographically to get ["car", "dog", "racecar"].
 
-OUTPUT :
+  Comparing the first and last strings: The function compares the first string ("car") with the last string ("racecar") character by character.
 
-""
+  At index 0, both "c" and "r" differ, so the loop breaks immediately.
+  Returning the prefix: Since there are no common characters between the first and last strings, the function returns an empty string.
 
-TEST CASE-3 : 
+  Hence, the output "" represents the absence of a common prefix among the strings "dog", "racecar", and "car".
 
-INPUT :
+- INPUT :
+  ["apple"]
+  OUTPUT :
+  "apple"
 
-["apple"]
+  For the input ["apple"], the output "apple" is obtained as follows:
 
-OUTPUT :
+  Sorting the list of strings: Since there's only one string in the list, no sorting is required.
 
-"apple"
+  Comparing the first and last strings: Since there's only one string in the list, the function directly returns the input string "apple".
 
+  Returning the prefix: The function returns "apple" since it's the only string in the list, and it's the longest common prefix by default.
+
+  Hence, the output "apple" represents the longest common prefix among the single string "apple" in the list.
 
 
