@@ -56,7 +56,7 @@ def robot_return_to_origin(input):
     return x == 0 and y == 0
 
 # Get user input for directions (case-insensitive)
-z = input("Enter the directions: ")
+z = input()
 z = z.upper()  # Convert input to uppercase for case-insensitivity
 
 # Call the function and print the result
@@ -148,7 +148,7 @@ int main()
 {
     // Get user input for directions (case-insensitive)
     std::string z;
-    std::cout << "Enter the directions: ";
+    // std::cout << "Enter the directions: ";
     std::cin >> z;
 
     // Convert input to uppercase for case-insensitivity
@@ -232,13 +232,13 @@ public class robotreturn {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter the directions: ");
+        // System.out.print("Enter the directions: ");
         String directions = scanner.nextLine().toUpperCase();
 
         if (isRobotReturnToOrigin(directions)) {
-            System.out.println("Robot gotcha");
+            System.out.println("true");
         } else {
-            System.out.println("Lost your robot");
+            System.out.println("false");
         }
     }
 }
@@ -275,7 +275,7 @@ public class robotreturn {
 **6. Check and Print Result:**
 
 - `if (isRobotReturnToOrigin(directions)) { }`: Calls the `isRobotReturnToOrigin` function with the processed user-input directions and checks if the robot returns to the origin.
-- If the robot returns to the origin ,then it returns true orelse it returns false.
+- If the robot returns to the origin,then it returns true or else it returns false.
 
 ## **Time and Space Complexity Analysis**
 
@@ -312,3 +312,29 @@ The return to origin algorithm can be implemented using a variety of different t
 - **SLAM (Simultaneous Localization and Mapping):** This is the most sophisticated method, and it involves simultaneously building a map of the environment and estimating the robot's position within that map. SLAM is very accurate, but it is also computationally expensive.
 
 The choice of which method to use will depend on the specific application and the available resources.
+
+## Test Cases
+
+- Input: "UDLRUDDLLUURRR"
+  Output: False
+
+  Explanation:
+
+  - The robot moves up, down, left, right, up, down, down, left, left, left, up, up, right, right, right.
+  - The final coordinates are (2, -1), not at the origin.
+  Therefore, the output is False.
+
+- Input: "UDRLUD"
+  Output: True
+
+  Explanation:
+
+  We start at the origin (0, 0).
+  For each character in the input string:
+  - "U" (Up): Move one unit up, so the position becomes (0, 1).
+  - "D" (Down): Move one unit down, so the position becomes (0, 0).
+  - "R" (Right): Move one unit to the right, so the position becomes (1, 0).
+  - "L" (Left): Move one unit to the left, so the position becomes (0, 0).
+  - "U" (Up): Move one unit up, so the position becomes (0, 1).
+  - "D" (Down): Move one unit down, so the position becomes (0, 0).
+  After executing all the movements, the robot returns to the origin (0, 0). Therefore, the output is True.
