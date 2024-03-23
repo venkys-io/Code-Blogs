@@ -61,13 +61,13 @@ def count_vowels(input_string):
     return sum(1 for char in input_string if char.lower() in 'aeiou')
 
 if __name__ == "__main__":
-    input_string = input("Enter a string: ")
+    input_string = input()
     
     result_removed_vowels = remove_vowels(input_string)
     count_original_vowels = count_vowels(input_string)
 
-    print("String after removing vowels:", result_removed_vowels)
-    print("Number of vowels in the original string:", count_original_vowels)
+    print(result_removed_vowels) # print String after removing vowels
+    print(count_original_vowels) # print Number of vowels in the original string
 
 ```
 
@@ -90,12 +90,12 @@ std::string removeVowels(const std::string& inputString) {
 
 int main() {
     std::string inputString;
-    std::cout << "Enter a string: ";
+    // std::cout << "Enter a string: ";
     std::getline(std::cin, inputString);
 
     std::string result = removeVowels(inputString);
 
-    std::cout << "String after removing vowels: " << result << std::endl;
+    std::cout << result << std::endl;
 
     return 0;
 }
@@ -106,6 +106,7 @@ int main() {
 ---
 
 ```java
+import java.util.Scanner;
 public class Main {
 	
 
@@ -128,12 +129,12 @@ public class Main {
 		}
 		//Function to print output
 		public static void VSDprintOutput(String out) {
-			System.out.println("The string without vowels is:");
 				System.out.println(out);
 				
 			}
 public static void main(String args[]) {
-	String s="vsdevelopers;";//Taking user input
+	Scanner scanner = new Scanner(System.in);
+	String s = scanner.nextLine();
 	String out=VSDRemoveVowels(s);
 	VSDprintOutput(out);
 }
@@ -153,34 +154,56 @@ The task of removing vowels from a string can be applied to various real-world s
 4. User Input Validation: In software development, removing vowels from a user's input can be used as a form of input validation or data sanitization to ensure that certain strings meet specific criteria.
 5. Language Learning Tools: In language learning or educational applications, removing vowels from a string could be part of exercises designed to help learners recognize and process consonants in words.
 
+## Test Cases
 
-TEST CASE -1 : 
+- INPUT :
+  "Hello, World!"
+  OUTPUT :
+  "Hll, Wrld!"
+  3
 
-INPUT : 
+  The function removes vowels from the input string by iterating over each character and keeping only those that are not vowels.
 
-"Hello, World!"
+  For the input "Hello, World!":
+  'H', 'l', 'l', ',', ' ', 'W', 'r', 'l', 'd', and '!' are kept.
+  'e', 'o', and 'o' are vowels, so they are removed.
+  The resulting string is "Hll, Wrld!".
+  The next function counts the number of vowels in the input string by iterating over each character and counting those that are vowels.
 
-OUTPUT :
+  For the input "Hello, World!":
+  'e', 'o', and 'o' are vowels.
+  The count of vowels in the original string is 3.
 
-"Hll, Wrld!"
+- INPUT :
+  "AEIOUaeiou"
+  OUTPUT:
+  ""
+  10
 
-TEST CASE-2 : 
+  The function removes vowels from the input string by iterating over each character and keeping only those that are not vowels.
 
-INPUT : 
+  For the input "AEIOUaeiou":
+  There are no consonants (non-vowels) in the string. All characters are vowels ('A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u'), so they are all removed.
+  The resulting string is an empty string ("").
+  The next function counts the number of vowels in the input string by iterating over each character and counting those that are vowels.
 
-"AEIOUaeiou"
+  For the input "AEIOUaeiou":
+  All characters are vowels.
+  The count of vowels in the original string is 10.
 
-OUTPUT:
+- INPUT :
+  "The quick brown fox jumps over the lazy dog."
+  OUTPUT :
+  "Th qck brwn fx jmps vr th lzy dg."
+  5
 
-""
+  The function removes vowels from the input string by iterating over each character and keeping only those that are not vowels.
 
-TEST CASE-3 :
+  For the input "The quick brown fox jumps over the lazy dog.":
+  All characters except 'e', 'u', 'i', 'o', and 'o' (vowels) are kept.
+  The resulting string is "Th qck brwn fx jmps vr th lzy dg.".
+  The next function counts the number of vowels in the input string by iterating over each character and counting those that are vowels.
 
-INPUT :
-
-"The quick brown fox jumps over the lazy dog."
-
-OUTPUT :
-
-"Th qck brwn fx jmps vr th lzy dg."
-
+  For the input "The quick brown fox jumps over the lazy dog.":
+  'e', 'u', 'i', 'o', and 'o' are vowels.
+  The count of vowels in the original string is 5.
