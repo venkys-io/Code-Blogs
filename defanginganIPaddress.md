@@ -46,7 +46,6 @@ std::string defangIPaddr(std::string address) {
 
 int main() {
     // Prompt the user to enter an IP address
-    std::cout << "Enter an IP address: ";
     std::string ipAddress;
     std::cin >> ipAddress;
 
@@ -54,7 +53,7 @@ int main() {
     std::string defangedIPAddress = defangIPaddr(ipAddress);
 
     // Display the defanged IP address
-    std::cout << "Defanged IP address: " << defangedIPAddress << std::endl;
+    std::cout << defangedIPAddress << std::endl;
 
     return 0;
 }
@@ -75,8 +74,10 @@ int main() {
 8. **Display defanged IP address:** Finally, the defanged IP address is displayed to the user.
 
 Compile and run the program, and it will defang the entered IP address. For example:
-Enter an IP address: 192.168.1.1
-Defanged IP address: 192[.]168[.]1[.]1
+Input:
+192.168.1.1
+Output:
+192[.]168[.]1[.]1
 
 ```
 
@@ -104,11 +105,10 @@ def defangIPaddr(address):
 ```
 
 ```python
-ip_address = str(input("Enter the IP address before Defanging: "))
+ip_address = str(input())
 defanged_ip_address = defangIPaddr(ip_address)
 
-print(f"Original IP address: {ip_address}")
-print(f"Defanged IP address: {defanged_ip_address}")
+print(defanged_ip_address)
 ```
 
 ## Step-By-Step Explanation:
@@ -132,8 +132,10 @@ print(f"Defanged IP address: {defanged_ip_address}")
 4. **Output**:
 
 ```python
-Original IP address: 192.168.1.1
-Defanged IP address: 192[.]168[.]1[.]1
+Input:
+192.168.1.1
+Output:
+192[.]168[.]1[.]1
 ```
 
 ## Program in `java`:
@@ -146,8 +148,6 @@ public class DefangIPAddress {
         // Create a Scanner object to read from standard input
         Scanner scanner = new Scanner(System.in);
 
-        // Prompt the user to enter an IP address
-        System.out.print("Enter an IP address: ");
 
         // Read the IP address from the user
         String ipAddress = scanner.nextLine();
@@ -155,9 +155,8 @@ public class DefangIPAddress {
         // Defang the IP address
         String defangedIPAddress = defangIPAddr(ipAddress);
 
-        // Display the original and defanged IP addresses
-        System.out.println("Original IP address: " + ipAddress);
-        System.out.println("Defanged IP address: " + defangedIPAddress);
+        // Display the defanged IP addresses
+        System.out.println(defangedIPAddress);
 
         // Close the Scanner to release resources
         scanner.close();
@@ -211,9 +210,11 @@ public class DefangIPAddress {
     - Use **`System.out.println`** to display the original and defanged IP addresses.
 5. **Output**:
 
-```python
-Original IP address: 192.168.1.1
-Defanged IP address: 192[.]168[.]1[.]1
+```java
+Input:
+192.168.1.1
+Output:
+192[.]168[.]1[.]1
 ```
 
 ## Space and Time complexities:
@@ -273,3 +274,24 @@ Defanged IP address: 192[.]168[.]1[.]1
     
 
 Defanging IP addresses is a common practice in various situations where human readability and security are important. It helps prevent accidental misinterpretation and ensures that information containing IP addresses is presented in a clear and safe manner.
+
+## Test Cases
+- Input: 192.168.1.1
+Output: 192[.]168[.]1[.]1
+The given code reads an IP address from the user and replaces every period ('.') in the address with the string "[.]".
+
+For example, given the input "192.168.1.1", the code produces the output "192[.]168[.]1[.]1".
+
+This is achieved by iterating through each character of the input string. If the character is a period ('.'), it replaces it with "[.]", otherwise, it simply adds the character to the output string.
+
+- Input: 10.0.0.2
+Output: 10[.]0[.]0[.]2
+The program reads the input IP address "10.0.0.2" from the user.
+The defangIPAddr method is called with the input IP address.
+Inside the defangIPAddr method, the string is iterated character by character.
+When encountering each character:
+If the character is a period ('.'), it's replaced with "[.]" and added to the defanged address.
+If the character is not a period, it's directly appended to the defanged address.
+After iterating through all characters, the defanged address "10[.]0[.]0[.]2" is returned.
+Finally, the program prints the defanged IP address to the console.
+Therefore, the output "10[.]0[.]0[.]2" is obtained by replacing each period ('.') in the input IP address "10.0.0.2" with "[.]".
