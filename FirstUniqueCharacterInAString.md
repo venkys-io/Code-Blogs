@@ -1,4 +1,5 @@
-# FirstUniqueCharacterInAString
+# First Unique Character In A String
+
 The "First Unique Character in a String" problem is a common programming problem that often appears in coding interviews. The goal is to find the first non-repeating character in a given string and return its index.
 ## Approach
 One common approach to solving this problem involves using a hash map to store the frequency of each character in the string. The algorithm typically involves two passes through the string:
@@ -26,10 +27,11 @@ def firstUniqueChar(s):
     return -1
 
 # Example usage
-input_string = "example"
+input_string = input()
 result = firstUniqueChar(input_string)
 print(result)
-#output : 1
+# Input: strings
+# Output: 1
 ```
 # Step-by-step Explanation of python code
 
@@ -54,6 +56,7 @@ print(result)
 ```
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class FirstUniqueCharacter {
     public static int firstUniqueChar(String s) {
@@ -75,11 +78,15 @@ public class FirstUniqueCharacter {
     }
 
     public static void main(String[] args) {
-        String inputString = "example";
+        Scanner scanner = new Scanner(System.in);
+        String inputString = scanner.nextLine();
+        
         int result = firstUniqueChar(inputString);
         System.out.println(result);
+        scanner.close();
     }
 }
+//input: example
 //output : 1
 ```
 # Step-by-step explanation for java code
@@ -132,13 +139,15 @@ int firstUniqueChar(std::string s) {
 }
 
 int main() {
-    std::string inputString = "example";
+    std::string inputString;
+    std::getline(std::cin, inputString);
     int result = firstUniqueChar(inputString);
     std::cout << result << std::endl;
 
     return 0;
 }
-//output : 1
+//input : allocate
+//output : 3
 ```
 # Step-by-step explanation for c++ code
 
@@ -191,3 +200,42 @@ int main() {
 
 **9. Data Compression:**
 - In data compression algorithms, identifying patterns and unique characters in a stream of data is fundamental. This helps in designing efficient compression techniques.
+
+## Test Cases 
+- Input: allocate
+  Output: 3
+  The Function returns the index of the first unique character in the string. It does this by first counting the frequencies of each character in the string and then iterating through the string again to find the first character with a count of 1.
+  For the input "allocate":
+
+  Character counts:
+
+  'a': 2
+  'l': 2
+  'o': 1
+  'c': 1
+  't': 1
+  'e': 1
+
+  In the example usage:
+  'a' and 'l' occur more than once, so they are not unique.
+  'o' at index 3 is the first character with a count of 1, making it the first unique character, so the function returns 3.
+  Hence, the output for the input "allocate" is 3.
+
+- Input: example
+  Output: 1
+
+  For the input "example":
+
+  Character counts:
+  'e': 2
+  'x': 1
+  'a': 1
+  'm': 1
+  'p': 1
+  'l': 1
+
+  In the example usage:
+  'e' occurs more than once, so it's not unique.
+  'x', 'a', 'm', 'p', and 'l' all occur only once, making them unique characters.
+  The first unique character is 'x' at index 1, so the function returns 1.
+  Hence, the output for the input "example" is 1.
