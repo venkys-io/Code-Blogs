@@ -43,13 +43,13 @@ def reverse_string(input_string):
     return reversed_string
 
 # Getting user input
-user_input = input("Enter a string: ")
+user_input = input()
 
 # Reversing the user input using the reverse_string function
 result = reverse_string(user_input)
 
 # Displaying the reversed string
-print("Reversed String:", result)
+print(result)
 
 ```
 
@@ -91,14 +91,13 @@ public class ReverseString {
     public static void main(String[] args) {
         // Getting user input
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a string: ");
         String userInput = scanner.nextLine();
 
         // Reversing the user input using the reverseString function
         String result = reverseString(userInput);
 
         // Displaying the reversed string
-        System.out.println("Reversed String: " + result);
+        System.out.println(result);
     }
 }
 ```
@@ -142,15 +141,13 @@ int main() {
     string userString;
 
     // Get input from the user
-    cout << "Enter a string: ";
     getline(cin, userString);
 
     // Output the original string and its length
-    cout << "Original String: " << userString << endl;
+    cout << userString << endl;
     
 
     // Reverse the string using the Reverse function
-    cout << "Reversed String: ";
     Reverse(userString);
 
     return 0;
@@ -171,38 +168,6 @@ int main() {
 10. The Reverse function is called with the userString as the argument to reverse the string.
 11. Finally, the program returns 0 to indicate successful execution.
 
-# Test Cases
-
-### example 1 :
-
-**Input :**
-
-Enter a string:
-
-**Output :**
-
-    Reversed String:
-
-### example 2 :
-
-**Input :**
-
- Enter a string: hello
-
-**Output :**
-
-    Reversed String: olleh
-
-### example 1 :
-
-**Input :**
-
-Enter a string: ikol
-
-**Output :**
-
-    Reversed String: loki
-****
 
 # **Time And Space Complexity Analysis**
 
@@ -223,3 +188,11 @@ The ability to reverse a string has various real-world applications in programmi
 3. **String Processing**: In certain scenarios, reversing a string can help in processing and analyzing textual data. For example, in natural language processing, reversing the order of words in a sentence can be used as a technique for data augmentation or language modeling.
 4. **User Interface**: Reversing a string can also be utilized in user interface elements, such as displaying text in a mirror or flipped orientation.
 5. **String Parsing**: In some cases, reversing a string can assist in parsing and extracting specific information. For instance, reversing a URL can help identify its top-level domain or extract meaningful components from a complex string.
+
+## Test Cases
+
+- Input: "hello"
+  Output: "olleh"
+
+- Input: "Hannah"
+  Output: "hannaH"
