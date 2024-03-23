@@ -45,9 +45,9 @@ def roman_to_int(s):
     return result
 
 # Test the function
-roman_numeral = input("Enter a Roman numeral: ")
+roman_numeral = input()
 integer_value = roman_to_int(roman_numeral.upper())
-print(f"The integer value of {roman_numeral} is: {integer_value}")
+print(integer_value)
 ```
 
 ### Step-by-Step Explaination
@@ -113,11 +113,11 @@ print(f"The integer value of {roman_numeral} is: {integer_value}")
     {
         // Test the function
         std::string romanNumeral;
-        std::cout << "Enter a Roman numeral: ";
+        // std::cout << "Enter a Roman numeral: ";
         std::cin >> romanNumeral;
     
         int integerValue = romanToInt(romanNumeral);
-        std::cout << "The integer value of " << romanNumeral << " is: " << integerValue << std::endl;
+        std::cout << integerValue << std::endl;
     
         return 0;
     }
@@ -185,11 +185,11 @@ print(f"The integer value of {roman_numeral} is: {integer_value}")
             public static void main(String[] args) {
                 try (// Test the function
                         Scanner scanner = new Scanner(System.in)) {
-                    System.out.print("Enter a Roman numeral: ");
+                    // System.out.print("Enter a Roman numeral: ");
                     String romanNumeral = scanner.nextLine();
         
                     int integerValue = romanToInt(romanNumeral.toUpperCase());
-                    System.out.println("The integer value of " + romanNumeral + " is: " + integerValue);
+                    System.out.println(integerValue);
                 }
             }
         }
@@ -284,3 +284,27 @@ print(f"The integer value of {roman_numeral} is: {integer_value}")
                 - In certain programming contexts, Roman numerals might be used symbolically, and the algorithm could be employed for internal data processing within the software.
             
             While the direct application of the Roman to integer algorithm might be limited in day-to-day activities, it serves as a foundational component in various software-related tasks, historical research, and specific academic or niche areas where Roman numerals are still relevant.
+
+           ## Test Cases
+           - Input: "XIV"
+             Output: 24
+
+             Explanation:
+             - "X" is 10, "I" is 1, and "V" is 5.
+             - Since "I" is smaller than "V" following it, it should be subtracted. So, "IX" is 9.
+             - "X" is 10.
+             - "IV" is 4.
+             - Adding these values, the total is 10 + 9 + 5 + 1 = 24.
+             
+             The function roman_to_int processes the input string "XIV" according to the Roman numeral rules and returns the integer value 24.
+             - Input: "MMXXI"
+               Output: 2009
+
+               Explanation:
+               - "M" is 1000, "M" is 1000, "X" is 10, "X" is 10, and "I" is 1.
+               - Since "M" is not smaller than "M" following it, both "M"s contribute to the total as 1000 + 1000 = 2000.
+               - "X" is not smaller than "X" following it, so it contributes 10.
+               - "I" is smaller than "X" following it, so it is subtracted, contributing -1.
+               - Adding these values, the total is 2000 + 10 - 1 = 2009.
+               
+               The function roman_to_int processes the input string "MMXXI" according to the Roman numeral rules and returns the integer value 2009.
