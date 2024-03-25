@@ -40,8 +40,8 @@ def multiply(num1, num2):
     return str(res)
 
 if __name__ == "__main__":
-    num1 = "123"
-    num2 = "456"
+    num1 = input()
+    num2 = input()
     print(multiply(num1, num2))
 ```
 ## Step-by-Step Explanation
@@ -68,6 +68,7 @@ if __name__ == "__main__":
 //Java program to Multiply String 
 //TimeComplexity:O(m*n)
 //SpaceComplexity:O(m+n)
+import java.util.Scanner;
 public class Main{
     // Function to multiply two numbers represented as strings
     static String multiply(String num1, String num2) {
@@ -97,8 +98,9 @@ public class Main{
         return sb.length() == 0 ? "0" : sb.toString();
     }
     public static void main(String[] args) {
-        String num1 = "123";
-        String num2 = "456";
+        Scanner scanner = new Scanner(System.in);
+        String num1 = scanner.nextLine();
+        String num2 = scanner.nextLine();
         // Print the result of multiplying num1 and num2
         System.out.println(multiply(num1,num2));
     }
@@ -156,8 +158,10 @@ std::string multiply(std::string num1, std::string num2)
 
 int main()
 {
-    std::string num1 = "123";
-    std::string num2 = "456";
+    std::string num1;
+    std::getline(std::cin, num1);
+    std::string num2;
+    std::getline(std::cin, num2);
     /* Print the result of multiplying num1 and num2*/
     std::cout << multiply(num1, num2);
     return 0;
@@ -189,3 +193,32 @@ The space complexity of the function is also O(m+n) because an array of size m+n
 2. **In Cryptography:** In cryptography, strings are often used to represent keys and other cryptographic elements. The Multiply String function can be used in the encryption and decryption processes.
 3. **In Graphics Programming:** In graphics programming, the Multiply String function can be used to create patterns or to repeat elements.
 4. **In Web Development:** The Multiply String function can be used in web development to generate repeated elements in HTML or CSS, or to manipulate strings in server-side programming.
+
+## Test Cases
+
+- Input:
+  "123"
+  "456"
+  Output:
+  "56088"
+
+  Explanation:
+  The product of 123 and 456 is 56088.
+
+- Input:
+  "999"
+  "999"
+  Output:
+  "998001"
+
+  Explanation:
+  The product of 999 and 999 is 998001.
+
+- Input:
+  "1234"
+  "5678"
+  Output:
+  "7006652"
+
+  Explanation:
+  The product of 1234 and 5678 is 7006652.
