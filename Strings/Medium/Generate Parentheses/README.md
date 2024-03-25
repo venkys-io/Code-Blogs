@@ -1,13 +1,13 @@
-Generate Parentheses :
-Exploring String Algorithms :
+# Generate Parentheses
+## Exploring String Algorithms
 Today, we dive into the fascinating world of String algorithms and uncover their most captivating mysteries — Generate Parentheses . Get ready to embark that will challenge your minds and you will come to know about the power of string Algorithms .
 
-Advantages and Disadvantages :
-Advantages :
+## Advantages and Disadvantages
+### Advantages
 Parentheses are used to enclose incidental or supplemental information or comments.
 The parenthetical information or comment may serve to clarify or illustrate, or it may just offer a digression or afterthought.
 Parentheses are also used to enclose certain numbers or letters in an outline or list.
-Disadvantages :
+### Disadvantages
 They can lead to excessive document size and become difficult to read.
 Proper placement of parentheses can be challenging, and improper placement can lead to confusion.
 Using too many parentheses can be unprofessional and detract from the clarity of the text.
@@ -15,9 +15,9 @@ Parentheses can also be seen as unnecessary and distracting, causing some reader
 Overview of Generating Parentheses :
 The Generate Parenthesis problem involves generating all valid combinations of parentheses for a given number of pairs of parenthesis.
 This problem can be solved using both recursive and iterative approaches, and is a great introduction to backtracking style recursion.
-Coding :
-Python code :
-
+## Coding
+### Python code
+```
 def generate_parentheses(n):
     def backtrack(s, left, right):
         if len(s) == 2 * n:
@@ -33,14 +33,14 @@ def generate_parentheses(n):
     return result
 
 if __name__ == "__main__":
-    n = int(input("Enter the number of pairs of parentheses: "))
+    n = int(input())
     parentheses_combinations = generate_parentheses(n)
 
-    print("Valid parentheses combinations:")
+    # print("Valid parentheses combinations:")
     for combination in parentheses_combinations:
          print(combination)
-
-Explanation :
+```
+## Explanation 
 
 This Python code defines a function called "generate_parentheses" that takes an integer "n" as input. The function uses a helper function called "generate" to recursively create all valid combinations of balanced parentheses pairs.
 
@@ -51,8 +51,8 @@ If there are more remaining "right" parentheses than "left" parentheses, a ")" i
 If there are no remaining "right" parentheses, it means a complete valid combination of parentheses has been formed, and it is added to the list "parens".
 The "generate" function continues to call itself recursively until all valid combinations have been identified. The output of the "generate_parentheses" function is a list containing all the valid combinations of balanced parentheses for the given input "n".
 
-Code in C++ :
-
+## C++ Code
+```
 #include <iostream>
 #include <vector>
 #include <string>
@@ -85,10 +85,21 @@ std::vector<std::string> generateParenthesis(int n) {
 
 int main() {
     int n;
-    std::cout << "Enter the number of pairs of parenthese
+    std::cin >> n;
 
-Code in Java :
+    std::vector<std::string> parentheses = generateParenthesis(n);
 
+    for (const std::string& s : parentheses) {
+        std::cout << s << std::endl;
+    }
+
+    return 0;
+}
+
+```
+
+## Java Code
+```
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -119,58 +130,48 @@ public class GenerateParentheses {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter the number of pairs of parentheses: ");
         int n = scanner.nextInt();
 
         List<String> parenthesesCombinations = generateParenthesis(n);
 
-        System.out.println("Valid parentheses combinations:");
         for (String combination : parenthesesCombinations) {
             System.out.println(combination);
         }
     }
 }
+```
 
-
-Time Complexity :
+## Time Complexity 
 The time complexity of the recursive algorithm for generating parentheses is O(4^n / sqrt(n)), where "n" is the number of pairs of parentheses.
 
 The presence of 4^n in the time complexity arises from the fact that at each step, we have 4 choices to make: adding an opening parenthesis if there are still remaining ones to add, or adding a closing parenthesis if the number of closing parentheses added so far is less than the number of opening parentheses. This process is repeated recursively for each subproblem, resulting in a complexity of O(4^n).
 The sqrt(n) factor in the time complexity comes from the Catalan number, which bounds the number of recursive calls and is approximately (2n)! / ((n+1)! * n!). This is often simplified to O(4^n / (n^(3/2))).
-Space Complexity :
+
+## Space Complexity 
 The space complexity of the recursive algorithm is O(4^n / sqrt(n)) as well.
 
 This complexity mainly arises from the space used by the recursive call stack during the generation of all valid combinations of balanced parentheses.
 Each recursive call consumes space on the call stack until the base case is reached, and then the space is freed when the function returns. As the number of recursive calls is directly related to the number of valid combinations (the Catalan number), the space complexity is also O(4^n / sqrt(n)).
 
-TEST CASE--1 :
+## Test Cases
 
-INPUT :
+- Input: 2
+  Output: 
+  ["(())", "()()"]
+  
+  Explanation:
+  For n = 2, there are two pairs of parentheses. The valid combinations are "(())" and "()()".
 
-Number of pairs of parentheses: 2
+- Input: 0
+  Output: 
+  []
+  
+  Explanation:
+  For n = 0, there are no pairs of parentheses. Hence, the output should be an empty list [].
 
-OUTPUT : 
-
-["(())", "()()"]
-
-
-TEST CASE-2 :
-
-INPUT : 
-
-Number of pairs of parentheses: 0
-
-OUTPUT : 
-
-[]
-
-
-TEST CASE-3 :
-
-INPUT : 
-
-Number of pairs of parentheses: 3
-
-OUTPUT :
-
-["((()))", "(()())", "(())()", "()(())", "()()()"]
+- Input: 3
+  Output: 
+  ["((()))", "(()())", "(())()", "()(())", "()()()"]
+  
+  Explanation:
+  For n = 3, there are three pairs of parentheses. The valid combinations are "((()))", "(()())", "(())()", "()(())", and "()()()".
