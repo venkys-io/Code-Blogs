@@ -1,10 +1,10 @@
 # TO LOWER CASE
 
 # Introduction
-    The toLowerCase() function is a fundamental text-processing tool available in many programming languages. Its primary role is to convert all characters in a string to lowercase, ensuring uniformity and enabling case-insensitive operations within the text. This function serves as a building block in various software development tasks, offering consistency and ease of manipulation when handling textual data.
+The toLowerCase() function is a fundamental text-processing tool available in many programming languages. Its primary role is to convert all characters in a string to lowercase, ensuring uniformity and enabling case-insensitive operations within the text. This function serves as a building block in various software development tasks, offering consistency and ease of manipulation when handling textual data.
     The toLowerCase() function is a method available in many programming languages that converts all characters in a string to lowercase. It's a fundamental operation when dealing with text data processing.
 # Exploration:
-    This function provides a consistent and standardized way to convert text to lowercase, enabling uniformity and easing comparisons within strings.
+This function provides a consistent and standardized way to convert text to lowercase, enabling uniformity and easing comparisons within strings.
 # Overview of ToLowerCase
 The toLowerCase() function, available in programming languages like JavaScript, Java, Python, and many others, is a method used to convert all the characters within a string to their lowercase equivalents. Its primary purpose is to ensure uniformity in textual data by standardizing the case of all letters to lowercase, facilitating case-insensitive operations.
 
@@ -35,7 +35,7 @@ def toLowerCase(s: str) -> str:
     return lowercase
 
 # Test the function
-string = "UpperCase"
+string = input()
 print(toLowerCase(string))
 
 ```
@@ -55,6 +55,7 @@ print(toLowerCase(string))
 #    JAVA Code   
 
 ```java
+import java.util.Scanner;
 public class ToLowerCase {
 
     // Function to convert a string to lowercase
@@ -79,11 +80,13 @@ public class ToLowerCase {
     }
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         // Example string
-        String inputString = "UpperCase";
+        // String inputString = "UpperCase";
+        String inputString = scanner.nextLine();
+        scanner.close();
 
         // Convert the string to lowercase and print the result
-        System.out.println("Original: " + inputString);
         System.out.println("Lowercase: " + toLowerCase(inputString));
     }
 }
