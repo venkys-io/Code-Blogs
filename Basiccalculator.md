@@ -44,13 +44,13 @@ int main() {
 char operation;
 double num1, num2, result;
 
-cout << "Enter operator (+, -, *, /): ";
+// Enter operator (+, -, *, /): "
 cin >> operation;
 
-cout << "Enter first number: ";
+// Enter first number
 cin >> num1;
 
-cout << "Enter second number: ";
+// Enter second number: 
 cin >> num2;
 
 switch (operation) {
@@ -71,7 +71,7 @@ switch (operation) {
         return 1;  // Exit program with an error code
 }
 
-cout << "Result: " << result << endl;
+cout << result << endl;
 
 return 0;
 
@@ -130,9 +130,12 @@ def divide(x, y):
 # Main program loop
 while True:
     # User input
-    num1 = float(input("Enter first number: "))
-    operator = input("Enter operator (+, -, *, /): ")
-    num2 = float(input("Enter second number: "))
+    # Enter first number
+    num1 = float(input())
+    # Enter operator (+, -, *, /)
+    operator = input()
+    # Enter second number
+    num2 = float(input()
 
     # Perform calculation based on the operator
     if operator == '+':
@@ -147,7 +150,7 @@ while True:
         result = "Invalid operator"
 
     # Display the result
-    print(f"Result: {result}")
+    print(result)
 
     # Ask if the user wants to perform another calculation
     another_calculation = input("Do you want to perform another calculation? (yes/no): ").lower()
@@ -289,15 +292,15 @@ public class BasicCalculator {
         Scanner scanner = new Scanner(System.in);
 
         // Step 1: Prompt the user for the operator
-        System.out.print("Enter operator (+, -, *, /): ");
+        // System.out.print("Enter operator (+, -, *, /): ");
         char operator = scanner.next().charAt(0);
 
         // Step 2: Prompt the user for the first number
-        System.out.print("Enter first number: ");
+        // System.out.print("Enter first number: ");
         double num1 = scanner.nextDouble();
 
         // Step 3: Prompt the user for the second number
-        System.out.print("Enter second number: ");
+        // System.out.print("Enter second number: ");
         double num2 = scanner.nextDouble();
 
         double result;
@@ -323,7 +326,7 @@ public class BasicCalculator {
         }
 
         // Step 6: Display the result
-        System.out.println("Result: " + result);
+        System.out.println(result);
 
         // Step 7: Close the scanner
         scanner.close();
@@ -395,3 +398,37 @@ This Java program provides a basic structure for a console-based calculator, all
 - The space complexity is still low and considered O(1) for the basic calculator program.
 
 In summary, the time complexity is primarily determined by the arithmetic operations, all of which have constant time complexity. The space complexity is minimal, with O(1) being a reasonable approximation for the basic calculator programs in C++, Python, and Java.
+
+## Test Cases
+- Input:
+  10
+  -
+  4
+  Output:
+  6
+
+  Explanation:
+  The user inputs the numbers 10 and 4, and the operator -.
+  The program should subtract the second number from the first (10 - 4) and output 6.
+
+- Input:
+  7
+  *
+  2
+  Output:
+  14
+
+  Explanation:
+  The user inputs the numbers 7 and 2, and the operator *.
+  The program should multiply the two numbers (7 * 2) and output 14.
+
+- Input:
+  12
+  /
+  3
+  Output:
+  4.0
+
+  Explanation:
+  The user inputs the numbers 12 and 3, and the operator /.
+  The program should divide the first number by the second (12 / 3) and output 4.0.
