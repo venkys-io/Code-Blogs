@@ -54,8 +54,8 @@ def fraction_to_recurring_decimal(numerator, denominator):
     return ''.join(result)
 
 if __name__ == "__main__":
-    numerator = int(input("Enter the numerator: "))
-    denominator = int(input("Enter the denominator: "))
+    numerator = int(input())
+    denominator = int(input())
 
     result = fraction_to_recurring_decimal(numerator, denominator)
 
@@ -114,15 +114,13 @@ std::string fractionToDecimal(int numerator, int denominator) {
 int main() {
     int numerator, denominator;
 
-    std::cout << "Enter the numerator: ";
     std::cin >> numerator;
 
-    std::cout << "Enter the denominator: ";
     std::cin >> denominator;
 
     std::string result = fractionToDecimal(numerator, denominator);
 
-    std::cout << "The recurring decimal representation is: " << result << std::endl;
+    std::cout << result << std::endl;
 
     return 0;
 }
@@ -170,6 +168,36 @@ public class FractionToDecimal {
                 result.append(")");
                 break;
             }
+            seenRemainders.put(remainder, result.length());
+            remainder *= 10;
+            result.append(remainder / den);
+            remainder %= den;
+        }
+
+        return result.toString();
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user to enter the numerator
+        //   System.out.print("Enter the numerator: ");
+        int numerator = scanner.nextInt();
+
+        // Prompt the user to enter the denominator
+        // System.out.print("Enter the denominator: ");
+        int denominator = scanner.nextInt();
+
+        // Calculate the fraction to decimal representation
+        String result = fractionToDecimal(numerator, denominator);
+
+        // Display the result
+        System.out.println(result);
+
+        scanner.close();
+    }
+}
+
 
            
 ## Time complexity :
@@ -181,36 +209,28 @@ The time complexity of converting a fraction to a recurring decimal is O(log n) 
 The space complexity of converting a fraction to recurring decimal is O(1). This is because the conversion involves either storing a fixed size integer representation of the fraction or using a floating point representation that requires a fixed amount of memory, regardless of the size of the input fraction. If you meant to ask about the space complexity of storing recurring decimal to fraction conversion formulas, it would be O(klogk) where k is the precision of the recurring decimal.
 
 
-TEST CASE--1:
+## Test Cases
 
-INPUT :
+- Input:
+  2
+  3
+  Output: 0.(6)
 
-Numerator: 2
-Denominator: 3
+  Explanation:
+  The fraction 2/3 is a recurring decimal with "6" repeating infinitely. Hence, the result is "0.(6)".
 
-OUTPUT :
+- Input:
+  4
+  5
+  Output: 0.8
 
-"0.(6)"
+  Explanation:
+  The fraction 4/5 results in a non-recurring decimal, "0.8".
 
-TEST CASE--2
+- Input:
+  1
+  2
+  Output: 0.5
 
-INPUT : 
-
-Numerator: 4
-Denominator: 5
-
-OUTPUT :
-
-"0.8"
-
-TEST CASE-3 :
-
-INPUT :
-
-Numerator: 1
-Denominator: 2
-
-OUTPUT :
-
-"0.5"
-
+  Explanation:
+  The fraction 1/2 results in a non-recurring decimal, "0.5".
