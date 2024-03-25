@@ -50,7 +50,7 @@ def partition(string):
     return dp[-1]
 
 if __name__=="__main__":
-    string="ababa"
+    string = input()
     print(partition(string))
 ```
 # Code Explanation
@@ -135,9 +135,8 @@ std::vector<std::vector<std::string>> partition (std::string s){
     return res;
 }
 int main(){
-    // initial string to be partitioned
-    std::string s = "aaab";
-    // function call to get all partitions
+    std::string string;
+    std::getline(std::cin, string);
     std::vector<std::vector<std::string>> ans=partition(s);
     // loop to print all partitions
     for(auto& a:ans){
@@ -200,6 +199,7 @@ For more information, visit https://venkys.io */
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 class PalindromePartitioning {
     // Function to check if a substring is a palindrome
@@ -237,7 +237,8 @@ class PalindromePartitioning {
     }
 
     public static void main(String[] args) {
-        String s="aab";
+        Scanner scanner = new Scanner(System.in);
+        String s = scanner.nextLine();
         System.out.println(partition(s));
     }
 
@@ -325,3 +326,14 @@ Palindrome partitioning, while primarily a concept used in algorithmic problem-s
 
 10. **Game Design:**
     - Some game algorithms may involve palindrome partitioning or similar techniques, especially in puzzle-solving or pattern recognition games.
+   
+## Test Cases
+
+- Input: "aab"
+  Output: ["a", "a", "b"], ["aa", "b"]
+
+- Input: "racecar"
+  Output: ["r", "a", "c", "e", "c", "a", "r"], ["r", "aceca", "r"], ["racecar"]
+
+
+
