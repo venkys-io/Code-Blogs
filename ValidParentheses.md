@@ -34,27 +34,51 @@ def isValidParanthesis(string:str)->bool:
                 return False
     return len(stack)==0
         
-input= "()[]{}"
+input= input()
 print(isValidParanthesis(input))
 ```
 ## Code in java
 ```
 // Copyrights to venkys.io
 // For more information, visit https://venkys.io
-public boolean isValid(String s) {
-	Stack<Character> stack = new Stack<Character>();
-	for (char c : s.toCharArray()) {
-		if (c == '(')
-			stack.push(')');
-		else if (c == '{')
-			stack.push('}');
-		else if (c == '[')
-			stack.push(']');
-		else if (stack.isEmpty() || stack.pop() != c)
-			return false;
-	}
-	return stack.isEmpty();
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Read the string input from the user
+        String inputString = scanner.nextLine();
+
+        // Check if the input string is valid using the isValid function
+        boolean isValid = isValid(inputString);
+
+        // Display the result
+        if (isValid)
+            System.out.println("True");
+        else
+            System.out.println("False");
+
+        scanner.close();
+    }
+
+    public static boolean isValid(String s) {
+        Stack<Character> stack = new Stack<Character>();
+        for (char c : s.toCharArray()) {
+            if (c == '(')
+                stack.push(')');
+            else if (c == '{')
+                stack.push('}');
+            else if (c == '[')
+                stack.push(']');
+            else if (stack.isEmpty() || stack.pop() != c)
+                return false;
+        }
+        return stack.isEmpty();
+    }
 }
+
 ```
 ## Code in cpp
 ```
@@ -105,9 +129,11 @@ bool VSD_Valid_Parentheses(string str){
 }
 int main() {
 	
-    string str="()[]{}";
-    if(VSD_Valid_Parentheses(str)) cout<<"It is valid Parantheses";
-    else cout<<"It is not valid Parantheses";
+    // Read the string input from the user
+    std::string str;
+    std::getline(std::cin, str);
+    if(VSD_Valid_Parentheses(str)) cout<<"True";
+    else cout<<"False";
 	return 0;
 	
 }
@@ -168,3 +194,26 @@ In web development and XML processing, nested structures are common. Validating 
 - Mathematical Expressions Evaluation:
 
 In applications involving mathematical expressions, parentheses are used to indicate the order of operations. Validating the correctness of parentheses ensures that the expression is evaluated correctly.
+
+## Test Cases
+
+- Input: "()[]{}"
+  Output: True
+
+  Explanation:
+  The input string contains valid pairs of parentheses, square brackets, and curly braces.
+  Therefore, the output should be True.
+
+- Input: "([)]"
+  Output: False
+
+  Explanation:
+  The input string contains an invalid pair of parentheses and square brackets.
+  Therefore, the output should be False.
+
+- Input: "{[]}"
+  Output: True
+
+  Explanation:
+  The input string contains valid pairs of parentheses, square brackets, and curly braces.
+  Therefore, the output should be True.
