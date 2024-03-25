@@ -48,10 +48,10 @@ def isAnagram(string1, string2):
     
     return True  # Strings are anagrams
 
-# Test the function with two strings
-s = "anagram"
-t = "nagaram"
-print(isAnagram(s, t))  # Output: True (as "anagram" and "nagaram" are anagrams)
+# take input string from the user
+s= input()
+t= input()
+print(isAnagram(s, t))  
 ```
 #### Java
 ```java
@@ -60,6 +60,7 @@ print(isAnagram(s, t))  # Output: True (as "anagram" and "nagaram" are anagrams)
 //Java program for validAnagram
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class AnagramChecker {
 
@@ -98,11 +99,14 @@ public class AnagramChecker {
     }
 
     public static void main(String[] args) {
-        // Test the function with two strings
-        String s = "anagram";
-        String t = "nagaram";
-        System.out.println(isAnagram(s, t)); // Output: true (as "anagram" and "nagaram" are anagrams)
-    }
+        Scanner scanner = new Scanner(System.in);
+        // Read the string input from the user
+        String s = scanner.nextLine();
+        String t = scanner.nextLine();
+
+        // Close the scanner to prevent resource leaks
+        scanner.close();
+        System.out.println(isAnagram(s, t));
 }
 
 ```
@@ -151,9 +155,11 @@ bool isAnagram(const std::string& string1, const std::string& string2) {
 
 int main() {
     // Test the function with two strings
-    string s = "anagram";
-    string t = "nagaram";
-    cout << std::boolalpha << isAnagram(s, t) << std::endl; // Output: true (as "anagram" and "nagaram" are anagrams)
+    std::string s;
+    std::getline(std::cin, s);
+    std::string t;
+    std::getline(std::cin, t);
+    cout << std::boolalpha << isAnagram(s, t) << std::endl; 
 
     return 0;
 }
@@ -193,6 +199,25 @@ Understanding the Valid Anagram problem and its algorithmic solution has implica
 6. **Biomedical Research:** Comparing genetic sequences for mutation analysis.
 
 This function, though seemingly simple, is a powerful tool in the broader landscape of problem-solving and algorithmic thinking. By exploring and understanding such code, programmers enhance their skills and gain valuable insights applicable across diverse domains.
+
+## Test Cases
+- Input:
+  "hello"
+  "world"
+  Output: False
+
+  Explanation:
+  The lengths of s and t are different (5 and 5 respectively), so they cannot be anagrams.
+  Therefore, the output is False.
+
+- Input:
+  "listen"
+  "silent"
+  Output: True
+
+  Explanation:
+  Both s and t contain the same characters with the same frequencies.
+  Therefore, they are anagrams of each other.
 
 # Copyrights to venkys.io
 
