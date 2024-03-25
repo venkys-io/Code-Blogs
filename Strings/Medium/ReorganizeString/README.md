@@ -78,7 +78,7 @@ def reorganizeString(string):
 # Test the function
 if __name__ == "__main__":
     #  Example string: aab
-    string = input("Enter a String: ").strip()
+    string = input().strip()
     if string:
         print(reorganizeString(string))  # Print the result of the function
 
@@ -176,7 +176,7 @@ public class Main {
     public static void main(String[] args) {
         // Scanner class is used for taking input
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter a String: ");
+        // System.out.println("Enter a String: ");
         // Example string aab
         // Taking Input 
         String s = sc.next();
@@ -287,10 +287,10 @@ std::string reorganizeString(std::string s) {
 int main() {
     // Declare a string variable to store user input
     std::string s;
-    std::cout << "Enter a string: ";
+    // std::cout << "Enter a string: ";
     // Read the input string from the user
     std::cin >> s;
-    std::cout << "Reorganized string: " << reorganizeString(s) << std::endl;  // Print the result of the function
+    std::cout << reorganizeString(s) << std::endl;  // Print the result of the function
     return 0;
 }
 ```
@@ -336,6 +336,26 @@ int main() {
 4. **Error Correction in Communications:** In communication systems, where data is transmitted over a network, rearranging characters in a string can be a part of error correction strategies, ensuring that the transmitted data is less susceptible to certain types of errors.
 
 5. **Cryptography:** In certain cryptographic algorithms, manipulating the order of characters in a string can be a step in creating encoded messages or achieving specific cryptographic properties.
+
+## Test Cases
+- Input: "aab"
+  Output: "aba"
+
+  Explanation
+  The code rearranges the characters in the input string to ensure no adjacent characters are the same.
+  It first checks if rearrangement is possible by comparing character frequencies.
+  If rearrangement is possible, it sorts characters based on frequency and rearranges them in the final string to meet the condition.
+  Finally, it returns the rearranged string.
+  For any input string, the code ensures that no two adjacent characters are the same.
+
+- Input: "aabbcc"
+  Output: "abcabc"
+
+  Explanation
+  For the input string "aabbcc", the output "abcabc" rearranges the characters to ensure no adjacent characters are the same.
+  The output string "abcabc" achieves this by alternating between the characters 'a', 'b', and 'c'.
+  This rearrangement satisfies the condition that no two adjacent characters are the same, providing a valid rearrangement of the input string.
+  
 
 ## Conclusion
 The reorganize string code efficiently addresses the task of minimizing consecutive repetitions by strategically rearranging characters based on their frequencies. Its versatility finds applications in diverse domains, offering solutions to challenges in bioinformatics, natural language processing, data compression, and more. With a time complexity of O(N log N) and space complexity of O(N), the code strikes a balance between efficiency and resource utilization. Overall, it stands as a valuable tool for character manipulation in software development, contributing to effective data processing and problem-solving.
