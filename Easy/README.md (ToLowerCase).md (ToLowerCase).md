@@ -131,6 +131,20 @@ std::string toLowerCase(const std::string& s) {
     // Return the final lowercase result
     return result;
 }
+int main() {
+    // Read the string input from the user
+    std::string inputString;
+    std::getline(std::cin, inputString);
+
+    // Convert the input string to lowercase by calling the toLowerCase function
+    std::string lowercaseString = toLowerCase(inputString);
+
+    // Display the lowercase string
+    std::cout << lowercaseString << std::endl;
+
+    return 0;
+}
+
 ```
 
 # Explanation:
@@ -154,3 +168,18 @@ The toLowerCase() function is utilized in various real-world scenarios, such as:
     - Comparisons: Enabling case-insensitive comparisons in search operations or string matching algorithms.
 # Summary:
 The toLowerCase() function, available across multiple programming languages, is a fundamental tool for standardizing and manipulating text data. Its role spans from ensuring uniformity in text to aiding in comparisons and analysis, making it a crucial component in various software development tasks.
+
+## Test Cases
+- Input: "Hello World"
+  Output: "hello world"
+
+  Explanation:
+  The function converts all uppercase characters to lowercase while leaving lowercase characters unchanged.
+  Therefore, the expected output is "hello world", with all uppercase characters converted to lowercase.
+
+- Input: "GooD mOrNiNg"
+  Output: "good morning"
+
+  Explanation:
+  Similar to Test Case 1, the function converts all uppercase characters to lowercase while leaving lowercase characters unchanged.
+  After conversion, the expected output is "good morning", with all uppercase characters converted to lowercase.
