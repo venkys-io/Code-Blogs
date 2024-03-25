@@ -206,3 +206,29 @@ This analysis holds for all three implementations (Python, Java, and CPP) of the
    - Natural language processing tasks may require splitting text into sentences, paragraphs, or words while ensuring balanced punctuation, such as quotation marks or parentheses.
 
 These real-world applications demonstrate the importance of balancing elements in sequences across various domains, ensuring the integrity, correctness, and security of processed data and code.
+
+## Test cases:
+
+- Input: "RLRRLLRLRL"
+  Output: 4
+
+  Explanation:
+
+  Let's take the input string "RLRRLLRLRL".
+  As we iterate through each character:
+  - When encountering "R", check increments by 1.
+  - When encountering "L", check decrements by 1.
+  At each step, we check if check is zero. If it is, it means we have encountered equal numbers of "R" and "L" characters so far, indicating a balanced segment.
+  In the input string, there are four instances where check becomes zero: after "RL", "RRLL", "RL", and "RL".
+  Hence, the output is 4, indicating that there are four balanced segments in the input string.
+
+- Input : "RRRLLLRLRLRL"
+  Output: 5
+
+  Explanation:
+  As we iterate through each character:
+  - When encountering "R", check increments by 1.
+  - When encountering "L", check decrements by 1.
+  At each step, we check if check is zero. If it is, it means we have encountered equal numbers of "R" and "L" characters so far, indicating a balanced segment.
+  In the input string, there are five instances where check becomes zero: after "RRRLLL", "RL", "RL", "RL", and "RL".
+  Hence, the output is 5, indicating that there are five balanced segments in the input string.
