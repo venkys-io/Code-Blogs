@@ -22,3 +22,17 @@ std::string toLowerCase(const std::string& s) {
     // Return the final lowercase result
     return result;
 }
+
+int main() {
+    // Read the string input from the user
+    std::string inputString;
+    std::getline(std::cin, inputString);
+
+    // Convert the input string to lowercase by calling the toLowerCase function
+    std::string lowercaseString = toLowerCase(inputString);
+
+    // Display the lowercase string
+    std::cout << lowercaseString << std::endl;
+
+    return 0;
+}
