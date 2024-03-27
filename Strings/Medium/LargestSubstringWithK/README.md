@@ -181,18 +181,12 @@ def longestSubstring(string, k):
                 ans = max(ans, right - left + 1)
 
     return ans
-
-def main():
-    # Take input from the user
-    input_str = input()
-    k_value = int(input())
-    
-    # Call the function and print the result
-    result = longestSubstring(input_str, k_value)
-    print(result)
-
-if __name__ == "__main__":
-    main()
+# Take input from the user
+input_str = input()
+k_value = int(input())
+# Call the function and print the result
+result = longestSubstring(input_str, k_value)
+print(result)
 
 
 ```
@@ -367,3 +361,27 @@ Therefore, the overall time complexity is O(n^2), and the space complexity is O(
 
 6. **Data Compression:**
    - The algorithm can be used in data compression techniques to identify repetitive patterns in a dataset. By finding the longest substring with a limited set of distinct elements, compression algorithms can represent data more efficiently.
+
+## Test Case
+
+* Test case-I
+  **input:**
+  aabbbccc
+  3
+  **output:**
+  6
+  **Explanation:**
+  The input string "aabbbccc" with the value of k as 3:
+  * The longest substring where each character appears at least three times is "bbbccc", with a length of 6.
+  * Every character in the substring "bbbccc" appears at least three times in the input string.
+
+* Test case-II
+  **input:**
+  abcefgh
+  2
+  **output**
+  0
+  **Explanation:**
+  For the input string "abcefgh" and the value of k as 2:
+  * None of the characters in the input string "abcefgh" appear at least twice.
+  * Hence, there is no substring where each character appears at least twice.
