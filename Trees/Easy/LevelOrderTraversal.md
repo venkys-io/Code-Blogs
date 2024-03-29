@@ -54,17 +54,17 @@ def VSDlevelorder(root):
 # Driver program to test above function
 if __name__ == "__main__":
     # Taking input for the binary tree nodes from stdin
-    root_data = int(input("Enter the value for the root node: "))
+    root_data = int(input())
     root = Node(root_data)
 
-    root.left = Node(int(input("Enter the value for the left child of the root: ")))
-    root.right = Node(int(input("Enter the value for the right child of the root: ")))
+    root.left = Node(int(input()))
+    root.right = Node(int(input()))
 
-    root.left.left = Node(int(input("Enter the value for the left child of the left child: ")))
-    root.left.right = Node(int(input("Enter the value for the right child of the left child: ")))
+    root.left.left = Node(int(input()))
+    root.left.right = Node(int(input()))
 
-    root.right.left = Node(int(input("Enter the value for the left child of the right child: ")))
-    root.right.right = Node(int(input("Enter the value for the right child of the right child: ")))
+    root.right.left = Node(int(input()))
+    root.right.right = Node(int(input()))
 
     # Calling the function for level order traversal
     VSDlevelorder(root)
@@ -180,11 +180,11 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter the value for the root node:");
+        // System.out.println("Enter the value for the root node:");
         int rootValue = scanner.nextInt();
         Node root = new Node(rootValue);
 
-        System.out.println("Enter values for left and right children of the root node (0 if no child):");
+        // System.out.println("Enter values for left and right children of the root node (0 if no child):");
         root.left = new Node(scanner.nextInt());
         root.right = new Node(scanner.nextInt());
 
@@ -195,7 +195,7 @@ public class Main {
         root.right.right = new Node(scanner.nextInt());
 
         // Calling the levelOrder function to perform level order traversal
-        System.out.println("Level Order Traversal:");
+        // System.out.println("Level Order Traversal:");
         levelOrder(root);
     }
 }
@@ -308,38 +308,38 @@ void levelOrder(Node *root) {
 // Main function to test the levelOrder function
 int main() {
     int rootData;
-    std::cout << "Enter the value for the root node: ";
+    // std::cout << "Enter the value for the root node: ";
     std::cin >> rootData;
 
     Node *root = new Node(rootData);
 
     // Taking input for the binary tree nodes from stdin
-    std::cout << "Enter the value for the left child of the root: ";
+    // std::cout << "Enter the value for the left child of the root: ";
     int leftData;
     std::cin >> leftData;
     root->left = new Node(leftData);
 
-    std::cout << "Enter the value for the right child of the root: ";
+    // std::cout << "Enter the value for the right child of the root: ";
     int rightData;
     std::cin >> rightData;
     root->right = new Node(rightData);
 
-    std::cout << "Enter the value for the left child of the left child: ";
+    // std::cout << "Enter the value for the left child of the left child: ";
     int leftLeftData;
     std::cin >> leftLeftData;
     root->left->left = new Node(leftLeftData);
 
-    std::cout << "Enter the value for the right child of the left child: ";
+    // std::cout << "Enter the value for the right child of the left child: ";
     int leftRightData;
     std::cin >> leftRightData;
     root->left->right = new Node(leftRightData);
 
-    std::cout << "Enter the value for the left child of the right child: ";
+    // std::cout << "Enter the value for the left child of the right child: ";
     int rightLeftData;
     std::cin >> rightLeftData;
     root->right->left = new Node(rightLeftData);
 
-    std::cout << "Enter the value for the right child of the right child: ";
+    // std::cout << "Enter the value for the right child of the right child: ";
     int rightRightData;
     std::cin >> rightRightData;
     root->right->right = new Node(rightRightData);
