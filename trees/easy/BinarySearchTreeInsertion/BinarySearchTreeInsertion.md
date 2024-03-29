@@ -60,7 +60,7 @@ def inorder(root):
 
 
 if __name__=="__main__":
-    arr=[50,20,30,70,40,10]
+    arr = list(map(int, arr_input.split()))
     root=None 
     for i in arr:
         root=insertBST(root,i)
@@ -70,6 +70,7 @@ if __name__=="__main__":
 ```
 // Copyrights to venkys.io
 // For more information, visit https://venkys.io
+import java.util.Scanner;
    class Node{
     int data;
     Node left,right;
@@ -97,12 +98,27 @@ public class Main{
     
 
     public static void main(String[] args) {
-        int[] arr={50,20,30,70,40,10};
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        
+        // Split the input string into an array of strings
+        String[] numbers = input.split(" ");
+        
+        // Create an array to store the parsed integers
+        int[] arr = new int[numbers.length];
+        
+        // Parse each string into an integer and store it in the array
+        for (int i = 0; i < numbers.length; i++) {
+            arr[i] = Integer.parseInt(numbers[i]);
+        }
+        
         Node root=null;
         for(int i:arr){
             root=insertBST(root,i);
         }
         inorder(root);
+        // Close the scanner
+        scanner.close();
     }
 }
 
@@ -113,6 +129,7 @@ public class Main{
 /* Copyrights to venkys.io  */
 /* For more information, visit https://venkys.io */
 #include<bits/stdc++.h>
+#include <iostream>
 
 class Node{
     public:
@@ -143,7 +160,15 @@ void inorder(Node* root){
 }
 
 int main(){
-    int arr[]={50,20,30,70,40,10};
+    const int SIZE = 6; // Assuming array size is fixed
+    
+    int arr[SIZE];
+    
+    // Input loop to populate the array
+    for (int i = 0; i < SIZE; ++i) {
+        std::cin >> arr[i];
+    }
+    
     Node* root=NULL;
     for(int i=0;i<sizeof(arr)/sizeof(arr[0]);i++){
         root=insertBST(root,arr[i]);
@@ -190,3 +215,60 @@ Prints the data of each node in ascending order.
 - Worst Case (Unbalanced Tree): O(n)
 
 - Average Case (Balanced Tree): O(log n)
+
+### Real World Applications
+
+- Database Indexing:
+
+  In a database system, indexes are often implemented using BSTs. Each node in the BST corresponds to a record in the database, and the BST is constructed based on a particular field (e.g., primary key, indexed column).
+  For example, in a database of student records, if the records are indexed based on student ID, a BST can efficiently store and retrieve records based on their IDs.
+
+- File System Structure:
+
+  File systems often use BSTs for directory structures. Each node represents a directory, and the left child represents a subdirectory with a lower name, while the right child represents a subdirectory with a higher name.
+  For instance, in a file system, a directory structure can be represented using a BST, where each directory can have subdirectories arranged in alphabetical order.
+
+- Organizational Hierarchy:
+  BSTs can represent organizational hierarchies efficiently. Each node can represent an employee, and the left child can represent a subordinate with a lower rank, while the right child represents a subordinate with a higher rank.
+  For instance, in a company's organizational chart, employees can be organized in a BST based on their hierarchical positions, with managers at higher levels and their subordinates at lower levels.
+
+- Dictionary or Phonebook:
+  A dictionary or a phonebook can be implemented using a BST, where each node represents a word or a name, and the left child represents a word/name with a lower alphabetical order, while the right child represents a word/name with a higher alphabetical order.
+  When searching for a word or a name, the BST allows for efficient retrieval based on alphabetical order.
+
+- Symbol Tables in Compilers:
+  BSTs are commonly used to implement symbol tables in compilers. Each node represents a variable or a function, and the left child represents a symbol with a lower identifier, while the right child represents a symbol with a higher identifier.
+  Symbol tables are essential for compilers to manage identifiers, such as variables and functions, during the compilation process.
+
+### Test Cases:
+
+- Input: arr_input = "50 20 30 70 40 10"
+  Output: 10 20 30 40 50 70
+
+  Explanation:
+  The input represents the integers to be inserted into the BST: 50, 20, 30, 70, 40, and 10.
+  After insertion, the BST structure becomes:
+  
+     50
+    /  \
+  20   70
+  / \   
+10  30
+    \
+    40
+  Inorder traversal of the BST gives the sorted sequence of nodes' data: 10, 20, 30, 40, 50, 70. So, the expected output is 10 20 30 40 50 70.
+
+- Input: arr_input = "40 20 60 10 30 50 70"
+  Output: 10 20 30 40 50 60 70
+
+  Explanation:
+  The input represents the integers to be inserted into the BST: 40, 20, 60, 10, 30, 50, and 70.
+  After insertion, the BST structure becomes:
+  
+      40
+     /  \
+   20    60
+  / \    / \
+10  30  50  70
+  Inorder traversal of the BST gives the sorted sequence of nodes' data: 10, 20, 30, 40, 50, 60, 70. So, the expected output is 10 20 30 40 50 60 70.
+
