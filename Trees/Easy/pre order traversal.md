@@ -51,17 +51,17 @@ def VSDpreorder(root):
 
 if __name__ == "__main__":
     # Create a binary tree based on user input
-    root_data = int(input("Enter the value for the root node: "))
+    root_data = int(input())
     root = Node(root_data)
 
-    root.left = Node(int(input("Enter the value for the left child of the root: ")))
-    root.right = Node(int(input("Enter the value for the right child of the root: ")))
+    root.left = Node(int(input()))
+    root.right = Node(int(input()))
 
-    root.left.left = Node(int(input("Enter the value for the left child of the left child: ")))
-    root.left.right = Node(int(input("Enter the value for the right child of the left child: ")))
+    root.left.left = Node(int(input()))
+    root.left.right = Node(int(input()))
 
-    root.right.left = Node(int(input("Enter the value for the left child of the right child: ")))
-    root.right.right = Node(int(input("Enter the value for the right child of the right child: ")))
+    root.right.left = Node(int(input()))
+    root.right.right = Node(int(input()))
 
     # Calling the VSDpreorder function to perform Preorder Traversal
     VSDpreorder(root)
@@ -168,31 +168,31 @@ public class Test {
         Scanner scanner = new Scanner(System.in);
 
         // Create a binary tree based on user input
-        System.out.print("Enter the value for the root node: ");
+        // System.out.print("Enter the value for the root node: ");
         int rootData = scanner.nextInt();
         Node root = new Node(rootData);
 
-        System.out.print("Enter the value for the left child of the root: ");
+        // System.out.print("Enter the value for the left child of the root: ");
         int leftData = scanner.nextInt();
         root.left = new Node(leftData);
 
-        System.out.print("Enter the value for the right child of the root: ");
+        // System.out.print("Enter the value for the right child of the root: ");
         int rightData = scanner.nextInt();
         root.right = new Node(rightData);
 
-        System.out.print("Enter the value for the left child of the left child: ");
+        // System.out.print("Enter the value for the left child of the left child: ");
         int leftLeftData = scanner.nextInt();
         root.left.left = new Node(leftLeftData);
 
-        System.out.print("Enter the value for the right child of the left child: ");
+        // System.out.print("Enter the value for the right child of the left child: ");
         int leftRightData = scanner.nextInt();
         root.left.right = new Node(leftRightData);
 
-        System.out.print("Enter the value for the left child of the right child: ");
+        // System.out.print("Enter the value for the left child of the right child: ");
         int rightLeftData = scanner.nextInt();
         root.right.left = new Node(rightLeftData);
 
-        System.out.print("Enter the value for the right child of the right child: ");
+        // System.out.print("Enter the value for the right child of the right child: ");
         int rightRightData = scanner.nextInt();
         root.right.right = new Node(rightRightData);
 
@@ -315,36 +315,36 @@ void preorder(Node *root) {
 int main() {
     // Create a binary tree based on user input
     int rootData;
-    std::cout << "Enter the value for the root node: ";
+    // std::cout << "Enter the value for the root node: ";
     std::cin >> rootData;
     Node *root = new Node(rootData);
 
-    std::cout << "Enter the value for the left child of the root: ";
+    // std::cout << "Enter the value for the left child of the root: ";
     int leftData;
     std::cin >> leftData;
     root->left = new Node(leftData);
 
-    std::cout << "Enter the value for the right child of the root: ";
+    // std::cout << "Enter the value for the right child of the root: ";
     int rightData;
     std::cin >> rightData;
     root->right = new Node(rightData);
 
-    std::cout << "Enter the value for the left child of the left child: ";
+    // std::cout << "Enter the value for the left child of the left child: ";
     int leftLeftData;
     std::cin >> leftLeftData;
     root->left->left = new Node(leftLeftData);
 
-    std::cout << "Enter the value for the right child of the left child: ";
+    // std::cout << "Enter the value for the right child of the left child: ";
     int leftRightData;
     std::cin >> leftRightData;
     root->left->right = new Node(leftRightData);
 
-    std::cout << "Enter the value for the left child of the right child: ";
+    // std::cout << "Enter the value for the left child of the right child: ";
     int rightLeftData;
     std::cin >> rightLeftData;
     root->right->left = new Node(rightLeftData);
 
-    std::cout << "Enter the value for the right child of the right child: ";
+    // std::cout << "Enter the value for the right child of the right child: ";
     int rightRightData;
     std::cin >> rightRightData;
     root->right->right = new Node(rightRightData);
