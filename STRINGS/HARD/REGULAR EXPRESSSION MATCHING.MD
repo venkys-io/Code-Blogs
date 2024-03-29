@@ -64,8 +64,8 @@ def is_match(user_s, user_p):
 
 if __name__ == "__main__":
     # Get input from the user
-    user_s = input("Enter a string: ")
-    user_p = input("Enter a pattern: ")
+    user_s = input()
+    user_p = input()
 
     # Test the function with user input
     result = is_match(user_s, user_p)
@@ -129,11 +129,11 @@ public class RegularExpressionMatching {
         Scanner scanner = new Scanner(System.in);
 
         // Get user input for the string
-        System.out.print("Enter a string: ");
+        // System.out.print("Enter a string: ");
         String userString = scanner.nextLine();
 
         // Get user input for the pattern
-        System.out.print("Enter a pattern: ");
+        // System.out.print("Enter a pattern: ");
         String userPattern = scanner.nextLine();
 
         // Test the function with user input
@@ -210,9 +210,9 @@ bool isMatch(const string& s, const string& p) {
 int main() {
     // Get input from the user
     string userString, userPattern;
-    cout << "Enter a string: ";
+    // cout << "Enter a string: ";
     getline(cin, userString);
-    cout << "Enter a pattern: ";
+    // cout << "Enter a pattern: ";
     getline(cin, userPattern);
 
     // Test the function with user input
