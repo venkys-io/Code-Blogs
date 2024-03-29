@@ -64,62 +64,118 @@ def VSDpostorder(root):
         print(root.data)
 
 if __name__=="__main__":
-    root=Node(10)
-    root.left=Node(20)
-    root.right=Node(30)
-    root.left.left=Node(40)
-    root.left.right=Node(50)
-    root.right.left=Node(60)
-    root.right.right=Node(70)
+    root_data = int(input())
+    root = Node(root_data)
+
+    left_data = int(input())
+    if left_data != -1:
+        root.left = Node(left_data)
+
+    right_data = int(input())
+    if right_data != -1:
+        root.right = Node(right_data)
+
+    left_left_data = int(input())
+    if left_left_data != -1:
+        root.left.left = Node(left_left_data)
+
+    left_right_data = int(input())
+    if left_right_data != -1:
+        root.left.right = Node(left_right_data)
+
+    right_left_data = int(input())
+    if right_left_data != -1:
+        root.right.left = Node(right_left_data)
+
+    right_right_data = int(input())
+    if right_right_data != -1:
+        root.right.right = Node(right_right_data)
 
     VSDpostorder(root)
 ```
 
 ```cpp
-#include<bits/stdc++.h>
+#include <iostream>
+#include <queue>
 
-class Node{
-    public:
-        int data;
-        Node *left=NULL;
-        Node *right=NULL;
+class Node {
+public:
+    int data;
+    Node* left;
+    Node* right;
 
-        Node(int val){
-            data=val;
-        }
+    Node(int val) : data(val), left(nullptr), right(nullptr) {}
 };
-void postorder(Node* root){
-    if(root!=NULL){
+
+void postorder(Node* root) {
+    if (root != nullptr) {
         postorder(root->left);
         postorder(root->right);
-        std::cout<<root->data<<" ";
+        std::cout << root->data << " ";
     }
 }
 
-int main(){
-    Node* root=new Node(10);
-    root->left=new Node(20);
-    root->right=new Node(30);
-    root->left->left=new Node(40);
-    root->left->right=new Node(50);
-    root->right->left=new Node(60);
-    root->right->right=new Node(70);
+Node* buildBinaryTree() {
+    int root_data;
+    // std::cout << "Enter value for root node: ";
+    std::cin >> root_data;
+    Node* root = new Node(root_data);
+
+    std::queue<Node*> nodes_queue;
+    nodes_queue.push(root);
+
+    while (!nodes_queue.empty()) {
+        Node* current = nodes_queue.front();
+        nodes_queue.pop();
+
+        int left_data, right_data;
+        // std::cout << "Enter value for left child of " << current->data << " (or -1 if none): ";
+        std::cin >> left_data;
+        if (left_data != -1) {
+            current->left = new Node(left_data);
+            nodes_queue.push(current->left);
+        }
+
+        // std::cout << "Enter value for right child of " << current->data << " (or -1 if none): ";
+        std::cin >> right_data;
+        if (right_data != -1) {
+            current->right = new Node(right_data);
+            nodes_queue.push(current->right);
+        }
+    }
+
+    return root;
+}
+
+int main() {
+    Node* root = buildBinaryTree();
+    // std::cout << "Post-order traversal of the binary tree:" << std::endl;
     postorder(root);
+
+    // Free memory
+    // Implement deletion of tree nodes if necessary
+
     return 0;
 }
+
 ```
 
 ```java
+import java.util.Scanner;
+
 class Node {
     int data;
-    Node left=null, right=null;
+    Node left, right;
 
     Node(int data) {
         this.data = data;
+        this.left = null;
+        this.right = null;
     }
 }
 
-public class Main {   
+public class Main {
+    static Scanner scanner = new Scanner(System.in);
 
     static void postorder(Node root) {
         if (root != null) {
@@ -129,19 +185,39 @@ public class Main {
         }
     }
 
-   
+    static Node buildBinaryTree() {
+        // System.out.print("Enter value for root node: ");
+        int rootData = scanner.nextInt();
+        Node root = new Node(rootData);
+
+        buildChildNodes(root, "root");
+
+        return root;
+    }
+
+    static void buildChildNodes(Node parent, String position) {
+       //  System.out.print("Enter value for " + position + " left child (or -1 if none): ");
+        int leftData = scanner.nextInt();
+        if (leftData != -1) {
+            parent.left = new Node(leftData);
+            buildChildNodes(parent.left, "left child of " + parent.data);
+        }
+
+        // System.out.print("Enter value for " + position + " right child (or -1 if none): ");
+        int rightData = scanner.nextInt();
+        if (rightData != -1) {
+            parent.right = new Node(rightData);
+            buildChildNodes(parent.right, "right child of " + parent.data);
+        }
+    }
 
     public static void main(String[] args) {
-        Node root=new Node(10);
-        root.left=new Node(20);
-        root.right=new Node(30);
-        root.left.left=new Node(40);
-        root.left.right=new Node(50);
-        root.right.left=new Node(60);
-        root.right.right=new Node(70);
+        Node root = buildBinaryTree();
+        // System.out.println("Post-order traversal of the binary tree:");
         postorder(root);
     }
 }
+
 ```
 
 ## step by step explanation:
@@ -189,3 +265,67 @@ Post order traversal of binary trees has several real-world applications in vari
     - Post order traversal can be applied in file systems to perform operations such as deleting a directory and its contents. This ensures that the contents of a directory are deleted before the directory itself.
 5. **Decision Tree Processing:**
     - In machine learning, particularly with decision trees, post order traversal can be employed to interpret and analyze the structure of the tree. This is useful for understanding the decision-making process.
+
+## Test Cases:
+
+- Input:
+  let's input values to construct a binary tree:
+  10
+  20
+  30
+  -1
+  -1
+  -1
+  -1
+  -1
+  Output:
+  The output will be the post-order traversal of the constructed binary tree.
+
+  For the provided input, the output would be:
+  20
+  30
+  10
+
+  Explanation:
+  The input constructs a binary tree where the root node has a value of 10, and it has no children.
+  The post-order traversal starts from the root:
+  Since the left and right children of the root are None, it directly prints the value of the root node, which is 10.
+  Therefore, the post-order traversal output is 20 30 10, which represents the data of the nodes visited in post-order traversal.
+
+- Input:
+  let's input values to construct a binary tree:
+  1
+  2
+  3
+  4
+  5
+  -1
+  -1
+  6
+  7
+  -1
+  -1
+  -1
+
+  Output:
+  The output will be the post-order traversal of the constructed binary tree.
+  For the provided input, the output would be:
+  4
+  5
+  2
+  6
+  7
+  3
+  1
+
+  Explanation:
+  The input constructs a binary tree where the root node has a value of 1.
+  The left child of the root has a value of 2, and the right child has a value of 3.
+  The left child of node 2 has a value of 4, and the right child has a value of 5.
+  The left child of node 3 has no child (-1), and the right child has a value of 6.
+  The right child of node 6 has a value of 7.
+  The post-order traversal visits the nodes in the following order:
+  Traverse left subtree of root 1: 4, 5, 2
+  Traverse right subtree of root 1: 6, 7, 3
+  Finally, print root node 1
+  Therefore, the post-order traversal output is 4 5 2 6 7 3 1, which represents the data of the nodes visited in post-order traversal.
