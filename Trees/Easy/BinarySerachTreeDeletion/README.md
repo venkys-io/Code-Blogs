@@ -150,19 +150,19 @@ if __name__ == "__main__":
     root = None  # Initialize an empty BST
 
     # Taking input
-    n=int(input("Enter number of elements: "))
-    arr=[int(x) for x in input("Enter elements: ").split()][:n]
-    key=int(input("Enter key to delete in BST: "))
+    n=int(input())
+    arr=[int(x) for x in input().split()][:n]
+    key=int(input())
 
     for i in arr:
         root = insertBST(root, i)  # Insert elements into the BST
 
-    print("In-order traversal of the BST:")
+    # print("In-order traversal of the BST:")
     inorder(root)  # Print the in-order traversal of the BST
     print()
 
     root = deleteBST(root, key)  # Delete node with value 
-    print("In-order traversal after deleting node:")
+    # print("In-order traversal after deleting node:")
     inorder(root)  # Print the in-order traversal after deletion
 ```
 ### Step-by-Step Explanation of Python Code
@@ -291,12 +291,12 @@ public class Main {
         // Scanner class is used for taking input
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter the number of elements: ");
+        // System.out.print("Enter the number of elements: ");
         int n = sc.nextInt();
 
         //Array to store n elements
         int[] arr = new int[n];
-        System.out.println("Enter the elements:");
+        // System.out.println("Enter the elements:");
         for (int i = 0; i < n; i++) {
             arr[i] = sc.nextInt(); // Insert elements into array
         }
@@ -309,17 +309,17 @@ public class Main {
         }
 
         // Print the in-order traversal of the BST
-        System.out.println("In-order traversal of the BST:");
+        // System.out.println("In-order traversal of the BST:");
         inorder(root); 
         System.out.println();
 
         // Delete an element in the BST
-        System.out.print("Enter the key to delete: ");
+        // System.out.print("Enter the key to delete: ");
         int key = sc.nextInt();
         root = deleteBST(root, key); // Delete the node with value
         
         // Print the in-order traversal after deletion
-        System.out.println("In-order traversal after deleting node:");
+        // System.out.println("In-order traversal after deleting node:");
         inorder(root); 
     }
 }
@@ -444,11 +444,11 @@ void inorder(Node* root) {
 // Main function
 int main() {
     int n;
-    std::cout << "Enter the number of elements: ";
+    // std::cout << "Enter the number of elements: ";
     std::cin >> n;
 
     int arr[n]; //Array to store n elements
-    std::cout << "Enter the elements: ";
+    // std::cout << "Enter the elements: ";
     for (int i = 0; i < n; i++) {
         std::cin >> arr[i]; // Insert elements into array
     }
@@ -461,20 +461,20 @@ int main() {
     }
 
     // Print the in-order traversal
-    std::cout << "In-order traversal of the BST: ";
+    // std::cout << "In-order traversal of the BST: ";
     inorder(root);
     std::cout << std::endl;
 
     // Taking input to delete for an element in the BST
     int key;
-    std::cout << "Enter the key to delete: ";
+    // std::cout << "Enter the key to delete: ";
     std::cin >> key;
 
     // Delete the node with value 
     root = deleteBST(root, key);
 
     // Print the in-order traversal after deletion
-    std::cout << "In-order traversal after deleting node:" << std::endl;
+    // std::cout << "In-order traversal after deleting node:" << std::endl;
     inorder(root);
 
     return 0; 
@@ -546,6 +546,57 @@ int main() {
 3. **Contact and Customer Management Systems:** Removing contacts or customers from a management system.
 4. **Network Routing Tables:** Removing entries from routing tables in networking devices.
 5. **Dynamic Memory Management in Programming:** Deallocating memory in dynamic data structures.
+
+## Test Cases:
+
+- Input:
+  Number of elements in the array (n):
+  For example, 7
+
+  Array elements:
+  For example, 50 30 70 20 40 60 80
+
+  Key to delete from the BST:
+  For example, 30
+
+  Output:
+  In-order traversal of the BST after insertion.
+  In-order traversal of the BST after deletion of the specified key.
+
+  Explanation:
+
+  Input Interpretation:
+  - The number of elements in the array n is specified as 7.
+  - The array elements are 50 30 70 20 40 60 80.
+  - The key to delete from the BST is specified as 30.
+  
+  Insertion into BST:
+  - The array elements are inserted into the BST using the insertBST function.
+  - After insertion, the BST structure might look like:
+    
+      50
+     /  \
+   30    70
+  / \   /  \
+20  40 60  80
+
+    In-order Traversal after Insertion:
+    - The inorder function is called to perform an in-order traversal of the BST.
+    - The in-order traversal prints the nodes in non-decreasing order: 20 30 40 50 60 70 80.
+    
+    Deletion of the Key:
+    - The deleteBST function is called to delete the node with the key 30 from the BST.
+    - After deletion, the BST structure might look like:
+      
+      50
+     /  \
+   40    70
+  /     /  \
+20     60  80
+
+      In-order Traversal after Deletion:
+      - The inorder function is called again to perform an in-order traversal of the updated BST.
+      - The in-order traversal prints the nodes in non-decreasing order after deletion: 20 40 50 60 70 80.
 
 ## Conclusion
 Binary search tree deletion is a crucial data structure operation, providing solutions in various applications. Proficiency in efficiently removing nodes from a BST is essential for maintaining order and optimizing processes. Whether in databases, file systems, contact management, network routing, or dynamic memory allocation in programming, the principles of BST deletion are indispensable. Just like BST searching, mastering deletion is key to creating responsive and organized software systems.
