@@ -38,8 +38,8 @@ def convert(string, numRows):
 
 if __name__ == "__main__":
     # Read input from stdin
-    string = input("Enter the string: ")
-    numRows = int(input("Enter the number of rows: "))
+    string = input()
+    numRows = int(input())
     
     # Print the ZigZag conversion result
     print(convert(string, numRows))
@@ -168,10 +168,10 @@ public class Main {
         // Read input from stdin
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter the string: ");
+        // System.out.print("Enter the string: ");
         String s = scanner.nextLine();
 
-        System.out.print("Enter the number of rows: ");
+        // System.out.print("Enter the number of rows: ");
         int numRows = scanner.nextInt();
 
         // Print the ZigZag conversion result
@@ -296,10 +296,10 @@ int main() {
     std::string s;
     int numRows;
 
-    std::cout << "Enter the string: ";
+    // std::cout << "Enter the string: ";
     std::cin >> s;
 
-    std::cout << "Enter the number of rows: ";
+    // std::cout << "Enter the number of rows: ";
     std::cin >> numRows;
 
     // Print the ZigZag conversion result
