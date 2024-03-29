@@ -77,11 +77,11 @@ class KthLargestInBST {
         KthLargestInBST kthLargestInBST = new KthLargestInBST();
 
         // Input the value of k.
-        System.out.print("Enter the value of k: ");
+        // System.out.print("Enter the value of k: ");
         int k = scanner.nextInt();
 
         int result = kthLargestInBST.kthLargest(root, k);
-        System.out.println("The " + k + "th largest element in the BST is: " + result);
+        System.out.println(result);
     }
 
     private static TreeNode buildTree(String[] nodeValues, int index) {
@@ -145,7 +145,7 @@ def build_tree_from_input(nodes, index):
 
 if __name__ == "__main__":
     # Input the values for the tree nodes (e.g., "5 3 7 2 null 6 8")
-    nodes_input = input("Enter the values for the tree nodes: ")
+    nodes_input = input()
     nodes = [int(val) if val != "null" else None for val in nodes_input.split()]
 
     root = build_tree_from_input(nodes, 0)
@@ -159,7 +159,7 @@ if __name__ == "__main__":
         k = int(input("Enter the value of k: "))
 
         result = kth_largest_obj.kth_largest(root, k)
-        print(f"The {k}th largest element in the BST is: {result}")
+        print(result)
 ```
 ### C++ Implementation
 ```cpp
@@ -208,7 +208,7 @@ TreeNode* buildBST(const vector<int>& values, size_t& index);
 
 int main() {
     // Prompt the user to enter values for BST nodes and the value of k
-    cout << "Enter the values for the BST nodes and the value of k (in a space-separated format):" << endl;
+    // cout << "Enter the values for the BST nodes and the value of k (in a space-separated format):" << endl;
 
     // Read input line
     string inputLine;
@@ -248,7 +248,7 @@ int main() {
     int result = kthLargestFinder.kthLargest(root, k);
 
     if (result != -1) {
-        cout << "The " << k << "th largest element is: " << result << endl;
+        cout << result << endl;
     } else {
         cout << "Invalid value of k or the BST is not large enough." << endl;
     }
@@ -346,3 +346,48 @@ finding the Kth largest stock price or asset value is essential for various inve
 
 
 The ability to efficiently find the Kth largest element in a BST is a valuable tool in these and many other fields where data analysis and decision-making rely on ordered data.
+
+## Test Cases
+
+Test Case 1:
+Input:
+5 3 7 2 null 6 8
+3
+Output:
+6
+
+Explanation:
+The provided input constructs a Binary Search Tree (BST) with the following structure:
+
+         5
+        / \
+       3   7
+      /   / \
+     2   6   8
+
+- We're asked to find the 3rd largest element in the BST.
+- In-order traversal of the BST would give us elements in ascending order.
+- So, the 3rd largest element would be the third element from the end of the in-order traversal sequence.
+- In this case, the in-order traversal sequence is [2, 3, 5, 6, 7, 8], and the 3rd largest element is 6.
+- Therefore, the output is 6, indicating the 3rd largest element in the BST.
+
+Test Case 2:
+Input:
+8 5 10 3 7 9 12
+4
+Output:
+9
+
+Explanation:
+The provided input constructs a Binary Search Tree (BST) with the following structure:
+
+         8
+        / \
+       5   10
+      / \  / \
+     3   7 9  12
+- We're asked to find the 4th largest element in the BST.
+- In-order traversal of the BST would give us elements in ascending order.
+- So, the 4th largest element would be the fourth element from the end of the in-order traversal sequence.
+- In this case, the in-order traversal sequence is [3, 5, 7, 8, 9, 10, 12], and the 4th largest element is 9.
+- Therefore, the output is 9, indicating the 4th largest element in the BST.
