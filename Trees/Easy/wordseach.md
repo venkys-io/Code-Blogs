@@ -83,17 +83,17 @@ def display_word_search(grid):
         print(' '.join(row))
 
 def word_search():
-    print("Enter the words to include in the puzzle (separated by spaces):")
+    # print("Enter the words to include in the puzzle (separated by spaces):")
     words = input().split()
 
-    print("Enter the size of the puzzle grid:")
+    # print("Enter the size of the puzzle grid:")
     grid_size = int(input())
 
-    print("\nWord Search Puzzle:")
+    # print("\nWord Search Puzzle:")
     word_search_grid = generate_word_search(words, grid_size)
     display_word_search(word_search_grid)
 
-    print("\nList of Words to Find:")
+    # print("\nList of Words to Find:")
     for word in words:
         print(word)
 
@@ -209,17 +209,17 @@ public class WordSearchGenerator {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter the words to include in the puzzle (separated by spaces): ");
+        // System.out.print("Enter the words to include in the puzzle (separated by spaces): ");
         String[] words = scanner.nextLine().split(" ");
 
-        System.out.print("Enter the size of the puzzle grid: ");
+        // System.out.print("Enter the size of the puzzle grid: ");
         int gridSize = scanner.nextInt();
 
-        System.out.println("\nWord Search Puzzle:");
+        // System.out.println("\nWord Search Puzzle:");
         char[][] wordSearchGrid = generateWordSearch(words, gridSize);
         displayWordSearch(wordSearchGrid);
 
-        System.out.println("\nList of Words to Find:");
+        // System.out.println("\nList of Words to Find:");
         for (String word : words) {
             System.out.println(word);
         }
@@ -345,15 +345,15 @@ int main() {
         words.push_back(word);
     }
 
-    std::cout << "Enter the size of the puzzle grid: ";
+    // std::cout << "Enter the size of the puzzle grid: ";
     int gridSize;
     std::cin >> gridSize;
 
-    std::cout << "\nWord Search Puzzle:\n";
+    // std::cout << "\nWord Search Puzzle:\n";
     auto wordSearchGrid = generateWordSearch(words, gridSize);
     displayWordSearch(wordSearchGrid);
 
-    std::cout << "\nList of Words to Find:\n";
+    // std::cout << "\nList of Words to Find:\n";
     for (const auto& word : words) {
         std::cout << word << '\n';
     }
