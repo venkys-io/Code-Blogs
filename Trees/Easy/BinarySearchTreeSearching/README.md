@@ -88,9 +88,9 @@ def inorder(root):
 if __name__ == "__main__":
     root = None  # Initialize an empty root for the BST
     # Taking input
-    n=int(input("Enter number of elements: "))
-    arr=[int(x) for x in input("Enter elements: ").split()][:n]
-    key=int(input("Enter key to search in BST: "))
+    n=int(input())
+    arr=[int(x) for x in input().split()][:n]
+    key=int(input())
 
     # Insert elements into the BST
     for i in arr:
@@ -199,12 +199,12 @@ public class Main {
         // Scanner class is used for taking input
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter the number of elements: ");
+       //  System.out.print("Enter the number of elements: ");
         int n = sc.nextInt();
 
         //Array to store n elements
         int[] arr = new int[n];
-        System.out.println("Enter the elements:");
+       //  System.out.println("Enter the elements:");
         // Insert elements into array
         for (int i = 0; i < n; i++) {
             arr[i] = sc.nextInt();
@@ -218,7 +218,7 @@ public class Main {
         }
 
         // Search for an element in the BST
-        System.out.print("Enter the key to search: ");
+       //  System.out.print("Enter the key to search: ");
         int key = sc.nextInt();
         if(searchBST(root, key)!=null) System.out.println("Found");
         else System.out.println("Not Found");        
@@ -317,11 +317,11 @@ void inorder(Node* root) {
 
 int main() {
     int n;
-    std::cout << "Enter the number of elements: ";
+   // std::cout << "Enter the number of elements: ";
     std::cin >> n;
 
     int arr[n]; //Array to store n elements
-    std::cout << "Enter the elements: ";
+    // std::cout << "Enter the elements: ";
     for (int i = 0; i < n; i++) {
         std::cin >> arr[i]; // Insert elements into array
     }
@@ -335,7 +335,7 @@ int main() {
 
     // Taking input to search for an element in the BST
     int key;
-    std::cout << "Enter the key to search: ";
+   // std::cout << "Enter the key to search: ";
     std::cin >> key;
 
     // Search for an element in the BST
@@ -388,6 +388,84 @@ Searching in Binary Search Trees (BSTs) is a fundamental operation with a wide r
 7. **Online Marketplaces:** E-commerce platforms use BSTs to allow users to search for products using filters like price range, category, or brand.
 
 8. **Computer Networking:** Routers and networking devices use tree-like structures, including BSTs, for routing and data lookup to determine the most efficient path for data packets.
+
+## Test Cases
+
+- Input:
+  Number of elements in the array (n):
+  For example, 6
+  Array elements:
+  For example, 50 20 30 70 40 10
+
+  Key to search in the BST:
+  For example, 40
+
+  Output:
+  If the key is found in the BST, output: "Found"
+  If the key is not found in the BST, output: "Not Found"
+
+  Explanation:
+  Input Interpretation:
+  - The number of elements in the array n is specified as 6.
+  - The array elements are 50 20 30 70 40 10.
+  - The key to search in the BST is specified as 40.
+
+  Insertion into BST:
+  - The array elements are inserted into the BST using the insertBST function.
+  - After insertion, the BST structure might look like:
+  
+     50
+    /  \
+  20   70
+  / \    \
+10  30   40
+
+  Searching for the Key:
+  - The searchBST function is used to search for the key 40 in the BST.
+  - Since 40 is present in the BST, the function returns "Found".
+  - The output is "Found".
+
+  Final Output:
+  The final output is "Found", indicating that the key 40 is present in the BST.
+
+- Input:
+  Number of elements in the array (n):
+  For example, 5
+
+  Array elements:
+  For example, 30 20 40 10 50
+
+  Key to search in the BST:
+  For example, 35
+
+  Output:
+  If the key is found in the BST, output: "Found"
+  If the key is not found in the BST, output: "Not Found"
+
+  Explanation:
+
+  Input Interpretation:
+  - The number of elements in the array n is specified as 5.
+  - The array elements are 30 20 40 10 50.
+  - The key to search in the BST is specified as 35.
+
+  Insertion into BST:
+  - The array elements are inserted into the BST using the insertBST function.
+  - After insertion, the BST structure might look like:
+  
+      30
+     /  \
+   20    40
+  / \      \
+10   -     50
+
+    Searching for the Key:
+    - The searchBST function is used to search for the key 35 in the BST.
+    - Since 35 is not present in the BST, the function returns "Not Found".
+    - The output is "Not Found".
+    
+    Final Output:
+    The final output is "Not Found", indicating that the key 35 is not present in the BST.
 
 ## Conclusion
 Binary search trees are strong data structures with many applications that provide effective search functions. One of the most important computer science skills is knowing how to search in a BST, which may be used to solve a wide range of real-world issues. The concepts of Binary Search Tree Searching are useful tools to have in your toolbox whether you deal with databases, compilers, or any other software system that requires searching.
