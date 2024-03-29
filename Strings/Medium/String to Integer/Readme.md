@@ -94,7 +94,7 @@ def myAtoi(string):
 
 # Test the function with the provided string "42"
 if __name__ == "__main__":
-    s = "42"
+    s = input()
     print(myAtoi(s))
 
 ```
@@ -185,6 +185,8 @@ For more information, visit https://venkys.io */
 // Time complexity: O(1)
 
 #include <bits/stdc++.h>
+#include <iostream>
+#include <string>
 
 int atoi(std::string s)
 {
@@ -211,7 +213,8 @@ int atoi(std::string s)
 
 int main()
 {
-    std::string s = "42";
+    string s;
+    std::cin >> s;
     std::cout << atoi(s);
     return 0;
 }
@@ -277,7 +280,7 @@ int main()
 7. **Main Function:**
    ```cpp
    int main() {
-       std::string s = "42";
+       std::cin >> s;
        std::cout << myAtoi(s) << std::endl;
        return 0;
    }
@@ -288,7 +291,8 @@ The code essentially converts a given string to an integer, considering positive
 
 # java
 # code
-```java 
+```java
+import java.util.Scanner;
 public class main{
 
     static int atoi(String s) {
@@ -311,7 +315,8 @@ public class main{
         return num * sign;
     }
     public static void main(String[] args) {
-        String s="42";
+        Scanner scanner = new Scanner(System.in);
+        String s = scanner.nextLine();
         System.out.println(atoi(s));
     }
 }
@@ -480,3 +485,20 @@ In addition to the real-world applications mentioned earlier, let's explore some
     - In educational contexts, when teaching programming or algorithms, string-to-integer conversion serves as a fundamental concept. Exercises and examples often involve converting user inputs or string data to integers for various purposes.
 
 In theoretical scenarios, the importance of string-to-integer conversion arises in the context of solving abstract problems, designing algorithms, and implementing various computational concepts.
+
+## Test Cases
+
+- Input: " -42"
+  Output: -42
+
+  Explanation: The input string contains the number "-42" preceded by whitespaces. The function myAtoi skips the leading whitespaces, identifies the negative sign, and parses the number. Therefore, the output is expected to be -42.
+
+- Input: "4193 with words"
+  Output: 4193
+
+  Explanation: The input string contains the number "4193" followed by non-numeric characters. The function myAtoi extracts the number and ignores the characters after the number. Hence, the output is expected to be 4193.
+
+- Input: "-91283472332"
+  Output: -2147483648
+
+  Explanation: The input string represents a number smaller than the minimum 32-bit signed integer. Therefore, the output is expected to be the minimum 32-bit signed integer (-2147483648) due to overflow.
