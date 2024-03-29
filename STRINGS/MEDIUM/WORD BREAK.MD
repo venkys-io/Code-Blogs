@@ -66,19 +66,19 @@ def wordBreak(user_string, user_words):
 
 if __name__ == "__main__":
     # Get user input for the string
-    user_string = input("Enter a string: ")
+    user_string = input()
 
     # Get user input for the list of words
-    user_words = input("Enter a list of words separated by spaces: ").split()
+    user_words = input().split()
 
     # Check if the string can be segmented using the provided words
     result = wordBreak(user_string, user_words)
 
     # Display the result
     if result:
-        print("true.")
+        print("true")
     else:
-        print("flase.")
+        print("false")
 
 ```
 
@@ -136,11 +136,11 @@ public class WordBreak {
         Scanner scanner = new Scanner(System.in);
 
         // Get user input for the string
-        System.out.print("Enter a string: ");
+        // System.out.print("Enter a string: ");
         String userString = scanner.nextLine();
 
         // Get user input for the list of words
-        System.out.print("Enter a list of words separated by spaces: ");
+        // System.out.print("Enter a list of words separated by spaces: ");
         String[] userWordsArray = scanner.nextLine().split(" ");
         ArrayList<String> userWords = new ArrayList<>();
         for (String word : userWordsArray) {
@@ -149,9 +149,9 @@ public class WordBreak {
 
         // Check if the string can be segmented using the provided words
         if (wordBreak(userString, userWords)) {
-            System.out.println("TRUE.");
+            System.out.println("true");
         } else {
-            System.out.println("FALSE");
+            System.out.println("false");
         }
     }
 }
@@ -207,11 +207,11 @@ bool wordBreak(const string& s, const vector<string>& words) {
 // Get user input for the string
 int main() {
     string userString;
-    cout << "Enter a string: ";
+    // cout << "Enter a string: ";
     getline(cin, userString);
 
 			// Get user input for the list of words
-    cout << "Enter a list of words separated by spaces: ";
+    // cout << "Enter a list of words separated by spaces: ";
     string word;
     vector<string> userWords;
     getline(cin, word);
@@ -221,9 +221,9 @@ int main() {
     }
 // Check if the string can be segmented using the provided words
     if (wordBreak(userString, userWords)) {
-        cout << "TRUE." << endl;
+        cout << "true" << endl;
     } else {
-        cout << "FALSE" << endl;
+        cout << "false" << endl;
     }
 
     return 0;
