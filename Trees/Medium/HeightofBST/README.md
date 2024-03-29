@@ -64,10 +64,10 @@ def build_tree(num_nodes, values):
 
 if __name__ == "__main__":
     # Input number of nodes in the BST
-    num_nodes = int(input("Enter the number of nodes in the BST: "))
+    num_nodes = int(input())
 
     # Input values of the nodes
-    print("Enter the values of the nodes:")
+    print()
     values = [int(input()) for _ in range(num_nodes)]
 
     # Build the BST
@@ -75,7 +75,7 @@ if __name__ == "__main__":
 
     # Calculate and print the height of the BST
     bst_height = height(root)
-    print("Height of the BST:", bst_height)
+    print( bst_height)
 
 ```
 <h2>Step-By-Step Explanation</h2>
@@ -147,13 +147,13 @@ public class BSTHeight {
         Scanner scanner = new Scanner(System.in);
 
         // Input number of nodes in the BST
-        System.out.print("Enter the number of nodes in the BST: ");
+        // System.out.print("Enter the number of nodes in the BST: ");
         int numNodes = scanner.nextInt();
 
         Node root = null;
 
         // Input values of the nodes
-        System.out.println("Enter the values of the nodes:");
+        // System.out.println("Enter the values of the nodes:");
         for (int i = 0; i < numNodes; i++) {
             int value = scanner.nextInt();
             // Insert each value into the BST
@@ -162,7 +162,7 @@ public class BSTHeight {
 
         // Calculate and print the height of the BST
         int bstHeight = height(root);
-        System.out.println("Height of the BST: " + bstHeight);
+        System.out.println(bstHeight);
     }
 }
 
@@ -235,14 +235,14 @@ int height(Node* root) {
 // Main function
 int main() {
     // Input number of nodes in the BST
-    std::cout << "Enter the number of nodes in the BST: ";
+    // std::cout << "Enter the number of nodes in the BST: ";
     int numNodes;
     std::cin >> numNodes;
 
     Node* root = nullptr;
 
     // Input values of the nodes
-    std::cout << "Enter the values of the nodes:" << std::endl;
+    // std::cout << "Enter the values of the nodes:" << std::endl;
     for (int i = 0; i < numNodes; i++) {
         int value;
         std::cin >> value;
@@ -252,7 +252,7 @@ int main() {
 
     // Calculate and print the height of the BST
     int bstHeight = height(root);
-    std::cout << "Height of the BST: " << bstHeight << std::endl;
+    std::cout <<  bstHeight << std::endl;
 
     return 0;
 }
@@ -292,3 +292,54 @@ In the worst case, when the tree is highly unbalanced (again, a linked list), th
 **3.File Systems:** The height of directory structures in file systems can impact the speed of file and directory lookup operations. In real-time file management, minimizing the height of the directory tree is essential for quick access.
 
 **4.Network Routing:** The height of routing tables in network routers can impact the speed of packet forwarding in real-time networks. Balanced routing tables ensure efficient and low-latency data transmission.
+
+## Test Cases
+
+- Input:
+  7
+  50
+  30
+  70
+  20
+  40
+  60
+  80
+
+  Output:
+  3
+
+  Explanation:
+  The provided input constructs a Binary Search Tree (BST) with the following structure:
+         50
+        /  \
+       30   70
+      / \   / \
+     20 40 60 80
+  The height of this BST is calculated as follows:
+  The height of the left subtree rooted at 30 is 2 (depth of 20 or 40).
+  The height of the right subtree rooted at 70 is 2 (depth of 60 or 80).
+  Since the height of the BST is defined as the maximum height of its left and right subtrees, the height of this BST is max(2, 2) + 1 = 3.
+  Therefore, the output is 3, indicating the height of the constructed BST.
+
+- Input:
+  5
+  40
+  30
+  50
+  20
+  60
+  Output:
+  2
+
+  Explanation:
+  The provided input constructs a Binary Search Tree (BST) with the following structure:
+         40
+        /  \
+       30   50
+      /       \
+     20       60
+  The height of this BST is calculated as follows:
+  The height of the left subtree rooted at 30 is 1 (depth of 20).
+  The height of the right subtree rooted at 50 is 1 (depth of 60).
+  Since the height of the BST is defined as the maximum height of its left and right subtrees, the height of this BST is max(1, 1) + 1 = 2.
+  Therefore, the output is 2, indicating the height of the constructed BST.
