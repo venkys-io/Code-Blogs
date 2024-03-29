@@ -32,13 +32,32 @@ def inorder(root):
     # Driver code to test above function 
 # The values of nodes are given below :
 if __name__=="__main__":
-    root=Node(80)
-    root.left=Node(20)
-    root.right=Node(30)
-    root.left.left=Node(40)
-    root.left.right=Node(350)
-    root.right.left=Node(460)
-    root.right.right=Node(70)
+    root_data = int(input())
+    root = Node(root_data)
+
+    left_data = int(input())
+    if left_data != -1:
+        root.left = Node(left_data)
+
+    right_data = int(input())
+    if right_data != -1:
+        root.right = Node(right_data)
+
+    left_left_data = int(input())
+    if left_left_data != -1:
+        root.left.left = Node(left_left_data)
+
+    left_right_data = int(input())
+    if left_right_data != -1:
+        root.left.right = Node(left_right_data)
+
+    right_left_data = int(input())
+    if right_left_data != -1:
+        root.right.left = Node(right_left_data)
+
+    right_right_data = int(input())
+    if right_right_data != -1:
+        root.right.right = Node(right_right_data)
     inorder(root)
 ```
 
@@ -132,13 +151,41 @@ void inorder(Node* root){
 
 int main(){
     // Creating the binary tree
-    Node* root=new Node(10);
-    root->left=new Node(20);
-    root->right=new Node(30);
-    root->left->left=new Node(40);
-    root->left->right=new Node(50);
-    root->right->left=new Node(60);
-    root->right->right=new Node(70);
+    int value;
+    // std::cout << "Enter value for root node: ";
+    std::cin >> value;
+    Node* root = new Node(value);
+
+    // std::cout << "Enter value for left child of root node (or -1 if none): ";
+    std::cin >> value;
+    if (value != -1)
+        root->left = new Node(value);
+
+    // std::cout << "Enter value for right child of root node (or -1 if none): ";
+    std::cin >> value;
+    if (value != -1)
+        root->right = new Node(value);
+
+    // std::cout << "Enter value for left child of left child of root node (or -1 if none): ";
+    std::cin >> value;
+    if (value != -1 && root->left != nullptr)
+        root->left->left = new Node(value);
+
+    // std::cout << "Enter value for right child of left child of root node (or -1 if none): ";
+    std::cin >> value;
+    if (value != -1 && root->left != nullptr)
+        root->left->right = new Node(value);
+
+    // std::cout << "Enter value for left child of right child of root node (or -1 if none): ";
+    std::cin >> value;
+    if (value != -1 && root->right != nullptr)
+        root->right->left = new Node(value);
+
+    // std::cout << "Enter value for right child of right child of root node (or -1 if none): ";
+    std::cin >> value;
+    if (value != -1 && root->right != nullptr)
+        root->right->right = new Node(value);
+
     // Displaying the binary tree in inorder traversal
     inorder(root);
     // Inorder traversal of the tree
@@ -248,24 +295,62 @@ public class BinaryTree {
 
     public static void main(String[] args) {
 
-        // Creating a binary tree with root node having data 10
-        TreeNode root = new TreeNode(10);
+        Scanner scanner = new Scanner(System.in);
 
-        // Adding nodes to the root of the created binary tree
-        // Adding left and right child nodes to the root
-        root.left = new TreeNode(20);
-        root.right = new TreeNode(30);
+        // Input for the value of the root node
+        // System.out.print("Enter value for root node: ");
+        int rootValue = scanner.nextInt();
+        TreeNode root = new TreeNode(rootValue);
 
-        // Adding left and right child nodes to the left child of the root
-        root.left.left = new TreeNode(40);
-        root.left.right = new TreeNode(50);
+        // Input for the left child of the root node
+        // System.out.print("Enter value for left child of root node (or -1 if none): ");
+        int leftChildValue = scanner.nextInt();
+        if (leftChildValue != -1)
+            root.left = new TreeNode(leftChildValue);
 
-        // Adding left and right child nodes to the right child of the root
-        root.right.left = new TreeNode(60);
-        root.right.right = new TreeNode(70);
+        // Input for the right child of the root node
+        // System.out.print("Enter value for right child of root node (or -1 if none): ");
+        int rightChildValue = scanner.nextInt();
+        if (rightChildValue != -1)
+            root.right = new TreeNode(rightChildValue);
+
+        // Input for the left child of the left child of the root node
+        if (root.left != null) {
+            // System.out.print("Enter value for left child of left child of root node (or -1 if none): ");
+            int leftLeftChildValue = scanner.nextInt();
+            if (leftLeftChildValue != -1)
+                root.left.left = new TreeNode(leftLeftChildValue);
+        }
+
+        // Input for the right child of the left child of the root node
+        if (root.left != null) {
+            // System.out.print("Enter value for right child of left child of root node (or -1 if none): ");
+            int leftRightChildValue = scanner.nextInt();
+            if (leftRightChildValue != -1)
+                root.left.right = new TreeNode(leftRightChildValue);
+        }
+
+        // Input for the left child of the right child of the root node
+        if (root.right != null) {
+            // System.out.print("Enter value for left child of right child of root node (or -1 if none): ");
+            int rightLeftChildValue = scanner.nextInt();
+            if (rightLeftChildValue != -1)
+                root.right.left = new TreeNode(rightLeftChildValue);
+        }
+
+        // Input for the right child of the right child of the root node
+        if (root.right != null) {
+            // System.out.print("Enter value for right child of right child of root node (or -1 if none): ");
+            int rightRightChildValue = scanner.nextInt();
+            if (rightRightChildValue != -1)
+                root.right.right = new TreeNode(rightRightChildValue);
+        }
+
+        // Close the scanner
+        scanner.close();
 
         // Printing the message before performing inorder traversal
-        System.out.print("Inorder Traversal: ");
+        // System.out.print("Inorder Traversal: ");
 
         // Calling the inorderTraversal method to perform inorder traversal
         inorderTraversal(root);
@@ -368,6 +453,92 @@ Binary trees and inorder traversal have applications in various domains, includi
 - **Database Indexing:** Binary trees are used in database systems to efficiently index and search for records.
 - **Expression Trees:** In compilers, expression trees are used to represent mathematical expressions for efficient evaluation.
 - **File Systems:** File systems often use tree structures to organize and locate files efficiently.
+
+## Test Cases:
+
+- Input:
+  Values of Nodes:
+  The user inputs the values of each node in the binary tree. If a node does not have a left or right child, the user enters -1.
+
+  For example, let's consider the following input:
+  1
+  2
+  3
+  4
+  -1
+  5
+  -1
+  -1
+  6
+
+  Output:
+  The output will be the inorder traversal of the constructed binary tree.
+  For the provided input, the output would be:
+  4 2 1 5 3 6
+
+  Explanation:
+  Input Interpretation:
+  - The user inputs the value of the root node, which is 1.
+  - Then, the user inputs the values of the left and right children of the root node, which are 2 and 3, respectively.
+  - Further, the user inputs the values of the left child's left child, which is 4.
+  - Then, the user inputs the value of the left child's right child, which is -1, indicating that there is no right child for node 2.
+  - Similarly, the user inputs the value of the right child's left child, which is 5, and then inputs -1 for the right child's right child.
+  - Finally, the user inputs the value of the right child's right child, which is 6.
+  
+  Binary Tree Construction:
+  - Based on the input provided, the binary tree is constructed as follows:
+markdown
+      1
+    /   \
+   2     3
+  /       \
+ 4         6
+  \
+   5
+
+    Inorder Traversal:
+    - The inorder traversal of the constructed binary tree is performed recursively.
+    - The values are printed in non-decreasing order as 4 2 1 5 3 6, which represents the inorder traversal path from the root node.
+   
+- Input:
+  Values of Nodes:
+  The user inputs the values of each node in the binary tree. If a node does not have a left or right child, the user enters -1.
+  For example, let's consider the following input:
+  10
+  20
+  30
+  40
+  -1
+  50
+  -1
+  -1
+  60
+  Output:
+  The output will be the inorder traversal of the constructed binary tree.
+  For the provided input, the output would be:
+  40 20 50 10 30 60
+
+  Explanation:
+  Input Interpretation:
+  - The user inputs the value of the root node, which is 10.
+  - Then, the user inputs the values of the left and right children of the root node, which are 20 and 30, respectively.
+  - Further, the user inputs the values of the left child's left child, which is 40.
+  - Then, the user inputs the value of the left child's right child, which is -1, indicating that there is no right child for node 20.
+  - Similarly, the user inputs the value of the right child's left child, which is 50, and then inputs -1 for the right child's right child.
+  - Finally, the user inputs the value of the right child's right child, which is 60.
+  
+  Binary Tree Construction:
+  - Based on the input provided, the binary tree is constructed as follows:
+      10
+    /   \
+   20     30
+  /       /  
+ 40      50
+          \
+           60
+    Inorder Traversal:
+    - The inorder traversal of the constructed binary tree is performed recursively.
+    - The values are printed in non-decreasing order as 40 20 50 10 30 60, which represents the inorder traversal path from the root node.
 
 ## Conclusion
 Understanding trees and traversal algorithms, such as inorder traversal, is crucial in computer science. These codes provide a practical example of how to implement and apply inorder traversal in different languages like Python ,C++ and Java. The recursive nature of the traversal allows for elegant and concise code, making it a powerful tool for tree-related operations.
