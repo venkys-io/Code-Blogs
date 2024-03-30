@@ -80,7 +80,7 @@ def lengthOFLongestSubstring(string : str) -> int:
     return ans 
 
 if __name__=="__main__":
-    s = int(input("Enter the substring:"))#enter the substring
+    s = int(input())#enter the substring
     print(lengthOFLongestSubstring(s))#this prints the lenght of the longest substring
 ```
 
@@ -115,11 +115,11 @@ public class LongestSubstringWithoutRepeatingChars {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter a string: ");
+       // System.out.print("Enter a string: ");
         String input = scanner.nextLine();
 
         int result = lengthOfLongestSubstring(input);
-        System.out.println("Longest Substring Without Repeating Characters: " + result);
+        System.out.println( result);
     }
 
     public static int lengthOfLongestSubstring(String s) {
@@ -207,12 +207,12 @@ int lengthOfLongestSubstring(string s) {
 }
 
 int main() {
-    cout << "Enter a string: ";
+    // cout << "Enter a string: ";
     string input;
     getline(cin, input);
 
     int result = lengthOfLongestSubstring(input);
-    cout << "Longest Substring Without Repeating Characters: " << result << endl;
+    cout << result << endl;
 
     return 0;
 }
@@ -262,3 +262,43 @@ int main() {
     - Image recognition and processing often involve identifying unique patterns or shapes within an image. Techniques inspired by substring analysis can be used to efficiently process and recognize patterns in images.
 5. **Speech Recognition:**
     - In speech recognition systems, analyzing acoustic signals may involve identifying recurring patterns or unique subsequences. Techniques inspired by substring analysis can aid in improving the accuracy of speech recognition algorithms.
+  
+## Test Cases
+
+Test Case 1:
+
+**Input:**
+```
+abcabcbb
+```
+
+**Output:**
+```
+3
+```
+
+**Explanation:**
+- The program prompts the user to input a string `"abcabcbb"`.
+- The `lengthOFLongestSubstring` function is called with the input string.
+- Inside the function, a sliding window technique is used to find the longest substring without repeating characters.
+- The window starts at the beginning of the string, and as characters are encountered, they are added to a dictionary `hashset` with their indices.
+- If a character is encountered that is already in the `hashset`, the window moves forward by removing the character at the start of the window until there are no repeating characters.
+- The length of the longest substring without repeating characters is returned as output. In this case, the longest substring is `"abc"`, which has a length of 3.
+Test Case 2:
+**Input:**
+```
+abbacd
+```
+
+**Output:**
+```
+3
+```
+
+**Explanation:**
+- The program prompts the user to input a string `"abbacd"`.
+- The `lengthOFLongestSubstring` function is called with the input string.
+- Inside the function, a sliding window technique is used to find the longest substring without repeating characters.
+- The window starts at the beginning of the string, and as characters are encountered, they are added to a dictionary `hashset` with their indices.
+- If a character is encountered that is already in the `hashset`, the window moves forward by removing the character at the start of the window until there are no repeating characters.
+- The length of the longest substring without repeating characters is returned as output. In this case, the longest substring is `"bac"`, which has a length of 3.
