@@ -83,7 +83,7 @@ def multi_string_search(text, patterns):
 
 if __name__ == "__main__":
     # Sample text and patterns
-    text = "This is a sample text for multi-string search."
+    text = input()
     patterns = ["sample", "search", "notfound"]
 
     # Perform multi-string search
@@ -147,7 +147,8 @@ std::vector<std::string> multiStringSearch(const std::string& text, const std::v
 
 int main() {
     // Sample text and patterns
-    std::string text = "This is a sample text for multi-string search.";
+string text;
+    getline(cin, text);
     std::vector<std::string> patterns = {"sample", "search", "notfound"};
 
     // Perform multi-string search
@@ -193,6 +194,7 @@ int main() {
 ```java
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class MultiStringSearch {
 
@@ -218,7 +220,10 @@ public class MultiStringSearch {
 
     public static void main(String[] args) {
         // Sample text and patterns
-        String text = "This is a sample text for multi-string search.";
+        Scanner scanner = new Scanner(System.in);
+        
+        // System.out.print("Enter a string: ");
+        String text = scanner.nextLine();
         List<String> patterns = List.of("sample", "search", "notfound");
 
         // Perform multi-string search
@@ -275,3 +280,36 @@ Code Editors
 Text Processing
 Network Security
 DNA Sequencing
+
+## Test Cases:
+
+Test Case 1:
+
+Input:
+This is a sample text for searching
+
+Output:
+sample search
+
+Explanation:
+
+The input text is "This is a sample text for searching".
+The patterns to search for are "sample", "search", and "notfound".
+The multiStringSearch function searches for each pattern in the text using std::search.
+It finds "sample" and "search" in the text and returns them as the result.
+The output shows the found patterns "sample" and "search".
+
+Test Case 2:
+
+Input:
+The quick brown fox jumps over the lazy dog
+
+Output:
+quick fox dog
+
+Explanation:
+The input text is "The quick brown fox jumps over the lazy dog".
+The patterns to search for are "quick", "fox", and "dog".
+The multiStringSearch function searches for each pattern in the text using std::search.
+It finds "quick", "fox", and "dog" in the text and returns them as the result.
+The output shows the found patterns "quick", "fox", and "dog".
