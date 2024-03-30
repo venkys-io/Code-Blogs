@@ -50,7 +50,7 @@ def longestPalindrome(string):
 
 if __name__ == "__main__":
     # Example usage
-    string = "badab"
+    string = input()
     
     # Print the longest palindrome in the given string
     print(longestPalindrome(string))
@@ -69,6 +69,8 @@ In the example usage section, the code demonstrates finding the longest palindro
 #Copyrights to venkys.io
 #For more programs visit venkys.io 
 #Java program for LongestPalindromicSubstring
+import java.util.Scanner;
+
 public class Main {
 
     // Function to find the longest palindrome in the given string
@@ -116,7 +118,10 @@ public class Main {
     // Main method for testing
     public static void main(String[] args) {
         // Example usage
-        String s = "badab";
+         Scanner scanner = new Scanner(System.in);
+        
+        // System.out.print("Enter a string: ");
+        String s = scanner.nextLine();
         
         // Print the longest palindrome in the given string
         System.out.println(longestPalindrome(s));
@@ -177,7 +182,10 @@ string longestPalindrome(std::string& string) {
 
 int main() {
     // Example usage
-    string str = "badab";
+    string str;
+    
+    // cout << "Enter a string: ";
+    getline(cin, str);
     
     // Print the longest palindrome in the given string
     cout << longestPalindrome(str);
@@ -217,3 +225,36 @@ The space complexity of the algorithm is O(1) because it uses a constant amount 
 
 5. **String Matching and DNA Analysis:**
    - Longest palindromic substrings can be employed in string matching algorithms, helping to identify similarities or repetitions in text data. In DNA analysis, palindromic sequences are significant in restriction enzyme recognition sites, which are crucial in genetic engineering and molecular biology techniques like PCR (Polymerase Chain Reaction).
+
+
+## Test Cases
+
+Test Case 1:
+
+Input:
+babad
+
+Output:
+bab
+
+Explanation:
+The program prompts the user to input a string.
+The longestPalindrome function is called with the input string.
+Inside the longestPalindrome function, for each character in the string, the expandFromCenter function is called to find the longest palindrome centered at that character.
+The expandFromCenter function expands outward from the center (either a single character or between two characters) to find the longest palindrome substring.
+The longest palindrome substring "bab" is found and returned as output.
+
+Test Case 2:
+
+Input:
+cbbd
+
+Output:
+bb
+
+Explanation:
+The program prompts the user to input a string "cbbd".
+The longestPalindrome function is called with the input string.
+Inside the longestPalindrome function, for each character in the string, the expandFromCenter function is called to find the longest palindrome centered at that character.
+The expandFromCenter function expands outward from the center (either a single character or between two characters) to find the longest palindrome substring.
+The longest palindrome substring "bb" is found and returned as output.
