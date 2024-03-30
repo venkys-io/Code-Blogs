@@ -364,3 +364,45 @@ In the context of letter combinations, where the number of possible combinations
 
 6. **Genetic Algorithms:**
    - In optimization and machine learning, genetic algorithms mimic the process of natural selection. Letter combinations might be used to represent potential solutions in a genetic algorithm, exploring the solution space efficiently.
+
+## Test Cases
+
+Test Case 1:
+**Input:**
+```
+23
+```
+
+**Output:**
+```
+['ad', 'ae', 'af', 'bd', 'be', 'bf', 'cd', 'ce', 'cf']
+```
+
+**Explanation:**
+- The program prompts the user to input a string `"23"`.
+- The `letterCombinations` function is called with the input string.
+- The function generates all possible combinations of letters corresponding to the input digits using recursion.
+- For digit `2`, the corresponding letters are `'abc'`, and for digit `3`, the corresponding letters are `'def'`.
+- By combining each letter from the first set with each letter from the second set, all possible combinations are obtained.
+- The resulting list of combinations is `['ad', 'ae', 'af', 'bd', 'be', 'bf', 'cd', 'ce', 'cf']`, which is printed as the output.
+
+Test Case 2:
+
+**Input:**
+```
+"356"
+```
+
+**Output:**
+```
+['djm', 'djn', 'djo', 'dkm', 'dkn', 'dko', 'dlm', 'dln', 'dlo', 'ejm', 'ejn', 'ejo', 'ekm', 'ekn', 'eko', 'elm', 'eln', 'elo', 'fjm', 'fjn', 'fjo', 'fkm', 'fkn', 'fko', 'flm', 'fln', 'flo']
+```
+
+**Explanation:**
+- The program prompts the user to input a string `"356"`.
+- The `letterCombinations` function is called with the input string.
+- For digit `3`, the corresponding letters are `'def'`.
+- For digit `5`, the corresponding letters are `'jkl'`.
+- For digit `6`, the corresponding letters are `'mno'`.
+- By combining each letter from each set of corresponding letters, all possible combinations are obtained.
+- The resulting list of combinations is `['djm', 'djn', 'djo', 'dkm', 'dkn', 'dko', 'dlm', 'dln', 'dlo', 'ejm', 'ejn', 'ejo', 'ekm', 'ekn', 'eko', 'elm', 'eln', 'elo', 'fjm', 'fjn', 'fjo', 'fkm', 'fkn', 'fko', 'flm', 'fln', 'flo']`, which is printed as the output.
