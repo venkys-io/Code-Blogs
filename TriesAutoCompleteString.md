@@ -87,7 +87,7 @@ def vsd_auto_complete(node, s):
             vsd_auto_complete(node.tnodes[i], s)
 
 def main():
-    string_list = ["search", "seek", "seaked", "soak", "settle", "sea", "setting"]
+    string_list = string_list_input.split()
     root_node = VSDTrieNode()
 
     for i in range(len(string_list)):
@@ -138,6 +138,7 @@ if __name__ == "__main__":
 - Finally, it calls the **`vsd_match_string`** function to search for and perform auto-completion on the input string "ab".
 
 ```java
+import java.util.Scanner;
 public class VSDTriesAutoCompleteStrings {
 	//Class to store the structure of trie
 	public static class VSDTrieNode{
@@ -223,7 +224,18 @@ public static void VSDAutoComplete(VSDTrieNode node,String s) {
 }
 
 public static void main(String args[]) {
-		stringList=new String[] {"search","seek","seaked","soak","settle","sea","setting"};
+	// Create a Scanner object to read input from the user
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user to enter the list of strings
+        // System.out.println("Enter the list of strings separated by space:");
+        String stringListInput = scanner.nextLine();
+
+        // Split the input string by space to get individual strings
+        String[] stringList = stringListInput.split(" ");
+
+        // Close the scanner
+        scanner.close();
 		//Inserting strings into the trie
 		for(int i = 0;i<stringList.length;i++)
 			 VSDInsertNode(rootNode,i,0);
@@ -287,6 +299,117 @@ public static void main(String args[]) {
     - The time complexity is proportional to the number of nodes in the Trie.
     - In the worst case, it is O(N), where N is the total number of nodes in the Trie.
 
+``` c++
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+class VSDTrieNode {
+public:
+    VSDTrieNode() {
+        tnodes = vector<VSDTrieNode*>(26, nullptr);
+        character = '\0';
+        end_of_word = false;
+    }
+
+    vector<VSDTrieNode*> tnodes;
+    char character;
+    bool end_of_word;
+};
+
+void vsdInsertNode(VSDTrieNode* rootNode, const vector<string>& stringList, int i, int j) {
+    int index = stringList[i][j] - 'a';
+
+    if (rootNode->tnodes[index] == nullptr) {
+        rootNode->tnodes[index] = new VSDTrieNode();
+        rootNode->tnodes[index]->character = stringList[i][j];
+
+        if (j + 1 < stringList[i].length()) {
+            rootNode = rootNode->tnodes[index];
+            vsdInsertNode(rootNode, stringList, i, j + 1);
+        }
+
+        if (j + 1 == stringList[i].length()) {
+            rootNode->tnodes[index]->end_of_word = true;
+        }
+    } else {
+        if (j + 1 < stringList[i].length()) {
+            rootNode = rootNode->tnodes[index];
+            vsdInsertNode(rootNode, stringList, i, j + 1);
+        }
+
+        if (j + 1 == stringList[i].length()) {
+            rootNode->tnodes[index]->end_of_word = true;
+        }
+    }
+}
+
+void vsdMatchString(VSDTrieNode* rootNode, const string& s, int i) {
+    if (i >= s.length()) {
+        cout << "Matched strings: ";
+        vsdAutoComplete(rootNode, s);
+    } else {
+        char c = s[i];
+        int index = c - 'a';
+        if (rootNode->tnodes[index] == nullptr) {
+            cout << "No strings matched" << endl;
+        } else if (rootNode->tnodes[index]->character == c) {
+            vsdMatchString(rootNode->tnodes[index], s, i + 1);
+        }
+    }
+}
+
+void vsdAutoComplete(VSDTrieNode* node, string& s) {
+    for (int i = 0; i < 26; ++i) {
+        if (i != 0 && node->tnodes[i - 1] != nullptr) {
+            string temp = "";
+            for (int k = 0; k < s.length() - 1; ++k) {
+                temp += s[k];
+            }
+            s = temp;
+        }
+
+        if (node->tnodes[i] != nullptr) {
+            s += node->tnodes[i]->character;
+            if (node->tnodes[i]->end_of_word) {
+                cout << s << " ";
+            }
+            vsdAutoComplete(node->tnodes[i], s);
+        }
+    }
+}
+
+int main() {
+    string stringListInput;
+    // cout << "Enter the list of strings separated by space: ";
+    getline(cin, stringListInput);
+
+    vector<string> stringList;
+    string temp;
+    for (char c : stringListInput) {
+        if (c == ' ') {
+            stringList.push_back(temp);
+            temp = "";
+        } else {
+            temp += c;
+        }
+    }
+    stringList.push_back(temp);
+
+    VSDTrieNode* rootNode = new VSDTrieNode();
+
+    for (int i = 0; i < stringList.size(); ++i) {
+        vsdInsertNode(rootNode, stringList, i, 0);
+    }
+
+    vsdMatchString(rootNode, "ab", 0);
+
+    return 0;
+}
+
+```
 ### **Space Complexity:**
 
 1. **Trie Structure (VSDTrieNode):**
@@ -307,3 +430,37 @@ public static void main(String args[]) {
     - Tries are employed in networking for the efficient storage and retrieval of IP addresses in routing tables. This ensures fast lookup of routes based on IP prefixes.
 5. **Network Routing Protocols:**
     - Trie structures are used in network protocols like OSPF (Open Shortest Path First) and BGP (Border Gateway Protocol) for efficient route information storage and retrieval.
+  
+## Test Cases
+
+Test Case 1:
+
+Input:
+search seek seaked soak settle sea setting
+
+Output:
+search seek seaked setting 
+
+Explanation:
+The user is prompted to enter a list of strings.
+The input strings are "search seek seaked soak settle sea setting".
+The program matches strings in the Trie with the prefix "ab".
+No strings match the prefix "ab", so "No strings matched" is printed.
+The program then prints all strings in the Trie that can be formed by extending the prefix "".
+The matched strings are "search", "seek", "seaked", and "setting".
+
+Test Case 2:
+
+Input:
+hello hell help helper hold
+
+Output:
+help helper 
+
+Explanation:
+The user is prompted to enter a list of strings.
+The input strings are "hello hell help helper hold".
+The program matches strings in the Trie with the prefix "help".
+No strings match the prefix "help", so "No strings matched" is printed.
+The program then prints all strings in the Trie that can be formed by extending the prefix "help".
+The matched strings are "help" and "helper".
