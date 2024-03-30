@@ -37,12 +37,12 @@ def largestNumber(nums):
 # Main block
 if __name__ == "__main__":
     # Convert the input string to a list of integers
-    nums=[int(x) for x in input("Enter multiple value: ").split(" ")]
+    nums=[int(x) for x in input().split(" ")]
     # print the list
     print(nums)
     # Call the function and print the result
     result = largestNumber(nums)
-    print(f"The largest number is: {result}")
+    print(result)
 
 # Enter multiple value: 21 23 43 56 9 98
 # [21, 23, 43, 56, 9, 98]
@@ -157,7 +157,7 @@ std::string largestnumber(std::vector<int> &num)
 int main()
 {
     // Prompt the user to enter multiple values separated by space
-    std::cout << "Enter multiple values separated by space, and press Enter:";
+    // std::cout << "Enter multiple values separated by space, and press Enter:";
 
     // Create a vector to store the input numbers
     std::vector<int> arr;
@@ -177,7 +177,7 @@ int main()
     }
 
     // Find and display the largest number
-    std::cout << "The largest number is: " << largestnumber(arr) << std::endl;
+    std::cout << largestnumber(arr) << std::endl;
 
     // Return 0 to indicate successful execution
     return 0;
@@ -320,11 +320,11 @@ public class largestnumber {
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
             // Prompt the user to enter the size of the array
-            System.out.print("Enter the size of the array: ");
+            // System.out.print("Enter the size of the array: ");
             int size = scanner.nextInt();
 
             // Prompt the user to enter elements of the array
-            System.out.println("Enter the elements of the array:");
+            // System.out.println("Enter the elements of the array:");
 
             int[] nums = new int[size];
             for (int i = 0; i < size; i++) {
@@ -332,7 +332,7 @@ public class largestnumber {
             }
 
             // Find and display the largest number
-            System.out.println("The largest number is: " + largestNumber(nums));
+            System.out.println( largestNumber(nums));
         } catch (Exception e) {
             // Handle exceptions such as non-integer input
             e.printStackTrace();
@@ -505,3 +505,41 @@ This type of problem has various real-world applications, especially in scenario
     - In telecommunications and contact management applications, arranging mobile numbers in a way that reflects a standardized or optimal format can be useful.
 
 These are just a few examples, and the applicability of the code depends on specific use cases where arranging or sorting numbers is an important aspect of the problem at hand.
+
+## Test Cases
+
+Test Case 1:
+
+Input:
+21 23 34 54 9 98 987
+
+Output:
+99898754342321
+
+Explanation:
+The program prompts the user to enter multiple integer values separated by spaces.
+The input numbers are stored in a vector.
+The largestnumber function is called with the vector of numbers as input.
+Inside the largestnumber function, each integer is converted to a string and stored in a vector.
+The strings are sorted in descending order based on their concatenated values.
+The sorted strings are concatenated to form the largest number.
+Leading zeros are removed from the result, except when the result is "0".
+The largest number is then displayed as output.
+
+Test Case 2:
+
+Input:
+5 56 566 5666 56665 566654
+
+Output:
+566655665656656566
+
+Explanation:
+The program prompts the user to enter multiple integer values separated by spaces.
+The input numbers are stored in a vector.
+The largestnumber function is called with the vector of numbers as input.
+Inside the largestnumber function, each integer is converted to a string and stored in a vector.
+The strings are sorted in descending order based on their concatenated values.
+The sorted strings are concatenated to form the largest number.
+Leading zeros are removed from the result, except when the result is "0".
+The largest number is then displayed as output.
