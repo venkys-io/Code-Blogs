@@ -1,0 +1,537 @@
+# Balanced Binary Tree
+
+---
+
+# Overview:
+
+A balanced binary tree is a binary tree in which the depth of the two subtrees of every node never differs by more than one. This ensures that the tree remains relatively balanced, preventing degenerate cases where the tree becomes skewed and the time complexity of operations degrades.
+
+One common type of balanced binary tree is an AVL tree (named after its inventors Adelson-Velsky and Landis). AVL trees use rotations to maintain balance after insertions and deletions. The balancing factor (height difference between left and right subtrees) for each node in an AVL tree must be -1, 0, or 1.
+
+Here's a brief overview of how AVL tree rotations work:
+
+1. **Left Rotation:**
+    - Used when the right subtree of a node is significantly deeper.
+    - A left rotation "moves" a portion of the right subtree to the left, promoting the right child of the node as the new root.
+2. **Right Rotation:**
+    - Used when the left subtree of a node is significantly deeper.
+    - A right rotation "moves" a portion of the left subtree to the right, promoting the left child of the node as the new root.
+3. **Left-Right Rotation (Double Rotation):**
+    - Used when the left subtree of a node has a right-heavy subtree.
+    - It involves a left rotation on the left child followed by a right rotation on the original node.
+4. **Right-Left Rotation (Double Rotation):**
+    - Used when the right subtree of a node has a left-heavy subtree.
+    - It involves a right rotation on the right child followed by a left rotation on the original node.
+
+During tree insertion or deletion, these rotations are applied to maintain the balance property. AVL trees guarantee logarithmic time complexity for insertion, deletion, and search operations.
+
+It's important to note that while AVL trees ensure balance, they may have higher constant factors in practice compared to simpler binary search trees. For some scenarios, Red-Black trees might be preferred due to their slightly relaxed balancing constraints, making them faster for certain operations. The choice depends on specific use cases and performance requirements.
+
+# Example Python Code:
+
+```python
+class Node:
+    def __init__(self, key):
+        self.key = key
+        self.height = 1
+        self.left = None
+        self.right = None
+
+def height(node):
+    if node is None:
+        return 0
+    return node.height
+
+def update_height(node):
+    node.height = 1 + max(height(node.left), height(node.right))
+
+def balance_factor(node):
+    if node is None:
+        return 0
+    return height(node.left) - height(node.right)
+
+def rotate_right(y):
+    x = y.left
+    T2 = x.right
+
+    x.right = y
+    y.left = T2
+
+    update_height(y)
+    update_height(x)
+
+    return x
+
+def rotate_left(x):
+    y = x.right
+    T2 = y.left
+
+    y.left = x
+    x.right = T2
+
+    update_height(x)
+    update_height(y)
+
+    return y
+
+def balance(node):
+    if node is None:
+        return node
+
+    update_height(node)
+
+    # Get the balance factor of this node
+    factor = balance_factor(node)
+
+    # Left Heavy
+    if factor > 1:
+        # Left-Right Case
+        if balance_factor(node.left) < 0:
+            node.left = rotate_left(node.left)
+        # Left-Left Case
+        return rotate_right(node)
+
+    # Right Heavy
+    if factor < -1:
+        # Right-Left Case
+        if balance_factor(node.right) > 0:
+            node.right = rotate_right(node.right)
+        # Right-Right Case
+        return rotate_left(node)
+
+    return node
+
+def insert(root, key):
+    # Standard BST insert
+    if root is None:
+        return Node(key)
+
+    if key < root.key:
+        root.left = insert(root.left, key)
+    elif key > root.key:
+        root.right = insert(root.right, key)
+    else:
+        return root  # Duplicate keys are not allowed
+
+    # Update height of current node
+    update_height(root)
+
+    # Rebalance the tree
+    return balance(root)
+
+def inorder_traversal(node):
+    if node:
+        inorder_traversal(node.left)
+        print(node.key, end=' ')
+        inorder_traversal(node.right)
+
+# Example usage:
+root = None
+keys_input = input()
+
+# Split the input string by spaces to get individual keys
+keys = list(map(int, keys_input.split()))
+
+for key in keys:
+    root = insert(root, key)
+
+print("Inorder Traversal of AVL tree:")
+inorder_traversal(root)
+```
+
+## Step-By-Step Explanation:
+
+- **Node Class:** Defines a simple **`Node`** class for the AVL tree. Each node has a **`key`** (the value of the node), a **`height`** (to track the height of the subtree rooted at this node), and pointers to the left and right children.
+- **Height Function:** Returns the height of a given node. If the node is **`None`**, the height is 0.
+- **Update Height Function:** Updates the height of a given node based on the heights of its left and right children.
+- **Balance Factor Function:** Calculates the balance factor of a node, which is the difference between the height of the left subtree and the height of the right subtree.
+- **Rotate Right Function:** Performs a right rotation on the given nodes **`x`** and **`y`**. Used during balancing to address left-heavy situations.
+- **Rotate Left Function:** Performs a left rotation on the given nodes **`x`** and **`y`**. Used during balancing to address right-heavy situations.
+- **Balance Function:** Balances the AVL tree by checking the balance factor of the given node and performs necessary rotations (left or right) to maintain the AVL property.
+- **Insert Function:** Inserts a new key into the AVL tree while maintaining the binary search tree (BST) property. After insertion, it updates the height and balances the tree.
+- **Inorder Traversal Function:** Performs an inorder traversal of the AVL tree and prints the keys in sorted order.
+
+# Example c++ code:
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// Node structure for the AVL tree
+struct Node {
+    int key;
+    int height;
+    Node* left;
+    Node* right;
+
+    Node(int k) : key(k), height(1), left(nullptr), right(nullptr) {}
+};
+
+// Function to get the height of a node
+int height(Node* node) {
+    return (node == nullptr) ? 0 : node->height;
+}
+
+// Function to update the height of a node based on its children's heights
+void updateHeight(Node* node) {
+    node->height = 1 + max(height(node->left), height(node->right));
+}
+
+// Function to calculate the balance factor of a node
+int balanceFactor(Node* node) {
+    return (node == nullptr) ? 0 : height(node->left) - height(node->right);
+}
+
+// Function to perform a right rotation on the given nodes x and y
+Node* rotateRight(Node* y) {
+    Node* x = y->left;
+    Node* T2 = x->right;
+
+    x->right = y;
+    y->left = T2;
+
+    updateHeight(y);
+    updateHeight(x);
+
+    return x;
+}
+
+// Function to perform a left rotation on the given nodes x and y
+Node* rotateLeft(Node* x) {
+    Node* y = x->right;
+    Node* T2 = y->left;
+
+    y->left = x;
+    x->right = T2;
+
+    updateHeight(x);
+    updateHeight(y);
+
+    return y;
+}
+
+// Function to balance the AVL tree starting from the given node
+Node* balance(Node* node) {
+    if (node == nullptr) {
+        return node;
+    }
+
+    updateHeight(node);
+
+    // Get the balance factor of this node
+    int factor = balanceFactor(node);
+
+    // Left Heavy
+    if (factor > 1) {
+        // Left-Right Case
+        if (balanceFactor(node->left) < 0) {
+            node->left = rotateLeft(node->left);
+        }
+        // Left-Left Case
+        return rotateRight(node);
+    }
+
+    // Right Heavy
+    if (factor < -1) {
+        // Right-Left Case
+        if (balanceFactor(node->right) > 0) {
+            node->right = rotateRight(node->right);
+        }
+        // Right-Right Case
+        return rotateLeft(node);
+    }
+
+    return node;
+}
+
+// Function to insert a key into the AVL tree
+Node* insert(Node* root, int key) {
+    // Standard BST insert
+    if (root == nullptr) {
+        return new Node(key);
+    }
+
+    if (key < root->key) {
+        root->left = insert(root->left, key);
+    } else if (key > root->key) {
+        root->right = insert(root->right, key);
+    } else {
+        return root;  // Duplicate keys are not allowed
+    }
+
+    // Update height of the current node
+    updateHeight(root);
+
+    // Rebalance the tree
+    return balance(root);
+}
+
+// Function to perform an inorder traversal of the AVL tree
+void inorderTraversal(Node* root) {
+    if (root) {
+        inorderTraversal(root->left);
+        cout << root->key << " ";
+        inorderTraversal(root->right);
+    }
+}
+
+// Main function for testing
+int main() {
+    Node* root = nullptr;
+    std::string keys_input;
+    // std::cout << "Enter the keys separated by spaces: ";
+    std::getline(std::cin, keys_input);
+
+    // Create a stringstream from the input string
+    std::stringstream ss(keys_input);
+    int key;
+    std::vector<int> keys;
+
+    // Extract each key from the stringstream and store it in the keys vector
+    while (ss >> key) {
+        keys.push_back(key);
+    }
+    for (int key : keys) {
+        root = insert(root, key);
+    }
+
+    cout << "Inorder Traversal of AVL tree:" << endl;
+    inorderTraversal(root);
+
+    return 0;
+}
+```
+
+## Step-By-Step Explanation:
+
+1. **Node Structure:** Defines a structure for a node in the AVL tree. Each node contains a key, height, and pointers to the left and right children.
+2. **Height Function:** Returns the height of a node. If the node is **`nullptr`**, the height is 0.
+3. **Update Height Function:** Updates the height of a given node based on the heights of its left and right children.
+4. **Balance Factor Function:** Calculates the balance factor of a node, which is the difference between the height of the left subtree and the height of the right subtree.
+5. **Rotate Right and Rotate Left Functions:** Perform right and left rotations on the given nodes, respectively.
+6. **Balance Function:** Balances the AVL tree by checking the balance factor of the given node and performs necessary rotations (left or right) to maintain the AVL property.
+7. **Insert Function:** Inserts a new key into the AVL tree while maintaining the binary search tree (BST) property. After insertion, it updates the height and balances the tree.
+8. **Inorder Traversal Function:** Performs an inorder traversal of the AVL tree and prints the keys in sorted order.
+9. **Main Function:** Creates an AVL tree and inserts keys **`[10, 20, 30, 40, 50, 25]`**. Then, it prints the inorder traversal to demonstrate that the AVL tree is balanced.
+
+# Example Java code:
+
+```java
+
+import java.util.Scanner;
+class Node {
+    int key;
+    int height;
+    Node left, right;
+
+    public Node(int item) {
+        key = item;
+        height = 1;
+        left = right = null;
+    }
+}
+
+// AVL tree class
+class AVLTree {
+    Node root;
+
+    // Function to get the height of a node
+    int height(Node node) {
+        return (node == null) ? 0 : node.height;
+    }
+
+    // Function to update the height of a node based on its children's heights
+    void updateHeight(Node node) {
+        node.height = 1 + Math.max(height(node.left), height(node.right));
+    }
+
+    // Function to calculate the balance factor of a node
+    int balanceFactor(Node node) {
+        return (node == null) ? 0 : height(node.left) - height(node.right);
+    }
+
+    // Function to perform a right rotation on the given nodes x and y
+    Node rotateRight(Node y) {
+        Node x = y.left;
+        Node T2 = x.right;
+
+        x.right = y;
+        y.left = T2;
+
+        updateHeight(y);
+        updateHeight(x);
+
+        return x;
+    }
+
+    // Function to perform a left rotation on the given nodes x and y
+    Node rotateLeft(Node x) {
+        Node y = x.right;
+        Node T2 = y.left;
+
+        y.left = x;
+        x.right = T2;
+
+        updateHeight(x);
+        updateHeight(y);
+
+        return y;
+    }
+
+    // Function to balance the AVL tree starting from the given node
+    Node balance(Node node) {
+        if (node == null) {
+            return node;
+        }
+
+        updateHeight(node);
+
+        // Get the balance factor of this node
+        int factor = balanceFactor(node);
+
+        // Left Heavy
+        if (factor > 1) {
+            // Left-Right Case
+            if (balanceFactor(node.left) < 0) {
+                node.left = rotateLeft(node.left);
+            }
+            // Left-Left Case
+            return rotateRight(node);
+        }
+
+        // Right Heavy
+        if (factor < -1) {
+            // Right-Left Case
+            if (balanceFactor(node.right) > 0) {
+                node.right = rotateRight(node.right);
+            }
+            // Right-Right Case
+            return rotateLeft(node);
+        }
+
+        return node;
+    }
+
+    // Function to insert a key into the AVL tree
+    Node insert(Node root, int key) {
+        // Standard BST insert
+        if (root == null) {
+            return new Node(key);
+        }
+
+        if (key < root.key) {
+            root.left = insert(root.left, key);
+        } else if (key > root.key) {
+            root.right = insert(root.right, key);
+        } else {
+            return root;  // Duplicate keys are not allowed
+        }
+
+        // Update height of the current node
+        updateHeight(root);
+
+        // Rebalance the tree
+        return balance(root);
+    }
+
+    // Function to perform an inorder traversal of the AVL tree
+    void inorderTraversal(Node root) {
+        if (root != null) {
+            inorderTraversal(root.left);
+            System.out.print(root.key + " ");
+            inorderTraversal(root.right);
+        }
+    }
+
+    // Main method for testing
+    public static void main(String[] args) {
+        AVLTree tree = new AVLTree();
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user to enter the keys separated by spaces
+        // System.out.print("Enter the keys separated by spaces: ");
+        String keysInput = scanner.nextLine();
+
+        // Split the input string by spaces to get individual keys
+        String[] keysInputArray = keysInput.split(" ");
+        int[] keys = new int[keysInputArray.length];
+
+        // Parse each key from the input array
+        for (int i = 0; i < keysInputArray.length; i++) {
+            keys[i] = Integer.parseInt(keysInputArray[i]);
+        }
+
+
+        for (int key : keys) {
+            tree.root = tree.insert(tree.root, key);
+        }
+
+        System.out.println("Inorder Traversal of AVL tree:");
+        tree.inorderTraversal(tree.root);
+    }
+}
+```
+
+## Step-By-Step Explanation:
+
+1. **Node Class:** Defines a class for a node in the AVL tree. Each node contains a key, height, and pointers to the left and right children.
+2. **AVLTree Class:** Defines the AVL tree class with methods for height calculation, height updating, balance factor calculation, rotation operations, balancing, insertion, and inorder traversal.
+3. **Height Function:** Returns the height of a node. If the node is **`null`**, the height is 0.
+4. **Update Height Function:** Updates the height of a given node based on the heights of its left and right children.
+5. **Balance Factor Function:** Calculates the balance factor of a node, which is the difference between the height of the left subtree and the height of the right subtree.
+6. **Rotate Right and Rotate Left Functions:** Perform right and left rotations on the given nodes, respectively.
+7. **Balance Function:** Balances the AVL tree by checking the balance factor of the given node and performs necessary rotations (left or right) to maintain the AVL property.
+8. **Insert Function:** Inserts a new key into the AVL tree while maintaining the binary search tree (BST) property. After insertion, it updates the height and balances the tree.
+9. **Inorder Traversal Function:** Performs an inorder traversal of the AVL tree and prints the keys in sorted order.
+10. **Main Method:** Creates an AVL tree and inserts keys **`[10, 20, 30, 40, 50, 25]`**. Then, it prints the inorder traversal to demonstrate that the AVL tree is balanced.
+
+# Real-World Applications of Balancing Binary Tree:
+
+1. **Databases:**
+    - **Indexing:** Balancing binary trees are used to implement indexes in databases. They allow for efficient search and retrieval of data, reducing the time complexity of operations like searching for a specific record.
+2. **File Systems:**
+    - **File System Indexing:** Similar to databases, balanced binary trees are used in file systems to index and organize files efficiently. This speeds up file retrieval operations and helps maintain a hierarchical structure.
+3. **Networking:**
+    - **Routing Tables:** In networking, balanced binary trees are employed to implement routing tables. The hierarchical nature of these trees allows for quick and efficient lookup of routes in large-scale networks.
+4. **Compilers:**
+    - **Symbol Tables:** Compilers use symbol tables to manage identifiers (variables, functions, etc.) in a program. Balanced binary trees help in quickly searching and updating these symbol tables during the compilation process.
+5. **Memory Management:**
+    - **Memory Allocation Tracking:** In memory management systems, AVL trees can be used to track allocated memory blocks efficiently. This helps in quickly locating free blocks and managing memory allocation and deallocation.
+6. **Caches:**
+    - **Cache Management:** In caching mechanisms, balanced binary trees can be used to manage and organize cached data efficiently. This facilitates quick searches and updates in the cache, improving overall performance.
+7. **Dynamic Order Statistics:**
+    - **Priority Queues:** Balanced binary trees are used to implement priority queues, which are essential in various applications like task scheduling and managing events with different priorities.
+8. **Collaborative Filtering (Recommendation Systems):**
+    - **User Item Matrix:** In recommendation systems, where there is a need to efficiently look up user preferences or item ratings, balanced binary trees can be used to represent user-item matrices for quick search and retrieval.
+9. **Data Deduplication:**
+    - **Storage Systems:** In storage systems, particularly for data deduplication, balanced binary trees can be used to index and manage unique data blocks, enabling quick identification and elimination of duplicate data.
+10. **Transaction Processing Systems:**
+    - **Concurrency Control:** In systems dealing with concurrent transactions, balanced binary trees can be used to maintain order and facilitate efficient searching and updating of transaction records.
+
+## Test Cases
+
+Test Case 1:
+Input:
+"10 20 30 40 50".
+
+Output:
+The output is the result of an inorder traversal of the AVL tree, which prints the keys in sorted order.
+
+Explanation of Output:
+- An inorder traversal of a binary search tree (BST) visits the nodes in ascending order of their keys.
+- In this case, the AVL tree's nodes are traversed in sorted order.
+- The output "10 20 30 40 50" indicates that the keys of the AVL tree, when traversed in inorder, are sorted as 10, 20, 30, 40, and 50.
+- This confirms that the AVL tree maintains its balanced property and correctly orders its keys.
+
+Test Case 2:
+Input:
+"5 10 15 20 25 30".
+
+Output:
+The output is the result of an inorder traversal of the AVL tree, which prints the keys in sorted order.
+
+Explanation of Output:
+- An inorder traversal of a binary search tree (BST) visits the nodes in ascending order of their keys.
+- In this case, the AVL tree's nodes are traversed in sorted order.
+- The output "5 10 15 20 25 30" indicates that the keys of the AVL tree, when traversed in inorder, are sorted as 5, 10, 15, 20, 25, and 30.
+- This confirms that the AVL tree maintains its balanced property and correctly orders its keys.
