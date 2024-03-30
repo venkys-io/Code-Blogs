@@ -26,6 +26,7 @@ For more information, visit https://venkys.io */
 //Time complexity
 // Insertion: O(n); n is the length of the word.
 // Search: O(n)
+import java.util.Scanner;
 public class VSDTriesWithStrings{
 
 public static class VSDTrieNode{
@@ -96,11 +97,23 @@ public static String VSDSearchTrieRecursive(VSDTrieNode node, String s, int j){
 }
 
 public static void main(String args[]) {
-	stringList=new String[] {"apple","applet","amazon","azure","applet","amazing","laptop"};
+	Scanner scanner = new Scanner(System.in);
+
+        // Input the number of strings in the list
+        // System.out.print("Enter the number of strings: ");
+        int n = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+
+        // Create an array to store the strings
+        String[] stringList = new String[n];
+
+        // Input each string from the user
+        for (int i = 0; i < n; i++) {
+            stringList[i] = scanner.nextLine();
 	//Inserting strings into the trie
 	for(int i = 0;i<stringList.length;i++)
 		 VSDInsertNode(rootNode,i,0);
-	String searchkey="apple";
+	String searchkey = scanner.nextLine();
 	searchstring="";
 	String searchres=VSDSearchTrieRecursive(rootNode,searchkey,0);
 	if(searchkey.contentEquals(searchres))
@@ -156,13 +169,22 @@ def VSDSearchTrieRecursive(node, s, j):
     else:
         return ""
 
-stringList = ["apple", "applet", "amazon", "azure", "applet", "amazing", "laptop"]
+n = int(input())
+
+# Initialize an empty list to store the strings
+stringList = []
+
+# Input each string from the user
+for i in range(n):
+    string = input()
+    stringList.append(string)
+
 rootNode = VSDTrieNode()
 
 for i in range(len(stringList)):
     VSDInsertNode(rootNode, i, 0)
 
-searchkey = "apple"
+searchkey = input()
 searchres = VSDSearchTrieRecursive(rootNode, searchkey, 0)
 
 if searchkey == searchres:
@@ -236,14 +258,29 @@ std::string VSDSearchTrieRecursive(VSDTrieNode* node, const std::string& s, int 
 
 int main() {
     // Initialize stringList as a vector of strings
-    std::vector<std::string> stringList = {"apple", "applet", "amazon", "azure", "applet", "amazing", "laptop"};
+     int n;
+    // std::cout << "Enter the number of strings: ";
+    std::cin >> n;
+    std::cin.ignore(); // Ignore the newline character
+
+    // Initialize an empty vector to store the strings
+    std::vector<std::string> stringList;
+
+    // Input each string from the user
+    std::string str;
+    for (int i = 0; i < n; ++i) {
+        // std::cout << "Enter string #" << (i + 1) << ": ";
+        std::getline(std::cin, str);
+        stringList.push_back(str);
+    }
     VSDTrieNode* rootNode = new VSDTrieNode();
 
     for (int i = 0; i < stringList.size(); i++) {
         VSDInsertNode(rootNode, stringList, i, 0);
     }
 
-    std::string searchkey = "apple";
+    std::string searchkey;
+    std::cin >> searchkey;
     std::string searchstring = "";
     std::string searchres = VSDSearchTrieRecursive(rootNode, searchkey, 0);
 
@@ -321,3 +358,47 @@ Tries find applications in various scenarios:
 - **Phone Book Search:** Facilitate quick search operations for contact names.
 
 Tries, with their efficient structure for string-related operations, play a vital role in optimizing algorithms and solving real-world problems. Incorporating them into your programming toolkit can greatly enhance your ability to handle string-related challenges effectively.
+
+## Test Cases
+
+- Input:
+  5
+  apple
+  app
+  amazon
+  laptop
+  azure
+  applet
+  Search Key:
+  app
+  Output:
+  Key Found
+
+  Explanation:
+  - We input 5 strings: "apple", "app", "amazon", "laptop", and "azure".
+  - The search key is "app".
+  - The code constructs a trie from the input strings.
+  - Then, it searches for the search key "app" in the trie.
+  - Since "app" is a prefix of "apple" and "applet", the search result is "app".
+  - Thus, the output is "Key found".
+
+- Input:
+  6
+  apple
+  banana
+  orange
+  grape
+  melon
+  mango
+  Search Key:
+  man
+  Output:
+  Key not found
+
+  Explanation:
+  - We input 6 strings: "apple", "banana", "orange", "grape", "melon", and "mango".
+  - The search key is "man".
+  - The code constructs a trie from the input strings.
+  - Then, it searches for the search key "man" in the trie.
+  - Since "man" is not a prefix of any string in the trie, the search result is an empty string.
+  - Thus, the output is "Key not found".
