@@ -219,3 +219,32 @@ The concept of an Alien Dictionary involves determining the lexicographic order 
         - In genetics, when analyzing DNA sequences or evolutionary relationships between species, character order determination is vital.
     2. **Microbiological Studies:**
         - Studying microbial organisms or examining their genetic makeup might involve dealing with unconventional genetic codes that require character ordering.
+
+### Test Cases
+
+Test Case 1:
+Input:
+"wrt", "wrf", "er", "ett", "rftt"
+
+Output:
+wertf
+
+Explanation:
+The input list of words is ["wrt", "wrf", "er", "ett", "rftt"].
+The function alienOrder constructs a graph representing the ordering of characters based on the given words.
+It then performs a topological sort on the graph to find the lexicographically smallest order of characters.
+The output is "wertf", which represents the order in which the characters should appear.
+
+Test Case 2:
+
+Input:
+"z", "x"
+
+Output:
+zx
+
+Explanation:
+The input list of words is ["z", "x"].
+The function alienOrder constructs a graph representing the ordering of characters based on the given words.
+It then performs a topological sort on the graph to find the lexicographically smallest order of characters.
+Since there are only two words and one character in each word, the order is straightforward. The output is "zx".
