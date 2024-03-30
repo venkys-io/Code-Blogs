@@ -127,7 +127,10 @@ def inorder_traversal(node):
 
 # Example usage:
 root = None
-keys = [10, 20, 30, 40, 50, 25]
+keys_input = input()
+
+# Split the input string by spaces to get individual keys
+keys = list(map(int, keys_input.split()))
 
 for key in keys:
     root = insert(root, key)
@@ -275,8 +278,19 @@ void inorderTraversal(Node* root) {
 // Main function for testing
 int main() {
     Node* root = nullptr;
-    int keys[] = {10, 20, 30, 40, 50, 25};
+    std::string keys_input;
+    // std::cout << "Enter the keys separated by spaces: ";
+    std::getline(std::cin, keys_input);
 
+    // Create a stringstream from the input string
+    std::stringstream ss(keys_input);
+    int key;
+    std::vector<int> keys;
+
+    // Extract each key from the stringstream and store it in the keys vector
+    while (ss >> key) {
+        keys.push_back(key);
+    }
     for (int key : keys) {
         root = insert(root, key);
     }
@@ -303,6 +317,8 @@ int main() {
 # Example Java code:
 
 ```java
+
+import java.util.Scanner;
 class Node {
     int key;
     int height;
@@ -430,7 +446,21 @@ class AVLTree {
     // Main method for testing
     public static void main(String[] args) {
         AVLTree tree = new AVLTree();
-        int[] keys = {10, 20, 30, 40, 50, 25};
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user to enter the keys separated by spaces
+        // System.out.print("Enter the keys separated by spaces: ");
+        String keysInput = scanner.nextLine();
+
+        // Split the input string by spaces to get individual keys
+        String[] keysInputArray = keysInput.split(" ");
+        int[] keys = new int[keysInputArray.length];
+
+        // Parse each key from the input array
+        for (int i = 0; i < keysInputArray.length; i++) {
+            keys[i] = Integer.parseInt(keysInputArray[i]);
+        }
+
 
         for (int key : keys) {
             tree.root = tree.insert(tree.root, key);
@@ -477,3 +507,31 @@ class AVLTree {
     - **Storage Systems:** In storage systems, particularly for data deduplication, balanced binary trees can be used to index and manage unique data blocks, enabling quick identification and elimination of duplicate data.
 10. **Transaction Processing Systems:**
     - **Concurrency Control:** In systems dealing with concurrent transactions, balanced binary trees can be used to maintain order and facilitate efficient searching and updating of transaction records.
+
+## Test Cases
+
+Test Case 1:
+Input:
+"10 20 30 40 50".
+
+Output:
+The output is the result of an inorder traversal of the AVL tree, which prints the keys in sorted order.
+
+Explanation of Output:
+- An inorder traversal of a binary search tree (BST) visits the nodes in ascending order of their keys.
+- In this case, the AVL tree's nodes are traversed in sorted order.
+- The output "10 20 30 40 50" indicates that the keys of the AVL tree, when traversed in inorder, are sorted as 10, 20, 30, 40, and 50.
+- This confirms that the AVL tree maintains its balanced property and correctly orders its keys.
+
+Test Case 2:
+Input:
+"5 10 15 20 25 30".
+
+Output:
+The output is the result of an inorder traversal of the AVL tree, which prints the keys in sorted order.
+
+Explanation of Output:
+- An inorder traversal of a binary search tree (BST) visits the nodes in ascending order of their keys.
+- In this case, the AVL tree's nodes are traversed in sorted order.
+- The output "5 10 15 20 25 30" indicates that the keys of the AVL tree, when traversed in inorder, are sorted as 5, 10, 15, 20, 25, and 30.
+- This confirms that the AVL tree maintains its balanced property and correctly orders its keys.
