@@ -80,7 +80,7 @@ def uniqueMorseRepresentations(words: list[str]) -> int:
 # Test the function
 if __name__ == "__main__":
     # Example words = ["gin", "zen", "gig", "msg"]
-    words = input("Enter a list of words separated by spaces: ").split()
+    words = input().split()
     if words:
         print(uniqueMorseRepresentations(words))  # Print the result of the function
 
@@ -160,7 +160,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         // Prompting the user to enter words separated by spaces
-        System.out.print("Enter words separated by spaces: ");
+        // System.out.print("Enter words separated by spaces: ");
 
         // Reading the input line and splitting it into an array of words
         String input = scanner.nextLine();
@@ -238,7 +238,7 @@ int countUniqueMorseCodeWords(const std::vector<std::string>& words) {
 
 int main() {
     // Prompt the user to enter words separated by space
-    std::cout << "Enter words separated by space: ";
+    // std::cout << "Enter words separated by space: ";
 
     // Read the input line
     std::string inputLine;
@@ -249,7 +249,7 @@ int main() {
     std::vector<std::string> words(std::istream_iterator<std::string>{iss}, std::istream_iterator<std::string>());
 
     // Print the result of counting unique Morse code representations for the entered words
-    std::cout << "Result: " << countUniqueMorseCodeWords(words) << std::endl;
+    std::cout << countUniqueMorseCodeWords(words) << std::endl;
 
     return 0;
 }
@@ -291,6 +291,47 @@ int main() {
 3. **Enhanced Security:** Transforming data into unique formats is a core principle in cryptography, ensuring secure communication by making messages less susceptible to unauthorized access.
 
 4. **Everyday Convenience:** Barcodes and QR codes exemplify the practical use of unique representations, simplifying tasks in retail, logistics, and daily life by encoding information for quick retrieval.
+
+## Test Cases
+
+Test Case 1:
+**Input:**
+```
+gin zen gig msg
+```
+
+**Output:**
+```
+2
+```
+
+**Explanation:**
+- The program prompts the user to input a list of words `["gin", "zen", "gig", "msg"]`.
+- The `uniqueMorseRepresentations` function is called with the input list.
+- Morse code representations are predefined for each lowercase letter.
+- Each word's letters are converted into Morse code and stored in a set to eliminate duplicates.
+- The unique Morse code representations are `{'--...-.', '--...--.'}`.
+- The count of unique Morse code representations is `2`, which is printed as the output.
+
+Test Case 2:
+
+**Input:**
+```
+["cat", "bat", "rat", "mat"]
+```
+
+**Output:**
+```
+4
+```
+
+**Explanation:**
+- The program prompts the user to input a list of words `["cat", "bat", "rat", "mat"]`.
+- The `uniqueMorseRepresentations` function is called with the input list.
+- Morse code representations are predefined for each lowercase letter.
+- Each word's letters are converted into Morse code and stored in a set to eliminate duplicates.
+- The unique Morse code representations are `{'-.-.-', '.-.-.', '.-.--', '--.-'}`.
+- The count of unique Morse code representations is `4`, which is printed as the output.
 
 ## Conclusion
 The Unique Morse Code Words program efficiently converts words into unique Morse code representations. With a time complexity of O(N * M) and space complexity of O(N * M), it offers a practical solution for encoding words. Its simplicity and versatility make it applicable in communication, cryptography, and education. In summary, this program provides a valuable tool for unique data representation, demonstrating its utility across various domains.
