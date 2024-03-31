@@ -88,13 +88,13 @@ def is_anagram(s1,s2):
 # test drive code
 if __name__ == "__main__":
     # Input two strings from the user
-    s1=input("Enter the string: ")
-    s2=input("Enter another String: ")
+    s1=input()
+    s2=input()
     # Check if the strings are anagrams and print the result
     if(is_anagram(s1,s2)):
-        print(f"{s1} and {s2} are Anagrams")
+        print("True")
     else:
-        print(f"{s1} and {s2} are Not Anagrams")
+        print("False")
 
 
 ```
@@ -166,19 +166,19 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         // Input the first string 
-        System.out.print("Enter the first string: ");
+        // System.out.print("Enter the first string: ");
         String s1 = scanner.nextLine();
 
         // Input the second string 
-        System.out.print("Enter the second string: ");
+        // System.out.print("Enter the second string: ");
         String s2 = scanner.nextLine();
 
         // Checking if the strings are anagrams and printing the result
         if(isAnagram(s1,s2)){
-            System.out.println(s1+" and "+s2+" are Anagrams");
+            System.out.println("True");
         }
         else{
-            System.out.println(s1+" and "+s2+" are not Anagrams");
+            System.out.println("False");
         }
         // Close the scanner to prevent resource leaks
         scanner.close();
@@ -220,17 +220,17 @@ int main(){
   string s1, s2;
 
   // Get input for the first string
-  cout << "Enter the first string: ";
+  // cout << "Enter the first string: ";
   cin >> s1;
 
   // Get input for the second string
-  cout << "Enter the second string: ";
+  // cout << "Enter the second string: ";
   cin >> s2;
 
   // Check if the lengths of both strings are different
   if(s1.size()!=s2.size()){
     // If different, print "Not Anagram"
-    cout<<"Not Anagram";
+    court<<"False";
   }
   else{
     // Create a hash map to store the frequency of characters
@@ -249,7 +249,7 @@ int main(){
       }
       else{
         // If character not found, print "Not Anagrams" and exit
-        cout<<s1<<" and "<<s2<<" are Not Anagrams";
+        court<<"False";
         return false;
       }
     }
@@ -258,11 +258,11 @@ int main(){
       // Check if any frequency is not zero
       if(items.second!=0){
         // If not zero, print "Not Anagrams" and exit
-         cout<<s1<<" and "<<s2<<" are Not Anagrams";
+         cout<<s1<<"False";
       }
     }
     // If all characters match, print "Anagrams"
-    cout<<s1<<" and "<<s2<<" are Anagrams";
+    cout<<"True";
     return true;
   }
    
