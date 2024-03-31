@@ -81,17 +81,17 @@ def VSDprint(sortedarray, n):
 
 # Main Function
 if __name__ == "__main__":
-    n = int(input("Enter the number of items: "))
+    n = int(input())
     profits = []
     weights = []
 
     for i in range(n):
-        profit = int(input(f"Enter profit for item {i + 1}: "))
-        weight = int(input(f"Enter weight for item {i + 1}: "))
+        profit = int(input())
+        weight = int(input())
         profits.append(profit)
         weights.append(weight)
 
-    capacity = int(input("Enter the knapsack capacity: "))
+    capacity = int(input())
 
     # Calculate and sort the array based on profit-to-weight ratio
     arr = VSDcalculatepwratio(n, profits, weights)
@@ -99,7 +99,7 @@ if __name__ == "__main__":
     # Find and print the maximum profit
     result = VSDknapsack(arr, n, capacity)
     VSDprint(arr, n)
-    print("Maximum profit is:", result)
+    print(result)
 
 ```
 
@@ -166,10 +166,25 @@ public class Main {
     public static void main(String[] args) {
         // ArrayList to store items in the knapsack
         ArrayList<Node> sack = new ArrayList<>();
-        int n = 7;
-        int capacity = 15;
-        int[] profits = {5, 10, 15, 7, 8, 9, 4};
-        int[] weights = {1, 3, 5, 4, 1, 3, 2};
+        Scanner scanner = new Scanner(System.in);
+
+        // Input the number of items and the capacity of the knapsack
+        int n = scanner.nextInt();
+        int capacity = scanner.nextInt();
+
+        // Initialize arrays to store profits and weights of items
+        int[] profits = new int[n];
+        int[] weights = new int[n];
+
+        // Input profits of items
+        for (int i = 0; i < n; i++) {
+            profits[i] = scanner.nextInt();
+        }
+
+        // Input weights of items
+        for (int i = 0; i < n; i++) {
+            weights[i] = scanner.nextInt();
+        }
         
         // Populate the sack ArrayList with Node objects
         for (int i = 0; i < n; i++) {
@@ -185,7 +200,7 @@ public class Main {
         float result = knapsack(sack, n, capacity);
 
         // Print the maximum profit
-        System.out.printf("The maximum profit is %.2f", result);
+        System.out.printf( result);
     }
 }
 ```
@@ -253,7 +268,7 @@ int main()
 {
     // Initialize variables for the number of items, knapsack capacity, profits, and weights
     int n;
-    std::cout << "Enter the number of items: ";
+    // std::cout << "Enter the number of items: ";
     std::cin >> n;
 
     std::vector<Node> arr;
@@ -261,10 +276,10 @@ int main()
     for (int i = 0; i < n; i++)
     {
         Node node;
-        std::cout << "Enter profit for item " << i + 1 << ": ";
+        // std::cout << "Enter profit for item " << i + 1 << ": ";
         std::cin >> node.profit;
 
-        std::cout << "Enter weight for item " << i + 1 << ": ";
+        // std::cout << "Enter weight for item " << i + 1 << ": ";
         std::cin >> node.weight;
 
         node.ratio = static_cast<float>(node.profit) / node.weight;
@@ -272,7 +287,7 @@ int main()
     }
 
     int capacity;
-    std::cout << "Enter the knapsack capacity: ";
+    // std::cout << "Enter the knapsack capacity: ";
     std::cin >> capacity;
 
     // Sort the vector based on profit-to-weight ratio using the overloaded < operator
@@ -282,7 +297,7 @@ int main()
     float result = knapsack(arr, n, capacity);
 
     // Print the maximum profit to the console
-    std::cout << "The Maximum profit is " << std::fixed << std::setprecision(2) << result << std::endl;
+    std::cout <<  std::fixed << std::setprecision(2) << result << std::endl;
 
     return 0;
 }
