@@ -1,4 +1,4 @@
-<h1>PREFIX SUM</h1>
+# PREFIX SUM
 
 Arrays play a crucial role in the context of prefix sum calculations. The prefix sum algorithm operates on arrays, allowing for efficient computation of cumulative sums. By storing the elements of a sequence in an array, we can easily access and manipulate them during the prefix sum process.
 
@@ -35,7 +35,7 @@ def prefixSum(arr):
 
 if __name__ == "__main__":
     # Read input from stdin
-    input_str = input("Enter elements of the array separated by space: ")
+    input_str = input()
 
     # Convert the input string to an array (list) of integers
     arr = [int(num) for num in input_str.split()]
@@ -94,12 +94,12 @@ public class PrefixSum {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter the number of elements for the array: ");
+        // System.out.print("Enter the number of elements for the array: ");
         int numElements = scanner.nextInt();
 
         int[] arr = new int[numElements];
         // Step 9: Create an integer array named arr with user-input values
-        System.out.print("Enter the elements of the array separated by space: ");
+        // System.out.print("Enter the elements of the array separated by space: ");
         for (int i = 0; i < numElements; i++) {
             arr[i] = scanner.nextInt();
         }
@@ -165,13 +165,13 @@ void prefixSum(std::vector<int>& arr) {
 // Main function
 int main() {
     // Read the number of elements from the user
-    std::cout << "Enter the number of elements for the array: ";
+    // std::cout << "Enter the number of elements for the array: ";
     int num_elements;
     std::cin >> num_elements;
 
     // Create a vector named arr with user-input values
     std::vector<int> arr(num_elements);
-    std::cout << "Enter the elements of the array separated by space: ";
+    // std::cout << "Enter the elements of the array separated by space: ";
     for (int i = 0; i < num_elements; ++i) {
         std::cin >> arr[i];
     }
@@ -221,3 +221,43 @@ Running Totals and Aggregates: Prefix sums are useful in data analytics for calc
 4.Game Development:
 
 Pathfinding Algorithms: In game development, prefix sums can be used in pathfinding algorithms to efficiently calculate the cumulative cost of moving through a grid. This is crucial for determining optimal paths for characters or entities in a game.
+
+## Test Cases
+
+Test Case 1:
+**Input:**
+```
+3 4 -2 6 -3 1
+```
+
+**Output:**
+```
+3 7 5 11 8 9
+```
+
+**Explanation:**
+- The program takes the input array `[3, 4, -2, 6, -3, 1]`.
+- It then computes the prefix sum of the array.
+- The prefix sum is calculated as follows:
+  - The first element remains unchanged.
+  - For each subsequent element, it adds the value of the preceding element to itself.
+- After calculating the prefix sum, the program prints the resulting array `[3, 7, 5, 11, 8, 9]`.
+
+Test Case 2:
+**Input:**
+```
+-1 2 -3 4 -5 6 -7
+```
+
+**Output:**
+```
+-1 1 -2 2 -3 3 -4
+```
+
+**Explanation:**
+- The program takes the input array `[-1, 2, -3, 4, -5, 6, -7]`.
+- It then computes the prefix sum of the array.
+- The prefix sum is calculated as follows:
+  - The first element remains unchanged.
+  - For each subsequent element, it adds the value of the preceding element to itself.
+- After calculating the prefix sum, the program prints the resulting array `[-1, 1, -2, 2, -3, 3, -4]`.
