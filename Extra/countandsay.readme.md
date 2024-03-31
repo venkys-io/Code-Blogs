@@ -80,11 +80,11 @@ class Solution:
 solution = Solution()
 
 # Take input from user for n
-n = int(input("Enter a value for n: "))
+n = int(input())
 
 # Generate sequence for input n and print the result
 output = solution.countAndSay(n)
-print("Result:", output)
+print(output)
 
 ```
 
@@ -145,12 +145,12 @@ class Solution {
         Solution solution = new Solution();
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter a value for n: ");
+        // System.out.print("Enter a value for n: ");
         int n = scanner.nextInt();
 
         // Generate the Count and Say sequence for input n and print the result
         String output = solution.countAndSay(n);
-        System.out.println("Result: " + output);
+        System.out.println(output);
 
         scanner.close();
     }
@@ -221,12 +221,12 @@ int main() {
     Solution solution;
     int n;
 
-    cout << "Enter a value for n: ";
+    // cout << "Enter a value for n: ";
     cin >> n;
 
     // Generate the Count and Say sequence for input n and print the result
     string output = solution.countAndSay(n);
-    cout << "Result: " << output << endl;
+    cout << output << endl;
 
     return 0;
 }
@@ -268,6 +268,46 @@ int main() {
 - String Compression: Used in various data compression algorithms where sequences need to be represented efficiently.
 - Encoding and Decoding: Applied in encoding schemes where sequences need to be represented in a concise manner.
 - Pattern Recognition: In some cases, this algorithm's pattern-generating nature finds application in certain pattern recognition tasks.
+
+## Test Cases:
+
+Test Case 1:
+**Input:**
+```
+5
+```
+
+**Output:**
+```
+111221
+```
+
+**Explanation:**
+- The program prompts the user to input a value for `n`, which is `5`.
+- The `countAndSay` method of the `Solution` class is called with the input value `5`.
+- The method generates the sequence by recursively calling itself for `n - 1`, which is `4`.
+- For `n = 4`, the previous sequence is `"1211"`.
+- The method loops through the previous sequence and counts consecutive digits. It generates the current sequence `"111221"`.
+- The generated sequence `"111221"` is printed as the output.
+
+Test Case 2:
+**Input:**
+```
+6
+```
+
+**Output:**
+```
+312211
+```
+
+**Explanation:**
+- The program prompts the user to input a value for `n`, which is `6`.
+- The `countAndSay` method of the `Solution` class is called with the input value `6`.
+- The method generates the sequence by recursively calling itself for `n - 1`, which is `5`.
+- For `n = 5`, the previous sequence is `"111221"`.
+- The method loops through the previous sequence and counts consecutive digits. It generates the current sequence `"312211"`.
+- The generated sequence `"312211"` is printed as the output.
 
 ## Summary:
 
