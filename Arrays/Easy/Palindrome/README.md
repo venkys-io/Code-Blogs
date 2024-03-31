@@ -48,14 +48,14 @@ def string_palindrome(string):
     for i in range(len(cleared_string)//2):
         # Check if the character at index i is not equal to its corresponding character from the end
         if cleared_string[i]!=cleared_string[length-(i+1)]:
-            print(f'"{original_string}" is not a palindrome string')
+            print("False")
             break
     else:
         # If the loop completes without breaking, it's a palindrome
-        print(f'"{original_string}" is a palindrome string')
+        print("True")
 
 #test drive code:
-string = input("Enter a string:")
+string = input()
 string_palindrome(string)
 ```
 
@@ -92,7 +92,7 @@ public class Main {
         // Scanner to take user input
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter a string: ");
+        // System.out.print("Enter a string: ");
         // Read user input
         String s = scanner.nextLine();
 
@@ -100,9 +100,9 @@ public class Main {
         boolean isPal = isPalindrome(s);
 
         if (isPal) {
-            System.out.println("\"" + s + "\" is a Palindrome");
+            System.out.println("True");
         } else {
-            System.out.println("\"" + s + "\" is not a Palindrome");
+            System.out.println("False");
         }
 
         // Close the scanner
@@ -176,14 +176,14 @@ int main() {
     string str;
 
     // Get input from the user
-    cout << "Enter a string: ";
+    // cout << "Enter a string: ";
     getline(cin, str);
 
     // Check if the string is a palindrome using the checkPalindrome function
     if (checkPalindrome(str)) {
-        cout << "\"" << str << "\" is a palindrome."<< endl;
+        cout << "True"<< endl;
     } else {
-        cout << "\"" << str << "\" is not a palindrome." << endl;
+        cout << "False" << endl;
     }
 
     return 0;
