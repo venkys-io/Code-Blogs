@@ -85,17 +85,22 @@ def searchMatrix(matrix, target: int):
 #test drive code:
 if __name__ == "__main__":
     # Matrix
-    matrix = [[1, 3, 5, 7],
-              [10, 11, 16, 20],
-              [23, 30, 34, 60]
-            ]
+    rows, cols = map(int, input().split())
+
+    # Initialize an empty matrix
+    matrix = []
+
+    # Input each row of the matrix
+    for _ in range(rows):
+        row = list(map(int, input().split()))
+        matrix.append(row)
     # Target integer
     target = 3
     # Check if the target is found in the matrix using the searchMatrix function
     if searchMatrix(matrix, target):
-        print(f"{target} is found in the matrix")
+        print("True")
     else:
-        print(f"{target} is not found in the matrix")
+        print("False")
 
 ```
 
@@ -115,6 +120,7 @@ The output of the above test case
 // time complexity:O(m*n)
 // space complexity:O(1)
 
+import java.util.*;
 public class Main {
     
     // Function to perform binary search on a sorted matrix
@@ -151,17 +157,28 @@ public class Main {
     // Main method
     public static void main(String[] args) {
         // Matrix
-        int[][] matrix = {
-            {1, 3, 5, 7},
-            {10, 11, 16, 20},
-            {23, 30, 34, 60}
-        };
+        Scanner scanner = new Scanner(System.in);
+
+        // Input the dimensions of the matrix
+        int rows = scanner.nextInt();
+        int cols = scanner.nextInt();
+
+        // Initialize a 2D array to store the matrix
+        int[][] matrix = new int[rows][cols];
+
+        // Input each element of the matrix
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                matrix[i][j] = scanner.nextInt();
+            }
+        }
+
         // Target integer
         int target = 3;
 
         // Check if the target is found in the matrix using the searchMatrix function
-        if (searchMatrix(matrix, target)) System.out.println(target + " is found in the matrix");
-        else System.out.println(target + " is not found in the matrix");
+        if (searchMatrix(matrix, target)) System.out.println("Found");
+        else System.out.println("Not Found");
     }
 }
 
@@ -215,7 +232,7 @@ bool searchMatrix(vector<vector<int>> &matrix, int target) {
 // Function to take matrix input from the user
 vector<vector<int>> inputMatrix(int rows, int cols) {
     vector<vector<int>> matrix(rows, vector<int>(cols, 0));
-    cout << "Enter the elements of the matrix:" << endl;
+    // cout << "Enter the elements of the matrix:" << endl;
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols; ++j) {
             cin >> matrix[i][j];
@@ -228,9 +245,9 @@ vector<vector<int>> inputMatrix(int rows, int cols) {
 int main() {
     // Get the number of rows and columns in the matrix from the user
     int rows, cols;
-    cout << "Enter the number of rows in the matrix: ";
+    // cout << "Enter the number of rows in the matrix: ";
     cin >> rows;
-    cout << "Enter the number of columns in the matrix: ";
+    // cout << "Enter the number of columns in the matrix: ";
     cin >> cols;
 
     // Matrix input
@@ -238,12 +255,12 @@ int main() {
 
     // Target input
     int target;
-    cout << "Enter the target integer: ";
+    // cout << "Enter the target integer: ";
     cin >> target;
 
     // Check if the target is found in the matrix using the searchMatrix function
-    if (searchMatrix(matrix, target)) cout << target << " is found in the matrix";
-    else cout << target << " is not found in the matrix";
+    if (searchMatrix(matrix, target)) court << "Found";
+    else court << "Not Found";
 
     return 0;
 }
