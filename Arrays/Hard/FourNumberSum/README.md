@@ -346,3 +346,45 @@ The space complexity is determined by the auxiliary space used during the recurs
 
 5. **Chemical Compound Discovery in Drug Development:**
    - In pharmaceutical research, scientists can utilize the Four Number Sum problem to explore combinations of chemical compounds that exhibit desired properties for drug development. Identifying sets of compounds whose characteristics sum up to specific criteria can accelerate the process of discovering novel drugs with desired therapeutic effects.
+
+## Test Cases:
+
+Test Case 1:
+**Input:**
+```
+1 0 -1 0 -2 2
+0
+4
+```
+
+**Output:**
+```
+[[-2, -1, 1, 2], [-2, 0, 0, 2], [-1, 0, 0, 1]]
+```
+
+**Explanation:**
+- The program takes the input array `[1, 0, -1, 0, -2, 2]`, target `0`, and `k = 4`.
+- It then sorts the input array.
+- Using the `ksum` function, it finds all combinations of `k` elements that sum up to the target.
+- In this case, it finds three unique combinations: `[[-2, -1, 1, 2], [-2, 0, 0, 2], [-1, 0, 0, 1]]`.
+- The program prints the resulting combinations.
+
+Test Case 2:
+**Input:**
+```
+3 7 8 10 12 14
+18
+3
+```
+
+**Output:**
+```
+[[3, 7, 8]]
+```
+
+**Explanation:**
+- The program takes the input array `[3, 7, 8, 10, 12, 14]`, target `18`, and `k = 3`.
+- It then sorts the input array.
+- Using the `ksum` function, it finds all combinations of `k` elements that sum up to the target.
+- In this case, it finds one unique combination: `[[3, 7, 8]]`.
+- The program prints the resulting combination.
