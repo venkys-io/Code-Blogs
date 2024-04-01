@@ -77,9 +77,9 @@ def VSDthreesum(n,arr,target):
         print("No triplets")
 
 if __name__=="__main__":#the function ‘VSDthreesum’ takes three parameters: n (length of the array), arr (the array of integers), and target (the target sum).
-    n=int(input("Enter the n value:"))
-    arr=int(input("Enter the array elements:"))
-    target=int(input("Enter the target:"))
+    n=int(input())
+    arr=int(input())
+    target=int(input())
     VSDthreesum(n,arr,target)
 ```
 
@@ -151,19 +151,22 @@ public class TripletSum {//the function tripletsum is defined.
     public static void main(String[] args) {//The **main** method initializes a **Scanner** object to take user input.
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter the size of the array: ");//The size of the array is given.
+        // System.out.print("Enter the size of the array: ");
+        //The size of the array is given.
         int size = scanner.nextInt();
 
         int[] nums = new int[size];
-        System.out.println("Enter the elements of the array:");//The elements to be entered into array.
+        // System.out.println("Enter the elements of the array:");
+        //The elements to be entered into array.
         for (int i = 0; i < size; i++) {
             nums[i] = scanner.nextInt();
         }
 
-        System.out.print("Enter the target sum: ");//The target is to be entered.
+        // System.out.print("Enter the target sum: ");
+        //The target is to be entered.
         int targetSum = scanner.nextInt();
 
-        System.out.println("Triplets with sum " + targetSum + ":");//It prints the triplet with the sum.
+        System.out.println(targetSum);//It prints the triplet with the sum.
         findTriplets(nums, targetSum);
 
         // Close the scanner to avoid resource leak
@@ -233,20 +236,23 @@ void findThreeNumberSum(int nums[], int size, int target) {
 //the user is prompted to input the size of the array, followed by the array elements.
 int main() {
     int size;
-    std::cout << "Enter the size of the array: ";//Need to provide or give the array size
+    // std::cout << "Enter the size of the array: ";
+    //Need to provide or give the array size
     std::cin >> size;
 
     int nums[size];
-    std::cout << "Enter the elements of the array:" << std::endl;//the elements that are pushed into the array
+    // std::cout << "Enter the elements of the array:" << std::endl;
+    //the elements that are pushed into the array
     for (int i = 0; i < size; i++) {
         std::cin >> nums[i];
     }
 
     int targetSum;
-    std::cout << "Enter the target sum: ";//the value or the sum we need
+    // std::cout << "Enter the target sum: ";
+    //the value or the sum we need
     std::cin >> targetSum;
 
-    std::cout << "ThreeNumbers with sum " << targetSum << ":" << std::endl;
+    std::cout <<  targetSum <<  std::endl;
     findThreeNumberSum(nums, size, targetSum);
 
     return 0;
@@ -299,3 +305,45 @@ The dominant factor in the time complexity is typically the sorting step. Let *n
 The ThreeNumberSum algorithm can be used in various real-world applications. For example, it can be applied in the field of finance to find three numbers in an array that add up to a specific target value, which can help identify investment opportunities or analyze market trends. Additionally, this algorithm can be used in data analysis to find combinations of three variables that satisfy certain conditions, aiding in the discovery of patterns or correlations.
 
 The ThreeNumberSum algorithm can also be used in the field of computational biology to identify gene networks or protein interactions. By finding three genes or proteins that interact with each other, researchers can gain insights into the underlying mechanisms of diseases or biological processes. Furthermore, this algorithm can be applied in social network analysis to identify groups of three individuals with strong connections, which can help in understanding social dynamics and influence patterns. Overall, the ThreeNumberSum algorithm has versatile applications across different domains.
+
+## Test Cases
+
+Test Case 1:
+**Input:**
+```
+6
+[-1, 0, 1, 2, -1, -4]
+0
+```
+
+**Output:**
+```
+Resultant Triplets are:  [-1, -1, 2] [-1, 0, 1]
+```
+
+**Explanation:**
+- The program takes the input array `[-1, 0, 1, 2, -1, -4]`, target `0`, and `n = 6`.
+- It sorts the input array in ascending order: `[-4, -1, -1, 0, 1, 2]`.
+- It then iterates through the array to find triplets such that their sum equals the target.
+- In this case, it finds two unique triplets: `[-1, -1, 2]` and `[-1, 0, 1]`.
+- The program prints the resultant triplets.
+
+Test Case 2:
+**Input:**
+```
+8
+[-2, -1, 0, 0, 1, 2, 3, 4]
+0
+```
+
+**Output:**
+```
+Resultant Triplets are:  [-2, 0, 2] [-1, 0, 1]
+```
+
+**Explanation:**
+- The program takes the input array `[-2, -1, 0, 0, 1, 2, 3, 4]`, target `0`, and `n = 8`.
+- It sorts the input array in ascending order: `[-2, -1, 0, 0, 1, 2, 3, 4]`.
+- It then iterates through the array to find triplets such that their sum equals the target.
+- In this case, it finds two unique triplets: `[-2, 0, 2]` and `[-1, 0, 1]`.
+- The program prints the resultant triplets.
