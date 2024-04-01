@@ -116,13 +116,13 @@ def VSDsolveboard(board,row,n,res):
 
 # The Driver Function
 if __name__=="__main__":
-    n=int(input("Enter the value :"))
+    n=int(input())
     board,result=getBoard(n)
     VSDsolveboard(board,0,n,result)
     print("-"*30)
     printboard(board,n)
     print("-"*30)
-    print("The result is ",*result,sep=" ")
+    print(*result,sep=" ")
 ```
 
 # Explanation
@@ -163,7 +163,7 @@ public class NQueens {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter the size of the chessboard (N): ");
+        // System.out.print("Enter the size of the chessboard (N): ");
         N = scanner.nextInt();
 
         solveNQueens(); // Call the solveNQueens method to find and print the solutions
@@ -342,10 +342,10 @@ vector<vector<string>> solveQueens(int n){//the ‘solveQueen’ initializes the
 int main(){//the program sets the size of the chessboard and then calls ‘solveQueens’.
 
   int n;
-  cout << "Enter the size of the chessboard : ";
+  // cout << "Enter the size of the chessboard : ";
   cin >> n;
   vector<vector<string>> lst = solveQueens(n);
-  cout<<"Queen can be placed in chess board by the following code"<<endl;
+  // cout<<"Queen can be placed in chess board by the following code"<<endl;
   return 0;
 }
 ```
@@ -404,3 +404,52 @@ While the N-Queens problem is a classic puzzle and a common benchmark for algori
     - In wireless communication or sensor network planning, the placement of antennas or sensors without interference is crucial. The principles of the N-Queens problem can be adapted to find optimal placements.
 5. **Robotics Path Planning:**
 - In robotics, particularly when planning the movement of multiple robots in an environment, the N-Queens problem's principles can be adapted to ensure collision-free paths
+
+## Test Cases
+
+Test Case 1:
+**Input:**
+```
+4
+```
+
+**Output:**
+```
+------------------------------
+_ Q _ _ 
+_ _ _ Q 
+Q _ _ _ 
+_ _ Q _ 
+------------------------------
+2 4 1 3
+```
+
+**Explanation:**
+- The program takes input `n = 4`, representing a 4x4 chessboard.
+- It initializes the chessboard and an empty list for results.
+- It solves the N-Queens problem and prints the resulting board with queens represented by 'Q' and empty spaces by '_'.
+- It also prints the column positions of queens in each row.
+
+Test Case 2:
+**Input:**
+```
+5
+```
+
+**Output:**
+```
+------------------------------
+Q _ _ _ _ 
+_ _ Q _ _ 
+_ _ _ _ Q 
+_ Q _ _ _ 
+_ _ _ Q _ 
+------------------------------
+1 3 5 2 4
+```
+
+**Explanation:**
+- The program takes input `n = 5`, representing a 5x5 chessboard.
+- It initializes the chessboard and an empty list for results.
+- It solves the N-Queens problem and prints the resulting board with queens represented by 'Q' and empty spaces by '_'.
+- It also prints the column positions of queens in each row.
